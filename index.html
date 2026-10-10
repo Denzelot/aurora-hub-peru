@@ -71,6 +71,10 @@ form{display:grid;gap:12px;margin-top:6px}
 label{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);display:grid;gap:6px}
 input,select,textarea{font:500 15px/1.4 var(--sans);color:var(--ink);background:rgba(6,18,26,.92);border:1px solid var(--line);border-radius:10px;padding:12px 14px;width:100%}
 textarea{min-height:84px;resize:vertical}
+.pair{display:grid;grid-template-columns:1fr 1fr;gap:12px}@media(max-width:560px){.pair{grid-template-columns:1fr}}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+.fstat{margin:0;font-size:14px;min-height:1.2em;color:var(--muted)}.fstat.ok{color:var(--mint)}.fstat.err{color:var(--pink)}
+.walink{justify-self:center;background:none;border:0;padding:4px;font:500 13.5px var(--sans);color:var(--muted);text-decoration:underline;text-underline-offset:3px;cursor:pointer}.walink:hover{color:var(--ink)}
 footer{margin-top:34px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-size:12.5px;color:var(--muted);border-top:1px solid var(--line);padding-top:16px}
 .dots{position:fixed;right:18px;top:50%;transform:translateY(-50%);z-index:4;display:grid;gap:10px}
 .dots a{display:flex;align-items:center;justify-content:flex-end;gap:10px;text-decoration:none;font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:transparent}
@@ -461,11 +465,16 @@ html[data-theme=light] .wa:hover{color:#fff;background:radial-gradient(circle at
   <h2>Enciende tu proyecto <span class="hl">con Aurora Hub.</span></h2>
   <p>Cuéntanos qué necesitas y te respondemos con una propuesta.</p>
   <form id="form">
-    <label>Nombre<input name="n" autocomplete="name" required></label>
+    <label>Nombre<input name="n" autocomplete="name" maxlength="80" required></label>
+    <div class="pair"><label>Correo<input name="e" type="email" autocomplete="email" maxlength="120" required></label>
+    <label>Teléfono (opcional)<input name="t" type="tel" autocomplete="tel" maxlength="30"></label></div>
+    <label class="hp" aria-hidden="true">Web<input name="web" tabindex="-1" autocomplete="off"></label>
     <label>Servicio<select name="s" id="svc"></select></label>
     <label>¿Para cuándo?<select name="p"><option>Lo antes posible</option><option>En 1 o 2 semanas</option><option>En 1 mes</option><option>En 2 o 3 meses</option><option>Sin apuro</option></select></label>
-    <label>Mensaje<textarea name="m" placeholder="Ej.: quiero que mi hotel reciba reservas y pagos por WhatsApp"></textarea></label>
-    <button class="btn primary mag" type="submit">Enviar por WhatsApp</button>
+    <label>Mensaje<textarea name="m" maxlength="2000" placeholder="Ej.: quiero que mi hotel reciba reservas y pagos por WhatsApp"></textarea></label>
+    <button class="btn primary mag" type="submit">Enviar mensaje</button>
+    <p class="fstat" id="fstat" role="status" aria-live="polite"></p>
+    <button class="walink" type="button" id="fwa">o escríbenos por WhatsApp</button>
   </form>
 </div></div></section>
 </main>
@@ -569,6 +578,7 @@ html[data-theme=light] .wa:hover{color:#fff;background:radial-gradient(circle at
 (() => {
 'use strict';
 const WHATSAPP = '51932462537';
+const CONTACT_API = 'https://api.aurorahubperu.com/api/contacto';
 document.documentElement.classList.add('js');
 const wa = t => window.open(`https://wa.me/${WHATSAPP}?text=${encodeURIComponent(t)}`, '_blank', 'noopener');
 /* ---------- catálogo de servicios ---------- */
@@ -600,8 +610,19 @@ const $svc = document.getElementById('svc');
 $svc.innerHTML = Object.keys(GROUPS).map(g => `<optgroup label="${g}">${SERV.filter(s => s[0] === g).map(s => `<option>${s[1]}</option>`).join('')}</optgroup>`).join('') + '<optgroup label="Otros"><option>Varios servicios combinados</option><option>No estoy seguro, necesito asesoría</option></optgroup>';
 $svc.value = 'No estoy seguro, necesito asesoría';
 document.querySelectorAll('[data-svc]').forEach(a => a.addEventListener('click', () => { $svc.value = a.dataset.svc; }));
-document.getElementById('form').addEventListener('submit', e => { e.preventDefault(); const f = new FormData(e.target);
-  wa(`Hola Aurora Hub Perú, soy ${f.get('n')}. Me interesa: ${f.get('s')}. Plazo: ${f.get('p')}. ${f.get('m') || ''}`.trim()); });
+const $form = document.getElementById('form'), $fstat = document.getElementById('fstat'), formT0 = Date.now();
+const fstat = (t, c = '') => { $fstat.textContent = t; $fstat.className = 'fstat ' + c; };
+$form.addEventListener('submit', async e => { e.preventDefault(); const f = new FormData($form), $b = $form.querySelector('[type=submit]');
+  $b.disabled = true; fstat('Enviando…');
+  try {
+    const r = await fetch(CONTACT_API, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ ...Object.fromEntries(f), ms: Date.now() - formT0 }) });
+    const j = await r.json().catch(() => ({}));
+    if (!r.ok || !j.ok) throw new Error(j.error || 'No se pudo enviar');
+    $form.reset(); fstat('¡Gracias! Recibimos tu mensaje y te responderemos pronto.', 'ok');
+  } catch (err) { fstat(`${err instanceof TypeError ? 'No pudimos conectar' : err.message}. Inténtalo de nuevo o escríbenos por WhatsApp.`, 'err'); }
+  $b.disabled = false; });
+document.getElementById('fwa').addEventListener('click', () => { const f = new FormData($form);
+  wa(`Hola Aurora Hub Perú, soy ${f.get('n') || ''}. Me interesa: ${f.get('s')}. Plazo: ${f.get('p')}. ${f.get('m') || ''}`.replace(/soy \./, 'quiero información.').trim()); });
 const $grid = document.getElementById('grid'), $chips = document.getElementById('chips');
 $grid.innerHTML = SERV.map((s, i) => `<button type="button" class="card" data-g="${s[0]}" data-i="${i}" style="--tone:${GROUPS[s[0]]}"><span class="g">${s[0]}</span><h3>${s[1]}</h3><p>${s[2]}</p></button>`).join('');
 ['Todos', ...Object.keys(GROUPS)].forEach((g, i) => { const b = document.createElement('button'); b.type = 'button'; b.className = 'chip' + (i ? '' : ' on'); b.textContent = g; b.setAttribute('aria-pressed', i ? 'false' : 'true');
