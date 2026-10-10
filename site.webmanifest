@@ -1,0 +1,14 @@
+{
+  "name": "Aurora Hub Perú",
+  "short_name": "Aurora Hub",
+  "description": "Tecnología y marketing que encienden tu negocio. Desde Lima para todo el Perú.",
+  "start_url": "/",
+  "display": "browser",
+  "lang": "es-PE",
+  "background_color": "#03090f",
+  "theme_color": "#03090f",
+  "icons": [
+    { "src": "/assets/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/assets/icon-512.png", "sizes": "512x512", "type": "image/png" }
+  ]
+}
