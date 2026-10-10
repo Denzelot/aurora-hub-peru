@@ -309,6 +309,11 @@ html.cc .faq summary{cursor:pointer!important}
 <!-- Vercel Speed Insights -->
 <script>window.si = window.si || function () { (window.siq = window.siq || []).push(arguments); };</script>
 <script defer src="/_vercel/speed-insights/script.js"></script>
+<!-- Meta Pixel (Pixel Aurora Hub Perú) -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1747129786526417'); fbq('track', 'PageView');
+</script>
 <script type="application/ld+json">
 {
  "@context": "https://schema.org",
@@ -1081,7 +1086,8 @@ html.cc .faq summary{cursor:pointer!important}
 'use strict';
 const WHATSAPP = '51932462537';
 document.documentElement.classList.add('js');
-const wa = t => window.open(`https://wa.me/${WHATSAPP}?text=${encodeURIComponent(t)}`, '_blank', 'noopener');
+const lead = w => { try { if (window.fbq) window.fbq('track', 'Lead', { content_name: w }); } catch (e) {} };
+const wa = t => { lead('whatsapp'); return window.open(`https://wa.me/${WHATSAPP}?text=${encodeURIComponent(t)}`, '_blank', 'noopener'); };
 /* ---------- catálogo de servicios ---------- */
 const GROUPS = {Crecer: '#2cf5c8', Automatizar: '#7d8bff', Proteger: '#ff4fa3', Soporte: '#ff86c0', Industrias: '#b892ff'};
 const SERV = [
@@ -1158,7 +1164,7 @@ if (matchMedia('(pointer: fine)').matches && !matchMedia('(prefers-reduced-motio
     b.style.transform = d < R ? `translate(${dx * 0.18}px, ${dy * 0.25}px)` : ''; } }, {passive: true});
 }
 /* ---------- enlaces directos a WhatsApp ---------- */
-document.querySelectorAll('[data-wa]').forEach(a => { a.href = `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(a.dataset.wa)}`; a.target = '_blank'; a.rel = 'noopener'; });
+document.querySelectorAll('[data-wa]').forEach(a => { a.href = `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(a.dataset.wa)}`; a.target = '_blank'; a.rel = 'noopener'; a.addEventListener('click', () => lead('whatsapp-enlace')); });
 
 /* ================= sonido: ambiente galáctico + efectos (Web Audio, sin archivos) ================= */
 const SND = (() => {
