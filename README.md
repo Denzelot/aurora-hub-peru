@@ -9,7 +9,7 @@ www.aurorahubperu.com · WhatsApp +51 932 462 537
 - Modo claro y oscuro, cursor de luz, nave asistente y salto al hiperespacio.
 - Logotipos en SVG en `assets/logos/`.
 
-## Publicar con GitHub Pages
-1. En el repositorio: **Settings → Pages → Build and deployment → Deploy from a branch**, rama `main`, carpeta `/ (root)`.
-2. El archivo `CNAME` ya apunta a `www.aurorahubperu.com`. En tu proveedor de dominio crea un registro **CNAME** de `www` hacia `<tu-usuario>.github.io`.
-3. Activa **Enforce HTTPS** cuando GitHub lo permita.
+## Publicación (Vercel)
+- La web está alojada en Vercel, en el proyecto `aurora-hub-peru`, conectado a este repositorio: cada push a `main` se publica solo.
+- Dominios: `www.aurorahubperu.com` (principal) y `aurorahubperu.com`, que redirige a `www`. El DNS del dominio se administra en Vercel.
+- **Web Analytics** y **Speed Insights** de Vercel están activados; sus scripts (`/_vercel/insights/script.js` y `/_vercel/speed-insights/script.js`) van en el `<head>` de `index.html` y solo funcionan en Vercel.
