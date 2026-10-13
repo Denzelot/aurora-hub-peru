@@ -236,6 +236,9 @@ html.cc dialog a,html.cc dialog button{cursor:pointer!important}
 .cur .ring{width:30px;height:30px;margin:-15px 0 0 -15px;border:1px solid rgba(44,245,200,.45);transition:width .25s,height .25s,margin .25s,border-color .25s,background .25s}
 .cur.hov .ring{width:50px;height:50px;margin:-25px 0 0 -25px;border-color:rgba(255,79,163,.75);background:rgba(255,79,163,.06)}
 .cur.down .ring{width:22px;height:22px;margin:-11px 0 0 -11px}
+.cur .lbl{position:fixed;left:0;top:0;font-family:var(--mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--mint);white-space:nowrap;opacity:0;transition:opacity .25s;text-shadow:0 0 12px rgba(44,245,200,.55)}
+.cur.on .lbl{opacity:.9}.cur.hov .lbl,.cur.down .lbl,.cur.txt .lbl{opacity:0}
+html[data-theme=light] .cur .lbl{color:#0a7f6a;text-shadow:none}
 /* estrella guía */
 .guide{display:contents}
 .guide .rail{position:fixed;left:-10px;top:0;width:1px;height:0;z-index:3;background:rgba(143,179,182,.16);pointer-events:none}
@@ -1107,7 +1110,7 @@ fbq('init', '1747129786526417'); fbq('track', 'PageView');
   <form class="ch-f" id="chF"><input id="chI" placeholder="Escribe tu pregunta…" autocomplete="off" aria-label="Tu mensaje"><button type="submit" aria-label="Enviar mensaje"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 12l16-8-6 16-2.5-6.5L4 12z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg></button></form>
 </section>
 
-<div class="cur" id="cur" aria-hidden="true"><i class="dot"></i><i class="ring"></i></div>
+<div class="cur" id="cur" aria-hidden="true"><i class="dot"></i><i class="ring"></i><span class="lbl"></span></div>
 <div class="guide" id="guide" aria-hidden="true"><i class="rail"><b id="railFill"></b></i><svg id="gstar" viewBox="0 0 40 40"><defs><linearGradient id="gsg" x1="0" x2="1"><stop offset="0" stop-color="#6cf3f6"/><stop offset=".5" stop-color="#4a5cff"/><stop offset="1" stop-color="#ff6fd0"/></linearGradient></defs><path d="M20 2C21.5 13 27 18.5 38 20 27 21.5 21.5 27 20 38 18.5 27 13 21.5 2 20 13 18.5 18.5 13 20 2Z" fill="url(#gsg)"/></svg></div>
 
 <dialog id="dlg" aria-labelledby="dlgT"><div class="dg" id="dlgG"></div><h3 id="dlgT"></h3><p id="dlgD"></p><ul class="list" id="dlgB"></ul>
@@ -1319,12 +1322,18 @@ if (FINE && !RM) $grid.querySelectorAll('.card').forEach(c => {
   c.addEventListener('pointerleave', () => { c.style.transform = ''; }); });
 // cursor de luz (solo con mouse)
 if (FINE && !RM) { document.documentElement.classList.add('cc');
-  const $cur = document.getElementById('cur'), $dot = $cur.firstElementChild, $ring = $cur.lastElementChild; let mx = -100, my = -100, rx = -100, ry = -100, vis = false;
+  const $cur = document.getElementById('cur'), $dot = $cur.children[0], $ring = $cur.children[1], $hint = $cur.children[2];
+  // pista de la sección junto al cursor, con letras que se ordenan al cambiar (como un terminal)
+  const HINT = {inicio: 'explorar', servicios: 'elige un servicio', proyectos: 'ver proyectos', diagnostico: 'responde 4 preguntas', cursos: 'avísame cuando abran', proceso: 'cómo trabajamos', preguntas: 'abre una pregunta', contacto: 'escríbenos'}, GLY = '<>/_-=+#01';
+  let hTarget = '', hShown = '', hP = 1; const setHint = txt => { if (txt === hTarget) return; hTarget = txt; hP = 0; }; let mx = -100, my = -100, rx = -100, ry = -100, vis = false;
   addEventListener('pointermove', e => { if (e.pointerType !== 'mouse') return; mx = e.clientX; my = e.clientY; if (!vis) { vis = true; rx = mx; ry = my; $cur.classList.add('on'); }
     $cur.classList.toggle('hov', !!e.target.closest('a,button,.card,.chip,.opt,select,#shipBtn')); $cur.classList.toggle('txt', !!e.target.closest('input,textarea')); }, {passive: true});
   document.documentElement.addEventListener('mouseleave', () => { vis = false; $cur.classList.remove('on'); });
   addEventListener('pointerdown', () => $cur.classList.add('down')); addEventListener('pointerup', () => $cur.classList.remove('down'));
-  const cl = () => { rx += (mx - rx) * 0.22; ry += (my - ry) * 0.22; $dot.style.transform = `translate(${mx}px,${my}px)`; $ring.style.transform = `translate(${rx.toFixed(1)}px,${ry.toFixed(1)}px)`; requestAnimationFrame(cl); };
+  const cl = () => { rx += (mx - rx) * 0.22; ry += (my - ry) * 0.22; $dot.style.transform = `translate(${mx}px,${my}px)`; $ring.style.transform = `translate(${rx.toFixed(1)}px,${ry.toFixed(1)}px)`; $hint.style.transform = `translate(${(rx + 20).toFixed(1)}px,${(ry + 16).toFixed(1)}px)`;
+    if (typeof DOTS !== 'undefined') { const k = DOTS.findIndex(d => d.classList.contains('on')); const id = k >= 0 ? SECS[k].id : 'inicio'; setHint(HINT[id] || 'cotizar este servicio'); }
+    if (hP < 1 || hShown !== hTarget) { hP = Math.min(1, hP + (RM ? 1 : 0.07)); const n = hTarget.length, cut = Math.round(hP * n); let out = ''; for (let i = 0; i < n; i++) out += i < cut || hTarget[i] === ' ' ? hTarget[i] : GLY[Math.random() * GLY.length | 0]; hShown = out; $hint.textContent = out; }
+    requestAnimationFrame(cl); };
   requestAnimationFrame(cl); }
 // estrella guía: recorre el riel de secciones y marca dónde estás
 const $gstar = document.getElementById('gstar'), $rail = document.querySelector('#guide .rail'), $rf = document.getElementById('railFill'); let gy = null, grot = 0;
@@ -1575,14 +1584,22 @@ void main(){ const float w[5] = float[](0.227, 0.194, 0.122, 0.054, 0.016); vec3
   for (int i = 1; i < 5; i++) { c += texture(uTex, vUv + uDir * float(i)).rgb * w[i]; c += texture(uTex, vUv - uDir * float(i)).rgb * w[i]; } o = vec4(c, 1.0); }`;
 // composición: bloom, aberración cromática suave en los bordes, viñeta y ACES
 const COMP = `#version 300 es
-precision highp float; in vec2 vUv; uniform sampler2D uScene; uniform sampler2D uBloom; uniform float uCA; uniform float uLight; out vec4 o;
+precision highp float; in vec2 vUv; uniform sampler2D uScene; uniform sampler2D uBloom; uniform float uCA; uniform float uLight; uniform vec4 uLens; uniform vec3 uTone; uniform float uTime; out vec4 o;
 float h(vec2 p){ return fract(sin(dot(p, vec2(12.9898, 78.233))) * 43758.5453); }
+float vn(vec2 p){ vec2 i = floor(p), f = fract(p); f = f * f * (3.0 - 2.0 * f); return mix(mix(h(i), h(i + vec2(1, 0)), f.x), mix(h(i + vec2(0, 1)), h(i + vec2(1, 1)), f.x), f.y); }
 vec3 aces(vec3 x){ return clamp((x * (2.51 * x + 0.03)) / (x * (2.43 * x + 0.59) + 0.14), 0.0, 1.0); }
 vec3 at(vec2 uv){ return texture(uScene, uv).rgb + texture(uBloom, uv).rgb * 1.15; }
 void main(){ vec2 dv = vUv - 0.5; float r2 = dot(dv, dv); vec2 off = dv * uCA;
   vec3 c = vec3(at(vUv + off).r, at(vUv).g, at(vUv - off).b); c = aces(c * 1.12); c *= 1.0 - r2 * 0.6;
   if (uLight > 0.001) { float l = max(c.r, max(c.g, c.b)); vec3 hue = c / max(l, 1e-3), paper = vec3(0.961, 0.949, 0.925) - vec3(0.035, 0.03, 0.02) * r2 * 1.4;
     vec3 lc = mix(paper, mix(paper, hue, 0.5), smoothstep(0.02, 0.28, l) * 0.28); lc = mix(lc, pow(hue, vec3(1.4)) * 0.48, smoothstep(0.09, 0.5, l) * 0.95); c = mix(c, lc, uLight); }
+  // lente técnica: dentro del círculo la red se ve como plano de ingeniería (rejilla, trazos nítidos, tono de la sección); borde de niebla
+  if (uLens.w > 0.001) { vec2 p = gl_FragCoord.xy; float d = distance(p, uLens.xy) / uLens.z; d += (vn(p * 0.05 + uTime * 0.4) - 0.5) * 0.3; float m = smoothstep(1.0, 0.76, d) * uLens.w;
+    if (m > 0.002) { vec3 sc = texture(uScene, vUv).rgb; float l = max(sc.r, max(sc.g, sc.b)); float G = uLens.z / 6.0; vec2 gf = 0.5 - abs(fract(p / G) - 0.5);
+      float grid = 1.0 - smoothstep(0.0, 1.3 / G, min(gf.x, gf.y)); float scan = 0.5 + 0.5 * step(0.5, fract(p.y * 0.5));
+      vec3 tech = vec3(0.012, 0.028, 0.042) * scan + uTone * grid * 0.16 + mix(uTone, vec3(1.0), 0.22) * smoothstep(0.02, 0.7, l) * 0.8;
+      vec2 q = abs(p - uLens.xy); float cross = (step(q.x, 0.8) * step(q.y, 11.0) + step(q.y, 0.8) * step(q.x, 11.0)) * step(4.0, max(q.x, q.y));
+      tech += uTone * (cross * 0.8 + smoothstep(0.05, 0.0, abs(d - 0.86)) * 0.7); c = mix(c, tech, m); } }
   c += (h(gl_FragCoord.xy) - 0.5) / 255.0; o = vec4(c, 1.0); }`;
 function sh(t, s){ const x = gl.createShader(t); gl.shaderSource(x, s); gl.compileShader(x); if (!gl.getShaderParameter(x, gl.COMPILE_STATUS)) throw new Error(gl.getShaderInfoLog(x)); return x; }
 function prog(v, f){ const p = gl.createProgram(); gl.attachShader(p, sh(gl.VERTEX_SHADER, v)); gl.attachShader(p, sh(gl.FRAGMENT_SHADER, f));
@@ -1747,7 +1764,9 @@ const SBR = y => { const q = (y + 0.55) / 0.95; return 0.27 * Math.sqrt(Math.max
     else { const d = onSphere(); put(d[0] * 0.026, -0.69 + d[1] * 0.026, d[2] * 0.026, 6); } } })();
 const EXX = new Float32Array(EXN), EXY = new Float32Array(EXN), EVX = new Float32Array(EXN), EVY = new Float32Array(EXN), EXL = new Float32Array(EXN), EXM = new Float32Array(EXN), EXS = new Float32Array(EXN); let exI = 0, exAcc = 0;
 const SP = {x: 0, y: 0, arr: 0, flash: 0, arrived: false, lo: false, sp: 1};
-const INTRO = {t: -1, boom: false}, WJ = {t: -1, el: null, jumped: false}; let WARP = 0, WT = 0, LT = HOOK.light;
+const INTRO = {t: -1, boom: false}, WJ = {t: -1, el: null, jumped: false};
+// lente técnica: sigue al mouse (o al dedo mientras toca) con suavizado y se expande al hacer clic
+const LENS = {x: -9999, y: -9999, tx: -9999, ty: -9999, k: 0, tk: 0, r: 150, pulse: -1, touch: false}; let WARP = 0, WT = 0, LT = HOOK.light;
 HOOK.warp = el => { if (reduce) return false; WJ.t = 0; WJ.el = el; WJ.jumped = false; SND.whoosh(); setTimeout(() => { if (WJ.el === el && !WJ.jumped) { WJ.jumped = true; window.scrollTo({top: el.getBoundingClientRect().top + scrollY, behavior: 'instant'}); } }, 900); return true; };
 function shipStep(dt){
   const m = W < 760, dock = m ? [W - 48, H - 150] : [W - 140, H - 212], want = scrollY > H * 0.55 && !(m && SHIP.open), from = [W * (m ? 0.5 : 0.6), H * (m ? 0.32 : 0.36)];
@@ -1809,11 +1828,13 @@ function render(){
   pass(PD, B1); tex(0, RT.t, PD.u.uTex); gl.uniform2f(PD.u.uTexel, 1 / RT.w, 1 / RT.h); gl.drawArrays(gl.TRIANGLES, 0, 3);
   for (let i = 0; i < 3; i++) { const s = 1 + i * 1.6; pass(PB, B2); tex(0, B1.t, PB.u.uTex); gl.uniform2f(PB.u.uDir, s / B1.w, 0); gl.drawArrays(gl.TRIANGLES, 0, 3);
     pass(PB, B1); tex(0, B2.t, PB.u.uTex); gl.uniform2f(PB.u.uDir, 0, s / B1.h); gl.drawArrays(gl.TRIANGLES, 0, 3); }
-  pass(PC, null); tex(0, RT.t, PC.u.uScene); tex(1, B1.t, PC.u.uBloom); gl.uniform1f(PC.u.uCA, 0.0022 + Math.min(0.014, vS * 0.01) + WARP * 0.028); gl.uniform1f(PC.u.uLight, LT); gl.drawArrays(gl.TRIANGLES, 0, 3);
+  pass(PC, null); tex(0, RT.t, PC.u.uScene); tex(1, B1.t, PC.u.uBloom); gl.uniform1f(PC.u.uCA, 0.0022 + Math.min(0.014, vS * 0.01) + WARP * 0.028); gl.uniform1f(PC.u.uLight, LT); const lk = DPR; gl.uniform4f(PC.u.uLens, LENS.x * lk, (H - LENS.y) * lk, LENS.r * lk, document.body.classList.contains('static') ? 0 : LENS.k); gl.uniform3f(PC.u.uTone, GC[0], GC[1], GC[2]); gl.uniform1f(PC.u.uTime, t); gl.drawArrays(gl.TRIANGLES, 0, 3);
 }
 
 /* ================= interacción ================= */
-addEventListener('pointermove', e => { if (e.pointerType === 'mouse') mouse = [e.clientX, e.clientY]; });
+addEventListener('pointermove', e => { if (e.pointerType === 'mouse') { mouse = [e.clientX, e.clientY]; LENS.tx = e.clientX; LENS.ty = e.clientY; LENS.tk = 1; } else if (LENS.touch) { LENS.tx = e.clientX; LENS.ty = e.clientY; } }, {passive: true});
+addEventListener('pointerdown', e => { if (e.target instanceof Element && e.target.closest('#chat,dialog,nav,input,select,textarea')) return; if (e.pointerType === 'mouse') { if (!RM) LENS.pulse = 0; } else { LENS.touch = true; LENS.x = LENS.tx = e.clientX; LENS.y = LENS.ty = e.clientY; LENS.tk = 1; if (!RM) LENS.pulse = 0; } }, {passive: true});
+const lensOff = e => { if (e && e.pointerType === 'mouse') return; LENS.touch = false; LENS.tk = 0; }; addEventListener('pointerup', lensOff); addEventListener('pointercancel', lensOff); document.documentElement.addEventListener('mouseleave', () => { LENS.tk = 0; });
 document.addEventListener('pointerleave', () => { mouse = null; });
 let drag = null;
 addEventListener('pointerdown', e => { if (e.target.closest('a,button,input,select,textarea,label')) return;
@@ -1830,6 +1851,7 @@ let last = performance.now(), fA = 0, fN = 0, lblT = 0;
 const fmt = n => n.toLocaleString('es-PE');
 function frame(now){
   const dt = Math.min(0.05, (now - last) / 1000); last = now;
+  { const f = Math.min(1, dt * 9); LENS.x += (LENS.tx - LENS.x) * f; LENS.y += (LENS.ty - LENS.y) * f; LENS.k += (LENS.tk - LENS.k) * Math.min(1, dt * 5); let ex = 0; if (LENS.pulse >= 0) { LENS.pulse += dt; const q = LENS.pulse / 0.6; if (q >= 1) LENS.pulse = -1; else ex = Math.sin(q * Math.PI); } LENS.r = (coarse ? 115 : 150) * (1 + 0.75 * ex); }
   step(dt); render();
   lblT -= dt; if (lblT <= 0) { lblT = 0.25; const s = sPos % 1 < 0.5 ? shapeA : shapeB; $lbl.textContent = `${LBL[s]} · ${fmt(N)} nodos · ${fmt(nL)} conexiones · ${fmt(nPK)} paquetes en viaje`; }
   fA += dt; fN++; if (fA >= 1) { const fps = fN / fA; fA = 0; fN = 0; if (!HQ) { if (fps < 42 && scale > 0.55) { scale = Math.max(0.55, scale - 0.1); build(); } else if (fps > 57 && scale < 1) { scale = Math.min(1, scale + 0.05); build(); } } }
