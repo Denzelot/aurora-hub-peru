@@ -240,6 +240,9 @@ html.cc dialog a,html.cc dialog button{cursor:pointer!important}
 .cur .ring{width:30px;height:30px;margin:-15px 0 0 -15px;border:1px solid rgba(44,245,200,.45);transition:width .25s,height .25s,margin .25s,border-color .25s,background .25s}
 .cur.hov .ring{width:50px;height:50px;margin:-25px 0 0 -25px;border-color:rgba(255,79,163,.75);background:rgba(255,79,163,.06)}
 .cur.down .ring{width:22px;height:22px;margin:-11px 0 0 -11px}
+.cur .lbl{position:fixed;left:0;top:0;font-family:var(--mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--mint);white-space:nowrap;opacity:0;transition:opacity .25s;text-shadow:0 0 12px rgba(44,245,200,.55)}
+.cur.on .lbl{opacity:.9}.cur.hov .lbl,.cur.down .lbl,.cur.txt .lbl{opacity:0}
+html[data-theme=light] .cur .lbl{color:#0a7f6a;text-shadow:none}
 /* estrella guía */
 .guide{display:contents}
 .guide .rail{position:fixed;left:-10px;top:0;width:1px;height:0;z-index:3;background:rgba(143,179,182,.16);pointer-events:none}
@@ -1116,7 +1119,7 @@ fbq('init', '1747129786526417'); fbq('track', 'PageView');
   <form class="ch-f" id="chF"><input id="chI" placeholder="Escribe tu pregunta…" autocomplete="off" aria-label="Tu mensaje"><button type="submit" aria-label="Enviar mensaje"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 12l16-8-6 16-2.5-6.5L4 12z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg></button></form>
 </section>
 
-<div class="cur" id="cur" aria-hidden="true"><i class="dot"></i><i class="ring"></i></div>
+<div class="cur" id="cur" aria-hidden="true"><i class="dot"></i><i class="ring"></i><span class="lbl"></span></div>
 <div class="guide" id="guide" aria-hidden="true"><i class="rail"><b id="railFill"></b></i><svg id="gstar" viewBox="0 0 40 40"><defs><linearGradient id="gsg" x1="0" x2="1"><stop offset="0" stop-color="#6cf3f6"/><stop offset=".5" stop-color="#4a5cff"/><stop offset="1" stop-color="#ff6fd0"/></linearGradient></defs><path d="M20 2C21.5 13 27 18.5 38 20 27 21.5 21.5 27 20 38 18.5 27 13 21.5 2 20 13 18.5 18.5 13 20 2Z" fill="url(#gsg)"/></svg></div>
 
 <dialog id="dlg" aria-labelledby="dlgT"><div class="dg" id="dlgG"></div><h3 id="dlgT"></h3><p id="dlgD"></p><ul class="list" id="dlgB"></ul>
@@ -1222,49 +1225,39 @@ document.querySelectorAll('[data-wa]').forEach(a => { a.href = `https://wa.me/${
 
 /* ================= sonido: ambiente galáctico + efectos (Web Audio, sin archivos) ================= */
 const SND = (() => {
-  let ctx = null, master, wet, dry, noise, amb = false, on = false, shT = 0, lastBlip = 0;
+  // Sonidos: Mixkit (licencia libre, sin atribución) y Freesound CC0 (ambiente). Se cargan al activar el sonido.
+  const SRC = {hover: 'hover', hover2: 'hover2', click: 'click', open: 'open', msg: 'msg', transition: 'transition', ambient: 'ambient'};
+  const AMB_LOOP = [0.1, 35.452];
+  let ctx = null, master, wet, dry, on = false, ambSrc = null, ambGain = null, lastBlip = 0, loading = null;
+  const buf = {};
   const now = () => ctx.currentTime;
   function init(){ if (ctx) return true; const AC = window.AudioContext || window.webkitAudioContext; if (!AC) return false; ctx = new AC();
-    master = ctx.createGain(); master.gain.value = 0; const comp = ctx.createDynamicsCompressor(); comp.threshold.value = -18; comp.ratio.value = 3; master.connect(comp); comp.connect(ctx.destination);
-    const len = ctx.sampleRate * 4.5 | 0, ir = ctx.createBuffer(2, len, ctx.sampleRate); for (let c = 0; c < 2; c++) { const d = ir.getChannelData(c); for (let i = 0; i < len; i++) d[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / len, 2.8); }
-    const conv = ctx.createConvolver(); conv.buffer = ir; wet = ctx.createGain(); wet.gain.value = 0.6; wet.connect(conv); conv.connect(master); dry = ctx.createGain(); dry.gain.value = 0.85; dry.connect(master);
-    noise = ctx.createBuffer(1, ctx.sampleRate * 2, ctx.sampleRate); const nd = noise.getChannelData(0); for (let i = 0; i < nd.length; i++) nd[i] = Math.random() * 2 - 1; return true; }
-  const env = (g, t, a, peak, rel) => { g.gain.setValueAtTime(0.0001, t); g.gain.linearRampToValueAtTime(peak, t + a); g.gain.exponentialRampToValueAtTime(0.0001, t + a + rel); };
-  const out = (node, w = 0.5) => { node.connect(dry); const s = ctx.createGain(); s.gain.value = w; node.connect(s); s.connect(wet); };
-  // fondo: acorde grave que respira, viento solar y campanitas lejanas
-  function ambient(){ amb = true; const bus = ctx.createGain(); bus.gain.value = 0.0001; out(bus, 0.7); bus.gain.exponentialRampToValueAtTime(0.5, now() + 5);
-    const lp = ctx.createBiquadFilter(); lp.type = 'lowpass'; lp.frequency.value = 480; lp.Q.value = 0.7; lp.connect(bus);
-    [[55, 'sawtooth', 0.045], [82.41, 'sawtooth', 0.035], [110, 'triangle', 0.04], [164.81, 'triangle', 0.025], [220, 'sine', 0.02]].forEach(([f, ty, g], i) => [-7, 6].forEach(dt => {
-      const o = ctx.createOscillator(); o.type = ty; o.frequency.value = f; o.detune.value = dt + i * 2; const gg = ctx.createGain(); gg.gain.value = g; o.connect(gg); gg.connect(lp); o.start(); }));
-    const l1 = ctx.createOscillator(), l1g = ctx.createGain(); l1.frequency.value = 0.045; l1g.gain.value = 240; l1.connect(l1g); l1g.connect(lp.frequency); l1.start();
-    const n = ctx.createBufferSource(); n.buffer = noise; n.loop = true; const bp = ctx.createBiquadFilter(); bp.type = 'bandpass'; bp.frequency.value = 650; bp.Q.value = 0.9; const ng = ctx.createGain(); ng.gain.value = 0.02;
-    const l2 = ctx.createOscillator(), l2g = ctx.createGain(); l2.frequency.value = 0.031; l2g.gain.value = 420; l2.connect(l2g); l2g.connect(bp.frequency); l2.start(); n.connect(bp); bp.connect(ng); ng.connect(bus); n.start(); }
-  function chime(){ if (!on) return; const t = now() + 0.05, f = [880, 987.77, 1108.73, 1318.51, 1479.98, 1760][Math.random() * 6 | 0], o = ctx.createOscillator(), g = ctx.createGain();
-    o.type = 'sine'; o.frequency.value = f; g.gain.setValueAtTime(0.0001, t); g.gain.linearRampToValueAtTime(0.018, t + 0.9); g.gain.exponentialRampToValueAtTime(0.0001, t + 4.5); o.connect(g); out(g, 1.2); o.start(t); o.stop(t + 4.6);
-    shT = setTimeout(chime, 2600 + Math.random() * 4200); }
-  // pasar el cursor: un destello suave y musical
-  function blip(){ if (!on) return; const t = now(); if (t - lastBlip < 0.06) return; lastBlip = t; const f = [1318.51, 1479.98, 1760, 1975.53, 2217.46][Math.random() * 5 | 0], o = ctx.createOscillator(), g = ctx.createGain();
-    o.type = 'sine'; o.frequency.setValueAtTime(f * 0.78, t); o.frequency.exponentialRampToValueAtTime(f, t + 0.05); env(g, t, 0.006, 0.035, 0.2); o.connect(g); out(g, 0.6); o.start(t); o.stop(t + 0.25); }
-  // seleccionar: transformación mecánica suave (clics metálicos + barrido FM + golpe grave + destello)
-  function select(){ if (!on) return; const t = now();
-    for (let k = 0; k < 4; k++) { const s = ctx.createBufferSource(); s.buffer = noise; const bp = ctx.createBiquadFilter(); bp.type = 'bandpass'; bp.frequency.value = 2100 + k * 380; bp.Q.value = 9; const g = ctx.createGain(); env(g, t + k * 0.045, 0.002, 0.16, 0.035); s.connect(bp); bp.connect(g); out(g, 0.3); s.start(t + k * 0.045, Math.random()); s.stop(t + k * 0.045 + 0.06); }
-    const c = ctx.createOscillator(), m = ctx.createOscillator(), mg = ctx.createGain(), cg = ctx.createGain(); c.type = 'sine'; c.frequency.setValueAtTime(520, t + 0.05); c.frequency.exponentialRampToValueAtTime(170, t + 0.42);
-    m.frequency.setValueAtTime(780, t + 0.05); m.frequency.exponentialRampToValueAtTime(255, t + 0.42); mg.gain.setValueAtTime(320, t + 0.05); mg.gain.exponentialRampToValueAtTime(5, t + 0.45); m.connect(mg); mg.connect(c.frequency);
-    env(cg, t + 0.05, 0.02, 0.055, 0.45); c.connect(cg); out(cg, 0.5); c.start(t + 0.05); m.start(t + 0.05); c.stop(t + 0.6); m.stop(t + 0.6);
-    const s2 = ctx.createOscillator(), sg = ctx.createGain(); s2.type = 'sine'; s2.frequency.setValueAtTime(72, t + 0.08); s2.frequency.exponentialRampToValueAtTime(46, t + 0.35); env(sg, t + 0.08, 0.01, 0.13, 0.3); s2.connect(sg); out(sg, 0.1); s2.start(t + 0.08); s2.stop(t + 0.5);
-    const h = ctx.createOscillator(), hg = ctx.createGain(); h.type = 'triangle'; h.frequency.value = 1760; env(hg, t + 0.22, 0.01, 0.02, 0.8); h.connect(hg); out(hg, 1); h.start(t + 0.22); h.stop(t + 1.1); }
-  // cambio de sección: ráfaga de viento espacial
-  function whoosh(){ if (!on) return; const t = now(), s = ctx.createBufferSource(); s.buffer = noise; s.loop = true; const bp = ctx.createBiquadFilter(); bp.type = 'bandpass'; bp.Q.value = 1.4;
-    bp.frequency.setValueAtTime(260, t); bp.frequency.exponentialRampToValueAtTime(1700, t + 0.45); bp.frequency.exponentialRampToValueAtTime(380, t + 1.1); const g = ctx.createGain(); env(g, t, 0.35, 0.05, 0.8); s.connect(bp); bp.connect(g); out(g, 0.8); s.start(t); s.stop(t + 1.3); }
-  // abrir el asistente: encendido de motores
-  function power(){ if (!on) return; const t = now(), o = ctx.createOscillator(), lp = ctx.createBiquadFilter(), g = ctx.createGain(); o.type = 'sawtooth'; o.frequency.setValueAtTime(90, t); o.frequency.exponentialRampToValueAtTime(330, t + 0.55);
-    lp.type = 'lowpass'; lp.frequency.setValueAtTime(250, t); lp.frequency.exponentialRampToValueAtTime(2600, t + 0.5); env(g, t, 0.25, 0.04, 0.5); o.connect(lp); lp.connect(g); out(g, 0.7); o.start(t); o.stop(t + 0.9);
-    [1318.51, 1760].forEach((f, i) => { const h = ctx.createOscillator(), hg = ctx.createGain(); h.frequency.value = f; env(hg, t + 0.4 + i * 0.09, 0.01, 0.022, 0.7); h.connect(hg); out(hg, 1); h.start(t + 0.4 + i * 0.09); h.stop(t + 1.3 + i * 0.09); }); }
-  function msg(){ if (!on) return; const t = now(); [1046.5, 1318.51].forEach((f, i) => { const o = ctx.createOscillator(), g = ctx.createGain(); o.frequency.value = f; env(g, t + i * 0.08, 0.005, 0.025, 0.25); o.connect(g); out(g, 0.5); o.start(t + i * 0.08); o.stop(t + 0.5); }); }
-  function setOn(v){ if (v && !init()) return; on = v; if (!ctx) return; ctx.resume(); if (v && !amb) ambient(); const t = now(); master.gain.cancelScheduledValues(t); master.gain.setValueAtTime(master.gain.value, t); master.gain.linearRampToValueAtTime(v ? 0.9 : 0, t + (v ? 1.2 : 0.4));
-    clearTimeout(shT); if (v) shT = setTimeout(chime, 1500); }
+    master = ctx.createGain(); master.gain.value = 0; const comp = ctx.createDynamicsCompressor(); comp.threshold.value = -16; comp.ratio.value = 2.5; master.connect(comp); comp.connect(ctx.destination);
+    const len = ctx.sampleRate * 3 | 0, ir = ctx.createBuffer(2, len, ctx.sampleRate); for (let c = 0; c < 2; c++) { const d = ir.getChannelData(c); for (let i = 0; i < len; i++) d[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / len, 3); }
+    const conv = ctx.createConvolver(); conv.buffer = ir; wet = ctx.createGain(); wet.gain.value = 0.22; wet.connect(conv); conv.connect(master); dry = ctx.createGain(); dry.gain.value = 1; dry.connect(master); return true; }
+  function load(){ if (loading) return loading; loading = Promise.all(Object.entries(SRC).map(([k, f]) => fetch(`assets/sfx/${f}.mp3`).then(r => r.arrayBuffer()).then(d => ctx.decodeAudioData(d)).then(b => { buf[k] = b; }).catch(() => {}))); return loading; }
+  // reproduce un sample: ganancia, envío a reverb, variación leve de tono para que no suene robótico
+  function play(k, g = 1, w = 0.4, rate = 1){ if (!on || !buf[k]) return null; const s = ctx.createBufferSource(); s.buffer = buf[k]; s.playbackRate.value = rate; const gn = ctx.createGain(); gn.gain.value = g; s.connect(gn); gn.connect(dry);
+    if (w > 0) { const sg = ctx.createGain(); sg.gain.value = w; gn.connect(sg); sg.connect(wet); } s.start(); return s; }
+  const vary = () => 0.97 + Math.random() * 0.06;
+  function ambient(){ if (ambSrc || !buf.ambient) return; ambSrc = ctx.createBufferSource(); ambSrc.buffer = buf.ambient; ambSrc.loop = true; ambSrc.loopStart = AMB_LOOP[0]; ambSrc.loopEnd = AMB_LOOP[1];
+    ambGain = ctx.createGain(); ambGain.gain.value = 0.0001; ambSrc.connect(ambGain); ambGain.connect(dry); ambSrc.start(0, AMB_LOOP[0]); ambGain.gain.exponentialRampToValueAtTime(0.55, now() + 6); }
+  // pasar el cursor por enlaces y botones
+  function blip(){ if (!on) return; const t = now(); if (t - lastBlip < 0.07) return; lastBlip = t; play('hover', 0.9, 0.35, vary()); }
+  // pasar el cursor por elementos secundarios (tarjetas, chips)
+  function blip2(){ if (!on) return; const t = now(); if (t - lastBlip < 0.07) return; lastBlip = t; play('hover2', 0.8, 0.3, vary()); }
+  // seleccionar / clic
+  function select(){ play('click', 1, 0.3, vary()); }
+  // cambio de sección e hiperespacio
+  function whoosh(){ play('transition', 0.8, 0.5); }
+  // abrir el asistente o un diálogo
+  function power(){ play('open', 0.9, 0.5); }
+  // mensaje del asistente
+  function msg(){ play('msg', 0.7, 0.4); }
+  function setOn(v){ if (v && !init()) return; on = v; if (!ctx) return; ctx.resume(); const t = now(); master.gain.cancelScheduledValues(t); master.gain.setValueAtTime(master.gain.value, t); master.gain.linearRampToValueAtTime(v ? 0.9 : 0, t + (v ? 1.2 : 0.4));
+    if (v) load().then(() => { if (on) ambient(); }); }
   document.addEventListener('visibilitychange', () => { if (!ctx) return; if (document.hidden) ctx.suspend(); else if (on) ctx.resume(); });
-  return {setOn, get on(){ return on; }, blip, select, whoosh, power, msg};
+  return {setOn, get on(){ return on; }, get ready(){ return Object.keys(buf).length; }, blip, blip2, select, whoosh, power, msg};
 })();
 const $snd = document.getElementById('snd');
 const savePref = v => { try { localStorage.setItem('aurora-sound', v ? '1' : '0'); } catch (e) {} };
@@ -1276,7 +1269,7 @@ const testMode = /^#(hq|static)/.test(location.hash);
 if (pref === '1' && !testMode) { const arm = () => { setSound(true); removeEventListener('pointerdown', arm); removeEventListener('keydown', arm); }; addEventListener('pointerdown', arm); addEventListener('keydown', arm); }
 // efectos al pasar el cursor y al seleccionar
 const HOV = 'a,button,.card,.chip,.opt,input,select,textarea'; let lastHov = null;
-document.addEventListener('pointerover', e => { if (e.pointerType !== 'mouse') return; const el = e.target.closest(HOV); if (el && el !== lastHov) SND.blip(); lastHov = el; });
+document.addEventListener('pointerover', e => { if (e.pointerType !== 'mouse') return; const el = e.target.closest(HOV); if (el && el !== lastHov) (el.matches('.card,.chip,.opt') ? SND.blip2 : SND.blip)(); lastHov = el; });
 document.addEventListener('click', e => { if (e.target.closest('#snd,#shipBtn')) return; if (e.target.closest('a,button,.card,.chip,.opt')) SND.select(); });
 
 /* ================= asistente: la nave Aurora ================= */
@@ -1350,12 +1343,18 @@ if (FINE && !RM) $grid.querySelectorAll('.card').forEach(c => {
   c.addEventListener('pointerleave', () => { c.style.transform = ''; }); });
 // cursor de luz (solo con mouse)
 if (FINE && !RM) { document.documentElement.classList.add('cc');
-  const $cur = document.getElementById('cur'), $dot = $cur.firstElementChild, $ring = $cur.lastElementChild; let mx = -100, my = -100, rx = -100, ry = -100, vis = false;
+  const $cur = document.getElementById('cur'), $dot = $cur.children[0], $ring = $cur.children[1], $hint = $cur.children[2];
+  // pista de la sección junto al cursor, con letras que se ordenan al cambiar (como un terminal)
+  const HINT = {inicio: 'explorar', servicios: 'elige un servicio', proyectos: 'ver proyectos', diagnostico: 'responde 4 preguntas', cursos: 'avísame cuando abran', proceso: 'cómo trabajamos', preguntas: 'abre una pregunta', contacto: 'escríbenos'}, GLY = '<>/_-=+#01';
+  let hTarget = '', hShown = '', hP = 1; const setHint = txt => { if (txt === hTarget) return; hTarget = txt; hP = 0; }; let mx = -100, my = -100, rx = -100, ry = -100, vis = false;
   addEventListener('pointermove', e => { if (e.pointerType !== 'mouse') return; mx = e.clientX; my = e.clientY; if (!vis) { vis = true; rx = mx; ry = my; $cur.classList.add('on'); }
     $cur.classList.toggle('hov', !!e.target.closest('a,button,.card,.chip,.opt,select,#shipBtn')); $cur.classList.toggle('txt', !!e.target.closest('input,textarea')); }, {passive: true});
   document.documentElement.addEventListener('mouseleave', () => { vis = false; $cur.classList.remove('on'); });
   addEventListener('pointerdown', () => $cur.classList.add('down')); addEventListener('pointerup', () => $cur.classList.remove('down'));
-  const cl = () => { rx += (mx - rx) * 0.22; ry += (my - ry) * 0.22; $dot.style.transform = `translate(${mx}px,${my}px)`; $ring.style.transform = `translate(${rx.toFixed(1)}px,${ry.toFixed(1)}px)`; requestAnimationFrame(cl); };
+  const cl = () => { rx += (mx - rx) * 0.22; ry += (my - ry) * 0.22; $dot.style.transform = `translate(${mx}px,${my}px)`; $ring.style.transform = `translate(${rx.toFixed(1)}px,${ry.toFixed(1)}px)`; $hint.style.transform = `translate(${(rx + 20).toFixed(1)}px,${(ry + 16).toFixed(1)}px)`;
+    if (typeof DOTS !== 'undefined') { const k = DOTS.findIndex(d => d.classList.contains('on')); const id = k >= 0 ? SECS[k].id : 'inicio'; setHint(HINT[id] || 'cotizar este servicio'); }
+    if (hP < 1 || hShown !== hTarget) { hP = Math.min(1, hP + (RM ? 1 : 0.07)); const n = hTarget.length, cut = Math.round(hP * n); let out = ''; for (let i = 0; i < n; i++) out += i < cut || hTarget[i] === ' ' ? hTarget[i] : GLY[Math.random() * GLY.length | 0]; hShown = out; $hint.textContent = out; }
+    requestAnimationFrame(cl); };
   requestAnimationFrame(cl); }
 // estrella guía: recorre el riel de secciones y marca dónde estás
 const $gstar = document.getElementById('gstar'), $rail = document.querySelector('#guide .rail'), $rf = document.getElementById('railFill'); let gy = null, grot = 0;
@@ -1606,14 +1605,22 @@ void main(){ const float w[5] = float[](0.227, 0.194, 0.122, 0.054, 0.016); vec3
   for (int i = 1; i < 5; i++) { c += texture(uTex, vUv + uDir * float(i)).rgb * w[i]; c += texture(uTex, vUv - uDir * float(i)).rgb * w[i]; } o = vec4(c, 1.0); }`;
 // composición: bloom, aberración cromática suave en los bordes, viñeta y ACES
 const COMP = `#version 300 es
-precision highp float; in vec2 vUv; uniform sampler2D uScene; uniform sampler2D uBloom; uniform float uCA; uniform float uLight; out vec4 o;
+precision highp float; in vec2 vUv; uniform sampler2D uScene; uniform sampler2D uBloom; uniform float uCA; uniform float uLight; uniform vec4 uLens; uniform vec3 uTone; uniform float uTime; out vec4 o;
 float h(vec2 p){ return fract(sin(dot(p, vec2(12.9898, 78.233))) * 43758.5453); }
+float vn(vec2 p){ vec2 i = floor(p), f = fract(p); f = f * f * (3.0 - 2.0 * f); return mix(mix(h(i), h(i + vec2(1, 0)), f.x), mix(h(i + vec2(0, 1)), h(i + vec2(1, 1)), f.x), f.y); }
 vec3 aces(vec3 x){ return clamp((x * (2.51 * x + 0.03)) / (x * (2.43 * x + 0.59) + 0.14), 0.0, 1.0); }
 vec3 at(vec2 uv){ return texture(uScene, uv).rgb + texture(uBloom, uv).rgb * 1.15; }
 void main(){ vec2 dv = vUv - 0.5; float r2 = dot(dv, dv); vec2 off = dv * uCA;
   vec3 c = vec3(at(vUv + off).r, at(vUv).g, at(vUv - off).b); c = aces(c * 1.12); c *= 1.0 - r2 * 0.6;
   if (uLight > 0.001) { float l = max(c.r, max(c.g, c.b)); vec3 hue = c / max(l, 1e-3), paper = vec3(0.961, 0.949, 0.925) - vec3(0.035, 0.03, 0.02) * r2 * 1.4;
     vec3 lc = mix(paper, mix(paper, hue, 0.5), smoothstep(0.02, 0.28, l) * 0.28); lc = mix(lc, pow(hue, vec3(1.4)) * 0.48, smoothstep(0.09, 0.5, l) * 0.95); c = mix(c, lc, uLight); }
+  // lente técnica: dentro del círculo la red se ve como plano de ingeniería (rejilla, trazos nítidos, tono de la sección); borde de niebla
+  if (uLens.w > 0.001) { vec2 p = gl_FragCoord.xy; float d = distance(p, uLens.xy) / uLens.z; d += (vn(p * 0.05 + uTime * 0.4) - 0.5) * 0.3; float m = smoothstep(1.0, 0.76, d) * uLens.w;
+    if (m > 0.002) { vec3 sc = texture(uScene, vUv).rgb; float l = max(sc.r, max(sc.g, sc.b)); float G = uLens.z / 6.0; vec2 gf = 0.5 - abs(fract(p / G) - 0.5);
+      float grid = 1.0 - smoothstep(0.0, 1.3 / G, min(gf.x, gf.y)); float scan = 0.5 + 0.5 * step(0.5, fract(p.y * 0.5));
+      vec3 tech = vec3(0.012, 0.028, 0.042) * scan + uTone * grid * 0.16 + mix(uTone, vec3(1.0), 0.22) * smoothstep(0.02, 0.7, l) * 0.8;
+      vec2 q = abs(p - uLens.xy); float cross = (step(q.x, 0.8) * step(q.y, 11.0) + step(q.y, 0.8) * step(q.x, 11.0)) * step(4.0, max(q.x, q.y));
+      tech += uTone * (cross * 0.8 + smoothstep(0.05, 0.0, abs(d - 0.86)) * 0.7); c = mix(c, tech, m); } }
   c += (h(gl_FragCoord.xy) - 0.5) / 255.0; o = vec4(c, 1.0); }`;
 function sh(t, s){ const x = gl.createShader(t); gl.shaderSource(x, s); gl.compileShader(x); if (!gl.getShaderParameter(x, gl.COMPILE_STATUS)) throw new Error(gl.getShaderInfoLog(x)); return x; }
 function prog(v, f){ const p = gl.createProgram(); gl.attachShader(p, sh(gl.VERTEX_SHADER, v)); gl.attachShader(p, sh(gl.FRAGMENT_SHADER, f));
@@ -1778,7 +1785,9 @@ const SBR = y => { const q = (y + 0.55) / 0.95; return 0.27 * Math.sqrt(Math.max
     else { const d = onSphere(); put(d[0] * 0.026, -0.69 + d[1] * 0.026, d[2] * 0.026, 6); } } })();
 const EXX = new Float32Array(EXN), EXY = new Float32Array(EXN), EVX = new Float32Array(EXN), EVY = new Float32Array(EXN), EXL = new Float32Array(EXN), EXM = new Float32Array(EXN), EXS = new Float32Array(EXN); let exI = 0, exAcc = 0;
 const SP = {x: 0, y: 0, arr: 0, flash: 0, arrived: false, lo: false, sp: 1};
-const INTRO = {t: -1, boom: false}, WJ = {t: -1, el: null, jumped: false}; let WARP = 0, WT = 0, LT = HOOK.light;
+const INTRO = {t: -1, boom: false}, WJ = {t: -1, el: null, jumped: false};
+// lente técnica: sigue al mouse (o al dedo mientras toca) con suavizado y se expande al hacer clic
+const LENS = {x: -9999, y: -9999, tx: -9999, ty: -9999, k: 0, tk: 0, r: 150, pulse: -1, touch: false}; let WARP = 0, WT = 0, LT = HOOK.light;
 HOOK.warp = el => { if (reduce) return false; WJ.t = 0; WJ.el = el; WJ.jumped = false; SND.whoosh(); setTimeout(() => { if (WJ.el === el && !WJ.jumped) { WJ.jumped = true; window.scrollTo({top: el.getBoundingClientRect().top + scrollY, behavior: 'instant'}); } }, 900); return true; };
 function shipStep(dt){
   const m = W < 760, dock = m ? [W - 48, H - 150] : [W - 140, H - 212], want = scrollY > H * 0.55 && !(m && SHIP.open), from = [W * (m ? 0.5 : 0.6), H * (m ? 0.32 : 0.36)];
@@ -1840,11 +1849,13 @@ function render(){
   pass(PD, B1); tex(0, RT.t, PD.u.uTex); gl.uniform2f(PD.u.uTexel, 1 / RT.w, 1 / RT.h); gl.drawArrays(gl.TRIANGLES, 0, 3);
   for (let i = 0; i < 3; i++) { const s = 1 + i * 1.6; pass(PB, B2); tex(0, B1.t, PB.u.uTex); gl.uniform2f(PB.u.uDir, s / B1.w, 0); gl.drawArrays(gl.TRIANGLES, 0, 3);
     pass(PB, B1); tex(0, B2.t, PB.u.uTex); gl.uniform2f(PB.u.uDir, 0, s / B1.h); gl.drawArrays(gl.TRIANGLES, 0, 3); }
-  pass(PC, null); tex(0, RT.t, PC.u.uScene); tex(1, B1.t, PC.u.uBloom); gl.uniform1f(PC.u.uCA, 0.0022 + Math.min(0.014, vS * 0.01) + WARP * 0.028); gl.uniform1f(PC.u.uLight, LT); gl.drawArrays(gl.TRIANGLES, 0, 3);
+  pass(PC, null); tex(0, RT.t, PC.u.uScene); tex(1, B1.t, PC.u.uBloom); gl.uniform1f(PC.u.uCA, 0.0022 + Math.min(0.014, vS * 0.01) + WARP * 0.028); gl.uniform1f(PC.u.uLight, LT); const lk = DPR; gl.uniform4f(PC.u.uLens, LENS.x * lk, (H - LENS.y) * lk, LENS.r * lk, document.body.classList.contains('static') ? 0 : LENS.k); gl.uniform3f(PC.u.uTone, GC[0], GC[1], GC[2]); gl.uniform1f(PC.u.uTime, t); gl.drawArrays(gl.TRIANGLES, 0, 3);
 }
 
 /* ================= interacción ================= */
-addEventListener('pointermove', e => { if (e.pointerType === 'mouse') mouse = [e.clientX, e.clientY]; });
+addEventListener('pointermove', e => { if (e.pointerType === 'mouse') { mouse = [e.clientX, e.clientY]; LENS.tx = e.clientX; LENS.ty = e.clientY; LENS.tk = 1; } else if (LENS.touch) { LENS.tx = e.clientX; LENS.ty = e.clientY; } }, {passive: true});
+addEventListener('pointerdown', e => { if (e.target instanceof Element && e.target.closest('#chat,dialog,nav,input,select,textarea')) return; if (e.pointerType === 'mouse') { if (!RM) LENS.pulse = 0; } else { LENS.touch = true; LENS.x = LENS.tx = e.clientX; LENS.y = LENS.ty = e.clientY; LENS.tk = 1; if (!RM) LENS.pulse = 0; } }, {passive: true});
+const lensOff = e => { if (e && e.pointerType === 'mouse') return; LENS.touch = false; LENS.tk = 0; }; addEventListener('pointerup', lensOff); addEventListener('pointercancel', lensOff); document.documentElement.addEventListener('mouseleave', () => { LENS.tk = 0; });
 document.addEventListener('pointerleave', () => { mouse = null; });
 let drag = null;
 addEventListener('pointerdown', e => { if (e.target.closest('a,button,input,select,textarea,label')) return;
@@ -1861,6 +1872,7 @@ let last = performance.now(), fA = 0, fN = 0, lblT = 0;
 const fmt = n => n.toLocaleString('es-PE');
 function frame(now){
   const dt = Math.min(0.05, (now - last) / 1000); last = now;
+  { const f = Math.min(1, dt * 9); LENS.x += (LENS.tx - LENS.x) * f; LENS.y += (LENS.ty - LENS.y) * f; LENS.k += (LENS.tk - LENS.k) * Math.min(1, dt * 5); let ex = 0; if (LENS.pulse >= 0) { LENS.pulse += dt; const q = LENS.pulse / 0.6; if (q >= 1) LENS.pulse = -1; else ex = Math.sin(q * Math.PI); } LENS.r = (coarse ? 115 : 150) * (1 + 0.75 * ex); }
   step(dt); render();
   lblT -= dt; if (lblT <= 0) { lblT = 0.25; const s = sPos % 1 < 0.5 ? shapeA : shapeB; $lbl.textContent = `${LBL[s]} · ${fmt(N)} nodos · ${fmt(nL)} conexiones · ${fmt(nPK)} paquetes en viaje`; }
   fA += dt; fN++; if (fA >= 1) { const fps = fN / fA; fA = 0; fN = 0; if (!HQ) { if (fps < 42 && scale > 0.55) { scale = Math.max(0.55, scale - 0.1); build(); } else if (fps > 57 && scale < 1) { scale = Math.min(1, scale + 0.05); build(); } } }
