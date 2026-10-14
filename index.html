@@ -333,6 +333,20 @@ html.cc .faq summary{cursor:pointer!important}
 html[data-theme=light] .pf{background:rgba(255,255,255,.85);border-color:rgba(14,21,38,.08);box-shadow:0 10px 30px -18px rgba(30,40,80,.35)}
 html[data-theme=light] .pf-kpi div{background:rgba(10,159,132,.06)}
 html[data-theme=light] .pf .pf-d{color:#0a7f6a}
+/* plasma: el degradado fluye y brilla en el color del grupo de cada sección */
+.hl{background-size:220% 100%;animation:plasma 7s ease-in-out infinite alternate}
+@keyframes plasma{0%{background-position:0% 50%}100%{background-position:100% 50%}}
+.sec .hl{background-image:linear-gradient(90deg,#3dfbd2,#8e9bff 30%,#ff66b2 55%,#8e9bff 78%,#3dfbd2);filter:drop-shadow(0 0 4px rgba(255,255,255,.4)) drop-shadow(0 0 16px rgba(61,251,210,.45)) drop-shadow(0 0 34px rgba(255,102,178,.3))}
+.sec[data-tone="0"] .hl{background-image:linear-gradient(90deg,#3dfbd2,#7cf8e2 30%,#5fd4ff 55%,#8e9bff 78%,#3dfbd2);filter:drop-shadow(0 0 4px rgba(255,255,255,.4)) drop-shadow(0 0 16px rgba(61,251,210,.6)) drop-shadow(0 0 34px rgba(61,251,210,.3))}
+.sec[data-tone="1"] .hl{background-image:linear-gradient(90deg,#5fd4ff,#6a7bff 30%,#b892ff 55%,#6a7bff 78%,#5fd4ff);filter:drop-shadow(0 0 4px rgba(255,255,255,.4)) drop-shadow(0 0 16px rgba(106,123,255,.65)) drop-shadow(0 0 34px rgba(106,123,255,.32))}
+.sec[data-tone="2"] .hl{background-image:linear-gradient(90deg,#ff66b2,#ff8cc4 30%,#ff4fa3 55%,#b892ff 78%,#ff66b2);filter:drop-shadow(0 0 4px rgba(255,255,255,.4)) drop-shadow(0 0 16px rgba(255,79,163,.6)) drop-shadow(0 0 34px rgba(255,79,163,.3))}
+.sec[data-tone="3"] .hl{background-image:linear-gradient(90deg,#b892ff,#ff66b2 30%,#8e9bff 55%,#b892ff 78%,#ff66b2);filter:drop-shadow(0 0 4px rgba(255,255,255,.4)) drop-shadow(0 0 16px rgba(184,146,255,.6)) drop-shadow(0 0 34px rgba(184,146,255,.3))}
+html[data-theme=light] .sec .hl{background-image:linear-gradient(90deg,#08b393,#5560f0 30%,#de3f93 55%,#5560f0 78%,#08b393);filter:drop-shadow(0 0 10px rgba(85,96,240,.18))}
+html[data-theme=light] .sec[data-tone="0"] .hl{background-image:linear-gradient(90deg,#08b393,#0aa6a0 30%,#1b8fd6 55%,#5560f0 78%,#08b393);filter:drop-shadow(0 0 10px rgba(8,179,147,.22))}
+html[data-theme=light] .sec[data-tone="1"] .hl{background-image:linear-gradient(90deg,#1b8fd6,#4a55e6 30%,#7b4ee0 55%,#4a55e6 78%,#1b8fd6);filter:drop-shadow(0 0 10px rgba(74,85,230,.22))}
+html[data-theme=light] .sec[data-tone="2"] .hl{background-image:linear-gradient(90deg,#de3f93,#cf3683 30%,#e0457a 55%,#7b4ee0 78%,#de3f93);filter:drop-shadow(0 0 10px rgba(207,54,131,.2))}
+html[data-theme=light] .sec[data-tone="3"] .hl{background-image:linear-gradient(90deg,#7b4ee0,#cf3683 30%,#5560f0 55%,#7b4ee0 78%,#cf3683);filter:drop-shadow(0 0 10px rgba(123,78,224,.2))}
+@media (prefers-reduced-motion:reduce){.hl{animation:none}}
 </style>
 <!-- Vercel Web Analytics -->
 <script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
@@ -919,7 +933,7 @@ fbq('init', '1747129786526417'); fbq('track', 'PageView');
 
 <section class="sec" id="ia" data-shape="brain" data-tone="0" data-label="IA"><div class="wrap"><div class="copy">
   <div class="num"><b>01</b> / 10<span class="cat t0">Crecer</span></div>
-  <h2>IA y chatbots</h2>
+  <h2>IA y <span class="hl">chatbots</span></h2>
   <p>Asistentes que atienden a tus clientes en WhatsApp, web y redes a toda hora, y contenido creado con IA para que nunca te falte qué publicar.</p>
   <ul class="list"><li>Chatbots que responden, toman pedidos y agendan citas</li><li>Derivan a una persona cuando hace falta</li><li>Imágenes, video y textos con IA, revisados por humanos</li><li>Reportes y análisis automáticos</li></ul>
   <a class="more" href="#contacto" data-svc="IA y chatbots">Cotizar este servicio →</a>
@@ -927,7 +941,7 @@ fbq('init', '1747129786526417'); fbq('track', 'PageView');
 
 <section class="sec" id="ads" data-shape="megaphone" data-tone="0" data-label="Publicidad"><div class="wrap"><div class="copy">
   <div class="num"><b>02</b> / 10<span class="cat t0">Crecer</span></div>
-  <h2>Publicidad en Meta, TikTok y Google</h2>
+  <h2>Publicidad en <span class="hl">Meta, TikTok y Google</span></h2>
   <p>Campañas que llegan a quien sí te va a comprar, con cada sol invertido medido y conectado a tu WhatsApp.</p>
   <ul class="list"><li>Estrategia y segmentación por plataforma</li><li>Creativos pensados para cada formato</li><li>Píxel, eventos y conversiones bien configurados</li><li>Reportes claros cada mes</li></ul>
   <a class="more" href="#contacto" data-svc="Publicidad en Meta, TikTok y Google">Cotizar este servicio →</a>
@@ -935,7 +949,7 @@ fbq('init', '1747129786526417'); fbq('track', 'PageView');
 
 <section class="sec" id="web" data-shape="browser" data-tone="0" data-label="Web y apps"><div class="wrap"><div class="copy">
   <div class="num"><b>03</b> / 10<span class="cat t0">Crecer</span></div>
-  <h2>Webs, tiendas online y apps</h2>
+  <h2>Webs, <span class="hl">tiendas online y apps</span></h2>
   <p>Tu local abierto en internet todo el día: webs rápidas, tiendas que venden solas y apps para Android e iOS con tu marca.</p>
   <ul class="list"><li>Landing pages y webs corporativas</li><li>Tiendas online con pagos integrados</li><li>Apps de reservas, delivery o fidelización</li><li>SEO, velocidad y experiencias interactivas</li></ul>
   <a class="more" href="#contacto" data-svc="Webs y tiendas online">Cotizar este servicio →</a>
@@ -943,7 +957,7 @@ fbq('init', '1747129786526417'); fbq('track', 'PageView');
 
 <section class="sec" id="auto" data-shape="flow" data-tone="1" data-label="Automatización"><div class="wrap"><div class="copy">
   <div class="num"><b>04</b> / 10<span class="cat t1">Automatizar</span></div>
-  <h2>Automatización con n8n y Kommo</h2>
+  <h2>Automatización <span class="hl">con n8n y Kommo</span></h2>
   <p>Las tareas repetitivas se hacen solas. Diseñamos tus flujos en n8n y dejamos Kommo listo para vender: cada mensaje, lead y venta pasa por el camino correcto.</p>
   <ul class="list"><li>Flujos que conectan WhatsApp, formularios, hojas, correo e IA</li><li>Kommo CRM: embudos, etapas, campos y salesbots</li><li>WhatsApp, Instagram y Facebook en una sola bandeja</li><li>Cotizaciones, recordatorios y avisos automáticos</li></ul>
   <a class="more" href="#contacto" data-svc="n8n y Kommo">Cotizar este servicio →</a>
@@ -951,7 +965,7 @@ fbq('init', '1747129786526417'); fbq('track', 'PageView');
 
 <section class="sec" id="pagos" data-shape="card" data-tone="1" data-label="Pagos"><div class="wrap"><div class="copy">
   <div class="num"><b>05</b> / 10<span class="cat t1">Automatizar</span></div>
-  <h2>Pagos online e integraciones</h2>
+  <h2>Pagos online <span class="hl">e integraciones</span></h2>
   <p>Cobra con tarjeta, Yape o transferencia sin perseguir a nadie, y haz que tus programas se hablen entre sí: el pago entra, la venta se registra y el cliente recibe su confirmación.</p>
   <ul class="list"><li>Culqi, Niubiz, Izipay y Mercado Pago</li><li>Links de pago y cobros recurrentes</li><li>Conexión entre tienda, CRM, facturación y hojas</li><li>Avisos de pago en tiempo real</li></ul>
   <a class="more" href="#contacto" data-svc="Pasarelas de pago">Cotizar este servicio →</a>
@@ -959,7 +973,7 @@ fbq('init', '1747129786526417'); fbq('track', 'PageView');
 
 <section class="sec" id="datos" data-shape="bars" data-tone="1" data-label="Datos"><div class="wrap"><div class="copy">
   <div class="num"><b>06</b> / 10<span class="cat t1">Automatizar</span></div>
-  <h2>Datos y dashboards</h2>
+  <h2>Datos <span class="hl">y dashboards</span></h2>
   <p>De hojas de Excel desordenadas a una base de datos ordenada, y de ahí a un tablero donde ves ventas, inventario y metas en tiempo real.</p>
   <ul class="list"><li>Bases de datos a la medida, con respaldos</li><li>Dashboards de ventas, stock y equipo</li><li>Alertas cuando algo se sale de lo normal</li><li>Accesos por usuario, desde cualquier dispositivo</li></ul>
   <a class="more" href="#contacto" data-svc="Dashboards e inteligencia de negocio">Cotizar este servicio →</a>
@@ -967,7 +981,7 @@ fbq('init', '1747129786526417'); fbq('track', 'PageView');
 
 <section class="sec" id="seguridad" data-shape="shield" data-tone="2" data-label="Seguridad y nube"><div class="wrap"><div class="copy">
   <div class="num"><b>07</b> / 10<span class="cat t2">Proteger</span></div>
-  <h2>Ciberseguridad y nube</h2>
+  <h2>Ciberseguridad <span class="hl">y nube</span></h2>
   <p>Protegemos tu información de virus, ransomware y robos, y llevamos tus archivos y sistemas a la nube para que trabajes desde cualquier lugar.</p>
   <ul class="list"><li>Antivirus empresarial, firewall y cifrado</li><li>Respaldos automáticos verificados</li><li>Migración a Google Cloud, AWS o Azure</li><li>Capacitación del equipo en buenas prácticas</li></ul>
   <a class="more" href="#contacto" data-svc="Ciberseguridad">Cotizar este servicio →</a>
@@ -975,7 +989,7 @@ fbq('init', '1747129786526417'); fbq('track', 'PageView');
 
 <section class="sec" id="ti" data-shape="rack" data-tone="2" data-label="TI y licencias"><div class="wrap"><div class="copy">
   <div class="num"><b>08</b> / 10<span class="cat t2">Proteger</span></div>
-  <h2>Infraestructura TI y licencias</h2>
+  <h2>Infraestructura TI <span class="hl">y licencias</span></h2>
   <p>La base de tu oficina, estable y en regla: redes, correo corporativo y software original, instalado y activado.</p>
   <ul class="list"><li>Redes cableadas y wifi</li><li>Correo corporativo</li><li>Licencias de sistemas, ofimática, diseño y antivirus</li><li>Servidores y equipos de red</li></ul>
   <a class="more" href="#contacto" data-svc="Redes y servicios TI">Cotizar este servicio →</a>
@@ -983,7 +997,7 @@ fbq('init', '1747129786526417'); fbq('track', 'PageView');
 
 <section class="sec" id="soporte" data-shape="wrench" data-tone="2" data-label="Soporte"><div class="wrap"><div class="copy">
   <div class="num"><b>09</b> / 10<span class="cat t2">Soporte</span></div>
-  <h2>Soporte, mantenimiento y asesoría</h2>
+  <h2>Soporte, <span class="hl">mantenimiento y asesoría</span></h2>
   <p>Resolvemos a distancia en minutos o en taller cuando hace falta. Y si vas a comprar equipos, te decimos qué conviene según tu trabajo y presupuesto.</p>
   <ul class="list"><li>Soporte remoto inmediato</li><li>Reparación, formateo, SSD y RAM</li><li>Planes de mantenimiento mensual</li><li>Asesoría para comprar laptops, PCs e impresoras</li></ul>
   <a class="more" href="#contacto" data-svc="Mantenimiento mensual">Cotizar este servicio →</a>
@@ -991,7 +1005,7 @@ fbq('init', '1747129786526417'); fbq('track', 'PageView');
 
 <section class="sec" id="industrias" data-shape="bell" data-tone="3" data-label="Industrias"><div class="wrap"><div class="copy">
   <div class="num"><b>10</b> / 10<span class="cat t3">Industrias</span></div>
-  <h2>Restaurantes, hoteles, turismo y academias</h2>
+  <h2>Restaurantes, hoteles, <span class="hl">turismo y academias</span></h2>
   <p>Soluciones armadas para tu rubro, no genéricas: reservas, cartas, pedidos, canales de venta y cursos, todo conectado en un solo sistema.</p>
   <ul class="list"><li>Reservas online y conexión con Booking y Airbnb</li><li>Punto de venta, inventario y delivery integrados</li><li>Pagos y confirmaciones automáticas por WhatsApp</li><li>Academias virtuales con Moodle: cursos, exámenes y certificados</li></ul>
   <a class="more" href="#contacto" data-svc="Restaurantes, hoteles y turismo">Cotizar este servicio →</a>
