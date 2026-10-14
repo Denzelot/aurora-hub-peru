@@ -98,12 +98,13 @@ footer a:hover{border-color:var(--mint)}
 <!-- Vercel Speed Insights -->
 <script>window.si = window.si || function () { (window.siq = window.siq || []).push(arguments); };</script>
 <script defer src="/_vercel/speed-insights/script.js"></script>
-<!-- Meta Pixel: pega el ID del píxel en PIXEL_ID (solo números). Mientras esté vacío no se carga nada. -->
+<!-- Meta Pixel: IDs de los conjuntos de datos (solo números). Cada evento va a todos. Vacío = no carga nada.
+     1747129786526417 = portafolio aurorahub.pe · 962600523591458 = portafolio nuevo «Aurora Hub Perú» -->
 <script>
-const PIXEL_ID = '1747129786526417';
-if (PIXEL_ID) {
+const PIXEL_IDS = ['1747129786526417', '962600523591458'];
+if (PIXEL_IDS.length) {
   !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
-  fbq('init', PIXEL_ID); fbq('track', 'PageView');
+  PIXEL_IDS.forEach(id => fbq('init', id)); fbq('track', 'PageView');
 }
 </script>
 <script type="application/ld+json">
