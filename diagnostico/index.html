@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="es-PE">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Diagnóstico remoto de tu PC | Aurora Hub Perú</title>
+<meta name="description" content="¿Tu PC está lenta o hace cosas raras? Descarga el programa de diagnóstico de Aurora Hub, ejecútalo con tu clave y recibe por WhatsApp un informe claro con las soluciones. Lima, Perú.">
+<link rel="canonical" href="https://www.aurorahubperu.com/diagnostico/">
+<meta name="theme-color" content="#03090f">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Aurora Hub Perú">
+<meta property="og:locale" content="es_PE">
+<meta property="og:title" content="Diagnóstico remoto de tu PC | Aurora Hub Perú">
+<meta property="og:description" content="Un programa pequeño revisa tu equipo en 2 minutos y nosotros te decimos qué le pasa y cómo arreglarlo.">
+<meta property="og:url" content="https://www.aurorahubperu.com/diagnostico/">
+<meta property="og:image" content="https://www.aurorahubperu.com/assets/og-image.jpg">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  color-scheme: dark;
+  --bg:#03090f; --ink:#eefcf8; --muted:#8fb3b6; --line:rgba(44,245,200,.22);
+  --mint:#2cf5c8; --blue:#6a7bff; --pink:#ff4fa3; --soft:#a9fff0; --card:rgba(10,24,32,.72);
+  --sans:"Space Grotesk", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono:"JetBrains Mono", ui-monospace, Menlo, Consolas, monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--bg);color:var(--ink);line-height:1.55;-webkit-font-smoothing:antialiased;
+  background-image:radial-gradient(900px 500px at 85% -5%,rgba(106,123,255,.22),transparent 60%),radial-gradient(800px 500px at 0% 20%,rgba(44,245,200,.14),transparent 60%),radial-gradient(700px 500px at 100% 70%,rgba(255,79,163,.10),transparent 60%);
+  background-attachment:fixed}
+a{color:inherit}
+.wrap{width:min(1080px,100% - 40px);margin-inline:auto}
+header.top{padding:18px 0}
+header.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px}
+header.top img{height:34px;width:auto;display:block}
+header.top .btn{white-space:nowrap;padding:11px 18px;font-size:.92rem}
+.eyebrow{font-family:var(--mono);font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--mint)}
+h1{font-size:clamp(2.1rem,6.4vw,4rem);line-height:1.05;letter-spacing:-.02em;margin:14px 0 18px;font-weight:700}
+h1 .hl{background:linear-gradient(90deg,var(--mint),var(--blue) 60%,var(--pink));-webkit-background-clip:text;background-clip:text;color:transparent}
+h2{font-size:clamp(1.6rem,4.2vw,2.5rem);line-height:1.12;letter-spacing:-.015em;margin-bottom:12px;font-weight:700}
+.lead{font-size:clamp(1.05rem,2.4vw,1.25rem);color:#cfe9e6;max-width:640px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:15px 24px;border-radius:999px;font-weight:600;font-size:1rem;text-decoration:none;border:1px solid var(--line);color:var(--ink);background:rgba(255,255,255,.04);cursor:pointer;transition:transform .15s,box-shadow .15s,background .15s}
+.btn:hover{transform:translateY(-2px)}
+.btn.primary{background:linear-gradient(90deg,var(--mint),#7cf9e0);color:#03140f;border-color:transparent;box-shadow:0 10px 34px rgba(44,245,200,.28)}
+.btn:focus-visible,a:focus-visible,summary:focus-visible{outline:2px solid var(--mint);outline-offset:3px}
+.hero{padding:34px 0 64px}
+.hero .cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+.micro{margin-top:14px;font-family:var(--mono);font-size:.8rem;color:var(--muted)}
+section.sec{padding:54px 0}
+.grid{display:grid;gap:16px}
+.pains{grid-template-columns:repeat(auto-fit,minmax(240px,1fr));margin-top:26px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:24px;backdrop-filter:blur(6px)}
+.card h3{font-size:1.15rem;margin-bottom:8px}
+.card p{color:#bcd7d4;font-size:.98rem}
+.num{font-family:var(--mono);color:var(--mint);font-size:.8rem;letter-spacing:.1em}
+.plans{grid-template-columns:repeat(auto-fit,minmax(215px,1fr));margin-top:28px}
+.plan{display:flex;flex-direction:column;gap:12px}
+.plan .price{font-size:2.2rem;font-weight:700;letter-spacing:-.02em}
+.plan .price small{font-family:var(--mono);font-size:.75rem;color:var(--muted);font-weight:400;margin-left:6px;letter-spacing:0}
+.plan ul{list-style:none;display:grid;gap:8px;color:#cfe9e6;font-size:.95rem;flex:1}
+.plan li{padding-left:22px;position:relative}
+.plan li::before{content:"";position:absolute;left:0;top:.5em;width:10px;height:10px;border-radius:50%;background:var(--mint);box-shadow:0 0 10px var(--mint)}
+.plan.star{border-color:rgba(44,245,200,.6);box-shadow:0 0 0 1px rgba(44,245,200,.25),0 18px 50px rgba(44,245,200,.12)}
+.tag{align-self:flex-start;font-family:var(--mono);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:#03140f;background:var(--mint);padding:4px 10px;border-radius:999px}
+.note{margin-top:18px;color:var(--muted);font-size:.9rem}
+.addon{margin-top:18px;display:grid;gap:6px}
+.steps{grid-template-columns:repeat(auto-fit,minmax(210px,1fr));margin-top:26px}
+.case{display:grid;gap:22px;grid-template-columns:1.1fr .9fr;align-items:center}
+.case .chat{background:#06151b;border:1px solid var(--line);border-radius:22px;padding:18px;display:grid;gap:10px;font-size:.95rem}
+.bub{max-width:88%;padding:10px 14px;border-radius:16px;line-height:1.4}
+.bub.in{background:rgba(255,255,255,.07);justify-self:start;border-bottom-left-radius:4px}
+.bub.out{background:rgba(44,245,200,.18);justify-self:end;border-bottom-right-radius:4px}
+.chat .cap{font-family:var(--mono);font-size:.72rem;color:var(--muted);text-align:center;margin-top:4px}
+details.faq{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px 20px;margin-top:12px}
+details.faq summary{cursor:pointer;font-weight:600;list-style:none;display:flex;justify-content:space-between;gap:16px}
+details.faq summary::after{content:"+";color:var(--mint);font-family:var(--mono)}
+details.faq[open] summary::after{content:"–"}
+details.faq p{margin-top:10px;color:#bcd7d4}
+.final{text-align:center;padding:70px 0 120px}
+.final .lead{margin:0 auto 26px}
+footer{border-top:1px solid var(--line);padding:26px 0 110px;color:var(--muted);font-size:.9rem}
+footer .wrap{display:flex;flex-wrap:wrap;gap:14px;justify-content:space-between}
+footer a{text-decoration:none;border-bottom:1px solid transparent}
+footer a:hover{border-color:var(--mint)}
+.sticky{position:fixed;left:0;right:0;bottom:0;z-index:20;padding:12px 16px calc(12px + env(safe-area-inset-bottom));background:linear-gradient(180deg,transparent,rgba(3,9,15,.92) 40%)}
+.sticky .btn{width:100%}
+@media (min-width:860px){.sticky{display:none}footer{padding-bottom:30px}.final{padding-bottom:80px}}
+@media (max-width:859px){.case{grid-template-columns:1fr}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style>
+<style>
+.pasos{counter-reset:p}
+.kbd{font-family:var(--mono);font-size:.85em;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:6px;padding:1px 7px}
+.dl{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin-top:18px}
+.dl .meta{font-family:var(--mono);font-size:12.5px;color:var(--muted)}
+.aviso{border-left:3px solid var(--pink);padding:10px 14px;background:rgba(255,79,163,.07);border-radius:0 10px 10px 0;margin-top:16px;font-size:15px}
+.dos{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+.dos ul{padding-left:18px;margin-top:8px}
+.dos li{margin:4px 0}
+.ok li::marker{color:var(--mint)}.no li::marker{color:var(--pink)}
+</style>
+<!-- Vercel Web Analytics -->
+<script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
+<script defer src="/_vercel/insights/script.js"></script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","@id":"https://www.aurorahubperu.com/diagnostico/#pagina","url":"https://www.aurorahubperu.com/diagnostico/","name":"Diagnóstico remoto de tu PC","inLanguage":"es-PE"}
+</script>
+</head>
+<body>
+
+<header class="top"><div class="wrap">
+  <a href="/" aria-label="Aurora Hub Perú, inicio"><img src="/assets/logos/aurora-hub-horizontal-fondo-oscuro.svg" alt="Aurora Hub Perú" width="170" height="34"></a>
+  <a class="btn" href="#contacto" data-wa="Hola, quiero el diagnóstico remoto de mi PC (DIAG26)" data-where="header">Pedir mi clave</a>
+</div></header>
+
+<main>
+<section class="hero"><div class="wrap">
+  <div class="eyebrow">Diagnóstico remoto de PC · Lima, Perú</div>
+  <h1>¿Tu PC está lenta? <span class="hl">Te decimos qué le pasa</span> sin que nadie vaya a tu casa.</h1>
+  <p class="lead">Descargas un programa pequeño, lo ejecutas con la clave que te damos y en 2 minutos nos llega un informe completo del equipo. Lo revisamos y te respondemos por WhatsApp con las soluciones, en orden de impacto.</p>
+  <div class="cta">
+    <a class="btn primary" href="#contacto" data-wa="Hola, quiero el diagnóstico remoto de mi PC (DIAG26)" data-where="hero">Pedir mi clave por WhatsApp</a>
+    <a class="btn" href="#descarga">Ya tengo clave</a>
+  </div>
+  <p class="micro">Solo lectura · No instala nada · El informe lo vemos solo nosotros</p>
+</div></section>
+
+<section class="sec" id="como"><div class="wrap">
+  <div class="eyebrow">Cómo funciona</div>
+  <h2>Tres pasos y listo.</h2>
+  <div class="grid steps pasos">
+    <div class="card"><div class="num">01</div><h3>Te damos una clave</h3><p>Nos escribes por WhatsApp y te enviamos una clave personal del tipo <span class="kbd">AUR-7K3M-PX2Q</span>.</p></div>
+    <div class="card"><div class="num">02</div><h3>Ejecutas el programa</h3><p>Descargas el archivo, doble clic, escribes la clave y esperas de 1 a 3 minutos sin cerrar la ventana.</p></div>
+    <div class="card"><div class="num">03</div><h3>Recibes las soluciones</h3><p>El informe llega directo a Aurora Hub. Lo analizamos y te explicamos qué arreglar primero, qué cuesta y qué puedes hacer tú mismo.</p></div>
+  </div>
+</div></section>
+
+<section class="sec" id="que"><div class="wrap">
+  <div class="eyebrow">Transparencia</div>
+  <h2>Qué revisa y qué no toca.</h2>
+  <div class="dos">
+    <div class="card ok"><h3>Revisa</h3><ul>
+      <li>Velocidad: disco mecánico o SSD, memoria, procesador y programas que arrancan con Windows</li>
+      <li>Espacio y salud de los discos</li>
+      <li>Antivirus, firewall y señales de programas sospechosos</li>
+      <li>Errores, apagados inesperados y aplicaciones que fallan</li>
+      <li>Extensiones del navegador y actualizaciones pendientes</li>
+    </ul></div>
+    <div class="card no"><h3>No hace</h3><ul>
+      <li>No abre ni copia tus archivos, fotos o documentos</li>
+      <li>No recoge contraseñas ni datos bancarios</li>
+      <li>No instala nada ni cambia ninguna configuración</li>
+      <li>No deja nada corriendo cuando cierras la ventana</li>
+      <li>No comparte el informe con nadie fuera de Aurora Hub</li>
+    </ul></div>
+  </div>
+  <p class="note">El informe incluye datos técnicos del equipo (nombre del PC, usuario de Windows, programas instalados, cuentas del navegador). Se envía cifrado a nuestro servidor y lo borramos a los 30 días de entregarte las soluciones. Al ejecutar el programa aceptas este uso.</p>
+</div></section>
+
+<section class="sec" id="descarga"><div class="wrap">
+  <div class="eyebrow">Ya tengo clave</div>
+  <h2>Descarga y ejecuta.</h2>
+  <div class="card">
+    <ol style="padding-left:20px;line-height:1.8">
+      <li>Descarga el archivo y <b>extrae el ZIP</b> (clic derecho → Extraer todo).</li>
+      <li>Abre la carpeta y haz doble clic en <span class="kbd">DIAGNOSTICO AURORA.cmd</span>.</li>
+      <li>Si Windows pregunta «¿Deseas permitir que esta aplicación haga cambios?», pulsa <b>Sí</b>. Solo necesita permiso para leer el estado del sistema.</li>
+      <li>Escribe tu clave, pulsa Enter y espera a ver «Informe enviado».</li>
+    </ol>
+    <div class="dl">
+      <a class="btn primary" href="/diagnostico/AuroraDiagnostico.zip" download>Descargar Aurora Diagnóstico</a>
+      <span class="meta">ZIP · menos de 1 MB · Windows 10 y 11</span>
+    </div>
+    <div class="aviso">Si al abrirlo aparece «Windows protegió su PC» o «¿Quieres ejecutar este archivo?», pulsa <b>Más información → Ejecutar de todas formas</b> (o <b>Ejecutar</b>). Es el aviso habitual de Windows para programas descargados de internet que todavía no están firmados.</div>
+  </div>
+</div></section>
+
+<section class="sec" id="contacto"><div class="wrap">
+  <div class="eyebrow">Empieza hoy</div>
+  <h2>Pide tu clave por WhatsApp.</h2>
+  <p class="lead">Cuéntanos qué le pasa a tu PC y te enviamos la clave con el costo del diagnóstico antes de empezar.</p>
+  <a class="btn primary" href="#contacto" data-wa="Hola, quiero el diagnóstico remoto de mi PC (DIAG26)" data-where="final">Hablar por WhatsApp</a>
+  <p class="micro">+51 932 462 537 · Lima, Perú</p>
+</div></section>
+</main>
+
+<footer><div class="wrap">
+  <span>© 2026 Aurora Hub Perú · Lima, Perú</span>
+  <span><a href="/">Ver todos los servicios</a> · <a href="https://www.instagram.com/aurorahub.pe/" rel="noopener">Instagram</a> · <a href="https://www.tiktok.com/@aurorahubperu" rel="noopener">TikTok</a></span>
+</div></footer>
+
+<div class="sticky"><a class="btn primary" href="#contacto" data-wa="Hola, quiero el diagnóstico remoto de mi PC (DIAG26)" data-where="sticky">Pedir mi clave por WhatsApp</a></div>
+
+<script>
+(() => {
+  'use strict';
+  const WHATSAPP = '51932462537';
+  const track = (name, data) => { try { if (window.fbq) window.fbq('track', name, data || {}); } catch (e) {} try { if (window.va) window.va('event', { name: 'whatsapp_click', data: data || {} }); } catch (e) {} };
+  document.querySelectorAll('[data-wa]').forEach(a => {
+    a.setAttribute('href', `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(a.dataset.wa)}`);
+    a.setAttribute('target', '_blank'); a.setAttribute('rel', 'noopener');
+    a.addEventListener('click', () => track('Lead', { content_name: a.dataset.where || 'cta' }));
+  });
+  document.querySelector('a[download]')?.addEventListener('click', () => { try { if (window.va) window.va('event', { name: 'descarga_diagnostico' }); } catch (e) {} });
+})();
+</script>
+</body>
+</html>
