@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="es-PE"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Aurora Pulse · El pulso de cripto, fintech y mercados en Perú | Aurora Hub Perú</title>
+<meta name="description" content="Aurora Pulse: precios de cripto en vivo, dólar y metales del BCRP y el resumen diario de fintech, pagos digitales y trading, con foco en Perú.">
+<meta name="robots" content="noindex">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+:root{--bg:#03090f;--ink:#eefcf8;--muted:#8fb3b6;--line:rgba(44,245,200,.22);--mint:#2cf5c8;--blue:#6a7bff;--pink:#ff4fa3;--card:rgba(10,24,32,.72);--up:#2cf5a0;--down:#ff5c7a;
+--sans:"Space Grotesk",system-ui,sans-serif;--mono:"JetBrains Mono",ui-monospace,monospace}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--sans);background:var(--bg);color:var(--ink);line-height:1.55;background-image:radial-gradient(900px 500px at 85% -5%,rgba(106,123,255,.2),transparent 60%),radial-gradient(800px 500px at 0% 15%,rgba(44,245,200,.12),transparent 60%);background-attachment:fixed}
+a{color:var(--mint)}.wrap{width:min(1120px,100% - 32px);margin-inline:auto}
+header{border-bottom:1px solid rgba(255,255,255,.06)}header .wrap{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:16px 0}
+header img{height:32px;display:block}.btn{display:inline-flex;align-items:center;gap:8px;padding:10px 18px;border-radius:999px;font-weight:600;font-size:.92rem;text-decoration:none;border:1px solid var(--line);color:var(--ink)}
+.btn.primary{background:linear-gradient(90deg,var(--mint),#7cf9e0);color:#03140f;border-color:transparent}
+.tape{display:flex;overflow:hidden;white-space:nowrap;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.06);font-family:var(--mono);font-size:.85rem;background:rgba(0,0,0,.25)}
+.tape .run{display:flex;gap:28px;padding-right:28px;animation:run 40s linear infinite}@keyframes run{to{transform:translateX(-100%)}}@media (prefers-reduced-motion:reduce){.tape .run{animation:none}}
+.tape span b{color:var(--ink);margin-right:6px}.up{color:var(--up)}.down{color:var(--down)}
+.hero{padding:34px 0 18px}.eyebrow{font-family:var(--mono);font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--mint)}
+h1{font-size:clamp(2.2rem,6vw,3.6rem);line-height:1.04;letter-spacing:-.02em;margin:10px 0 10px}
+.hl{background:linear-gradient(90deg,var(--mint),var(--blue) 60%,var(--pink));-webkit-background-clip:text;background-clip:text;color:transparent}
+.lead{color:#cfe3e1;max-width:680px;font-size:1.1rem}.fecha{font-family:var(--mono);font-size:.8rem;color:var(--muted);margin-top:10px}
+.kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin:22px 0}
+.kpi{background:var(--card);border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:14px 16px}
+.kpi small{display:block;font-family:var(--mono);font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.kpi b{display:block;font-size:1.6rem;letter-spacing:-.02em;margin:4px 0 2px}.kpi i{font-style:normal;font-size:.82rem}
+.tabs{display:flex;gap:8px;margin:26px 0 14px;border-bottom:1px solid rgba(255,255,255,.08)}
+.tabs button{font:600 1rem var(--sans);color:var(--muted);background:none;border:0;padding:12px 16px;border-bottom:2px solid transparent;cursor:pointer}
+.tabs button.on{color:var(--ink);border-color:var(--mint)}
+.panel{display:none}.panel.on{display:grid;grid-template-columns:1.25fr .75fr;gap:18px}
+.box{background:var(--card);border:1px solid rgba(255,255,255,.08);border-radius:18px;padding:18px 20px}
+.box h2{font-size:1.15rem;margin-bottom:10px}.box h2 small{font-family:var(--mono);font-size:.7rem;color:var(--muted);margin-left:8px;letter-spacing:.06em;text-transform:uppercase}
+.resumen li{list-style:none;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.06);color:#d6ecea}.resumen li:last-child{border:0}
+.resumen li b{color:var(--ink)}
+.ej{border:1px dashed rgba(143,179,182,.4);border-radius:14px;padding:12px 14px;margin-top:12px;color:var(--muted);font-size:.92rem}
+.ej b{display:block;color:#cfe3e1;margin-bottom:4px}.tag{display:inline-block;font-family:var(--mono);font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;color:#03140f;background:var(--mint);border-radius:999px;padding:2px 8px;margin-right:6px}
+.tv{height:360px;border-radius:14px;overflow:hidden;border:1px solid rgba(255,255,255,.08)}
+.mov li{list-style:none;display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid rgba(255,255,255,.06);font-family:var(--mono);font-size:.9rem}
+.suscr{margin:26px 0;text-align:center;border:1px solid rgba(44,245,200,.4);border-radius:20px;padding:24px;background:linear-gradient(135deg,rgba(44,245,200,.08),rgba(106,123,255,.08))}
+.suscr h2{font-size:1.5rem;margin-bottom:6px}.suscr .btn{margin-top:12px}
+.aviso{font-size:.82rem;color:var(--muted);border-top:1px solid rgba(255,255,255,.08);padding:18px 0 40px;margin-top:20px}
+@media (max-width:860px){.kpis{grid-template-columns:1fr 1fr}.panel.on{grid-template-columns:1fr}}
+</style></head><body>
+<header><div class="wrap"><a href="/"><img src="/assets/logos/aurora-hub-horizontal-fondo-oscuro.svg" alt="Aurora Hub Perú"></a><a class="btn" href="/">← Volver a Aurora Hub</a></div></header>
+<div class="tape" id="tape"><span>Conectando con Binance…</span></div>
+<main class="wrap">
+<section class="hero"><div class="eyebrow">Aurora Pulse · Cripto, fintech y mercados</div>
+<h1>El pulso del mercado,<br><span class="hl">cada mañana.</span></h1>
+<p class="lead">Precios en vivo y un resumen diario en 5 puntos de lo que mueve la cripto, las finanzas y los pagos digitales, con foco en Perú.</p>
+<p class="fecha" id="hoy"></p></section>
+<section class="kpis" id="kpis"></section>
+<nav class="tabs" role="tablist"><button class="on" data-t="neg" role="tab">Negocios y fintech</button><button data-t="cri" role="tab">Cripto y trading</button></nav>
+
+<section class="panel on" id="neg">
+ <div class="box"><h2>Resumen del día <small>se arma cada mañana</small></h2><ul class="resumen" id="resNeg"></ul>
+  <div class="ej"><b><span class="tag">Formato</span>Titulares de fintech y pagos digitales</b>Aquí aparecerán 2 o 3 titulares del día (pagos digitales, bancos, regulación, IA en finanzas), resumidos con IA, con enlace a la fuente original y aprobados por el equipo antes de publicarse.</div></div>
+ <div class="box"><h2>Dólar en Perú <small>gráfico</small></h2><div class="tv" id="tvUsd"></div></div>
+</section>
+<section class="panel" id="cri">
+ <div class="box"><h2>Resumen del día <small>se arma cada mañana</small></h2><ul class="resumen" id="resCri"></ul>
+  <div class="ej"><b><span class="tag">Formato</span>Titulares de cripto y trading</b>Aquí aparecerán 2 o 3 titulares del día sobre Bitcoin, altcoins y mercados, resumidos con IA, con enlace a la fuente y aprobados antes de publicarse.</div>
+  <h2 style="margin-top:18px">Mayores movimientos 24 h <small>Binance · en vivo</small></h2><ul class="mov" id="mov"></ul></div>
+ <div class="box"><h2>Bitcoin <small>gráfico</small></h2><div class="tv" id="tvBtc"></div></div>
+</section>
+
+<section class="suscr"><h2>Recibe <span class="hl">Aurora Pulse</span> cada mañana</h2><p class="lead" style="margin:0 auto">El resumen en 5 puntos, directo a tu WhatsApp. Gratis.</p>
+<a class="btn primary" href="https://wa.me/51932462537?text=Hola%20Aurora%20Hub%2C%20quiero%20recibir%20Aurora%20Pulse%20cada%20ma%C3%B1ana." target="_blank" rel="noopener">Quiero recibirlo</a></section>
+<p class="aviso"><b>Contenido informativo, no es recomendación de inversión.</b> Aurora Pulse no ofrece asesoría financiera ni señales de compra o venta. Invertir en cripto y en bolsa tiene riesgos. Datos: Binance (cripto, en vivo), Banco Central de Reserva del Perú (dólar y metales, datos diarios), TradingView (gráficos). <span id="fuenteBcrp"></span></p>
+</main>
+<script>
+const BCRP = {"usd": {"nombre": "Dólar interbancario", "unidad": "S/ por US$", "valor": 3.428, "fecha": "15.Oct.26", "var": -0.32, "dec": 3}, "cobre": {"nombre": "Cobre", "unidad": "cUS$ por libra", "valor": 669.1, "fecha": "14.Oct.26", "var": 0.07, "dec": 1}, "oro": {"nombre": "Oro", "unidad": "US$ por onza", "valor": 4105.0, "fecha": "14.Oct.26", "var": -1.33, "dec": 0}, "wti": {"nombre": "Petróleo WTI", "unidad": "US$ por barril", "valor": 95.09, "fecha": "14.Oct.26", "var": 1.01, "dec": 2}};
+const fmt=(n,d=2)=>Number(n).toLocaleString('es-PE',{minimumFractionDigits:d,maximumFractionDigits:d});
+const pct=v=>`<i class="${v>=0?'up':'down'}">${v>=0?'▲':'▼'} ${fmt(Math.abs(v),2)}%</i>`;
+document.getElementById('hoy').textContent=new Date().toLocaleDateString('es-PE',{weekday:'long',day:'numeric',month:'long',year:'numeric'});
+const K=document.getElementById('kpis');
+K.innerHTML=Object.values(BCRP).map(x=>`<div class="kpi"><small>${x.nombre}</small><b>${x.nombre.startsWith('Dólar')?'S/ ':x.nombre==='Cobre'?'':'US$ '}${fmt(x.valor,x.dec)}</b>${pct(x.var)} <small style="display:inline;letter-spacing:0;text-transform:none">${x.unidad} · ${x.fecha}</small></div>`).join('');
+document.getElementById('fuenteBcrp').textContent=`Último dato BCRP: ${BCRP.usd.fecha}.`;
+// resumen de negocios con datos reales del BCRP
+document.getElementById('resNeg').innerHTML=[
+ `<b>Dólar:</b> el tipo de cambio interbancario cerró en S/ ${fmt(BCRP.usd.valor,3)} (${BCRP.usd.var>=0?'sube':'baja'} ${fmt(Math.abs(BCRP.usd.var),2)}% frente al día anterior).`,
+ `<b>Cobre:</b> ${fmt(BCRP.cobre.valor,1)} centavos de dólar por libra en Londres, clave para las exportaciones peruanas.`,
+ `<b>Oro:</b> US$ ${fmt(BCRP.oro.valor,0)} por onza.`,
+ `<b>Petróleo WTI:</b> US$ ${fmt(BCRP.wti.valor,2)} por barril.`].map(t=>`<li>${t}</li>`).join('');
+// cripto en vivo desde Binance
+const PARES=['BTCUSDT','ETHUSDT','SOLUSDT','BNBUSDT','XRPUSDT','ADAUSDT','DOGEUSDT','LINKUSDT'], NOM={BTC:'Bitcoin',ETH:'Ethereum',SOL:'Solana',BNB:'BNB',XRP:'XRP',ADA:'Cardano',DOGE:'Dogecoin',LINK:'Chainlink'};
+const st={};
+function pintar(){
+ const xs=PARES.filter(p=>st[p]).map(p=>({s:p.replace('USDT',''),...st[p]}));
+ if(!xs.length) return;
+ const t1=xs.map(x=>`<span><b>${x.s}</b>US$ ${fmt(x.c,x.c<10?4:2)} ${pct(x.p)}</span>`).join('');document.getElementById('tape').innerHTML=`<div class="run">${t1}</div><div class="run" aria-hidden="true">${t1}</div>`;
+ const o=[...xs].sort((a,b)=>b.p-a.p);
+ document.getElementById('mov').innerHTML=o.map(x=>`<li><span>${NOM[x.s]} (${x.s})</span>${pct(x.p)}</li>`).join('');
+ const b=st.BTCUSDT,e=st.ETHUSDT;
+ if(b&&e) document.getElementById('resCri').innerHTML=[
+  `<b>Bitcoin:</b> US$ ${fmt(b.c,0)}, ${b.p>=0?'sube':'baja'} ${fmt(Math.abs(b.p),2)}% en 24 horas.`,
+  `<b>Ethereum:</b> US$ ${fmt(e.c,0)}, ${e.p>=0?'sube':'baja'} ${fmt(Math.abs(e.p),2)}% en 24 horas.`,
+  `<b>Mejor desempeño en 24 h:</b> ${NOM[o[0].s]} (${pct(o[0].p)}).`,
+  `<b>Peor desempeño en 24 h:</b> ${NOM[o[o.length-1].s]} (${pct(o[o.length-1].p)}).`].map(t=>`<li>${t}</li>`).join('');
+}
+fetch('https://api.binance.com/api/v3/ticker/24hr?symbols='+encodeURIComponent(JSON.stringify(PARES))).then(r=>r.json()).then(a=>{a.forEach(x=>st[x.symbol]={c:+x.lastPrice,p:+x.priceChangePercent});pintar();}).catch(()=>{});
+try{const ws=new WebSocket('wss://stream.binance.com:9443/stream?streams='+PARES.map(p=>p.toLowerCase()+'@miniTicker').join('/'));let t=0;
+ ws.onmessage=m=>{const d=JSON.parse(m.data).data;st[d.s]={c:+d.c,p:(d.c-d.o)/d.o*100};if(!t)t=setTimeout(()=>{t=0;pintar();},1000);};}catch(e){}
+// pestañas
+document.querySelectorAll('.tabs button').forEach(b=>b.onclick=()=>{document.querySelectorAll('.tabs button,.panel').forEach(x=>x.classList.remove('on'));b.classList.add('on');document.getElementById(b.dataset.t).classList.add('on');});
+// gráficos de TradingView
+function tv(id,sym,auto){const c=document.getElementById(id);const s=document.createElement('script');s.src='https://s3.tradingview.com/external-embedding/embed-widget-mini-symbol-overview.js';s.async=true;
+ const w=document.createElement('div');w.className='tradingview-widget-container__widget';c.appendChild(w);s.textContent=JSON.stringify(auto?{symbol:sym,width:'100%',height:'100%',locale:'es',dateRange:'1M',colorTheme:'dark',isTransparent:true,autosize:true}:{symbol:sym,width:'100%',height:360,locale:'es',dateRange:'1M',colorTheme:'dark',isTransparent:true,autosize:false});c.appendChild(s);}
+tv('tvUsd','FX_IDC:USDPEN',false);tv('tvBtc','BINANCE:BTCUSDT',true);
+</script>
+</body></html>
