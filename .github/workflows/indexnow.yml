@@ -16,5 +16,5 @@ jobs:
         run: |
           curl -sS -X POST https://api.indexnow.org/indexnow \
             -H 'Content-Type: application/json; charset=utf-8' \
-            -d "{\"host\":\"$HOST\",\"key\":\"$KEY\",\"keyLocation\":\"https://$HOST/$KEY.txt\",\"urlList\":[\"https://$HOST/\",\"https://$HOST/paginas-web/\",\"https://$HOST/diagnostico/\",\"https://$HOST/guias/\",\"https://$HOST/guias/cuanto-cuesta-una-pagina-web-peru/\",\"https://$HOST/guias/cuanto-cuesta-chatbot-whatsapp-ia-peru/\",\"https://$HOST/guias/cuanto-invertir-meta-ads-peru/\",\"https://$HOST/servicios/chatbot-whatsapp-ia/\"]}" \
+            -d "{\"host\":\"$HOST\",\"key\":\"$KEY\",\"keyLocation\":\"https://$HOST/$KEY.txt\",\"urlList\":[\"https://$HOST/\",\"https://$HOST/paginas-web/\",\"https://$HOST/diagnostico/\",\"https://$HOST/guias/\",\"https://$HOST/guias/cuanto-cuesta-una-pagina-web-peru/\",\"https://$HOST/guias/cuanto-cuesta-chatbot-whatsapp-ia-peru/\",\"https://$HOST/guias/cuanto-invertir-meta-ads-peru/\",\"https://$HOST/servicios/chatbot-whatsapp-ia/\",\"https://$HOST/pulse/\"]}" \
             -o /dev/null -w 'IndexNow respondió HTTP %{http_code}\n' --fail
