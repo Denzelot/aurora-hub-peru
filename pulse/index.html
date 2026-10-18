@@ -22,7 +22,10 @@ header img{height:32px;display:block}.btn{display:inline-flex;align-items:center
 .hero{padding:34px 0 18px}.eyebrow{font-family:var(--mono);font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--mint)}
 h1{font-size:clamp(2.2rem,6vw,3.6rem);line-height:1.04;letter-spacing:-.02em;margin:10px 0 10px}
 .hl{background:linear-gradient(90deg,var(--mint),var(--blue) 60%,var(--pink));-webkit-background-clip:text;background-clip:text;color:transparent}
-.lead{color:#cfe3e1;max-width:680px;font-size:1.1rem}.fecha{font-family:var(--mono);font-size:.8rem;color:var(--muted);margin-top:10px}
+.lead{color:#cfe3e1;max-width:680px;font-size:1.1rem}
+.hero{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:center}.coin{position:relative;height:420px}#nodos{position:absolute;inset:0;width:100%;height:100%}.coinlbl{position:absolute;left:0;right:0;bottom:6px;text-align:center;font-family:var(--mono);font-size:.85rem;color:var(--muted);letter-spacing:.06em}.coinlbl b{display:block;font-family:var(--sans);font-size:1.25rem;color:var(--ink);letter-spacing:0}
+.news li{list-style:none;padding:11px 0;border-bottom:1px solid rgba(255,255,255,.06)}.news li:last-child{border:0}.news a{color:var(--ink);text-decoration:none;font-weight:500}.news a:hover{color:var(--mint)}.news small{display:block;font-family:var(--mono);font-size:.72rem;color:var(--muted);margin-top:3px}
+@media (max-width:860px){.hero{grid-template-columns:1fr}.coin{height:300px;order:-1}}.fecha{font-family:var(--mono);font-size:.8rem;color:var(--muted);margin-top:10px}
 .kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin:22px 0}
 .kpi{background:var(--card);border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:14px 16px}
 .kpi small{display:block;font-family:var(--mono);font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
@@ -47,10 +50,10 @@ h1{font-size:clamp(2.2rem,6vw,3.6rem);line-height:1.04;letter-spacing:-.02em;mar
 <header><div class="wrap"><a href="/"><img src="/assets/logos/aurora-hub-horizontal-fondo-oscuro.svg" alt="Aurora Hub Perú"></a><a class="btn" href="/">← Volver a Aurora Hub</a></div></header>
 <div class="tape" id="tape"><span>Conectando con Binance…</span></div>
 <main class="wrap">
-<section class="hero"><div class="eyebrow">Aurora Pulse · Cripto, fintech y mercados</div>
+<section class="hero"><div><div class="eyebrow">Aurora Pulse · Cripto, fintech y mercados</div>
 <h1>El pulso del mercado,<br><span class="hl">cada mañana.</span></h1>
 <p class="lead">Precios en vivo y un resumen diario en 5 puntos de lo que mueve la cripto, las finanzas y los pagos digitales, con foco en Perú.</p>
-<p class="fecha" id="hoy"></p></section>
+<p class="fecha" id="hoy"></p></div><div class="coin" aria-hidden="true"><canvas id="nodos"></canvas><div class="coinlbl" id="coinlbl"></div></div></section>
 <section class="kpis" id="kpis"></section>
 <nav class="tabs" role="tablist"><button class="on" data-t="neg" role="tab">Negocios y fintech</button><button data-t="cri" role="tab">Cripto y trading</button></nav>
 
@@ -61,7 +64,8 @@ h1{font-size:clamp(2.2rem,6vw,3.6rem);line-height:1.04;letter-spacing:-.02em;mar
 </section>
 <section class="panel" id="cri">
  <div class="box"><h2>Resumen del día <small>se arma cada mañana</small></h2><ul class="resumen" id="resCri"></ul>
-  <div class="ej"><b><span class="tag">Formato</span>Titulares de cripto y trading</b>Aquí aparecerán 2 o 3 titulares del día sobre Bitcoin, altcoins y mercados, resumidos con IA, con enlace a la fuente y aprobados antes de publicarse.</div>
+  <h2 style="margin-top:18px">Noticias cripto <small>titulares de medios especializados</small></h2><ul class="news" id="news"></ul>
+  <p style="font-size:.8rem;color:var(--muted)">Titulares y enlaces de CriptoNoticias, DiarioBitcoin, BeInCrypto y Decrypt. El resumen con IA de los más importantes llegará cada mañana.</p>
   <h2 style="margin-top:18px">Mayores movimientos 24 h <small>Binance · en vivo</small></h2><ul class="mov" id="mov"></ul></div>
  <div class="box"><h2>Bitcoin <small>gráfico</small></h2><div class="tv" id="tvBtc"></div></div>
 </section>
@@ -71,7 +75,7 @@ h1{font-size:clamp(2.2rem,6vw,3.6rem);line-height:1.04;letter-spacing:-.02em;mar
 <p class="aviso"><b>Contenido informativo, no es recomendación de inversión.</b> Aurora Pulse no ofrece asesoría financiera ni señales de compra o venta. Invertir en cripto y en bolsa tiene riesgos. Datos: Binance (cripto, en vivo), Banco Central de Reserva del Perú (dólar y metales, datos diarios), TradingView (gráficos). <span id="fuenteBcrp"></span></p>
 </main>
 <script>
-const BCRP = {"usd": {"nombre": "Dólar interbancario", "unidad": "S/ por US$", "valor": 3.428, "fecha": "15.Oct.26", "var": -0.32, "dec": 3}, "cobre": {"nombre": "Cobre", "unidad": "cUS$ por libra", "valor": 669.1, "fecha": "14.Oct.26", "var": 0.07, "dec": 1}, "oro": {"nombre": "Oro", "unidad": "US$ por onza", "valor": 4105.0, "fecha": "14.Oct.26", "var": -1.33, "dec": 0}, "wti": {"nombre": "Petróleo WTI", "unidad": "US$ por barril", "valor": 95.09, "fecha": "14.Oct.26", "var": 1.01, "dec": 2}};
+const BCRP = {"usd": {"nombre": "Dólar interbancario", "unidad": "S/ por US$", "valor": 3.428, "fecha": "15.Oct.26", "var": -0.32, "dec": 3}, "cobre": {"nombre": "Cobre", "unidad": "cUS$ por libra", "valor": 669.1, "fecha": "14.Oct.26", "var": 0.07, "dec": 1}, "oro": {"nombre": "Oro", "unidad": "US$ por onza", "valor": 4105.0, "fecha": "14.Oct.26", "var": -1.33, "dec": 0}, "wti": {"nombre": "Petróleo WTI", "unidad": "US$ por barril", "valor": 95.09, "fecha": "14.Oct.26", "var": 1.01, "dec": 2}}, NEWS = [{"t": "TRUMP cae 7,44% el 18 de octubre de 2026 y profundiza su debilidad técnica", "l": "https://www.diariobitcoin.com/analisis/trump-cae-744-el-18-de-octubre-de-2026-y-profundiza-su-debilidad-tecnica/", "f": "DiarioBitcoin", "ts": 1792343147}, {"t": "ETHFI cae 6,87% el 18 de octubre y pone a prueba el soporte intradía", "l": "https://www.diariobitcoin.com/analisis/ethfi-cae-687-el-18-de-octubre-y-pone-a-prueba-el-soporte-intradia/", "f": "DiarioBitcoin", "ts": 1792343115}, {"t": "Resumen semanal de Bitcoin y criptomonedas: España y América Latina – 18 de octubre", "l": "https://es.beincrypto.com/espana-america-latina-criptomonedas-bitcoin-resumen-18-octubre-2026/", "f": "BeInCrypto", "ts": 1792340520}, {"t": "¿Bitcoin podría desplomarse a $10,000? Analista de Bloomberg lanza una advertencia dramática", "l": "https://es.beincrypto.com/advertencia-sobre-caida-del-precio-de-bitcoin-analista-de-bloomberg/", "f": "BeInCrypto", "ts": 1792337504}, {"t": "Tenedores de bitcoin aún no tendrían ganancias suficientes como para vender en masa", "l": "https://www.criptonoticias.com/mercados/tenedores-bitcoin-ganancias-ventas-masivas/", "f": "CriptoNoticias", "ts": 1792337077}, {"t": "Cysic suspende su puente entre redes tras crearse 10 millones de tokens sin autorización", "l": "https://www.criptonoticias.com/seguridad-bitcoin/cysic-puente-bnb-chain-diez-millones-tokens-cys/", "f": "CriptoNoticias", "ts": 1792331849}];
 const fmt=(n,d=2)=>Number(n).toLocaleString('es-PE',{minimumFractionDigits:d,maximumFractionDigits:d});
 const pct=v=>`<i class="${v>=0?'up':'down'}">${v>=0?'▲':'▼'} ${fmt(Math.abs(v),2)}%</i>`;
 document.getElementById('hoy').textContent=new Date().toLocaleDateString('es-PE',{weekday:'long',day:'numeric',month:'long',year:'numeric'});
@@ -103,6 +107,40 @@ function pintar(){
 fetch('https://api.binance.com/api/v3/ticker/24hr?symbols='+encodeURIComponent(JSON.stringify(PARES))).then(r=>r.json()).then(a=>{a.forEach(x=>st[x.symbol]={c:+x.lastPrice,p:+x.priceChangePercent});pintar();}).catch(()=>{});
 try{const ws=new WebSocket('wss://stream.binance.com:9443/stream?streams='+PARES.map(p=>p.toLowerCase()+'@miniTicker').join('/'));let t=0;
  ws.onmessage=m=>{const d=JSON.parse(m.data).data;st[d.s]={c:+d.c,p:(d.c-d.o)/d.o*100};if(!t)t=setTimeout(()=>{t=0;pintar();},1000);};}catch(e){}
+// noticias
+const hace=ts=>{const m=Math.round((Date.now()/1000-ts)/60);return m<60?`hace ${m} min`:m<1440?`hace ${Math.round(m/60)} h`:`hace ${Math.round(m/1440)} d`;};
+document.getElementById('news').innerHTML=NEWS.map(n=>`<li><a href="${n.l}" target="_blank" rel="noopener nofollow">${n.t.replace(/</g,'&lt;')}</a><small>${n.f} · ${hace(n.ts)}</small></li>`).join('');
+// partículas: la red de nodos de Aurora forma los logos de las principales monedas
+(()=>{const cv=document.getElementById('nodos'),cx=cv.getContext('2d'),RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
+ const N=matchMedia('(pointer: coarse)').matches?260:420,off=document.createElement('canvas'),o=off.getContext('2d',{willReadFrequently:true});
+ function sample(draw){const S=260;off.width=off.height=S;o.clearRect(0,0,S,S);o.fillStyle=o.strokeStyle='#fff';draw(o,S);
+  const d=o.getImageData(0,0,S,S).data,px=[];for(let y=0;y<S;y+=2)for(let x=0;x<S;x+=2)if(d[(y*S+x)*4+3]>128)px.push(x,y);
+  const out=new Float32Array(N*3);for(let i=0;i<N;i++){const k=(Math.random()*px.length/2|0)*2;out[i*3]=(px[k]+Math.random()*2)/S*2-1;out[i*3+1]=(px[k+1]+Math.random()*2)/S*2-1;out[i*3+2]=(Math.random()-.5)*.25;}return out;}
+ const ring=(c,S,w)=>{c.lineWidth=w;c.beginPath();c.arc(S/2,S/2,S*.44,0,7);c.stroke();};
+ const MON=[
+  {n:'Bitcoin',s:'BTC',f:(c,S)=>{ring(c,S,9);c.font=`700 ${S*.56}px Arial`;c.textAlign='center';c.textBaseline='middle';c.fillText('B',S*.52,S*.53);c.fillRect(S*.43,S*.16,S*.05,S*.13);c.fillRect(S*.53,S*.16,S*.05,S*.13);c.fillRect(S*.43,S*.75,S*.05,S*.12);c.fillRect(S*.53,S*.75,S*.05,S*.12);}},
+  {n:'Ethereum',s:'ETH',f:(c,S)=>{const P=(a)=>{c.beginPath();a.forEach(([x,y],i)=>i?c.lineTo(x*S,y*S):c.moveTo(x*S,y*S));c.closePath();c.fill();};P([[.5,.05],[.78,.52],[.5,.67],[.22,.52]]);P([[.5,.73],[.78,.57],[.5,.97],[.22,.57]]);}},
+  {n:'Solana',s:'SOL',f:(c,S)=>{const bar=(y,dir)=>{c.beginPath();if(dir){c.moveTo(S*.22,y);c.lineTo(S*.86,y);c.lineTo(S*.74,y+S*.14);c.lineTo(S*.1,y+S*.14);}else{c.moveTo(S*.1,y);c.lineTo(S*.74,y);c.lineTo(S*.86,y+S*.14);c.lineTo(S*.22,y+S*.14);}c.closePath();c.fill();};bar(S*.17,1);bar(S*.43,0);bar(S*.69,1);}},
+ ];
+ MON.forEach(m=>m.p=sample(m.f));
+ const P=new Float32Array(MON[0].p),lbl=document.getElementById('coinlbl');let k=0,tk=0,W=0,H=0,DPR=1,vis=true,t=0;
+ const etiqueta=()=>{const m=MON[k],x=st[m.s+'USDT'];lbl.innerHTML=`<b>${m.n}</b>${m.s}${x?` · US$ ${fmt(x.c,x.c<10?4:0)} `+pct(x.p):''}`;};
+ const rs=()=>{DPR=Math.min(devicePixelRatio||1,2);W=cv.clientWidth;H=cv.clientHeight;cv.width=W*DPR;cv.height=H*DPR;};rs();addEventListener('resize',rs);
+ new IntersectionObserver(e=>vis=e[0].isIntersecting).observe(cv);
+ const sx=new Float32Array(N),sy=new Float32Array(N);
+ function frame(){if(vis||RM){t+=.016;tk+=.016;
+  if(!RM&&tk>5.5){tk=0;k=(k+1)%MON.length;for(let i=0;i<N*3;i++)P[i]+=(Math.random()-.5)*.5;etiqueta();}
+  const T=MON[k].p;for(let i=0;i<N*3;i++)P[i]+=(T[i]-P[i])*.055;
+  const R=Math.min(W,H)*.46,a=RM?0:Math.sin(t*.35)*.55,ca=Math.cos(a),sa=Math.sin(a),cxp=W/2,cyp=H/2-14;
+  for(let i=0;i<N;i++){const x=P[i*3],y=P[i*3+1],z=P[i*3+2],xr=x*ca-z*sa,zr=x*sa+z*ca,s=1/(1.6-zr*.35);sx[i]=cxp+xr*R*s;sy[i]=cyp+y*R*s;}
+  cx.setTransform(DPR,0,0,DPR,0,0);cx.clearRect(0,0,W,H);
+  const D=R*.14,D2=D*D,cell=new Map();for(let i=0;i<N;i++){const key=((sx[i]/D)|0)*4096+((sy[i]/D)|0);let b=cell.get(key);if(!b)cell.set(key,b=[]);b.push(i);}
+  cx.lineWidth=.8;for(let i=0;i<N;i++){const gx=(sx[i]/D)|0,gy=(sy[i]/D)|0;for(let u=0;u<=1;u++)for(let v=-1;v<=1;v++){if(u===0&&v<0)continue;const b=cell.get((gx+u)*4096+gy+v);if(!b)continue;
+   for(const j of b){if(j<=i&&u===0&&v===0)continue;const dx=sx[i]-sx[j],dy=sy[i]-sy[j],d=dx*dx+dy*dy;if(d<D2){const q=1-d/D2,h=Math.min(1,Math.max(0,(sx[i]-cxp+R)/(2*R)));cx.strokeStyle=`rgba(${(44+211*h)|0},${(245-150*h)|0},${(200+3*h)|0},${(q*.42).toFixed(3)})`;cx.beginPath();cx.moveTo(sx[i],sy[i]);cx.lineTo(sx[j],sy[j]);cx.stroke();}}}}
+  for(let i=0;i<N;i++){const h=Math.min(1,Math.max(0,(sx[i]-cxp+R)/(2*R)));cx.fillStyle=`rgb(${(44+211*h)|0},${(245-150*h)|0},${(200+3*h)|0})`;cx.beginPath();cx.arc(sx[i],sy[i],2.2,0,7);cx.fill();}
+  }
+  if(!RM)requestAnimationFrame(frame);}
+ etiqueta();setInterval(etiqueta,3000);requestAnimationFrame(frame);})();
 // pestañas
 document.querySelectorAll('.tabs button').forEach(b=>b.onclick=()=>{document.querySelectorAll('.tabs button,.panel').forEach(x=>x.classList.remove('on'));b.classList.add('on');document.getElementById(b.dataset.t).classList.add('on');});
 // gráficos de TradingView
