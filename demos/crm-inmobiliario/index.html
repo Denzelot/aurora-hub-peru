@@ -1,0 +1,609 @@
+<!doctype html><html><head><meta name="robots" content="noindex"><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1"><style>:root{color-scheme:light}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CAPTA Lima · Maqueta CRM</title>
+<style>
+:root{
+  --bg:#f4f6fa;--panel:#ffffff;--ink:#14213d;--muted:#6b7a90;--line:#e3e8f0;
+  --brand:#0f4c81;--brand-2:#1b6ca8;--accent:#f2a900;--ok:#1f9d55;--warn:#e07b00;--bad:#d64545;--info:#2b7de9;
+  --kanban:#eef2f8;--chip:#eaf1fb;--shadow:0 1px 2px rgba(20,33,61,.06),0 6px 18px rgba(20,33,61,.06);
+  --radius:12px;
+}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.45 "Segoe UI",system-ui,-apple-system,Roboto,sans-serif}
+a{color:var(--brand-2)}
+.banner{background:var(--accent);color:#2b2200;text-align:center;font-weight:600;padding:6px 12px;font-size:13px;letter-spacing:.2px}
+.app{display:grid;grid-template-columns:240px 1fr;min-height:calc(100vh - 31px)}
+.side{background:var(--ink);color:#dbe4f3;padding:18px 14px;position:sticky;top:0;height:calc(100vh - 31px);overflow:auto}
+.logo{display:flex;align-items:center;gap:10px;margin:4px 6px 22px}
+.logo .mark{width:34px;height:34px;border-radius:10px;background:linear-gradient(135deg,var(--accent),#ff7a59);display:grid;place-items:center;color:#2b2200;font-weight:800}
+.logo b{font-size:16px;letter-spacing:.3px}.logo small{display:block;color:#9fb0c9;font-weight:400;font-size:11px}
+.nav button{all:unset;display:flex;align-items:center;gap:10px;width:100%;padding:9px 10px;border-radius:9px;cursor:pointer;color:#c9d6ea;margin:2px 0}
+.nav button:hover{background:rgba(255,255,255,.07)}
+.nav button.active{background:var(--brand);color:#fff;font-weight:600}
+.nav .sec{font-size:10.5px;letter-spacing:1.4px;text-transform:uppercase;color:#7f91ad;margin:16px 10px 6px}
+.nav .pill{margin-left:auto;background:var(--accent);color:#2b2200;font-size:11px;font-weight:700;padding:1px 7px;border-radius:999px}
+.ico{width:18px;text-align:center;opacity:.9}
+.main{padding:22px 26px 60px;min-width:0}
+.top{display:flex;align-items:center;gap:14px;margin-bottom:18px}
+.top h1{margin:0;font-size:22px}
+.top .sub{color:var(--muted);font-size:13px}
+.search{margin-left:auto;background:#fff;border:1px solid var(--line);border-radius:10px;padding:8px 12px;width:320px;color:var(--muted)}
+.btn{background:var(--brand);color:#fff;border:0;border-radius:10px;padding:9px 14px;font-weight:600;cursor:pointer}
+.btn.ghost{background:#fff;color:var(--brand);border:1px solid var(--line)}
+.btn.acc{background:var(--accent);color:#2b2200}
+.btn.sm{padding:5px 10px;font-size:12px;border-radius:8px}
+.grid{display:grid;gap:16px}
+.g4{grid-template-columns:repeat(4,1fr)}.g3{grid-template-columns:repeat(3,1fr)}.g2{grid-template-columns:repeat(2,1fr)}
+.g31{grid-template-columns:2fr 1fr}.g13{grid-template-columns:1fr 2fr}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:16px}
+.card h3{margin:0 0 10px;font-size:14px;display:flex;align-items:center;gap:8px}
+.card h3 .more{margin-left:auto;font-size:12px;color:var(--brand-2);font-weight:500}
+.kpi .v{font-size:26px;font-weight:700;margin:4px 0 2px}
+.kpi .d{font-size:12px;color:var(--muted)}
+.kpi .up{color:var(--ok)}.kpi .down{color:var(--bad)}
+.kpi .lbl{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.6px}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th{font-size:11.5px;text-transform:uppercase;letter-spacing:.5px;color:var(--muted);text-align:left;padding:8px 10px;border-bottom:1px solid var(--line)}
+td{padding:10px;border-bottom:1px solid var(--line);vertical-align:top}
+tr:last-child td{border-bottom:0}
+.tag{display:inline-block;padding:2px 8px;border-radius:999px;font-size:11.5px;font-weight:600;background:var(--chip);color:var(--brand)}
+.tag.ok{background:#e4f6ec;color:var(--ok)}.tag.warn{background:#fff1e0;color:var(--warn)}.tag.bad{background:#fde6e6;color:var(--bad)}.tag.info{background:#e6efff;color:var(--info)}.tag.gray{background:#eef0f4;color:var(--muted)}
+.tag.dd{background:#fff6d6;color:#8a5a00}
+.bar{height:8px;background:#e9edf4;border-radius:999px;overflow:hidden}
+.bar i{display:block;height:100%;background:var(--brand-2);border-radius:999px}
+.rows>div{display:grid;grid-template-columns:120px 1fr 48px;gap:10px;align-items:center;padding:6px 0;font-size:13px}
+.rows small{color:var(--muted);text-align:right}
+.funnel>div{display:flex;align-items:center;gap:10px;margin:7px 0;font-size:13px}
+.funnel .f{height:26px;background:linear-gradient(90deg,var(--brand),var(--brand-2));border-radius:6px;color:#fff;display:flex;align-items:center;padding:0 10px;font-weight:600;font-size:12px}
+.list>div{display:flex;gap:10px;padding:9px 0;border-bottom:1px dashed var(--line);font-size:13px;align-items:flex-start}
+.list>div:last-child{border:0}
+.dot{width:9px;height:9px;border-radius:50%;margin-top:5px;flex:none}
+.dot.ok{background:var(--ok)}.dot.warn{background:var(--warn)}.dot.bad{background:var(--bad)}.dot.info{background:var(--info)}
+.muted{color:var(--muted)}
+.view{display:none}.view.active{display:block}
+.filters{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 14px}
+.chip{background:#fff;border:1px solid var(--line);border-radius:999px;padding:6px 12px;font-size:12.5px;color:var(--ink);cursor:pointer}
+.chip.on{background:var(--brand);color:#fff;border-color:var(--brand)}
+.kanban{display:grid;grid-template-columns:repeat(7,minmax(170px,1fr));gap:12px;overflow:auto;padding-bottom:6px}
+.col{background:var(--kanban);border-radius:12px;padding:10px;min-height:420px}
+.col h4{margin:2px 4px 10px;font-size:12.5px;display:flex;justify-content:space-between;color:var(--muted);text-transform:uppercase;letter-spacing:.5px}
+.kc{background:#fff;border:1px solid var(--line);border-radius:10px;padding:10px;margin-bottom:8px;box-shadow:var(--shadow);font-size:12.5px}
+.kc b{display:block;font-size:13px;margin-bottom:3px}
+.kc .p{color:var(--brand);font-weight:700}
+.kc .m{display:flex;justify-content:space-between;color:var(--muted);font-size:11.5px;margin-top:6px}
+.photo{background:linear-gradient(135deg,#c9d6ea,#8fa6c9);border-radius:10px;aspect-ratio:4/3;display:grid;place-items:center;color:#fff;font-weight:700;font-size:13px}
+.photos{display:grid;grid-template-columns:2fr 1fr 1fr;gap:8px}
+.photos .photo:first-child{grid-row:span 2}
+.kv{display:grid;grid-template-columns:140px 1fr;gap:6px 12px;font-size:13px}
+.kv dt{color:var(--muted)}.kv dd{margin:0;font-weight:500}
+.check>div{display:flex;gap:8px;align-items:center;padding:6px 0;font-size:13px}
+.box{width:16px;height:16px;border:2px solid #b8c4d6;border-radius:4px;display:grid;place-items:center;font-size:11px;color:#fff}
+.box.on{background:var(--ok);border-color:var(--ok)}
+.toggle{width:34px;height:18px;border-radius:999px;background:#cfd8e6;position:relative;display:inline-block;vertical-align:middle}
+.toggle::after{content:"";position:absolute;top:2px;left:2px;width:14px;height:14px;border-radius:50%;background:#fff}
+.toggle.on{background:var(--ok)}.toggle.on::after{left:18px}
+.score{font-weight:800;font-size:15px}
+.score.hi{color:var(--ok)}.score.mid{color:var(--warn)}.score.lo{color:var(--bad)}
+.heat{display:grid;grid-template-columns:repeat(6,1fr);gap:8px}
+.heat div{border-radius:10px;padding:10px;color:#fff;font-size:12px;min-height:74px}
+.heat b{display:block;font-size:13px}
+.heat small{opacity:.9;display:block;margin-top:4px}
+.cal{display:grid;grid-template-columns:70px repeat(6,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:10px;overflow:hidden;font-size:12px}
+.cal>div{background:#fff;padding:6px;min-height:46px}
+.cal .h{background:#f7f9fc;font-weight:600;text-align:center}
+.cal .t{color:var(--muted);text-align:right;padding-right:8px}
+.ev{border-radius:6px;padding:3px 6px;font-size:11px;color:#fff;margin:2px 0}
+.ev.v{background:var(--brand-2)}.ev.c{background:var(--ok)}.ev.f{background:var(--warn)}.ev.o{background:#7c4dff}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.pc{background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden;box-shadow:var(--shadow)}
+.pc .photo{border-radius:0;aspect-ratio:16/10}
+.pc .b{padding:12px}
+.pc .pr{font-size:17px;font-weight:800;color:var(--brand)}
+.pc .ft{display:flex;gap:10px;color:var(--muted);font-size:12px;margin-top:6px}
+.chat{background:#e5ddd5;border-radius:12px;padding:12px;font-size:12.5px}
+.chat .in,.chat .out{max-width:85%;padding:8px 10px;border-radius:10px;margin:6px 0;box-shadow:0 1px 1px rgba(0,0,0,.08)}
+.chat .in{background:#fff}.chat .out{background:#dcf8c6;margin-left:auto}
+.steps{display:flex;gap:8px;align-items:stretch}
+.steps div{flex:1;background:#fff;border:1px solid var(--line);border-radius:10px;padding:10px;font-size:12.5px}
+.steps b{display:block;color:var(--brand);margin-bottom:4px}
+.note{background:#fff8e6;border:1px solid #ffe2a3;border-radius:10px;padding:10px 12px;font-size:12.5px;color:#5a4300;margin-bottom:14px}
+footer{margin-top:30px;color:var(--muted);font-size:12px;text-align:center}
+@media (max-width:1100px){.g4{grid-template-columns:repeat(2,1fr)}.g3,.g31,.g13,.g2{grid-template-columns:1fr}.cards{grid-template-columns:1fr 1fr}}
+@media (max-width:760px){.app{grid-template-columns:1fr}.side{position:static;height:auto}.search{display:none}.cards{grid-template-columns:1fr}.heat{grid-template-columns:repeat(3,1fr)}}
+</style>
+</head>
+<body>
+<div class="banner">MAQUETA NAVEGABLE · Todos los datos son de ejemplo · Nombre provisional «CAPTA Lima» · 15/10/2026</div>
+<div class="app">
+  <aside class="side">
+    <div class="logo"><div class="mark">C</div><div><b>CAPTA Lima</b><small>CRM de captaciones · brókers</small></div></div>
+    <nav class="nav">
+      <div class="sec">Operación</div>
+      <button class="active" data-v="panel"><span class="ico">▦</span>Panel</button>
+      <button data-v="radar"><span class="ico">◎</span>Radar de avisos<span class="pill">38</span></button>
+      <button data-v="pipeline"><span class="ico">⇶</span>Captaciones</button>
+      <button data-v="ficha"><span class="ico">⌂</span>Ficha de propiedad</button>
+      <button data-v="terrenos"><span class="ico">▱</span>Terrenos propios</button>
+      <div class="sec">Demanda</div>
+      <button data-v="compradores"><span class="ico">☺</span>Compradores</button>
+      <button data-v="matching"><span class="ico">⇄</span>Matching<span class="pill">12</span></button>
+      <button data-v="comunidad"><span class="ico">✦</span>Comunidad Facebook</button>
+      <button data-v="whatsapp"><span class="ico">✉</span>WhatsApp &amp; bot</button>
+      <div class="sec">Inteligencia</div>
+      <button data-v="agenda"><span class="ico">▣</span>Agenda</button>
+      <button data-v="mapa"><span class="ico">◍</span>Mapa de demanda</button>
+      <button data-v="reportes"><span class="ico">↗</span>Reportes y comisiones</button>
+      <div class="sec">Producto</div>
+      <button data-v="web"><span class="ico">⊕</span>Web pública (vista)</button>
+      <button data-v="portal"><span class="ico">⚿</span>Portal del propietario</button>
+      <button data-v="config"><span class="ico">⚙</span>Configuración</button>
+    </nav>
+  </aside>
+
+  <main class="main">
+
+  <!-- PANEL -->
+  <section class="view active" id="v-panel">
+    <div class="top"><div><h1>Buenos días, Denzel</h1><div class="sub">Miércoles 15 de octubre · 6 tareas vencen hoy · 3 dueños directos nuevos en el radar</div></div>
+      <div class="search">Buscar propiedad, dueño, comprador, distrito…</div><button class="btn acc">+ Nueva captación</button></div>
+    <div class="grid g4" style="margin-bottom:16px">
+      <div class="card kpi"><div class="lbl">Captaciones activas</div><div class="v">27</div><div class="d"><span class="up">▲ 4</span> este mes · 19 dueño directo</div></div>
+      <div class="card kpi"><div class="lbl">Avisos detectados hoy</div><div class="v">38</div><div class="d">21 dueño directo · 9 ya contactados</div></div>
+      <div class="card kpi"><div class="lbl">Compradores activos</div><div class="v">312</div><div class="d"><span class="up">▲ 46</span> vía grupo Facebook · 58 pre-aprobados</div></div>
+      <div class="card kpi"><div class="lbl">Comisión proyectada Q4</div><div class="v">US$ 41 800</div><div class="d">5 reservas · cierre estimado 60 días</div></div>
+    </div>
+    <div class="grid g31" style="margin-bottom:16px">
+      <div class="card"><h3>Embudo de captación (últimos 30 días)<span class="more">Ver detalle</span></h3>
+        <div class="funnel">
+          <div><span style="width:120px">Avisos detectados</span><div class="f" style="width:100%">412</div></div>
+          <div><span style="width:120px">Dueño directo</span><div class="f" style="width:58%">238</div></div>
+          <div><span style="width:120px">Contactados</span><div class="f" style="width:40%">164</div></div>
+          <div><span style="width:120px">Interesados</span><div class="f" style="width:17%">71</div></div>
+          <div><span style="width:120px">Visita de captación</span><div class="f" style="width:9%">36</div></div>
+          <div><span style="width:120px">Acuerdo firmado</span><div class="f" style="width:4%">17</div></div>
+        </div></div>
+      <div class="card"><h3>Para hoy</h3>
+        <div class="list">
+          <div><span class="dot bad"></span><div><b>Llamar a Rosa M.</b> · dpto. Jesús María US$ 139 000 · seguimiento vencido ayer</div></div>
+          <div><span class="dot warn"></span><div><b>Visita de captación 11:00</b> · casa Los Olivos, Av. Universitaria · llevar acuerdo</div></div>
+          <div><span class="dot info"></span><div><b>Enviar 3 matches</b> a comprador #C-204 (Surco, 3 dorm, US$ 180–220k)</div></div>
+          <div><span class="dot ok"></span><div><b>Publicar en grupo FB</b> · terreno Carabayllo lote 12 (programado 19:00)</div></div>
+          <div><span class="dot warn"></span><div><b>Partida SUNARP</b> pendiente · dpto. San Miguel (vence check legal)</div></div>
+        </div></div>
+    </div>
+    <div class="grid g3">
+      <div class="card"><h3>Captaciones por distrito</h3>
+        <div class="rows">
+          <div>Santiago de Surco<div class="bar"><i style="width:80%"></i></div><small>6</small></div>
+          <div>Los Olivos<div class="bar"><i style="width:66%"></i></div><small>5</small></div>
+          <div>San Miguel<div class="bar"><i style="width:53%"></i></div><small>4</small></div>
+          <div>Jesús María<div class="bar"><i style="width:40%"></i></div><small>3</small></div>
+          <div>Carabayllo (terrenos)<div class="bar"><i style="width:40%"></i></div><small>3</small></div>
+          <div>Otros<div class="bar"><i style="width:80%"></i></div><small>6</small></div>
+        </div></div>
+      <div class="card"><h3>Alertas del radar</h3>
+        <div class="list">
+          <div><span class="dot bad"></span><div><b>Bajó de precio</b> · casa Chorrillos de US$ 165k a 149k (dueño directo, 3.ª baja) → momento ideal para captar</div></div>
+          <div><span class="dot warn"></span><div><b>Aviso retirado</b> · dpto. Lince (¿vendido o cansado?) → llamar y ofrecer</div></div>
+          <div><span class="dot info"></span><div><b>Mismo dueño en 3 portales</b> · terreno Lurín · prioridad A</div></div>
+          <div><span class="dot ok"></span><div><b>Nuevo en grupo FB</b> · «Vendo mi dpto. Pueblo Libre, trato directo»</div></div>
+        </div></div>
+      <div class="card"><h3>Origen de compradores (mes)</h3>
+        <div class="rows">
+          <div>Grupo Facebook<div class="bar"><i style="width:72%"></i></div><small>46</small></div>
+          <div>Lead Ads Meta<div class="bar"><i style="width:48%"></i></div><small>31</small></div>
+          <div>Web / formulario<div class="bar"><i style="width:30%"></i></div><small>19</small></div>
+          <div>WhatsApp directo<div class="bar"><i style="width:25%"></i></div><small>16</small></div>
+          <div>Referidos<div class="bar"><i style="width:14%"></i></div><small>9</small></div>
+          <div>Cartel con QR<div class="bar"><i style="width:9%"></i></div><small>6</small></div>
+        </div></div>
+    </div>
+  </section>
+
+  <!-- RADAR -->
+  <section class="view" id="v-radar">
+    <div class="top"><div><h1>Radar de avisos</h1><div class="sub">Publicaciones detectadas en portales, Marketplace y grupos · se actualiza cada 6 horas · dedupe por teléfono, fotos y título</div></div>
+      <button class="btn ghost">Importar CSV</button><button class="btn">Ejecutar radar ahora</button></div>
+    <div class="note">Regla de oro: solo se guardan datos que el propio dueño publicó. El contacto se registra con fecha, canal y respuesta para cumplir la Ley 29733 (protección de datos).</div>
+    <div class="filters"><span class="chip on">Dueño directo</span><span class="chip">Inmobiliaria</span><span class="chip">No indicado</span><span class="chip on">Nuevos (24 h)</span><span class="chip">Bajó de precio</span><span class="chip">Retirados</span><span class="chip">Departamento</span><span class="chip">Casa</span><span class="chip">Terreno</span><span class="chip">Lima Norte</span><span class="chip">Lima Moderna</span><span class="chip">Lima Sur</span><span class="chip">Lima Este</span><span class="chip">Callao</span></div>
+    <div class="card" style="padding:0">
+      <table>
+        <thead><tr><th>Detectado</th><th>Aviso</th><th>Distrito</th><th>Precio</th><th>Anunciante</th><th>Fuente</th><th>Señales</th><th>Estado</th><th>Acción</th></tr></thead>
+        <tbody>
+          <tr><td>Hoy 07:12</td><td><b>Dpto. 3 dorm. 92 m², piso 6, vista parque</b><br><span class="muted">«Vendo mi departamento, trato directo con propietario»</span></td><td>Jesús María</td><td>US$ 139 000<br><span class="muted">1 511 $/m²</span></td><td><span class="tag dd">Dueño directo</span></td><td>Urbania</td><td><span class="tag info">3 portales</span> <span class="tag warn">-7 %</span></td><td><span class="tag">Nuevo</span></td><td><button class="btn sm">Llamar</button> <button class="btn sm ghost">WA</button></td></tr>
+          <tr><td>Hoy 06:40</td><td><b>Casa 2 pisos 160 m² + aires</b><br><span class="muted">«No inmobiliarias por favor»</span></td><td>Los Olivos</td><td>US$ 185 000</td><td><span class="tag dd">Dueño directo</span></td><td>Grupo FB «Casas Lima Norte»</td><td><span class="tag gray">Solo FB</span></td><td><span class="tag ok">Contactado</span></td><td><button class="btn sm ghost">Ver chat</button></td></tr>
+          <tr><td>Ayer 22:05</td><td><b>Terreno 300 m² esquina, zona urbana</b><br><span class="muted">«Papeles en regla, título SUNARP»</span></td><td>Carabayllo</td><td>S/ 165 000<br><span class="muted">S/ 550 por m²</span></td><td><span class="tag dd">Dueño directo</span></td><td>Marketplace</td><td><span class="tag info">Título</span></td><td><span class="tag">Nuevo</span></td><td><button class="btn sm">Llamar</button> <button class="btn sm ghost">WA</button></td></tr>
+          <tr><td>Ayer 19:30</td><td><b>Dpto. 2 dorm. 68 m², cochera</b></td><td>San Miguel</td><td>US$ 118 000</td><td><span class="tag gray">Inmobiliaria</span></td><td>Adondevivir</td><td></td><td><span class="tag gray">Descartado</span></td><td><span class="muted">—</span></td></tr>
+          <tr><td>Ayer 18:02</td><td><b>Casa 3 pisos 200 m², 2 deptos. independientes</b><br><span class="muted">«Vendo por viaje, precio conversable»</span></td><td>Chorrillos</td><td>US$ 149 000<br><span class="muted">antes 165 000</span></td><td><span class="tag dd">Dueño directo</span></td><td>Mercado Libre</td><td><span class="tag bad">3.ª baja</span> <span class="tag warn">120 días</span></td><td><span class="tag warn">Interesado</span></td><td><button class="btn sm">Agendar visita</button></td></tr>
+          <tr><td>Ayer 15:47</td><td><b>Dpto. 1 dorm. 45 m², estreno</b></td><td>Lince</td><td>US$ 92 000</td><td><span class="tag">No indicado</span></td><td>Properati</td><td><span class="tag bad">Retirado</span></td><td><span class="tag">Nuevo</span></td><td><button class="btn sm ghost">Verificar</button></td></tr>
+          <tr><td>13 oct</td><td><b>Terreno 1 000 m² agrícola-urbano</b><br><span class="muted">«Propietario vende, acepto permuta parcial»</span></td><td>Lurín</td><td>US$ 95 000</td><td><span class="tag dd">Dueño directo</span></td><td>Infocasas</td><td><span class="tag info">Mismo tel. en 3 portales</span></td><td><span class="tag ok">Visita 17/10</span></td><td><button class="btn sm ghost">Ficha</button></td></tr>
+          <tr><td>13 oct</td><td><b>Dpto. dúplex 120 m² + terraza</b></td><td>Surco</td><td>US$ 215 000</td><td><span class="tag dd">Dueño directo</span></td><td>Urbania</td><td></td><td><span class="tag ok">Acuerdo firmado</span></td><td><button class="btn sm ghost">Ficha</button></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="grid g3" style="margin-top:16px">
+      <div class="card"><h3>Script de primer contacto (dueño directo)</h3><p class="muted" style="margin:0 0 8px">Se abre al pulsar «Llamar» o «WA», con los datos del aviso ya rellenados.</p>
+        <div class="chat"><div class="out">Hola Rosa, buenos días. Vi su departamento en Jesús María publicado en Urbania (3 dorm., US$ 139 000). Soy Denzel, bróker registrado. ¿Sigue disponible?</div><div class="in">Sí, sigue disponible, pero no trabajo con inmobiliarias.</div><div class="out">Entiendo, y no le pido exclusividad. Tenemos 14 compradores buscando justo en Jesús María con ese presupuesto, 6 ya pre-aprobados. ¿Le parece si le presento solo compradores calificados y usted decide? Sin costo para usted hasta la venta.</div></div></div>
+      <div class="card"><h3>Objeciones frecuentes y respuesta</h3>
+        <div class="list">
+          <div><span class="dot warn"></span><div><b>«No quiero pagar comisión»</b> → la comisión la define el acuerdo; mostramos cuánto pierde por meses sin vender y el precio de mercado real.</div></div>
+          <div><span class="dot warn"></span><div><b>«Ya lo publiqué yo»</b> → le enseñamos el reporte de compradores calificados que tenemos esperando.</div></div>
+          <div><span class="dot warn"></span><div><b>«Quiero más de lo que vale»</b> → valoración comparativa con 6 avisos del radar y cierres reales.</div></div>
+          <div><span class="dot warn"></span><div><b>«No quiero exclusividad»</b> → acuerdo abierto con compradores registrados por nosotros (protección de cliente).</div></div>
+        </div></div>
+      <div class="card"><h3>Fuentes conectadas al radar</h3>
+        <div class="list">
+          <div><span class="dot ok"></span><div>Urbania · Adondevivir · Properati · Infocasas · Mercado Libre · Doomos/Trovit</div></div>
+          <div><span class="dot warn"></span><div>Facebook Marketplace y grupos: lectura asistida (extensión en el navegador del equipo + formulario rápido)</div></div>
+          <div><span class="dot info"></span><div>Carteles «Se vende» en calle: foto + ubicación desde la app del captador</div></div>
+          <div><span class="dot info"></span><div>Referidos de porteros, vecinos y notarías: formulario con recompensa</div></div>
+        </div></div>
+    </div>
+  </section>
+
+  <!-- PIPELINE -->
+  <section class="view" id="v-pipeline">
+    <div class="top"><div><h1>Captaciones · pipeline</h1><div class="sub">Arrastra las tarjetas entre etapas · cada etapa dispara tareas y mensajes automáticos</div></div><button class="btn ghost">Vista tabla</button><button class="btn acc">+ Nueva captación</button></div>
+    <div class="kanban">
+      <div class="col"><h4>Prospecto <span>21</span></h4>
+        <div class="kc"><b>Dpto. Jesús María 92 m²</b><span class="p">US$ 139 000</span><span class="tag dd">Dueño directo</span><div class="m"><span>Urbania</span><span>hoy</span></div></div>
+        <div class="kc"><b>Terreno Carabayllo 300 m²</b><span class="p">S/ 165 000</span><span class="tag dd">Dueño directo</span><div class="m"><span>Marketplace</span><span>ayer</span></div></div>
+        <div class="kc"><b>Casa Comas 120 m²</b><span class="p">US$ 98 000</span><span class="tag">No indicado</span><div class="m"><span>Grupo FB</span><span>2 d</span></div></div></div>
+      <div class="col"><h4>Contactado <span>14</span></h4>
+        <div class="kc"><b>Casa Los Olivos 160 m²</b><span class="p">US$ 185 000</span><span class="tag ok">Respondió WA</span><div class="m"><span>Grupo FB</span><span>hoy</span></div></div>
+        <div class="kc"><b>Dpto. Pueblo Libre 75 m²</b><span class="p">US$ 125 000</span><span class="tag warn">Sin respuesta ×2</span><div class="m"><span>Infocasas</span><span>3 d</span></div></div></div>
+      <div class="col"><h4>Interesado <span>9</span></h4>
+        <div class="kc"><b>Casa Chorrillos 200 m²</b><span class="p">US$ 149 000</span><span class="tag bad">3.ª baja</span><div class="m"><span>Mercado Libre</span><span>ayer</span></div></div>
+        <div class="kc"><b>Dpto. Magdalena 88 m²</b><span class="p">US$ 158 000</span><span class="tag info">Pidió valoración</span><div class="m"><span>Adondevivir</span><span>4 d</span></div></div></div>
+      <div class="col"><h4>Visita captación <span>5</span></h4>
+        <div class="kc"><b>Terreno Lurín 1 000 m²</b><span class="p">US$ 95 000</span><span class="tag info">17/10 10:00</span><div class="m"><span>Infocasas</span><span>Leslie</span></div></div>
+        <div class="kc"><b>Casa La Molina 250 m²</b><span class="p">US$ 320 000</span><span class="tag info">18/10 16:00</span><div class="m"><span>Referido</span><span>Denzel</span></div></div></div>
+      <div class="col"><h4>Acuerdo firmado <span>6</span></h4>
+        <div class="kc"><b>Dpto. Surco dúplex 120 m²</b><span class="p">US$ 215 000</span><span class="tag ok">Firma digital ✓</span><div class="m"><span>Comisión 3 %</span><span>abierto</span></div></div>
+        <div class="kc"><b>Dpto. San Miguel 68 m²</b><span class="p">US$ 118 000</span><span class="tag warn">Falta partida</span><div class="m"><span>Comisión 3 %</span><span>exclusiva</span></div></div></div>
+      <div class="col"><h4>Publicado <span>11</span></h4>
+        <div class="kc"><b>Casa Breña 140 m²</b><span class="p">US$ 132 000</span><span class="tag info">8 matches · 3 visitas</span><div class="m"><span>Web + 4 portales</span><span>12 d</span></div></div>
+        <div class="kc"><b>Dpto. San Borja 95 m²</b><span class="p">US$ 198 000</span><span class="tag info">14 matches · 6 visitas</span><div class="m"><span>Web + grupo FB</span><span>21 d</span></div></div></div>
+      <div class="col"><h4>Reservado / Vendido <span>5</span></h4>
+        <div class="kc"><b>Dpto. Lince 60 m²</b><span class="p">US$ 99 000</span><span class="tag ok">Arras firmadas</span><div class="m"><span>Comprador C-118</span><span>cierre 30 d</span></div></div>
+        <div class="kc"><b>Terreno Pachacámac 500 m²</b><span class="p">US$ 60 000</span><span class="tag ok">Vendido 02/10</span><div class="m"><span>Comisión US$ 3 000</span><span>cobrada</span></div></div></div>
+    </div>
+  </section>
+
+  <!-- FICHA -->
+  <section class="view" id="v-ficha">
+    <div class="top"><div><h1>Dpto. dúplex 120 m² + terraza · Santiago de Surco</h1><div class="sub">ID P-0142 · captado 13/10/2026 · dueño directo · acuerdo abierto firmado · publicado en web y 4 portales</div></div><button class="btn ghost">Reporte al propietario</button><button class="btn ghost">Página pública + QR</button><button class="btn">Editar</button></div>
+    <div class="grid g31">
+      <div>
+        <div class="card"><div class="photos"><div class="photo">Foto principal</div><div class="photo">Sala</div><div class="photo">Cocina</div><div class="photo">Terraza</div><div class="photo">+ 9 fotos · tour 360</div></div></div>
+        <div class="grid g2" style="margin-top:16px">
+          <div class="card"><h3>Datos del inmueble</h3><dl class="kv">
+            <dt>Precio</dt><dd>US$ 215 000 · 1 792 $/m²</dd><dt>Valoración CAPTA</dt><dd>US$ 205 000 – 222 000 <span class="tag ok">en rango</span></dd>
+            <dt>Área</dt><dd>120 m² techados · 18 m² terraza</dd><dt>Distribución</dt><dd>3 dorm. · 2.5 baños · 1 cochera · depósito</dd>
+            <dt>Antigüedad</dt><dd>8 años · piso 7-8 · ascensor</dd><dt>Dirección</dt><dd>Av. Benavides cdra. 40 (exacta oculta en web)</dd>
+            <dt>Mantenimiento</dt><dd>S/ 420 / mes</dd><dt>Ocupación</dt><dd>Propietario vive · visitas con 24 h aviso</dd></dl></div>
+          <div class="card"><h3>Checklist legal y documentos</h3><div class="check">
+            <div><span class="box on">✓</span>Copia literal / partida SUNARP (vigente 30 días)</div>
+            <div><span class="box on">✓</span>DNI del titular (coincide con partida)</div>
+            <div><span class="box on">✓</span>HR y PU 2026 · autovalúo</div>
+            <div><span class="box">&nbsp;</span>Constancia de no adeudo municipal</div>
+            <div><span class="box">&nbsp;</span>Certificado de no adeudo de mantenimiento</div>
+            <div><span class="box on">✓</span>Sin cargas ni gravámenes</div>
+            <div><span class="box on">✓</span>Acuerdo de corretaje firmado digitalmente</div></div></div>
+        </div>
+        <div class="card" style="margin-top:16px"><h3>Historial</h3><div class="list">
+          <div><span class="dot ok"></span><div><b>14/10 18:20</b> · Visita con comprador C-204 (Surco, pre-aprobado BCP). Feedback: «le gustó, pide bajar a 205k».</div></div>
+          <div><span class="dot info"></span><div><b>13/10 11:00</b> · Acuerdo abierto firmado (Keynua). Comisión 3 % + IGV.</div></div>
+          <div><span class="dot info"></span><div><b>12/10 09:15</b> · Visita de captación · fotos profesionales + tour 360 programados.</div></div>
+          <div><span class="dot warn"></span><div><b>10/10 08:02</b> · Detectado en Urbania como «Dueño directo» · primer contacto por WhatsApp · respondió en 40 min.</div></div></div></div>
+      </div>
+      <div>
+        <div class="card"><h3>Propietario</h3><dl class="kv"><dt>Nombre</dt><dd>Carlos R. (datos completos solo con permiso)</dd><dt>Canal</dt><dd>WhatsApp · prefiere tardes</dd><dt>Motivo</dt><dd>Se muda a Arequipa · urgencia media</dd><dt>Consentimiento</dt><dd><span class="tag ok">Aceptó política de datos 13/10</span></dd></dl>
+          <div style="margin-top:10px"><button class="btn sm">WhatsApp</button> <button class="btn sm ghost">Llamar</button> <button class="btn sm ghost">Nota</button></div></div>
+        <div class="card" style="margin-top:16px"><h3>Compradores que hacen match <span class="more">14</span></h3><div class="list">
+          <div><span class="score hi">94</span><div><b>C-204 · Fam. Quispe</b><br><span class="muted">Surco/San Borja · 3 dorm · US$ 180–220k · pre-aprobado</span></div></div>
+          <div><span class="score hi">88</span><div><b>C-311 · Mariana T.</b><br><span class="muted">Surco · dúplex/terraza · hasta 230k · contado</span></div></div>
+          <div><span class="score mid">71</span><div><b>C-087 · Jorge L.</b><br><span class="muted">Lima Moderna · 3 dorm · 200k · crédito en evaluación</span></div></div></div>
+          <button class="btn sm" style="margin-top:8px">Enviar ficha a los 14</button></div>
+        <div class="card" style="margin-top:16px"><h3>Publicación</h3><div class="check">
+          <div><span class="toggle on"></span>Web CAPTA Lima · 1 240 vistas</div>
+          <div><span class="toggle on"></span>Grupo Facebook · 86 reacciones</div>
+          <div><span class="toggle on"></span>Urbania · Adondevivir</div>
+          <div><span class="toggle on"></span>Properati · Infocasas</div>
+          <div><span class="toggle"></span>Mercado Libre</div>
+          <div><span class="toggle on"></span>Cartel con QR en fachada · 23 escaneos</div></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TERRENOS -->
+  <section class="view" id="v-terrenos">
+    <div class="top"><div><h1>Terrenos propios</h1><div class="sub">Inventario propio del equipo · lotes, documentación, interesados y plan de venta</div></div><button class="btn acc">+ Nuevo terreno</button></div>
+    <div class="grid g4" style="margin-bottom:16px">
+      <div class="card kpi"><div class="lbl">Terrenos / lotes</div><div class="v">4 / 23</div><div class="d">16 disponibles · 5 separados · 2 vendidos</div></div>
+      <div class="card kpi"><div class="lbl">Valor de inventario</div><div class="v">US$ 1.14 M</div><div class="d">precio de lista</div></div>
+      <div class="card kpi"><div class="lbl">Interesados activos</div><div class="v">74</div><div class="d">31 del grupo FB · 22 lead ads</div></div>
+      <div class="card kpi"><div class="lbl">Visitas programadas</div><div class="v">6</div><div class="d">sábado 18/10 · bus desde Lima Norte</div></div>
+    </div>
+    <div class="card" style="padding:0"><table>
+      <thead><tr><th>Terreno</th><th>Ubicación</th><th>Lotes</th><th>Área lote</th><th>Precio / m²</th><th>Documentación</th><th>Interesados</th><th>Estado</th></tr></thead>
+      <tbody>
+        <tr><td><b>Proyecto Los Eucaliptos</b></td><td>Carabayllo · km 34 Túpac Amaru</td><td>12 (8 disp.)</td><td>120–160 m²</td><td>S/ 650</td><td><span class="tag ok">Título SUNARP</span> <span class="tag ok">Habilitación</span></td><td>38</td><td><span class="tag ok">En venta</span></td></tr>
+        <tr><td><b>Lote esquina Lurín</b></td><td>Lurín · zona Las Praderas</td><td>1</td><td>1 000 m²</td><td>US$ 95</td><td><span class="tag ok">Título</span> <span class="tag warn">Zonificación por confirmar</span></td><td>12</td><td><span class="tag ok">En venta</span></td></tr>
+        <tr><td><b>Parcela Pachacámac</b></td><td>Pachacámac · Quebrada Verde</td><td>6 (4 disp.)</td><td>500 m²</td><td>US$ 120</td><td><span class="tag ok">Título</span> <span class="tag ok">Luz y agua</span></td><td>19</td><td><span class="tag ok">En venta</span></td></tr>
+        <tr><td><b>Lote Chancay</b></td><td>Chancay · cerca al puerto</td><td>4 (4 disp.)</td><td>200 m²</td><td>US$ 180</td><td><span class="tag warn">Minuta en trámite</span></td><td>5</td><td><span class="tag gray">Preventa</span></td></tr>
+      </tbody></table></div>
+    <div class="grid g2" style="margin-top:16px">
+      <div class="card"><h3>Plan de venta · Los Eucaliptos</h3><div class="steps"><div><b>1 · Contenido</b>Video dron + recorrido + mapa de ubicación y servicios</div><div><b>2 · Audiencia</b>Grupo FB Lima Norte + lead ads Comas/Carabayllo/Puente Piedra</div><div><b>3 · Visita grupal</b>Bus sábados, firma de separación en sitio (Yape/Izipay)</div><div><b>4 · Cierre</b>Financiamiento directo 12-24 cuotas o contado con descuento</div></div></div>
+      <div class="card"><h3>Separaciones y cobros</h3><div class="list">
+        <div><span class="dot ok"></span><div><b>Lote 7</b> · separación S/ 1 000 por Yape · Luis P. · firma 20/10</div></div>
+        <div><span class="dot ok"></span><div><b>Lote 9</b> · separación S/ 1 000 por Izipay · Ana R. · cuota inicial 30 %</div></div>
+        <div><span class="dot warn"></span><div><b>Lote 3</b> · separación vence en 2 días · recordatorio automático enviado</div></div></div></div>
+    </div>
+  </section>
+
+  <!-- COMPRADORES -->
+  <section class="view" id="v-compradores">
+    <div class="top"><div><h1>Compradores</h1><div class="sub">Base de demanda · perfil de búsqueda, capacidad de compra y origen · cada comprador recibe alertas automáticas</div></div><button class="btn ghost">Importar del grupo FB</button><button class="btn acc">+ Comprador</button></div>
+    <div class="filters"><span class="chip on">Activos</span><span class="chip">Pre-aprobados</span><span class="chip">Contado</span><span class="chip">Mivivienda</span><span class="chip">Buscan terreno</span><span class="chip">Sin contacto 30 d</span><span class="chip">Origen: grupo FB</span><span class="chip">Origen: lead ads</span></div>
+    <div class="card" style="padding:0"><table>
+      <thead><tr><th>ID</th><th>Comprador</th><th>Busca</th><th>Distritos</th><th>Presupuesto</th><th>Financiamiento</th><th>Score</th><th>Origen</th><th>Último contacto</th><th>Matches</th></tr></thead>
+      <tbody>
+        <tr><td>C-204</td><td><b>Fam. Quispe</b><br><span class="muted">Pareja + 2 hijos</span></td><td>Dpto. 3 dorm.</td><td>Surco · San Borja</td><td>US$ 180–220k</td><td><span class="tag ok">Pre-aprobado BCP</span></td><td><span class="score hi">92</span></td><td>Grupo FB</td><td>ayer</td><td>5</td></tr>
+        <tr><td>C-311</td><td><b>Mariana T.</b></td><td>Dpto. dúplex / terraza</td><td>Surco · Miraflores</td><td>hasta US$ 230k</td><td><span class="tag ok">Contado</span></td><td><span class="score hi">89</span></td><td>Lead Ads</td><td>3 d</td><td>3</td></tr>
+        <tr><td>C-118</td><td><b>Pedro y Luz A.</b></td><td>Dpto. 2 dorm. estreno</td><td>Lince · Jesús María</td><td>US$ 90–110k</td><td><span class="tag info">Mivivienda · BFH</span></td><td><span class="score hi">85</span></td><td>Web</td><td>hoy</td><td>Arras ✓</td></tr>
+        <tr><td>C-402</td><td><b>Inversor R. Soto</b></td><td>Terrenos 300–1 000 m²</td><td>Carabayllo · Lurín · Chancay</td><td>US$ 60–120k</td><td><span class="tag ok">Contado</span></td><td><span class="score hi">90</span></td><td>Grupo FB</td><td>2 d</td><td>4</td></tr>
+        <tr><td>C-087</td><td><b>Jorge L.</b></td><td>Dpto. 3 dorm.</td><td>Lima Moderna</td><td>US$ 200k</td><td><span class="tag warn">Crédito en evaluación</span></td><td><span class="score mid">68</span></td><td>WhatsApp</td><td>9 d</td><td>7</td></tr>
+        <tr><td>C-515</td><td><b>Karina V.</b></td><td>Casa 3 pisos / rentas</td><td>Los Olivos · Comas</td><td>US$ 150–190k</td><td><span class="tag info">Mivivienda</span></td><td><span class="score mid">64</span></td><td>Lead Ads</td><td>12 d</td><td>2</td></tr>
+        <tr><td>C-233</td><td><b>Anónimo FB</b></td><td>«Algo barato»</td><td>—</td><td>—</td><td><span class="tag gray">Sin datos</span></td><td><span class="score lo">21</span></td><td>Grupo FB</td><td>35 d</td><td>0</td></tr>
+      </tbody></table></div>
+    <div class="grid g3" style="margin-top:16px">
+      <div class="card"><h3>Cómo se calcula el score</h3><div class="rows">
+        <div>Capacidad (pre-aprobado / contado)<div class="bar"><i style="width:35%"></i></div><small>35</small></div>
+        <div>Claridad del perfil<div class="bar"><i style="width:20%"></i></div><small>20</small></div>
+        <div>Urgencia declarada<div class="bar"><i style="width:15%"></i></div><small>15</small></div>
+        <div>Respuesta a mensajes<div class="bar"><i style="width:15%"></i></div><small>15</small></div>
+        <div>Visitas realizadas<div class="bar"><i style="width:15%"></i></div><small>15</small></div></div></div>
+      <div class="card"><h3>Formulario de ingreso al grupo FB (califica solo)</h3><div class="list">
+        <div><span class="dot info"></span><div>¿Qué buscas? (dpto. / casa / terreno) y ¿en qué distritos?</div></div>
+        <div><span class="dot info"></span><div>¿Presupuesto aproximado? ¿Contado, crédito o Mivivienda?</div></div>
+        <div><span class="dot info"></span><div>¿Para cuándo? (ya / 3 meses / 6 meses / solo mirando)</div></div>
+        <div><span class="dot info"></span><div>¿Aceptas recibir alertas por WhatsApp? (consentimiento Ley 29733)</div></div></div></div>
+      <div class="card"><h3>Alertas automáticas</h3><div class="list">
+        <div><span class="dot ok"></span><div><b>Nuevo match ≥ 80</b> → WhatsApp con ficha y botón «quiero visitar»</div></div>
+        <div><span class="dot ok"></span><div><b>Baja de precio</b> en una propiedad vista → aviso inmediato</div></div>
+        <div><span class="dot warn"></span><div><b>Sin contacto 30 días</b> → tarea de reactivación al bróker</div></div>
+        <div><span class="dot info"></span><div><b>Pre-aprobación vence</b> → recordatorio 15 días antes</div></div></div></div>
+    </div>
+  </section>
+
+  <!-- MATCHING -->
+  <section class="view" id="v-matching">
+    <div class="top"><div><h1>Matching comprador ↔ propiedad</h1><div class="sub">El sistema cruza cada captación con la base de compradores y propone a quién enviar qué · aprobación en un clic</div></div><button class="btn">Enviar los 12 aprobados</button></div>
+    <div class="card" style="padding:0"><table>
+      <thead><tr><th>Afinidad</th><th>Propiedad</th><th>Comprador</th><th>Por qué</th><th>Canal</th><th>Estado</th><th></th></tr></thead>
+      <tbody>
+        <tr><td><span class="score hi">94</span></td><td>Dpto. Surco dúplex · US$ 215k</td><td>C-204 Fam. Quispe</td><td>Distrito ✓ · 3 dorm ✓ · presupuesto ✓ · pre-aprobado ✓</td><td>WhatsApp</td><td><span class="tag ok">Visitó · negocia</span></td><td><button class="btn sm ghost">Ver</button></td></tr>
+        <tr><td><span class="score hi">91</span></td><td>Terreno Carabayllo lote 7 · S/ 97k</td><td>C-402 R. Soto</td><td>Zona ✓ · área ✓ · contado ✓ · busca inversión ✓</td><td>WhatsApp</td><td><span class="tag">Pendiente envío</span></td><td><button class="btn sm">Aprobar</button></td></tr>
+        <tr><td><span class="score hi">88</span></td><td>Dpto. Surco dúplex · US$ 215k</td><td>C-311 Mariana T.</td><td>Terraza ✓ · contado ✓ · precio ✓</td><td>Email + WA</td><td><span class="tag info">Enviado · abrió 2 veces</span></td><td><button class="btn sm ghost">Agendar</button></td></tr>
+        <tr><td><span class="score mid">76</span></td><td>Casa Breña 140 m² · US$ 132k</td><td>C-515 Karina V.</td><td>Precio ✓ · tipo ✓ · distrito ✗ (busca Lima Norte)</td><td>WhatsApp</td><td><span class="tag">Pendiente envío</span></td><td><button class="btn sm">Aprobar</button> <button class="btn sm ghost">Descartar</button></td></tr>
+        <tr><td><span class="score mid">70</span></td><td>Dpto. San Borja 95 m² · US$ 198k</td><td>C-087 Jorge L.</td><td>Presupuesto ✓ · dorm ✓ · crédito en evaluación</td><td>WhatsApp</td><td><span class="tag">Pendiente envío</span></td><td><button class="btn sm">Aprobar</button></td></tr>
+      </tbody></table></div>
+    <div class="grid g2" style="margin-top:16px">
+      <div class="card"><h3>Demanda sin oferta (oportunidades de captación)</h3><div class="list">
+        <div><span class="dot bad"></span><div><b>23 compradores</b> buscan dpto. 2 dorm. en Pueblo Libre / Magdalena hasta US$ 130k → solo 1 captación. <b>Priorizar radar en esos distritos.</b></div></div>
+        <div><span class="dot bad"></span><div><b>17 compradores</b> buscan casa en Los Olivos / Independencia US$ 120–180k → 2 captaciones.</div></div>
+        <div><span class="dot warn"></span><div><b>31 interesados</b> en terrenos Lima Norte 120–200 m² con cuotas → inventario propio cubre 8.</div></div></div></div>
+      <div class="card"><h3>Oferta sin demanda (ajustar precio o audiencia)</h3><div class="list">
+        <div><span class="dot warn"></span><div><b>Casa La Molina US$ 320k</b> · 0 matches ≥ 70 → crear campaña específica Lima Moderna / inversores.</div></div>
+        <div><span class="dot warn"></span><div><b>Dpto. Lince 45 m² US$ 92k</b> · 2 matches → precio 9 % sobre comparables.</div></div></div></div>
+    </div>
+  </section>
+
+  <!-- COMUNIDAD -->
+  <section class="view" id="v-comunidad">
+    <div class="top"><div><h1>Comunidad Facebook</h1><div class="sub">Grupo «Compra y vende tu casa en Lima · dueños directos» + página existente · el grupo alimenta la base de compradores</div></div><button class="btn ghost">Calendario de contenido</button><button class="btn">Programar publicación</button></div>
+    <div class="grid g4" style="margin-bottom:16px">
+      <div class="card kpi"><div class="lbl">Miembros del grupo</div><div class="v">4 860</div><div class="d"><span class="up">▲ 312</span> esta semana · 71 % respondió el formulario</div></div>
+      <div class="card kpi"><div class="lbl">Solicitudes pendientes</div><div class="v">58</div><div class="d">aprobación automática si responde 4 preguntas</div></div>
+      <div class="card kpi"><div class="lbl">Compradores calificados</div><div class="v">1 240</div><div class="d">importados al CRM con consentimiento</div></div>
+      <div class="card kpi"><div class="lbl">Leads de anuncios (mes)</div><div class="v">31</div><div class="d">CPL US$ 2.9 · formulario instantáneo</div></div>
+    </div>
+    <div class="grid g31">
+      <div class="card"><h3>Publicaciones programadas</h3><div class="list">
+        <div><span class="dot ok"></span><div><b>Hoy 19:00</b> · Terreno Carabayllo lote 12 · video dron 30 s + «separa con S/ 1 000» · publica página y grupo</div></div>
+        <div><span class="dot info"></span><div><b>Jue 09:00</b> · «¿Cuánto vale tu dpto. en San Miguel?» · post de valoración gratis → formulario de captación</div></div>
+        <div><span class="dot info"></span><div><b>Vie 12:00</b> · Encuesta «¿Qué distrito buscas?» · alimenta el mapa de demanda</div></div>
+        <div><span class="dot info"></span><div><b>Sáb 10:00</b> · En vivo desde visita grupal a Los Eucaliptos</div></div>
+        <div><span class="dot warn"></span><div><b>Dom 18:00</b> · Historia de cierre: «Familia Ríos compró en Lince en 38 días» (con permiso)</div></div></div></div>
+      <div class="card"><h3>Reglas del grupo (resumen)</h3><div class="list">
+        <div><span class="dot ok"></span><div>Solo Lima y Callao · solo venta · fotos reales · precio visible</div></div>
+        <div><span class="dot ok"></span><div>Dueños directos publican gratis con etiqueta «Dueño directo» verificada por el equipo</div></div>
+        <div><span class="dot ok"></span><div>Compradores: formulario de ingreso obligatorio</div></div>
+        <div><span class="dot bad"></span><div>Prohibido spam, préstamos, cursos, «multinivel»</div></div>
+        <div><span class="dot info"></span><div>El equipo CAPTA es admin y responde en &lt; 1 h en horario laboral</div></div></div></div>
+    </div>
+    <div class="grid g3" style="margin-top:16px">
+      <div class="card"><h3>Formatos que más convierten</h3><div class="rows">
+        <div>Video recorrido 30-60 s<div class="bar"><i style="width:92%"></i></div><small>9.2 %</small></div>
+        <div>Carrusel fotos + precio<div class="bar"><i style="width:70%"></i></div><small>7.0 %</small></div>
+        <div>Post «valoración gratis»<div class="bar"><i style="width:64%"></i></div><small>6.4 %</small></div>
+        <div>Encuesta de demanda<div class="bar"><i style="width:55%"></i></div><small>5.5 %</small></div>
+        <div>Texto sin foto<div class="bar"><i style="width:12%"></i></div><small>1.2 %</small></div></div><p class="muted" style="margin:6px 0 0;font-size:12px">% = clics a WhatsApp / alcance (ejemplo)</p></div>
+      <div class="card"><h3>Campañas Meta activas</h3><div class="list">
+        <div><span class="dot ok"></span><div><b>Lead Ads · Terrenos Lima Norte</b> · S/ 25/día · 14 leads · CPL US$ 2.4</div></div>
+        <div><span class="dot ok"></span><div><b>Clic a WhatsApp · Dptos. Lima Moderna</b> · S/ 30/día · 17 conversaciones</div></div>
+        <div><span class="dot info"></span><div><b>Captación · «Vende sin pagar hasta vender»</b> · S/ 20/día · 6 dueños</div></div></div></div>
+      <div class="card"><h3>Flujo grupo → CRM</h3><div class="steps"><div><b>1</b>Solicita unirse y responde 4 preguntas</div><div><b>2</b>Admin aprueba · respuestas copiadas al CRM (comprador C-xxx)</div><div><b>3</b>Mensaje de bienvenida por WA con 3 propiedades match</div><div><b>4</b>Alertas automáticas mientras siga activo</div></div></div>
+    </div>
+  </section>
+
+  <!-- WHATSAPP -->
+  <section class="view" id="v-whatsapp">
+    <div class="top"><div><h1>WhatsApp &amp; bot calificador</h1><div class="sub">Bandeja compartida del equipo · el bot califica y agenda, el bróker cierra</div></div><button class="btn ghost">Plantillas</button><button class="btn">Abrir bandeja</button></div>
+    <div class="grid g13">
+      <div class="card"><h3>Conversaciones</h3><div class="list">
+        <div><span class="dot bad"></span><div><b>Rosa M.</b> (dueña Jesús María)<br><span class="muted">«¿Y cuánto cobran?» · hace 12 min</span></div></div>
+        <div><span class="dot ok"></span><div><b>Fam. Quispe</b> (C-204)<br><span class="muted">«Podemos ofrecer 208k» · hace 1 h</span></div></div>
+        <div><span class="dot info"></span><div><b>Nuevo · +51 9** *** 412</b><br><span class="muted">Bot: calificando (pregunta 3 de 5)</span></div></div>
+        <div><span class="dot info"></span><div><b>Luis P.</b> (lote 7)<br><span class="muted">Recibo de separación enviado</span></div></div></div></div>
+      <div class="card"><h3>Bot calificador · comprador nuevo desde anuncio</h3>
+        <div class="chat">
+          <div class="in">Hola, vi el anuncio del departamento en Surco</div>
+          <div class="out">¡Hola! Soy Capi, asistente de CAPTA Lima 👋 Te ayudo a encontrar tu depa. ¿En qué distritos buscas? Puedes escribir varios.</div>
+          <div class="in">Surco o San Borja</div>
+          <div class="out">Perfecto. ¿Cuántos dormitorios necesitas y cuál es tu presupuesto aproximado en dólares?</div>
+          <div class="in">3 dormitorios, hasta 220 mil</div>
+          <div class="out">¿Cómo piensas comprar? 1) Contado 2) Crédito hipotecario 3) Mivivienda 4) Aún no sé</div>
+          <div class="in">2, ya tengo pre-aprobación del BCP</div>
+          <div class="out">¡Excelente! Tengo 5 opciones que encajan. Te envío las 3 mejores ahora y Denzel te escribe para coordinar visitas. ¿Aceptas recibir alertas por este canal? (puedes salir cuando quieras)</div>
+          <div class="in">Sí</div>
+          <div class="out">✅ Registrado como comprador C-204. Aquí van tus opciones…</div>
+        </div></div>
+    </div>
+    <div class="grid g3" style="margin-top:16px">
+      <div class="card"><h3>Plantillas aprobadas (Cloud API)</h3><div class="list"><div><span class="dot ok"></span><div>nuevo_match · baja_precio · recordatorio_visita · reporte_semanal_propietario · separacion_recibida · reactivacion_30d</div></div></div></div>
+      <div class="card"><h3>Reglas del bot</h3><div class="list"><div><span class="dot info"></span><div>Máximo 5 preguntas · nunca pide DNI ni datos bancarios · deriva a humano al detectar «llamar», «precio final» o enojo</div></div></div></div>
+      <div class="card"><h3>Métricas</h3><div class="rows"><div>Respuesta &lt; 5 min<div class="bar"><i style="width:91%"></i></div><small>91 %</small></div><div>Completan calificación<div class="bar"><i style="width:68%"></i></div><small>68 %</small></div><div>Agendan visita<div class="bar"><i style="width:23%"></i></div><small>23 %</small></div></div></div>
+    </div>
+  </section>
+
+  <!-- AGENDA -->
+  <section class="view" id="v-agenda">
+    <div class="top"><div><h1>Agenda del equipo</h1><div class="sub">Semana 13–18 de octubre · visitas, llamadas, firmas y open house · sincroniza con Google Calendar</div></div><button class="btn">+ Evento</button></div>
+    <div class="cal">
+      <div class="h"></div><div class="h">Lun 13</div><div class="h">Mar 14</div><div class="h">Mié 15</div><div class="h">Jue 16</div><div class="h">Vie 17</div><div class="h">Sáb 18</div>
+      <div class="t">09:00</div><div></div><div><div class="ev c">Llamadas radar (10)</div></div><div><div class="ev c">Llamadas radar (12)</div></div><div></div><div></div><div><div class="ev o">Visita grupal Eucaliptos</div></div>
+      <div class="t">10:00</div><div></div><div></div><div></div><div></div><div><div class="ev v">Terreno Lurín · captación</div></div><div><div class="ev o">(bus 08:30 Los Olivos)</div></div>
+      <div class="t">11:00</div><div><div class="ev f">Firma acuerdo Surco</div></div><div></div><div><div class="ev v">Casa Los Olivos · captación</div></div><div></div><div></div><div></div>
+      <div class="t">15:00</div><div></div><div></div><div></div><div><div class="ev v">C-311 visita Surco</div></div><div></div><div></div>
+      <div class="t">16:00</div><div></div><div></div><div></div><div></div><div></div><div><div class="ev v">Casa La Molina · captación</div></div>
+      <div class="t">18:00</div><div></div><div><div class="ev v">C-204 visita Surco</div></div><div></div><div></div><div><div class="ev f">Arras Lince · notaría</div></div><div></div>
+    </div>
+    <div class="grid g3" style="margin-top:16px">
+      <div class="card"><h3>Leyenda</h3><div class="list"><div><span class="ev v" style="margin:0">Visita</span></div><div><span class="ev c" style="margin:0">Bloque de llamadas</span></div><div><span class="ev f" style="margin:0">Firma / notaría</span></div><div><span class="ev o" style="margin:0">Open house / visita grupal</span></div></div></div>
+      <div class="card"><h3>Reglas de la agenda</h3><div class="list"><div><span class="dot info"></span><div>Cada visita envía recordatorio al comprador 24 h y 2 h antes</div></div><div><span class="dot info"></span><div>Tras la visita, el bróker registra feedback en 3 clics (le gustó / precio / no encaja)</div></div><div><span class="dot info"></span><div>El propietario recibe el resumen de visitas cada lunes</div></div></div></div>
+      <div class="card"><h3>Carga del equipo</h3><div class="rows"><div>Denzel<div class="bar"><i style="width:80%"></i></div><small>8</small></div><div>Leslie<div class="bar"><i style="width:60%"></i></div><small>6</small></div><div>Captador 3<div class="bar"><i style="width:30%"></i></div><small>3</small></div></div></div>
+    </div>
+  </section>
+
+  <!-- MAPA -->
+  <section class="view" id="v-mapa">
+    <div class="top"><div><h1>Mapa de demanda vs. oferta</h1><div class="sub">Compradores activos por distrito frente a captaciones disponibles · rojo = falta oferta (captar), azul = falta demanda (promocionar)</div></div></div>
+    <div class="heat">
+      <div style="background:#c0392b"><b>Pueblo Libre</b>23 compradores · 1 captación<small>Captar ya</small></div>
+      <div style="background:#c0392b"><b>Los Olivos</b>17 compradores · 2 captaciones<small>Captar ya</small></div>
+      <div style="background:#d35400"><b>Magdalena</b>14 · 2<small>Captar</small></div>
+      <div style="background:#d35400"><b>San Miguel</b>19 · 4<small>Captar</small></div>
+      <div style="background:#e67e22"><b>Jesús María</b>12 · 3<small>Captar</small></div>
+      <div style="background:#27ae60"><b>Surco</b>21 · 6<small>Equilibrado</small></div>
+      <div style="background:#27ae60"><b>San Borja</b>9 · 3<small>Equilibrado</small></div>
+      <div style="background:#27ae60"><b>Carabayllo (terrenos)</b>31 · 12 lotes<small>Equilibrado</small></div>
+      <div style="background:#2980b9"><b>La Molina</b>2 · 2<small>Promocionar</small></div>
+      <div style="background:#2980b9"><b>Lince</b>6 · 3<small>Promocionar</small></div>
+      <div style="background:#7f8c8d"><b>Comas</b>8 · 1<small>Sin datos suficientes</small></div>
+      <div style="background:#7f8c8d"><b>Callao</b>4 · 0<small>Explorar</small></div>
+    </div>
+    <div class="grid g2" style="margin-top:16px">
+      <div class="card"><h3>Precio promedio pedido vs. referencia de mercado (ejemplo)</h3><div class="rows">
+        <div>Surco<div class="bar"><i style="width:96%"></i></div><small>+4 %</small></div>
+        <div>Jesús María<div class="bar"><i style="width:88%"></i></div><small>−2 %</small></div>
+        <div>Los Olivos<div class="bar"><i style="width:100%"></i></div><small>+9 %</small></div>
+        <div>San Miguel<div class="bar"><i style="width:92%"></i></div><small>+1 %</small></div></div><p class="muted" style="font-size:12px;margin:6px 0 0">La referencia se alimenta de índices públicos (Urbania Index, Properati, BCRP) y de los cierres propios.</p></div>
+      <div class="card"><h3>Qué hace el sistema con esto</h3><div class="list">
+        <div><span class="dot bad"></span><div>Distritos rojos → el radar sube la prioridad de sus avisos y propone campaña «vende tu depa en Pueblo Libre»</div></div>
+        <div><span class="dot info"></span><div>Distritos azules → propone bajar precio o pautar a audiencias de otros distritos</div></div>
+        <div><span class="dot ok"></span><div>Cada semana genera el post «Lo más buscado en Lima» para el grupo</div></div></div></div>
+    </div>
+  </section>
+
+  <!-- REPORTES -->
+  <section class="view" id="v-reportes">
+    <div class="top"><div><h1>Reportes y comisiones</h1><div class="sub">Octubre 2026 · cierre proyectado · comisiones por bróker · costos de captación</div></div><button class="btn ghost">Exportar Excel</button><button class="btn ghost">PDF mensual</button></div>
+    <div class="grid g4" style="margin-bottom:16px">
+      <div class="card kpi"><div class="lbl">Ventas cerradas (año)</div><div class="v">14</div><div class="d">US$ 1.9 M en valor</div></div>
+      <div class="card kpi"><div class="lbl">Comisiones cobradas</div><div class="v">US$ 58 400</div><div class="d">promedio 3.1 %</div></div>
+      <div class="card kpi"><div class="lbl">Costo por captación</div><div class="v">US$ 38</div><div class="d">pauta + tiempo de llamadas</div></div>
+      <div class="card kpi"><div class="lbl">Días promedio hasta vender</div><div class="v">47</div><div class="d">dueño directo captado vs. 120+ solo</div></div>
+    </div>
+    <div class="grid g2">
+      <div class="card"><h3>Comisiones por bróker (Q4 proyectado)</h3><div class="rows">
+        <div>Denzel<div class="bar"><i style="width:80%"></i></div><small>US$ 21 400</small></div>
+        <div>Leslie<div class="bar"><i style="width:55%"></i></div><small>US$ 14 600</small></div>
+        <div>Captador 3<div class="bar"><i style="width:22%"></i></div><small>US$ 5 800</small></div></div></div>
+      <div class="card"><h3>Ingresos por línea (modelo propuesto)</h3><div class="rows">
+        <div>Corretaje venta<div class="bar"><i style="width:100%"></i></div><small>72 %</small></div>
+        <div>Venta terrenos propios<div class="bar"><i style="width:30%"></i></div><small>18 %</small></div>
+        <div>Publicación destacada dueños<div class="bar"><i style="width:8%"></i></div><small>4 %</small></div>
+        <div>Referidos (crédito, notaría, mudanza)<div class="bar"><i style="width:7%"></i></div><small>4 %</small></div>
+        <div>Leads a brókers aliados<div class="bar"><i style="width:4%"></i></div><small>2 %</small></div></div></div>
+    </div>
+  </section>
+
+  <!-- WEB -->
+  <section class="view" id="v-web">
+    <div class="top"><div><h1>Web pública · vista previa</h1><div class="sub">captalima.pe (dominio por confirmar) · listado de captaciones + terrenos propios + «Vende tu propiedad» + «Quiero comprar»</div></div><button class="btn ghost">Ver en móvil</button></div>
+    <div class="card" style="background:linear-gradient(135deg,var(--ink),var(--brand));color:#fff;padding:34px 28px;margin-bottom:16px">
+      <div style="font-size:26px;font-weight:800;max-width:620px">Vende tu casa o departamento en Lima con compradores reales esperando</div>
+      <p style="color:#c9d6ea;max-width:620px">Publica gratis como dueño directo. Te presentamos solo compradores calificados. Pagas únicamente cuando vendes.</p>
+      <div style="display:flex;gap:10px;margin-top:10px"><button class="btn acc">Valora tu propiedad gratis</button><button class="btn ghost" style="background:transparent;color:#fff;border-color:#8fa6c9">Quiero comprar</button></div>
+    </div>
+    <div class="filters"><span class="chip on">Todos</span><span class="chip">Departamentos</span><span class="chip">Casas</span><span class="chip">Terrenos</span><span class="chip">Dueño directo</span><span class="chip">Hasta US$ 120k</span><span class="chip">Mivivienda</span><span class="chip">Lima Norte</span></div>
+    <div class="cards">
+      <div class="pc"><div class="photo">Dúplex Surco</div><div class="b"><div class="pr">US$ 215 000</div><b>Dúplex 120 m² + terraza · Surco</b><div class="ft"><span>3 dorm</span><span>2.5 baños</span><span>1 cochera</span></div><div style="margin-top:8px"><span class="tag dd">Dueño directo</span> <span class="tag info">Tour 360</span></div></div></div>
+      <div class="pc"><div class="photo">Lotes Carabayllo</div><div class="b"><div class="pr">Desde S/ 78 000</div><b>Lotes 120–160 m² · Los Eucaliptos, Carabayllo</b><div class="ft"><span>Título SUNARP</span><span>Cuotas</span></div><div style="margin-top:8px"><span class="tag ok">Terreno propio</span> <span class="tag">Visita sábado</span></div></div></div>
+      <div class="pc"><div class="photo">Casa Breña</div><div class="b"><div class="pr">US$ 132 000</div><b>Casa 140 m² · Breña</b><div class="ft"><span>4 dorm</span><span>2 baños</span><span>2 pisos</span></div><div style="margin-top:8px"><span class="tag dd">Dueño directo</span> <span class="tag info">Apto Mivivienda</span></div></div></div>
+    </div>
+    <div class="grid g3" style="margin-top:16px">
+      <div class="card"><h3>Página «Vende tu propiedad»</h3><div class="list"><div><span class="dot info"></span><div>Formulario de 6 campos + fotos desde el celular → entra al pipeline como «Prospecto · web»</div></div><div><span class="dot info"></span><div>Valoración instantánea con rango + «un bróker te llama en 2 h»</div></div></div></div>
+      <div class="card"><h3>Página «Quiero comprar»</h3><div class="list"><div><span class="dot info"></span><div>Mismo formulario del grupo FB → comprador con score inicial</div></div><div><span class="dot info"></span><div>Botón «recibir alertas por WhatsApp»</div></div></div></div>
+      <div class="card"><h3>Página por propiedad</h3><div class="list"><div><span class="dot info"></span><div>URL corta + QR para cartel físico · galería · mapa aproximado · botón WhatsApp · «agenda tu visita»</div></div><div><span class="dot info"></span><div>Cada visita y clic se registra en la ficha</div></div></div></div>
+    </div>
+  </section>
+
+  <!-- PORTAL PROPIETARIO -->
+  <section class="view" id="v-portal">
+    <div class="top"><div><h1>Portal del propietario</h1><div class="sub">Lo que ve Carlos R. (dueño del dúplex en Surco) al entrar con su enlace privado · transparencia = confianza = exclusividad</div></div></div>
+    <div class="grid g4" style="margin-bottom:16px">
+      <div class="card kpi"><div class="lbl">Vistas de tu anuncio</div><div class="v">1 240</div><div class="d">web + portales · 7 días</div></div>
+      <div class="card kpi"><div class="lbl">Compradores interesados</div><div class="v">14</div><div class="d">calificados por CAPTA</div></div>
+      <div class="card kpi"><div class="lbl">Visitas realizadas</div><div class="v">4</div><div class="d">2 programadas esta semana</div></div>
+      <div class="card kpi"><div class="lbl">Ofertas recibidas</div><div class="v">1</div><div class="d">US$ 208 000 · Fam. Quispe</div></div>
+    </div>
+    <div class="grid g2">
+      <div class="card"><h3>Feedback de las visitas</h3><div class="list"><div><span class="dot ok"></span><div><b>14/10</b> Fam. Quispe · «Nos encantó la terraza; el precio está algo alto» → ofertaron 208k</div></div><div><span class="dot warn"></span><div><b>12/10</b> Mariana T. · «Quiere ver otra vez con su arquitecto»</div></div><div><span class="dot bad"></span><div><b>11/10</b> Jorge L. · «Busca piso más bajo»</div></div></div></div>
+      <div class="card"><h3>Recomendación de tu bróker</h3><p>Con 14 interesados y 1 oferta en 7 días, el inmueble está bien posicionado. Sugerimos responder la oferta con contraoferta de US$ 212 000 y mantener el precio publicado 2 semanas más. <b>Decide aquí:</b></p><button class="btn">Aceptar contraoferta sugerida</button> <button class="btn ghost">Hablar con Denzel</button></div>
+    </div>
+  </section>
+
+  <!-- CONFIG -->
+  <section class="view" id="v-config">
+    <div class="top"><div><h1>Configuración</h1><div class="sub">Equipo, fuentes del radar, plantillas, integraciones y cumplimiento</div></div></div>
+    <div class="grid g3">
+      <div class="card"><h3>Equipo y roles</h3><div class="list"><div><span class="dot ok"></span><div><b>Denzel</b> · Administrador · ve todo, comisiones, configuración</div></div><div><span class="dot ok"></span><div><b>Leslie</b> · Bróker · sus captaciones y compradores + agenda</div></div><div><span class="dot info"></span><div><b>Captador 3</b> · Captador · radar y prospectos, sin ver comisiones</div></div><div><span class="dot info"></span><div><b>Asistente</b> · Marketing · comunidad, publicaciones, WhatsApp</div></div></div></div>
+      <div class="card"><h3>Fuentes del radar</h3><div class="check"><div><span class="toggle on"></span>Urbania / Adondevivir · cada 6 h</div><div><span class="toggle on"></span>Properati · Infocasas · Mercado Libre</div><div><span class="toggle on"></span>Doomos / Trovit / Mitula (agregadores)</div><div><span class="toggle on"></span>Marketplace y grupos FB (asistido)</div><div><span class="toggle"></span>Clasificados de diarios</div></div></div>
+      <div class="card"><h3>Integraciones</h3><div class="check"><div><span class="toggle on"></span>WhatsApp Cloud API</div><div><span class="toggle on"></span>Meta Lead Ads → CRM</div><div><span class="toggle on"></span>Google Calendar</div><div><span class="toggle on"></span>Firma digital (Keynua)</div><div><span class="toggle on"></span>Pagos (Izipay / Yape)</div><div><span class="toggle"></span>Kommo (opcional, puente)</div><div><span class="toggle"></span>Publicación automática en portales (XML)</div></div></div>
+    </div>
+    <div class="grid g2" style="margin-top:16px">
+      <div class="card"><h3>Cumplimiento · Ley 29733</h3><div class="check"><div><span class="box on">✓</span>Política de privacidad y consentimiento en cada formulario</div><div><span class="box on">✓</span>Registro de banco de datos ante la Autoridad de Protección de Datos</div><div><span class="box on">✓</span>Derecho ARCO: botón «eliminar mis datos» en WhatsApp y web</div><div><span class="box on">✓</span>Datos de dueños del radar: solo lo publicado, con fecha y fuente; se borran si piden no ser contactados</div></div></div>
+      <div class="card"><h3>Plantillas de mensajes</h3><div class="list"><div><span class="dot info"></span><div>Primer contacto dueño directo (3 variantes A/B)</div></div><div><span class="dot info"></span><div>Seguimiento día 3 / día 10 / baja de precio</div></div><div><span class="dot info"></span><div>Bienvenida comprador · envío de matches · recordatorio de visita</div></div><div><span class="dot info"></span><div>Reporte semanal al propietario</div></div></div></div>
+    </div>
+  </section>
+
+  <footer>Maqueta estática · CAPTA Lima (nombre provisional) · ninguna función está conectada · preparada el 15/10/2026 para definir alcance antes de programar</footer>
+  </main>
+</div>
+<script>
+const buttons=document.querySelectorAll('.nav button');const views=document.querySelectorAll('.view');
+buttons.forEach(b=>b.addEventListener('click',()=>{buttons.forEach(x=>x.classList.remove('active'));b.classList.add('active');views.forEach(v=>v.classList.remove('active'));document.getElementById('v-'+b.dataset.v).classList.add('active');window.scrollTo(0,0);}));
+document.querySelectorAll('.chip').forEach(c=>c.addEventListener('click',()=>c.classList.toggle('on')));
+const h=location.hash.replace('#','');if(h){const b=document.querySelector('.nav button[data-v="'+h+'"]');if(b)b.click();}
+</script>
+</body>
+</html>
+
+<div id="ah-demo" style="position:fixed;left:12px;bottom:12px;z-index:2147483000;display:flex;align-items:center;gap:10px;padding:8px 8px 8px 14px;border-radius:999px;background:rgba(3,9,15,.86);border:1px solid rgba(44,245,200,.45);box-shadow:0 6px 24px -8px rgba(0,0,0,.6);font:500 12px/1.2 system-ui,-apple-system,Segoe UI,sans-serif;color:#eefcf8;max-width:calc(100vw - 24px);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)"><span style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis">Maqueta de CRM inmobiliario · datos de ejemplo · Aurora Hub Perú</span><a href="https://www.aurorahubperu.com/#proyectos" style="flex:none;color:#03140f;background:linear-gradient(90deg,#2cf5c8,#7cf9e0);border-radius:999px;padding:6px 11px;text-decoration:none;font-weight:700">Ver portafolio</a></div></body></html>

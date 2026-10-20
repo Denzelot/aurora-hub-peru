@@ -1,0 +1,871 @@
+<!doctype html><html><head><meta name="robots" content="noindex"><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Distrito · Tecnología y marketing en Lima</title>
+<meta name="description" content="Distrito: inteligencia artificial, publicidad en Meta, TikTok y Google, automatizaciones, n8n y Kommo, diseño web, licencias, servicios TI, servicio técnico y asesoría en equipos de cómputo en Lima, Perú.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,500;0,600;0,700;1,600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  color-scheme: dark;
+  --bg:#04030a; --ink:#f3eefc; --muted:#9a93b4; --line:rgba(255,46,136,.3);
+  --mag:#ff2e88; --cyan:#19e3ff; --amber:#ffb000;
+  --head:"Chakra Petch", system-ui, sans-serif;
+  --sans:"Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono:"JetBrains Mono", ui-monospace, Menlo, Consolas, monospace;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.55;-webkit-font-smoothing:antialiased}
+#stage{position:fixed;inset:0;width:100%;height:100%;display:block;z-index:0}
+body.static #stage{display:none}
+body.static{background:linear-gradient(to bottom,#04030a,#1a0826 55%,#2b0a2e 62%,#04030a) fixed}
+a{color:inherit}
+.wrap{position:relative;z-index:1;width:100%;max-width:1200px;margin:0 auto;padding-inline:16px}
+nav{position:fixed;top:0;left:0;right:0;z-index:5;background:linear-gradient(to bottom,rgba(4,3,10,.92),rgba(4,3,10,0))}
+nav .in{max-width:1200px;margin:0 auto;padding:14px 16px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.logo{display:inline-flex;align-items:center;gap:10px;font:700 18px/1 var(--head);letter-spacing:.22em;text-decoration:none}
+.logo svg{width:28px;height:28px}
+nav ul{display:flex;gap:22px;list-style:none;margin:0;padding:0;font-size:14px;color:var(--muted)}
+nav ul a{text-decoration:none}
+nav ul a:hover{color:var(--ink)}
+.btn{display:inline-flex;align-items:center;gap:8px;font:600 14px/1 var(--head);letter-spacing:.06em;text-transform:uppercase;text-decoration:none;padding:13px 20px;border:1px solid var(--line);color:var(--ink);background:rgba(255,46,136,.08);cursor:pointer;text-shadow:none;clip-path:polygon(10px 0,100% 0,100% calc(100% - 10px),calc(100% - 10px) 100%,0 100%,0 10px)}
+.btn:hover{background:rgba(255,46,136,.18)}
+.btn.primary{background:linear-gradient(90deg,#ff2e88,#b43cff);border-color:transparent;color:#fff}
+.btn.sm{padding:9px 14px;font-size:12px}
+a:focus-visible,.btn:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid var(--cyan);outline-offset:3px}
+.sec{min-height:125vh;display:flex;align-items:center;padding:90px 0 60px}
+.sec.hero{min-height:100vh}
+.copy{max-width:470px;text-shadow:0 1px 18px rgba(4,3,10,.95),0 0 4px rgba(4,3,10,.85)}
+.num{font-family:var(--mono);font-size:12px;letter-spacing:.14em;color:var(--muted)}
+.num b{color:var(--cyan);font-weight:500}
+.cat{font-family:var(--mono);font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--amber);margin-left:10px}
+h1{font:700 clamp(40px,5.6vw,74px)/0.98 var(--head);letter-spacing:-.01em;margin:16px 0 18px;text-transform:uppercase;text-wrap:balance}
+h2{font:700 clamp(28px,3.4vw,46px)/1.02 var(--head);margin:10px 0 14px;text-transform:uppercase;text-wrap:balance}
+.neon{color:var(--mag);text-shadow:0 0 18px rgba(255,46,136,.7),0 0 2px #fff}
+.neon.c{color:var(--cyan);text-shadow:0 0 18px rgba(25,227,255,.7),0 0 2px #fff}
+.lead{font-size:clamp(16px,1.5vw,19px);color:#dcd6ec;margin:0 0 24px}
+.copy p{color:#d2cce4;font-size:16px;margin:0 0 18px}
+.list{list-style:none;margin:0 0 22px;padding:0;display:grid;gap:8px}
+.list li{display:flex;gap:12px;align-items:baseline;font-size:15px;color:#eee9f8}
+.list li::before{content:"";flex:none;width:8px;height:8px;border:1px solid var(--cyan);box-shadow:0 0 8px var(--cyan);transform:translateY(-1px) rotate(45deg)}
+.more{font:600 14px/1 var(--head);letter-spacing:.06em;text-transform:uppercase;color:var(--cyan);text-decoration:none}
+.more:hover{text-decoration:underline}
+.cta{display:flex;gap:12px;flex-wrap:wrap}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--cyan)}
+.steps{list-style:none;margin:0 0 10px;padding:0;display:grid;gap:14px;counter-reset:s}
+.steps li{display:grid;grid-template-columns:44px 1fr;gap:4px 12px;align-items:baseline}
+.steps li::before{counter-increment:s;content:"0" counter(s);grid-row:span 2;font-family:var(--mono);font-size:13px;color:var(--mag)}
+.steps b{font-size:17px}
+.steps span{color:var(--muted);font-size:14.5px}
+form{display:grid;gap:12px;margin-top:6px}
+label{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);display:grid;gap:6px}
+input,select,textarea{font:500 15px/1.4 var(--sans);color:var(--ink);background:rgba(10,7,22,.88);border:1px solid var(--line);padding:12px 14px;width:100%}
+textarea{min-height:84px;resize:vertical}
+footer{margin-top:34px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-size:12.5px;color:var(--muted);border-top:1px solid var(--line);padding-top:16px}
+.dots{position:fixed;right:18px;top:50%;transform:translateY(-50%);z-index:4;display:grid;gap:9px}
+.dots a{display:flex;align-items:center;justify-content:flex-end;gap:10px;text-decoration:none;font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:transparent}
+.dots a i{width:7px;height:7px;border:1px solid var(--muted);flex:none;transform:rotate(45deg)}
+.dots a:hover,.dots a.on{color:var(--muted)}
+.dots a.on i{background:var(--mag);border-color:var(--mag);box-shadow:0 0 10px var(--mag)}
+.hud{position:fixed;left:0;right:0;bottom:16px;z-index:4;font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);pointer-events:none;text-align:center;text-shadow:0 1px 8px #000}
+.hud b{color:var(--cyan);font-weight:500}
+body.static .hud{display:none}
+@media (max-width:760px){
+  nav ul{display:none}
+  .sec{align-items:flex-end;padding:54vh 0 48px}
+  .sec.hero{padding-top:52vh}
+  .copy{max-width:none;background:linear-gradient(to bottom,rgba(4,3,10,0),rgba(4,3,10,.84) 70px);padding:60px 16px 16px;margin:0 -16px}
+  .dots,.hud{display:none}
+}
+</style>
+
+<canvas id="stage" aria-hidden="true"></canvas>
+
+<nav aria-label="Principal"><div class="in">
+  <a class="logo" href="#inicio" aria-label="Distrito, inicio"><svg viewBox="0 0 32 32" fill="none" aria-hidden="true"><path d="M4 28V14h5v14M11 28V6h6v22M19 28V11h5v17M26 28v-9h3v9" stroke="url(#dg)" stroke-width="1.8"/><path d="M2 28h28" stroke="#19e3ff" stroke-width="1.6"/><defs><linearGradient id="dg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ff2e88"/><stop offset="1" stop-color="#19e3ff"/></linearGradient></defs></svg>DISTRITO</a>
+  <ul><li><a href="#ia">Marketing e IA</a></li><li><a href="#licencias">Tecnología</a></li><li><a href="#proceso">Proceso</a></li></ul>
+  <a class="btn sm" href="#contacto">Cotizar</a>
+</div></nav>
+<aside class="dots" id="dots" aria-label="Secciones"></aside>
+<div class="hud" id="hud" aria-hidden="true"></div>
+
+<main>
+<section class="sec hero" id="inicio" data-shape="word" data-label="Inicio" data-zone="Vista general"><div class="wrap"><div class="copy">
+  <div class="eyebrow">Tecnología y marketing · Lima, Perú</div>
+  <h1>Tu negocio, <span class="neon">conectado</span> a toda la <span class="neon c">ciudad.</span></h1>
+  <p class="lead">Inteligencia artificial, publicidad, automatización con n8n y Kommo, web, licencias y soporte técnico. Desliza y recorre el distrito: cada torre es un servicio.</p>
+  <div class="cta"><a class="btn primary" href="#ia">Recorrer el distrito</a><a class="btn" href="#contacto">Hablemos</a></div>
+</div></div></section>
+
+<section class="sec" id="ia" data-shape="brain" data-label="IA" data-zone="Torre de la IA"><div class="wrap"><div class="copy">
+  <div class="num"><b>01</b> / 09<span class="cat">Crecer</span></div>
+  <h2>Inteligencia <span class="neon c">artificial</span></h2>
+  <p>La IA trabajando en tu negocio: responde clientes, crea contenido y te ayuda a decidir con datos.</p>
+  <ul class="list"><li>Chatbots y asistentes para WhatsApp y web</li><li>Imágenes y video generados con IA</li><li>Análisis y reportes automáticos</li><li>Capacitación para tu equipo</li></ul>
+  <a class="more" href="#contacto" data-svc="Inteligencia artificial">Cotizar este servicio →</a>
+</div></div></section>
+
+<section class="sec" id="ads" data-shape="megaphone" data-label="Publicidad" data-zone="Torre de las pantallas"><div class="wrap"><div class="copy">
+  <div class="num"><b>02</b> / 09<span class="cat">Crecer</span></div>
+  <h2>Publicidad en Meta, TikTok y <span class="neon">Google</span></h2>
+  <p>Campañas que llegan a quien sí te va a comprar, con cada sol invertido medido.</p>
+  <ul class="list"><li>Estrategia y segmentación por plataforma</li><li>Creativos pensados para cada formato</li><li>Píxel, eventos y conversiones configurados</li><li>Reporte semanal de resultados</li></ul>
+  <a class="more" href="#contacto" data-svc="Publicidad digital (Meta, TikTok, Google)">Cotizar este servicio →</a>
+</div></div></section>
+
+<section class="sec" id="auto" data-shape="gears" data-label="Automatización" data-zone="Fábrica automática"><div class="wrap"><div class="copy">
+  <div class="num"><b>03</b> / 09<span class="cat">Crecer</span></div>
+  <h2><span class="neon c">Automatizaciones</span></h2>
+  <p>Las tareas repetitivas se hacen solas y tu equipo se dedica a lo importante.</p>
+  <ul class="list"><li>Respuestas y seguimiento automático por WhatsApp</li><li>Formularios conectados a CRM y hojas de cálculo</li><li>Cotizaciones y recordatorios automáticos</li><li>Flujos en n8n, Make o Zapier</li></ul>
+  <a class="more" href="#contacto" data-svc="Automatizaciones">Cotizar este servicio →</a>
+</div></div></section>
+
+<section class="sec" id="n8n" data-shape="flow" data-label="n8n · Kommo" data-zone="Central de flujos"><div class="wrap"><div class="copy">
+  <div class="num"><b>04</b> / 09<span class="cat">Crecer</span></div>
+  <h2>n8n y Kommo: <span class="neon">implementación y configuración</span></h2>
+  <p>Tus flujos en n8n y tu CRM Kommo listos para vender: cada mensaje, lead y venta recorre la ciudad sin que nadie lo mueva a mano.</p>
+  <ul class="list"><li>Flujos en n8n con WhatsApp, formularios, hojas, correo e IA</li><li>Kommo CRM: embudos, etapas y campos a tu medida</li><li>WhatsApp, Instagram y Facebook conectados a Kommo</li><li>Salesbots, respuestas automáticas y seguimiento</li><li>Leads de Meta Ads y de tu web directo al CRM</li><li>Configuración de otras apps y capacitación</li></ul>
+  <a class="more" href="#contacto" data-svc="n8n y Kommo (automatización y CRM)">Cotizar este servicio →</a>
+</div></div></section>
+
+<section class="sec" id="web" data-shape="browser" data-label="Web" data-zone="Estudio web"><div class="wrap"><div class="copy">
+  <div class="num"><b>05</b> / 09<span class="cat">Crecer</span></div>
+  <h2>Diseño y desarrollo <span class="neon c">web</span></h2>
+  <p>Webs rápidas, claras y memorables, hechas para que te encuentren y te escriban.</p>
+  <ul class="list"><li>Landing pages que convierten</li><li>Tiendas online y webs corporativas</li><li>SEO y velocidad de carga</li><li>Experiencias interactivas como esta</li></ul>
+  <a class="more" href="#contacto" data-svc="Diseño y desarrollo web">Cotizar este servicio →</a>
+</div></div></section>
+
+<section class="sec" id="licencias" data-shape="shield" data-label="Licencias" data-zone="Bóveda de licencias"><div class="wrap"><div class="copy">
+  <div class="num"><b>06</b> / 09<span class="cat">Operar</span></div>
+  <h2>Venta de <span class="neon">licencias</span></h2>
+  <p>Software en regla, instalado y activado, para trabajar sin sustos.</p>
+  <ul class="list"><li>Sistemas operativos</li><li>Ofimática y correo</li><li>Antivirus y seguridad</li><li>Software de diseño</li></ul>
+  <a class="more" href="#contacto" data-svc="Licencias de software">Cotizar este servicio →</a>
+</div></div></section>
+
+<section class="sec" id="ti" data-shape="rack" data-label="Servicios TI" data-zone="Data center"><div class="wrap"><div class="copy">
+  <div class="num"><b>07</b> / 09<span class="cat">Operar</span></div>
+  <h2>Servicios <span class="neon c">TI</span></h2>
+  <p>La infraestructura de tu oficina, estable y protegida.</p>
+  <ul class="list"><li>Redes cableadas y wifi</li><li>Correo corporativo</li><li>Respaldos y seguridad</li><li>Soporte remoto</li></ul>
+  <a class="more" href="#contacto" data-svc="Servicios TI">Cotizar este servicio →</a>
+</div></div></section>
+
+<section class="sec" id="tecnico" data-shape="wrench" data-label="Servicio técnico" data-zone="Taller técnico"><div class="wrap"><div class="copy">
+  <div class="num"><b>08</b> / 09<span class="cat">Operar</span></div>
+  <h2>Servicio técnico de <span class="neon">computadoras</span></h2>
+  <p>Diagnóstico honesto y reparación rápida, en taller o a domicilio.</p>
+  <ul class="list"><li>Mantenimiento preventivo</li><li>Reparación y diagnóstico</li><li>Formateo y optimización</li><li>Mejoras de SSD y memoria RAM</li><li>Recuperación de información</li></ul>
+  <a class="more" href="#contacto" data-svc="Servicio técnico de computadoras">Cotizar este servicio →</a>
+</div></div></section>
+
+<section class="sec" id="asesoria" data-shape="laptop" data-label="Asesoría" data-zone="Showroom de equipos"><div class="wrap"><div class="copy">
+  <div class="num"><b>09</b> / 09<span class="cat">Operar</span></div>
+  <h2>Asesoría en equipos de <span class="neon c">cómputo</span></h2>
+  <p>Compra lo que necesitas, ni más ni menos: te decimos qué equipo conviene según tu trabajo y presupuesto.</p>
+  <ul class="list"><li>Laptops y computadoras de escritorio</li><li>Impresoras y periféricos</li><li>Servidores y equipos de red</li><li>Comparativas y cotizaciones</li></ul>
+  <a class="more" href="#contacto" data-svc="Asesoría en equipos de cómputo">Cotizar este servicio →</a>
+</div></div></section>
+
+<section class="sec" id="proceso" data-shape="chain" data-label="Proceso" data-zone="Plaza central"><div class="wrap"><div class="copy">
+  <div class="num">Cómo trabajamos</div>
+  <h2>Cuatro paradas, <span class="neon">una sola ruta.</span></h2>
+  <ol class="steps">
+    <li><b>Diagnóstico</b><span>Escuchamos qué quieres lograr y revisamos lo que ya tienes.</span></li>
+    <li><b>Propuesta</b><span>Plan, plazos y costo claros antes de empezar.</span></li>
+    <li><b>Implementación</b><span>Lo construimos, configuramos o reparamos contigo al tanto.</span></li>
+    <li><b>Soporte</b><span>Medimos, ajustamos y seguimos disponibles.</span></li>
+  </ol>
+</div></div></section>
+
+<section class="sec" id="contacto" data-shape="globe" data-label="Contacto" data-zone="Azotea de la torre mayor"><div class="wrap"><div class="copy">
+  <div class="num">Contacto</div>
+  <h2>La ciudad <span class="neon c">no duerme.</span> Nosotros tampoco.</h2>
+  <p>Cuéntanos qué necesitas y te respondemos con una propuesta.</p>
+  <form id="form">
+    <label>Nombre<input name="n" autocomplete="name" required></label>
+    <label>Servicio<select name="s" id="svc">
+      <option>Inteligencia artificial</option><option>Publicidad digital (Meta, TikTok, Google)</option><option>Automatizaciones</option><option>n8n y Kommo (automatización y CRM)</option><option>Diseño y desarrollo web</option>
+      <option>Licencias de software</option><option>Servicios TI</option><option>Servicio técnico de computadoras</option><option>Asesoría en equipos de cómputo</option></select></label>
+    <label>Mensaje<textarea name="m" placeholder="Ej.: quiero anuncios y un chatbot para mi tienda"></textarea></label>
+    <button class="btn primary" type="submit">Enviar por WhatsApp</button>
+  </form>
+  <footer><span>© Distrito · Lima, Perú</span><span>Prototipo · datos de contacto por definir</span></footer>
+</div></div></section>
+</main>
+
+<script>
+(() => {
+'use strict';
+const WHATSAPP = '51932462537'; // número con código de país, p. ej. 51XXXXXXXXX
+const $svc = document.getElementById('svc');
+document.querySelectorAll('[data-svc]').forEach(a => a.addEventListener('click', () => { $svc.value = a.dataset.svc; }));
+document.getElementById('form').addEventListener('submit', e => { e.preventDefault(); const f = new FormData(e.target);
+  const t = `Hola Aurora Hub Perú, vi el concepto «Distrito». Soy ${f.get('n')}. Me interesa: ${f.get('s')}. ${f.get('m') || ''}`.trim(); window.open(`https://wa.me/${WHATSAPP}?text=${encodeURIComponent(t)}`, '_blank', 'noopener'); });
+const SECS = [...document.querySelectorAll('main > section')];
+const $dots = document.getElementById('dots'), $hud = document.getElementById('hud');
+SECS.forEach(s => { const a = document.createElement('a'); a.href = '#' + s.id; a.innerHTML = `${s.dataset.label}<i></i>`; $dots.appendChild(a); });
+const DOTS = [...$dots.children];
+const cv = document.getElementById('stage');
+const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const gl = cv.getContext('webgl2', {antialias:false, alpha:false, depth:false, stencil:false, preserveDrawingBuffer:true});
+if (!gl) { document.body.classList.add('static'); return; }
+const HALF_F = !!gl.getExtension('EXT_color_buffer_float');
+const coarse = matchMedia('(pointer: coarse)').matches;
+const HQ = location.hash.startsWith('#hq');
+/* ---------- azar reproducible ---------- */
+let seed = 20260926;
+const rnd = () => { seed |= 0; seed = seed + 0x6D2B79F5 | 0; let t = Math.imul(seed ^ seed >>> 15, 1 | seed); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; };
+const R = (a, b) => a + (b - a) * rnd();
+
+/* ---------- trazado de la ciudad (metros) ---------- */
+const NB = 14, BLK = 100, HALF = NB * BLK / 2, STW = 11;       // 14×14 manzanas, calles cada 100 m
+const street = k => -HALF + k * BLK;
+const DC = [60, -40];                                            // centro financiero
+const SL = [], SP = [];                                          // trazos y nodos estáticos: x y z r g b tipo fase
+let phN = 0;
+function lv(x, y, z, c, k, ph){ SL.push(x, y, z, c[0], c[1], c[2], k, ph); }
+function seg(a, b, c, k, ph){ lv(a[0], a[1], a[2], c, k, ph); lv(b[0], b[1], b[2], c, k, ph); }
+function pt(p, c, k, ph){ SP.push(p[0], p[1], p[2], c[0], c[1], c[2], k, ph); }
+const mul = (c, s) => [c[0] * s, c[1] * s, c[2] * s];
+// tipos: 0 estructura · 1 ventana residencial · 2 letrero LED · 3 baliza · 4 calle · 5 ventana de oficina · 6 enlace de datos · 7 árbol · 8 metro · 10 farol
+const C_EDGE = [0.36, 0.3, 0.95], C_CORNER = [0.62, 0.5, 1.0], C_DIAG = [0.3, 0.22, 0.8];
+const C_WARM = [1.0, 0.76, 0.46], C_COOL = [0.72, 0.86, 1.0], NEON = [[1.0, 0.18, 0.53], [0.1, 0.89, 1.0], [1.0, 0.69, 0.0], [0.7, 0.24, 1.0]];
+const ROOF = [], FACE = [];                                      // nodos de azotea (red) y muestra de nodos de fachada (cursor)
+
+function ringAt(t, shape, cx, cz, w, d, h){
+  // puntos del perímetro a la altura relativa t
+  let sc = 1, rot = 0;
+  if (shape.kind === 'step') sc = t < 0.55 ? 1 : t < 0.8 ? 0.78 : 0.56;
+  if (shape.kind === 'taper') sc = 1 - 0.38 * t;
+  if (shape.kind === 'twist') rot = t * shape.tw;
+  const pts = [];
+  if (shape.kind === 'cyl') { const rr = Math.min(w, d) / 2 * (1 - 0.15 * t); for (let k = 0; k < shape.n; k++) { const a = k / shape.n * Math.PI * 2; pts.push([cx + Math.cos(a) * rr, cz + Math.sin(a) * rr, k === 0 || k === shape.n / 2]); } return pts; }
+  const hw = w / 2 * sc, hd = d / 2 * sc, cr = Math.cos(rot), sr = Math.sin(rot);
+  const corners = [[-hw, -hd], [hw, -hd], [hw, hd], [-hw, hd]];
+  for (let f = 0; f < 4; f++) { const a = corners[f], b = corners[(f + 1) % 4], nc = Math.max(1, Math.round((f % 2 ? d : w) / shape.col));
+    for (let k = 0; k < nc; k++) { const u = k / nc, x = a[0] + (b[0] - a[0]) * u, z = a[1] + (b[1] - a[1]) * u; pts.push([cx + x * cr - z * sr, cz + x * sr + z * cr, k === 0]); } }
+  return pts;
+}
+function building(x0, z0, x1, z1, h){
+  const cx = (x0 + x1) / 2, cz = (z0 + z1) / 2, w = x1 - x0, d = z1 - z0, r = rnd();
+  const office = h > 70;
+  let shape = {kind: 'box', col: R(8, 12)};
+  if (h > 150 && r < 0.3) shape = {kind: 'twist', col: 9, tw: R(0.5, 1.1) * (rnd() < 0.5 ? -1 : 1)};
+  else if (h > 110 && r < 0.5) shape = {kind: 'step', col: 9};
+  else if (h > 90 && r < 0.65) shape = {kind: 'cyl', n: 14};
+  else if (h > 60 && r < 0.75) shape = {kind: 'taper', col: 10};
+  const grp = h > 160 ? 4 : 3, nL = Math.max(2, Math.round(h / (3.6 * grp)));
+  const rings = []; for (let li = 0; li <= nL; li++) rings.push(ringAt(li / nL, shape, cx, cz, w, d, h));
+  const n = rings[0].length, bid = phN++;
+  for (let li = 0; li <= nL; li++) {
+    const y = h * li / nL, ring = rings[li], top = li === nL, e = top ? mul(C_CORNER, 0.9) : mul(C_EDGE, li === 0 ? 0.25 : 0.55);
+    for (let k = 0; k < n; k++) {
+      const a = ring[k], b = ring[(k + 1) % n];
+      seg([a[0], y, a[1]], [b[0], y, b[1]], e, 0, 0);
+      if (li < nL) {
+        const up = rings[li + 1][k], up2 = rings[li + 1][(k + 1) % n], y2 = h * (li + 1) / nL;
+        seg([a[0], y, a[1]], [up[0], y2, up[1]], a[2] ? mul(C_CORNER, 0.75) : mul(C_EDGE, 0.42), 0, 0);
+        if (rnd() < 0.55) { if (rnd() < 0.5) seg([a[0], y, a[1]], [up2[0], y2, up2[1]], mul(C_DIAG, 0.3), 0, 0); else seg([b[0], y, b[1]], [up[0], y2, up[1]], mul(C_DIAG, 0.3), 0, 0); }
+        // ventanas: puntos en el paño
+        const nw = h > 150 ? 3 : 2;
+        for (let q = 0; q < nw; q++) { const u = R(0.15, 0.85), v = R(0.2, 0.8), px = a[0] + (b[0] - a[0]) * u, pz = a[1] + (b[1] - a[1]) * u, py = y + (y2 - y) * v;
+          const c = rnd() < 0.62 ? C_WARM : rnd() < 0.9 ? C_COOL : NEON[(rnd() * 4) | 0];
+          pt([px + (px - cx) * 0.01, py, pz + (pz - cz) * 0.01], mul(c, R(0.55, 1)), office ? 5 : 1, bid * 13.37 + li * 1.91 + k * 0.713 + q * 0.37); }
+      }
+      if (li > 0 && (k % 2 === 0) && rnd() < 0.5) FACE.push(a[0], y, a[1]);
+      if (li > 0 && rnd() < 0.3) pt([a[0], y, a[1]], mul(C_CORNER, 0.35), 0, 0);
+    }
+  }
+  // azotea: trazos al centro, corona LED y antena
+  const top = rings[nL], ry = h;
+  for (let k = 0; k < n; k++) if (rnd() < 0.35) seg([top[k][0], ry, top[k][1]], [cx, ry + 2, cz], mul(C_EDGE, 0.4), 0, 0);
+  if (h > 60 && rnd() < 0.45) { const c = NEON[(rnd() * 4) | 0], ph = rnd(); for (let k = 0; k < n; k++) { const a = top[k], b = top[(k + 1) % n]; seg([a[0], ry - 1.5, a[1]], [b[0], ry - 1.5, b[1]], mul(c, 0.9), 2, ph); } }
+  let ay = ry + 2;
+  if (h > 120) { const sp = h * R(0.08, 0.18); seg([cx, ry, cz], [cx, ry + sp, cz], mul(C_CORNER, 0.7), 0, 0); ay = ry + sp; pt([cx, ay, cz], [1.0, 0.12, 0.08], 3, rnd()); }
+  else if (h > 70) pt([cx, ry + 1, cz], [1.0, 0.15, 0.1], 3, rnd());
+  ROOF.push({p: [cx, ay, cz], h, nb: [], flash: -99});
+}
+function tree(x, z){ const hgt = R(5, 9); seg([x, 0, z], [x, hgt * 0.6, z], [0.08, 0.25, 0.2], 7, 0); for (let k = 0; k < 6; k++) pt([x + R(-2.5, 2.5), hgt * R(0.55, 1), z + R(-2.5, 2.5)], [0.2, 0.75, 0.55], 7, rnd()); }
+
+(function build(){
+  const parks = new Set(['5,9', '9,3', '2,4']), plaza = '7,6';
+  for (let i = 0; i < NB; i++) for (let j = 0; j < NB; j++) {
+    const x0 = street(i) + STW, x1 = street(i + 1) - STW, z0 = street(j) + STW, z1 = street(j + 1) - STW, key = i + ',' + j;
+    if (parks.has(key)) { for (let k = 0; k < 40; k++) tree(R(x0 + 3, x1 - 3), R(z0 + 3, z1 - 3)); for (let k = 0; k < 4; k++) seg([x0, 0.2, z0 + k * (z1 - z0) / 3], [x1, 0.2, z0 + k * (z1 - z0) / 3], [0.06, 0.18, 0.14], 7, 0); continue; }
+    if (key === plaza) { for (let k = 0; k < 24; k++) { const a = k / 24 * Math.PI * 2; pt([(x0 + x1) / 2 + Math.cos(a) * 22, 0.5, (z0 + z1) / 2 + Math.sin(a) * 22], [0.4, 0.8, 1.0], 2, k / 24); } continue; }
+    const cx = (x0 + x1) / 2, cz = (z0 + z1) / 2, dist = Math.hypot(cx - DC[0], cz - DC[1]);
+    const core = Math.exp(-((dist / 330) ** 2)), split = rnd() < 0.25 + 0.4 * (1 - core) ? 4 : rnd() < 0.6 ? 2 : 1;
+    const lots = [];
+    if (split === 1) lots.push([x0, z0, x1, z1]);
+    else if (split === 2) { if (rnd() < 0.5) { const m = R(x0 + 30, x1 - 30); lots.push([x0, z0, m, z1], [m, z0, x1, z1]); } else { const m = R(z0 + 30, z1 - 30); lots.push([x0, z0, x1, m], [x0, m, x1, z1]); } }
+    else { const mx = (x0 + x1) / 2, mz = (z0 + z1) / 2; lots.push([x0, z0, mx, mz], [mx, z0, x1, mz], [x0, mz, mx, z1], [mx, mz, x1, z1]); }
+    for (const L of lots) {
+      const sb = R(2, 5), h = Math.max(9, 12 + 300 * core * Math.pow(rnd(), 1.4) + 45 * rnd() * (0.4 + core));
+      building(L[0] + sb, L[1] + sb, L[2] - sb, L[3] - sb, h);
+    }
+  }
+  // calles: bordes de vereda y cruces
+  const E = HALF + 60;
+  for (let k = 0; k <= NB; k++) { const s = street(k);
+    for (const o of [-STW + 1.5, STW - 1.5]) { seg([s + o, 0.05, -E], [s + o, 0.05, E], [0.07, 0.16, 0.36], 4, 0); seg([-E, 0.05, s + o], [E, 0.05, s + o], [0.07, 0.16, 0.36], 4, 0); }
+    for (let m = 0; m <= NB; m++) { const t2 = street(m); for (let q = -3; q <= 3; q++) { pt([s + q * 1.6, 0.1, t2 - STW - 1], [0.3, 0.45, 0.7], 4, 0); pt([s - STW - 1, 0.1, t2 + q * 1.6], [0.3, 0.45, 0.7], 4, 0); } }
+    // faroles cada 25 m a ambos lados
+    for (let u = -HALF; u <= HALF; u += 25) for (const o of [-STW + 0.5, STW - 0.5]) { pt([s + o, 7, u + 12], [1.0, 0.62, 0.3], 10, u * 0.01 + s * 0.003); pt([u + 12, 7, s + o], [1.0, 0.62, 0.3], 10, u * 0.013 + s * 0.002); }
+  }
+})();
+
+/* ---------- red de datos entre azoteas ---------- */
+const LINKS = [];
+(function(){
+  for (let a = 0; a < ROOF.length; a++) {
+    const A = ROOF[a], cand = [];
+    for (let b = 0; b < ROOF.length; b++) if (b !== a) { const B = ROOF[b], d = Math.hypot(A.p[0] - B.p[0], A.p[2] - B.p[2]); if (d < 320) cand.push([d, b]); }
+    cand.sort((x, y) => x[0] - y[0]); const k = A.h > 120 ? 5 : 3;
+    for (let c = 0; c < Math.min(k, cand.length); c++) { const b = cand[c][1]; if (!A.nb.includes(b)) { A.nb.push(b); ROOF[b].nb.push(a); LINKS.push([a, b]); } }
+  }
+  for (const [a, b] of LINKS) { const A = ROOF[a].p, B = ROOF[b].p, ph = rnd(); seg(A, B, [0.18, 0.55, 0.95], 6, ph); }
+  for (const r of ROOF) pt(r.p, [0.5, 0.85, 1.0], 6, rnd());
+})();
+
+/* ---------- metro elevado ---------- */
+const METRO = [{axis: 1, s: street(6) + 4, y: 14}, {axis: 0, s: street(8) - 4, y: 14}];
+(function(){
+  const E = HALF + 60;
+  for (const m of METRO) { const P = (u, y) => m.axis === 0 ? [u, y, m.s] : [m.s, y, u];
+    for (const o of [-2, 2]) { const a = m.axis === 0 ? [-E, m.y, m.s + o] : [m.s + o, m.y, -E], b = m.axis === 0 ? [E, m.y, m.s + o] : [m.s + o, m.y, E]; seg(a, b, [0.25, 0.5, 0.8], 8, 0); }
+    for (let u = -HALF; u <= HALF; u += 40) seg(P(u, 0), P(u, m.y), [0.12, 0.26, 0.5], 8, 0); }
+})();
+
+const staticL = new Float32Array(SL), staticP = new Float32Array(SP), FACEA = new Float32Array(FACE);
+
+/* ---------- shaders ---------- */
+const VS_FULL = `#version 300 es
+out vec2 vUv; void main(){ vec2 p = vec2((gl_VertexID << 1) & 2, gl_VertexID & 2); vUv = p; gl_Position = vec4(p * 2.0 - 1.0, 0.0, 1.0); }`;
+const SKY = `#version 300 es
+precision highp float; uniform vec2 uRes; uniform mat3 uRot; uniform float uTan; uniform float uDay; uniform float uDusk; uniform float uT; out vec4 o;
+float h13(vec3 p){ p = fract(p * 0.1031); p += dot(p, p.zyx + 31.32); return fract((p.x + p.y) * p.z); }
+void main(){
+  vec2 uv = (gl_FragCoord.xy - 0.5 * uRes) / uRes.y; vec3 d = normalize(uRot * vec3(uv * 2.0 * uTan, -1.0));
+  float y = d.y, hz = exp(-abs(y) * 9.0);
+  vec3 night = mix(vec3(0.006, 0.012, 0.03), vec3(0.0, 0.002, 0.008), smoothstep(0.0, 0.6, y));
+  vec3 day = mix(vec3(0.11, 0.17, 0.27), vec3(0.03, 0.07, 0.16), smoothstep(0.0, 0.7, y));
+  vec3 c = mix(night, day, uDay) + (vec3(0.6, 0.1, 0.42) * 0.2 + vec3(0.05, 0.3, 0.5) * 0.06) * hz;
+  if (y > 0.0) { vec2 cp = d.xz / max(d.y, 0.05) * 0.8 + vec2(uT * 0.01, 0.0); float cl = 0.0, a = 0.5; for (int k = 0; k < 4; k++) { vec2 i = floor(cp), f = fract(cp); f = f * f * (3.0 - 2.0 * f); float n = mix(mix(h13(vec3(i, 1.0)), h13(vec3(i + vec2(1, 0), 1.0)), f.x), mix(h13(vec3(i + vec2(0, 1), 1.0)), h13(vec3(i + vec2(1, 1), 1.0)), f.x), f.y); cl += a * n; cp *= 2.1; a *= 0.5; }
+    c += mix(vec3(0.18, 0.03, 0.14), vec3(0.03, 0.1, 0.18), smoothstep(0.3, 0.7, cl)) * smoothstep(0.35, 0.8, cl) * exp(-y * 3.5) * smoothstep(0.03, 0.2, y) * 0.7; }
+  if (y > 10.0) { vec3 p = d * 170.0, cc = floor(p), f = fract(p) - 0.5; float h = h13(cc); if (h > 0.985) c += vec3(0.75, 0.85, 1.0) * smoothstep(0.12, 0.0, length(f)) * (0.3 + 0.7 * h13(cc + 3.0)) * (1.0 - uDay) * smoothstep(0.02, 0.2, y) * (0.7 + 0.3 * sin(uT * 2.0 + h * 90.0)); }
+  else c = mix(c, vec3(0.004, 0.008, 0.018) + vec3(0.02, 0.035, 0.07) * uDay, smoothstep(0.0, -0.02, y));
+  o = vec4(c, 1.0);
+}`;
+const GEO_VS = `#version 300 es
+in vec3 aP; in vec3 aC; in vec2 aK;
+uniform mat4 uVP; uniform vec3 uEye; uniform float uT; uniform float uLitR; uniform float uLitO; uniform float uNet; uniform float uPt; uniform float uDpr; uniform float uGain;
+uniform vec4 uBlk; uniform float uDay; uniform float uIsPt; uniform vec4 uWave; uniform float uRefl;
+out vec3 vC;
+float hh(float x){ return fract(sin(x * 127.1 + 11.7) * 43758.5453); }
+void main(){
+  vec3 PP = aP; if (uRefl > 0.5) { PP.y = -PP.y; PP.x += sin(uT * 2.3 + aP.z * 0.35) * 0.5; } gl_Position = uVP * vec4(PP, 1.0);
+  float d = distance(aP, uEye), k = aK.x, ph = aK.y; vec3 c = aC;
+  float pw = 1.0; if (uBlk.z > 0.0) { float r = distance(aP.xz, uBlk.xy); pw = (r < uBlk.z && r > uBlk.w) ? 0.0 : 1.0; }
+  float sz = 1.0;
+  if (k < 0.5) { c *= mix(0.35, 1.0, pw) * (1.0 + uDay * 0.6) * 0.8; if (uWave.w > 0.0) { float wr = distance(aP.xz, uWave.xy) - uWave.z; c += vec3(1.0, 0.72, 0.35) * uWave.w * (exp(-wr * wr / 700.0) * 1.4 + 0.25 * smoothstep(0.0, -300.0, wr) * exp(wr / 400.0)); } }
+  else if (k < 1.5 || (k > 4.5 && k < 5.5)) {
+    float lit = k < 1.5 ? uLitR : uLitO, h = hh(ph), per = 8.0 + 60.0 * hh(ph + 1.3), slot = floor((uT + h * 500.0) / per);
+    float on = step(hh(ph * 1.7 + slot * 3.1), lit);
+    float tv = step(0.94, hh(ph + 7.7)); float fl = mix(1.0, 0.45 + 0.55 * abs(sin(uT * (3.0 + 9.0 * h) + ph)), tv);
+    c *= on * fl * pw * (1.0 - uDay * 0.55) * 2.0; sz = 1.5;
+  }
+  else if (k < 2.5) { c *= (0.5 + 0.5 * sin(uT * 1.4 + ph * 6.2831)) * pw; }
+  else if (k < 3.5) { c *= step(0.8, fract(uT * 0.75 + ph * 0.08)) * 1.6; sz = 1.8; }
+  else if (k < 4.5) { c *= 1.0 + uDay; }
+  else if (k < 6.5) { c *= uNet * (0.55 + 0.45 * sin(uT * 1.7 + ph * 6.2831)) * mix(0.3, 1.0, pw) * 1.8 * smoothstep(90.0, 600.0, d); }
+  else if (k < 7.5) { c *= 0.8 + 0.2 * sin(uT * 0.9 + ph * 6.28); }
+  else if (k < 8.5) { c *= 1.0; }
+  else if (k > 9.5) { c *= pw * (1.0 - uDay * 0.8) * 2.2; sz = 1.7; }
+  float att = uIsPt > 0.5 ? exp(-d * 0.0003) * clamp(700.0 / (d + 80.0), 0.4, 1.0) * mix(0.45, 1.0, smoothstep(40.0, 500.0, d)) : exp(-d * 0.00045) * clamp(380.0 / (d + 40.0), 0.07, 1.3);
+  vC = c * att * uGain; if (uRefl > 0.5) vC *= 0.55 * exp(-aP.y * 0.012) * (0.7 + 0.3 * sin(uT * 5.0 + aP.x * 0.6 + aP.z * 0.4));
+  gl_PointSize = clamp(uPt * sz * 300.0 / d, 1.0, 3.2 * sz) * uDpr;
+}`;
+const GEO_FS = `#version 300 es
+precision highp float; in vec3 vC; uniform float uRound; out vec4 o;
+void main(){ float a = 1.0; if (uRound > 0.5) { vec2 q = gl_PointCoord - 0.5; a = smoothstep(0.25, 0.04, dot(q, q)); } o = vec4(vC * a, 1.0); }`;
+const DOWN = `#version 300 es
+precision highp float; in vec2 vUv; uniform sampler2D uTex; uniform vec2 uTexel; out vec4 o;
+void main(){ vec3 c = vec3(0.0); for (int y = -1; y <= 1; y++) for (int x = -1; x <= 1; x++) c += texture(uTex, vUv + vec2(x, y) * uTexel * 1.5).rgb;
+  c /= 9.0; float l = max(c.r, max(c.g, c.b)); o = vec4(c * smoothstep(0.12, 0.9, l), 1.0); }`;
+const BLUR = `#version 300 es
+precision highp float; in vec2 vUv; uniform sampler2D uTex; uniform vec2 uDir; out vec4 o;
+void main(){ const float w[5] = float[](0.227, 0.194, 0.122, 0.054, 0.016); vec3 c = texture(uTex, vUv).rgb * w[0];
+  for (int i = 1; i < 5; i++) { c += texture(uTex, vUv + uDir * float(i)).rgb * w[i]; c += texture(uTex, vUv - uDir * float(i)).rgb * w[i]; } o = vec4(c, 1.0); }`;
+const COMP = `#version 300 es
+precision highp float; in vec2 vUv; uniform sampler2D uScene; uniform sampler2D uBloom; uniform float uT; out vec4 o;
+float h(vec2 p){ return fract(sin(dot(p, vec2(12.9898, 78.233))) * 43758.5453); }
+vec3 aces(vec3 x){ return clamp((x * (2.51 * x + 0.03)) / (x * (2.43 * x + 0.59) + 0.14), 0.0, 1.0); }
+void main(){ vec2 q = vUv - 0.5; vec3 c = vec3(texture(uScene, vUv + q * 0.0025).r, texture(uScene, vUv).g, texture(uScene, vUv - q * 0.0025).b) + texture(uBloom, vUv).rgb * 0.9; c *= 1.0 - dot(q, q) * 0.7; c = aces(c * 1.1); c += (h(gl_FragCoord.xy + fract(uT) * 91.0) - 0.5) * 0.035; o = vec4(c, 1.0); }`;
+
+function sh(type, src){ const s = gl.createShader(type); gl.shaderSource(s, src); gl.compileShader(s); if (!gl.getShaderParameter(s, gl.COMPILE_STATUS)) throw new Error(gl.getShaderInfoLog(s)); return s; }
+function prog(vs, fs){ const p = gl.createProgram(); gl.attachShader(p, sh(gl.VERTEX_SHADER, vs)); gl.attachShader(p, sh(gl.FRAGMENT_SHADER, fs));
+  gl.bindAttribLocation(p, 0, 'aP'); gl.bindAttribLocation(p, 1, 'aC'); gl.bindAttribLocation(p, 2, 'aK'); gl.linkProgram(p); if (!gl.getProgramParameter(p, gl.LINK_STATUS)) throw new Error(gl.getProgramInfoLog(p));
+  const u = {}, n = gl.getProgramParameter(p, gl.ACTIVE_UNIFORMS); for (let i = 0; i < n; i++) { const nm = gl.getActiveUniform(p, i).name.replace('[0]', ''); u[nm] = gl.getUniformLocation(p, nm); } return {p, u}; }
+const PSKY = prog(VS_FULL, SKY), PG = prog(GEO_VS, GEO_FS), PD = prog(VS_FULL, DOWN), PB = prog(VS_FULL, BLUR), PC = prog(VS_FULL, COMP);
+const vao = gl.createVertexArray();
+function mkVao(data, dynamic){ const v = gl.createVertexArray(), b = gl.createBuffer(); gl.bindVertexArray(v); gl.bindBuffer(gl.ARRAY_BUFFER, b); gl.bufferData(gl.ARRAY_BUFFER, data, dynamic ? gl.DYNAMIC_DRAW : gl.STATIC_DRAW);
+  gl.enableVertexAttribArray(0); gl.vertexAttribPointer(0, 3, gl.FLOAT, false, 32, 0); gl.enableVertexAttribArray(1); gl.vertexAttribPointer(1, 3, gl.FLOAT, false, 32, 12); gl.enableVertexAttribArray(2); gl.vertexAttribPointer(2, 2, gl.FLOAT, false, 32, 24); gl.bindVertexArray(null); return {v, b}; }
+const VSL = mkVao(staticL, false), VSP = mkVao(staticP, false);
+const MAXD = 60000, dynL = new Float32Array(MAXD * 8), dynP = new Float32Array(MAXD * 8);
+const VDL = mkVao(dynL.byteLength, true), VDP = mkVao(dynP.byteLength, true);
+function target(w, h){ const t = gl.createTexture(); gl.bindTexture(gl.TEXTURE_2D, t);
+  if (HALF_F) gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA16F, w, h, 0, gl.RGBA, gl.HALF_FLOAT, null); else gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA8, w, h, 0, gl.RGBA, gl.UNSIGNED_BYTE, null);
+  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR); gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
+  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE); gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
+  const f = gl.createFramebuffer(); gl.bindFramebuffer(gl.FRAMEBUFFER, f); gl.framebufferTexture2D(gl.FRAMEBUFFER, gl.COLOR_ATTACHMENT0, gl.TEXTURE_2D, t, 0); gl.bindFramebuffer(gl.FRAMEBUFFER, null); return {t, f, w, h}; }
+function free(x){ if (x) { gl.deleteTexture(x.t); gl.deleteFramebuffer(x.f); } }
+/* ---------- reloj y ritmo de la ciudad ---------- */
+const st = {view: 1, clock: 0, traffic: 1, net: 0.45};
+let minute = 23 * 60 + 15, wall = 0;
+const g = (h, c, w) => Math.exp(-((((h - c + 36) % 24 - 12) / w) ** 2));
+const actAt = h => Math.min(1, 0.28 + 0.62 * g(h, 8.3, 1.6) + 0.5 * g(h, 13, 2.2) + 0.72 * g(h, 18.6, 2.0) + 0.35 * g(h, 22, 2.2));
+const litR = h => Math.min(0.92, 0.18 + 0.7 * g(h, 21, 3.2) + 0.22 * g(h, 6.8, 1.2));
+const litO = h => Math.min(0.9, 0.2 + 0.62 * g(h, 12.5, 4.6) + 0.12 * g(h, 21, 2));
+const dayAt = h => Math.max(0, Math.min(1, (Math.min(h - 6, 19 - h)) / 1.5)) * 0.9;
+const duskAt = h => Math.max(g(h, 18.6, 0.8), g(h, 6.2, 0.7));
+const phaseName = h => h < 5 ? 'Madrugada · la ciudad sigue despierta' : h < 7 ? 'Amanecer' : h < 9.5 ? 'Hora punta de la mañana' : h < 17 ? 'Día laboral' : h < 20 ? 'Hora punta de la tarde' : h < 23.5 ? 'Noche' : 'Medianoche';
+
+/* ---------- tráfico: carriles, semáforos y autos ---------- */
+const LANES = [];
+for (let axis = 0; axis < 2; axis++) for (let k = 0; k <= NB; k++) for (const dir of [1, -1]) for (let l = 0; l < 2; l++) LANES.push({axis, k, dir, off: (2.4 + l * 3.4), cars: []});
+const NCAR = coarse ? 1400 : 2600, SPAN = 2 * HALF + 120;
+const car = [];
+for (let i = 0; i < NCAR; i++) { const lane = (rnd() * LANES.length) | 0; car.push({lane, s: R(-SPAN / 2, SPAN / 2), v: R(6, 13), v0: R(11, 16), a: 0, on: rnd() < 0.7, px: 0, pz: 0}); LANES[lane].cars.push(i); }
+const lightOff = [];
+for (let k = 0; k <= NB; k++) for (let m = 0; m <= NB; m++) lightOff.push(((k + m) * 2.1 + rnd() * 3) % 26);
+function light(k, m, axis, bo){ // 0 verde · 1 ámbar · 2 rojo · 3 apagado (intermitente)
+  if (bo) return 3; const u = (wall + lightOff[k * (NB + 1) + m]) % 26;
+  if (axis === 0) return u < 10.5 ? 0 : u < 13 ? 1 : 2; return u < 13 ? 2 : u < 23.5 ? 0 : 1;
+}
+function carXZ(L, s){ const o = L.dir * L.off; return L.axis === 0 ? [s, street(L.k) + o] : [street(L.k) - o, s]; }
+function inBlackout(x, z){ return BLK_.on && (() => { const r = Math.hypot(x - BLK_.c[0], z - BLK_.c[1]); return r < BLK_.r1 && r > BLK_.r2; })(); }
+function stepTraffic(dt, act){
+  const want = Math.round(NCAR * Math.min(1, act * st.traffic));
+  let on = 0; for (const c of car) if (c.on) on++;
+  for (const L of LANES) {
+    L.cars.sort((a, b) => (car[b].s - car[a].s) * L.dir);
+    let lead = null;
+    for (const i of L.cars) {
+      const c = car[i]; if (!c.on) continue;
+      let gap = 1e9, dv = 0;
+      if (lead) { gap = (lead.s - c.s) * L.dir - 5; dv = c.v - lead.v; if (gap < -20) gap = 1e9; }
+      // semáforo más próximo por delante
+      const sAhead = c.s * L.dir; let best = 1e9, bm = -1;
+      for (let m = 0; m <= NB; m++) { const stop = (street(m) * L.dir) - STW - 1.5, dd = stop - sAhead; if (dd > -1 && dd < best) { best = dd; bm = m; } }
+      if (bm >= 0 && best < 70) { const [x, z] = carXZ(L, street(bm)), lt = light(L.axis === 0 ? bm : L.k, L.axis === 0 ? L.k : bm, L.axis, inBlackout(x, z));
+        if (lt === 2 || (lt === 1 && best > c.v * 1.2) || (lt === 3 && best > 2 && ((wall * 0.7 + i * 0.13) % 1) < 0.6)) { if (best < gap) { gap = Math.max(0.1, best); dv = c.v; } } }
+      const sStar = 2 + c.v * 1.1 + c.v * dv / (2 * Math.sqrt(2.2 * 3));
+      c.a = 2.2 * (1 - Math.pow(c.v / c.v0, 4) - Math.pow(Math.max(0, sStar) / Math.max(0.5, gap), 2));
+      c.a = Math.max(-9, Math.min(2.5, c.a)); c.v = Math.max(0, c.v + c.a * dt); c.s += c.v * dt * L.dir;
+      lead = c;
+    }
+    for (const i of L.cars) { const c = car[i];
+      if (c.s * L.dir > SPAN / 2) { c.s -= L.dir * SPAN; if (on > want && c.on) { c.on = false; on--; } else if (on < want && !c.on) { c.on = true; on++; c.v = c.v0 * 0.8; } }
+      if (!c.on && on < want && rnd() < 0.002) { c.on = true; on++; } }
+  }
+  return on;
+}
+
+/* ---------- peatones ---------- */
+const NPED = coarse ? 1500 : 3200, ped = [];
+for (let i = 0; i < NPED; i++) ped.push({axis: rnd() < 0.5 ? 0 : 1, k: (rnd() * (NB + 1)) | 0, side: rnd() < 0.5 ? -1 : 1, s: R(-HALF, HALF), v: R(0.9, 1.6) * (rnd() < 0.5 ? -1 : 1), on: rnd(), c: rnd() < 0.7 ? [1.0, 0.82, 0.6] : [0.7, 0.85, 1.0]});
+
+/* ---------- metro, drones, aviones ---------- */
+const trains = []; for (let m = 0; m < 2; m++) for (let k = 0; k < 4; k++) trains.push({m, s: R(-HALF, HALF), dir: k % 2 ? 1 : -1, v: 17 + rnd() * 3, lane: k % 2 ? 2 : -2});
+const drones = []; for (let k = 0; k < 14; k++) drones.push({c: [R(-500, 500), R(110, 230), R(-500, 500)], a: R(60, 260), b: R(60, 260), w: R(0.03, 0.08), ph: R(0, 6.28), trail: []});
+const planes = [{p: [-2600, 900, -400], v: [70, 0, 12], ph: 0}, {p: [2200, 1100, 900], v: [-60, 0, -20], ph: 0.5}];
+
+/* ---------- paquetes de datos ---------- */
+const packets = [];
+function sendPacket(a, b, t0, dur, wave){ packets.push({a, b, t0, dur, wave}); }
+function pulseFrom(src){
+  // onda por la red: cada nodo se alcanza por el camino más corto
+  const dist = new Float64Array(ROOF.length).fill(1e9), par = new Int32Array(ROOF.length).fill(-1); dist[src] = 0; const q = [src];
+  while (q.length) { q.sort((x, y) => dist[y] - dist[x]); const a = q.pop();
+    for (const b of ROOF[a].nb) { const d = dist[a] + Math.hypot(ROOF[a].p[0] - ROOF[b].p[0], ROOF[a].p[2] - ROOF[b].p[2]); if (d < dist[b]) { if (dist[b] === 1e9) q.push(b); dist[b] = d; par[b] = a; } } }
+  const sp = 260; ROOF[src].flash = wall; WAVE = {c: [ROOF[src].p[0], ROOF[src].p[2]], t0: wall};
+  for (let b = 0; b < ROOF.length; b++) if (par[b] >= 0) { const a = par[b], d = dist[b] - dist[a]; sendPacket(a, b, wall + dist[a] / sp, d / sp, true); }
+}
+
+/* ---------- apagón ---------- */
+let WAVE = null;
+const BLK_ = {on: false, c: [0, 0], t0: 0, r1: 0, r2: 0};
+function blackout(){ const a = rnd() * 6.28; BLK_.on = true; BLK_.c = [Math.cos(a) * 250, Math.sin(a) * 250]; BLK_.t0 = wall; }
+function stepBlackout(){ if (!BLK_.on) return; const t = wall - BLK_.t0; BLK_.r1 = Math.min(2600, t * 420); BLK_.r2 = t < 5.5 ? 0 : (t - 5.5) * 260; if (BLK_.r2 > 2400) BLK_.on = false; }
+let transT = 0;
+const norm = v => { const l = Math.hypot(v[0], v[1], v[2]) || 1; return [v[0] / l, v[1] / l, v[2] / l]; };
+const crossV = (a, b) => [a[1] * b[2] - a[2] * b[1], a[2] * b[0] - a[0] * b[2], a[0] * b[1] - a[1] * b[0]];
+const dotV = (a, b) => a[0] * b[0] + a[1] * b[1] + a[2] * b[2];
+function rayAt(px, py){ const B = BASIS, x = (px / W * 2 - 1) * B.tn * B.asp, y = (1 - py / H * 2) * B.tn; return norm([B.f[0] + B.r[0] * x + B.u[0] * y, B.f[1] + B.r[1] * x + B.u[1] * y, B.f[2] + B.r[2] * x + B.u[2] * y]); }
+
+/* ---------- geometría dinámica por cuadro ---------- */
+let nDL = 0, nDP = 0;
+function dl(x, y, z, r, g2, b){ if (nDL >= MAXD) return; const o = nDL * 8; dynL[o] = x; dynL[o + 1] = y; dynL[o + 2] = z; dynL[o + 3] = r; dynL[o + 4] = g2; dynL[o + 5] = b; dynL[o + 6] = 9; dynL[o + 7] = 0; nDL++; }
+function dp(x, y, z, r, g2, b){ if (nDP >= MAXD) return; const o = nDP * 8; dynP[o] = x; dynP[o + 1] = y; dynP[o + 2] = z; dynP[o + 3] = r; dynP[o + 4] = g2; dynP[o + 5] = b; dynP[o + 6] = 9; dynP[o + 7] = 0; nDP++; }
+let cursor = null, stats = {cars: 0, peds: 0, pk: 0};
+function dynamic(dt, act){
+  nDL = 0; nDP = 0;
+  // autos: blanco si vienen hacia la cámara, rojo si se alejan (como en una foto de larga exposición)
+  for (const c of car) { if (!c.on) continue; const L = LANES[c.lane], [x, z] = carXZ(L, c.s), fx = L.axis === 0 ? L.dir : 0, fz = L.axis === 0 ? 0 : L.dir;
+    const toward = fx * (EYE[0] - x) + fz * (EYE[2] - z) > 0, len = 3 + c.v * 0.55, brake = c.a < -1.2 ? 1 : 0;
+    const col = toward ? [1.0, 0.92, 0.78] : [1.0, 0.13 + 0.05 * brake, 0.08];
+    const I = (toward ? 1.8 : 1.5 + brake * 1.5) * (st.view === 2 ? 1.3 : 1);
+    dl(x - fx * len, 0.8, z - fz * len, col[0] * I * 0.25, col[1] * I * 0.25, col[2] * I * 0.25); dl(x, 0.8, z, col[0] * I, col[1] * I, col[2] * I);
+    dp(x, 0.8, z, col[0] * I, col[1] * I, col[2] * I); }
+  // peatones
+  const vis = Math.round(NPED * (0.25 + 0.75 * act)); let np = 0;
+  for (let i = 0; i < NPED; i++) { const p = ped[i]; p.s += p.v * dt; if (p.s > HALF) p.s -= 2 * HALF; if (p.s < -HALF) p.s += 2 * HALF; if (i >= vis) continue; np++;
+    const o = street(p.k) + p.side * (STW - 3), x = p.axis === 0 ? p.s : o, z = p.axis === 0 ? o : p.s, fl = 0.6 + 0.4 * Math.sin(wall * 5 + i);
+    dp(x, 1.2, z, p.c[0] * 0.28 * fl, p.c[1] * 0.28 * fl, p.c[2] * 0.28 * fl); }
+  // semáforos
+  for (let k = 0; k <= NB; k++) for (let m = 0; m <= NB; m++) { const x = street(k), z = street(m), bo = inBlackout(x, z);
+    for (let axis = 0; axis < 2; axis++) { const lt = light(k, m, axis, bo), col = lt === 0 ? [0.1, 1.0, 0.5] : lt === 1 ? [1.0, 0.6, 0.05] : lt === 2 ? [1.0, 0.08, 0.05] : ((wall % 1) < 0.5 ? [1.0, 0.55, 0.05] : [0, 0, 0]);
+      for (const s of [-1, 1]) dp(axis === 0 ? x + s * (STW + 1) : x + s * (STW + 1) * 0.3, 5.5, axis === 0 ? z + s * (STW + 1) * 0.3 : z + s * (STW + 1), col[0] * 0.8, col[1] * 0.8, col[2] * 0.8); } }
+  // metro
+  for (const tr of trains) { tr.s += tr.v * tr.dir * dt; if (tr.s * tr.dir > HALF + 60) tr.s = -tr.dir * (HALF + 60); const M = METRO[tr.m];
+    for (let k = 0; k < 5; k++) { const s0 = tr.s - tr.dir * k * 17, s1 = s0 - tr.dir * 15, P = s => M.axis === 0 ? [s, M.y + 1.5, M.s + tr.lane] : [M.s + tr.lane, M.y + 1.5, s];
+      const a = P(s0), b = P(s1); dl(a[0], a[1], a[2], 0.5, 0.95, 1.0); dl(b[0], b[1], b[2], 0.5, 0.95, 1.0);
+      for (let w2 = 0; w2 < 4; w2++) { const q = P(s0 - tr.dir * (2 + w2 * 3.5)); dp(q[0], q[1] + 0.8, q[2], 1.0, 0.9, 0.7); } } }
+  // drones con luces de navegación
+  for (const d of drones) { const t = wall * d.w + d.ph, x = d.c[0] + Math.sin(t) * d.a, z = d.c[2] + Math.sin(t * 1.7) * d.b, y = d.c[1] + Math.sin(t * 0.9) * 15, bl = (wall * 1.3 + d.ph) % 1 < 0.12;
+    dp(x - 1.5, y, z, 1.0, 0.1, 0.05); dp(x + 1.5, y, z, 0.1, 1.0, 0.3); if (bl) dp(x, y + 0.6, z, 2.5, 2.5, 2.5);
+    d.trail.push(x, y, z); if (d.trail.length > 90) d.trail.splice(0, 3);
+    for (let k = 3; k < d.trail.length; k += 3) { const a = k / d.trail.length * 0.12; dl(d.trail[k - 3], d.trail[k - 2], d.trail[k - 1], 0.3 * a, 0.7 * a, a); dl(d.trail[k], d.trail[k + 1], d.trail[k + 2], 0.3 * a, 0.7 * a, a); } }
+  for (const p of planes) { for (let k = 0; k < 3; k++) p.p[k] += p.v[k] * dt; if (Math.abs(p.p[0]) > 3200) { p.p[0] *= -0.98; p.p[2] = R(-900, 900); }
+    const bl = (wall + p.ph) % 1.3 < 0.08; dp(p.p[0], p.p[1], p.p[2], 1.0, 0.1, 0.05); if (bl) dp(p.p[0], p.p[1] + 3, p.p[2], 4, 4, 4); }
+  // red de datos: paquetes normales + onda de pulso
+  const rate = 70 * st.net * (0.4 + 0.6 * act);
+  let spawn = rate * dt; while (spawn > 0) { if (rnd() > spawn) break; spawn--; const a = (rnd() * ROOF.length) | 0, nb = ROOF[a].nb; if (nb.length) { const b = nb[(rnd() * nb.length) | 0]; sendPacket(a, b, wall, Math.hypot(ROOF[a].p[0] - ROOF[b].p[0], ROOF[a].p[2] - ROOF[b].p[2]) / 380, false); } }
+  let live = 0;
+  for (let i = packets.length - 1; i >= 0; i--) { const pk = packets[i], u = (wall - pk.t0) / pk.dur; if (u < 0) { live++; continue; }
+    if (u >= 1) { ROOF[pk.b].flash = Math.max(ROOF[pk.b].flash, pk.wave ? wall : ROOF[pk.b].flash);
+      if (!pk.wave && rnd() < 0.72 && packets.length < 3000) { const nb = ROOF[pk.b].nb, c = nb[(rnd() * nb.length) | 0]; if (c !== undefined && c !== pk.a) sendPacket(pk.b, c, wall, Math.hypot(ROOF[pk.b].p[0] - ROOF[c].p[0], ROOF[pk.b].p[2] - ROOF[c].p[2]) / 380, false); }
+      packets.splice(i, 1); continue; }
+    live++; const A = ROOF[pk.a].p, B = ROOF[pk.b].p, u0 = pk.wave ? 0 : Math.max(0, u - 0.18), P = v => [A[0] + (B[0] - A[0]) * v, A[1] + (B[1] - A[1]) * v + Math.sin(v * Math.PI) * 6, A[2] + (B[2] - A[2]) * v];
+    const p = P(u), q = P(u0), c = pk.wave ? [1.0, 0.9, 0.6] : [0.45, 0.9, 1.0], I = pk.wave ? 5.0 : 1.0;
+    dl(q[0], q[1], q[2], c[0] * (pk.wave ? 0.6 : 0.05), c[1] * (pk.wave ? 0.6 : 0.05), c[2] * (pk.wave ? 0.6 : 0.05)); dl(p[0], p[1], p[2], c[0] * I * 0.8, c[1] * I * 0.8, c[2] * I * 0.8); dp(p[0], p[1], p[2], c[0] * I, c[1] * I, c[2] * I); if (pk.wave) { dp(p[0], p[1] + 1, p[2], c[0] * I, c[1] * I, c[2] * I); } }
+  for (const r of ROOF) { const e = wall - r.flash; if (e >= 0 && e < 1.2) { const k = (1 - e / 1.2) ** 2 * 5; dp(r.p[0], r.p[1], r.p[2], k, k * 0.95, k * 0.75); for (let q = 0; q < 12; q++) { const a = q / 12 * 6.283, rr = 6 + e * 40; dp(r.p[0] + Math.cos(a) * rr, r.p[1], r.p[2] + Math.sin(a) * rr, k * 0.4, k * 0.38, k * 0.3); } } }
+  // plexo del cursor: nodos cercanos se conectan con el puntero
+  if (cursor) { const [cx, cy, cz] = cursor, R2 = 150 * 150; let n = 0;
+    dp(cx, cy, cz, 2.2, 2.4, 2.6);
+    for (let i = 0; i < FACEA.length && n < 180; i += 3) { const dx = FACEA[i] - cx, dy = FACEA[i + 1] - cy, dz = FACEA[i + 2] - cz, d2 = dx * dx + dy * dy + dz * dz;
+      if (d2 < R2) { const a = (1 - Math.sqrt(d2) / 150) ** 1.5 * 3; dl(cx, cy, cz, 0.5 * a, 0.85 * a, a); dl(FACEA[i], FACEA[i + 1], FACEA[i + 2], 0.3 * a, 0.6 * a, a); dp(FACEA[i], FACEA[i + 1], FACEA[i + 2], 0.7 * a, 0.95 * a, a * 1.2); n++; } } }
+  stats.peds = np; stats.pk = live;
+}
+
+/* ================= Distrito: recorrido, hologramas, lluvia, niebla y reflejos ================= */
+const TAU = Math.PI * 2;
+const cvs = document.createElement('canvas'), c2 = cvs.getContext('2d', {willReadFrequently: true});
+function sample2D(draw, n, depth, bulge = 0){
+  const S = 400; cvs.width = cvs.height = S; c2.clearRect(0, 0, S, S); c2.fillStyle = c2.strokeStyle = '#fff'; draw(c2, S);
+  const d = c2.getImageData(0, 0, S, S).data, px = [];
+  for (let y = 0; y < S; y += 2) for (let x = 0; x < S; x += 2) if (d[(y * S + x) * 4 + 3] > 128) px.push(x, y);
+  const out = [], m = px.length / 2;
+  for (let i = 0; i < n; i++) { const k = (rnd() * m | 0) * 2, x = (px[k] + rnd() * 2) / S * 2 - 1, y = 1 - (px[k + 1] + rnd() * 2) / S * 2;
+    out.push(x * 1.05, y * 1.05, (rnd() - 0.5) * depth - bulge * (x * x + y * y)); }
+  return out;
+}
+function onSphere(){ const u = rnd() * 2 - 1, a = rnd() * TAU, r = Math.sqrt(1 - u * u); return [r * Math.cos(a), u, r * Math.sin(a)]; }
+function pick(parts, n){ const tot = parts.reduce((s, p) => s + p[0], 0), out = [];
+  for (let i = 0; i < n; i++) { let r = rnd() * tot, k = 0; while (r > parts[k][0]) { r -= parts[k][0]; k++; } out.push(...parts[k][1]()); } return out; }
+const SHAPE = {
+  word(n){ return sample2D((c, S) => { c.font = `700 ${S * 0.155}px "Chakra Petch", sans-serif`; c.textAlign = 'center'; c.textBaseline = 'middle'; c.fillText('DISTRITO', S / 2, S / 2); }, n, 0.1); },
+  brain(n){
+    const hemi = () => { const s = rnd() < 0.5 ? -1 : 1, d = onSphere(); let x = d[0], y = d[1], z = d[2]; if (x * s < -0.2) x = -0.2 * s;
+      const f = 1 + 0.07 * Math.sin(y * 16 + z * 11 + s) * Math.sin(z * 9 - y * 5);
+      return [z * 0.82 * f, y * 0.56 * f + 0.1, s * 0.05 + x * 0.42 * f]; };
+    const cereb = () => { const d = onSphere(); return [-0.55 + d[2] * 0.22, -0.38 + d[1] * 0.16, d[0] * 0.3]; };
+    const stem = () => { const t = rnd(), a = rnd() * TAU; return [-0.28 - t * 0.08, -0.35 - t * 0.42, Math.cos(a) * 0.08 + Math.sin(a) * 0.0]; };
+    return pick([[0.84, hemi], [0.11, cereb], [0.05, stem]], n);
+  },
+  megaphone(n){
+    const R = x => 0.12 + 0.46 * Math.pow((x + 0.6) / 1.05, 1.6);
+    const bell = () => { const x = -0.6 + rnd() * 1.05, a = rnd() * TAU, r = R(x); return [x - 0.25, r * Math.cos(a), r * Math.sin(a)]; };
+    const rim = () => { const a = rnd() * TAU, r = R(0.45); return [0.2, r * Math.cos(a), r * Math.sin(a)]; };
+    const back = () => { const x = -0.95 + rnd() * 0.35, a = rnd() * TAU; return [x - 0.0, 0.13 * Math.cos(a), 0.13 * Math.sin(a)]; };
+    const handle = () => [-0.5 + (rnd() - 0.5) * 0.12, -0.12 - rnd() * 0.42, (rnd() - 0.5) * 0.1];
+    const wave = () => { const k = rnd() * 3 | 0, a = (rnd() - 0.5) * 1.3, r = 0.55 + k * 0.2; return [0.2 + Math.cos(a) * r * 0.55 + 0.1, Math.sin(a) * r, (rnd() - 0.5) * 0.05, 9, k]; };
+    return pick([[0.52, bell], [0.1, rim], [0.08, back], [0.08, handle], [0.22, () => wave().slice(0, 3)]], n);
+  },
+  gears(n){
+    const G = [[-0.42, 0.18, 0.56, 10], [0.52, -0.36, 0.4, 7]];
+    const prof = (g, a) => g[2] * (1 + 0.14 * (Math.tanh(Math.sin(a * g[3]) * 4)));
+    const outline = g => () => { const a = rnd() * TAU, r = prof(g, a); return [g[0] + Math.cos(a) * r, g[1] + Math.sin(a) * r, rnd() < 0.5 ? -0.06 : 0.06]; };
+    const hub = g => () => { const a = rnd() * TAU, r = g[2] * 0.28; return [g[0] + Math.cos(a) * r, g[1] + Math.sin(a) * r, (rnd() - 0.5) * 0.18]; };
+    const spoke = g => () => { const k = rnd() * 5 | 0, a = k / 5 * TAU, r = g[2] * (0.28 + rnd() * 0.6); return [g[0] + Math.cos(a) * r, g[1] + Math.sin(a) * r, (rnd() - 0.5) * 0.1]; };
+    return pick([[0.36, outline(G[0])], [0.07, hub(G[0])], [0.12, spoke(G[0])], [0.28, outline(G[1])], [0.06, hub(G[1])], [0.11, spoke(G[1])]], n);
+  },
+  flow(n){
+    const B = [[-1.05, 0], [-0.5, 0], [0.05, 0.36], [0.05, -0.36], [0.6, 0.36], [0.6, -0.36], [1.1, 0]], bw = 0.17, bh = 0.13;
+    const box = k => () => { const [cx, cy] = B[k], t = rnd() * 4, e = t | 0, u = t - e, r = 0.04;
+      let x, y; if (e === 0) { x = -bw + u * 2 * bw; y = bh; } else if (e === 1) { x = bw; y = bh - u * 2 * bh; } else if (e === 2) { x = bw - u * 2 * bw; y = -bh; } else { x = -bw; y = -bh + u * 2 * bh; }
+      if (Math.abs(x) > bw - r && Math.abs(y) > bh - r) { const sx = Math.sign(x), sy = Math.sign(y), a = Math.atan2(y - sy * (bh - r), x - sx * (bw - r)); x = sx * (bw - r) + Math.cos(a) * r; y = sy * (bh - r) + Math.sin(a) * r; }
+      return [cx + x, cy + y, (rnd() - 0.5) * 0.08]; };
+    const icon = k => () => { const [cx, cy] = B[k], a = rnd() * TAU, r = 0.05 + (rnd() < 0.5 ? 0 : 0.02); return [cx + Math.cos(a) * r, cy + Math.sin(a) * r, 0.02]; };
+    const E = [[0, 1], [1, 2], [1, 3], [2, 4], [3, 5], [4, 6], [5, 6]];
+    const wire = () => { const [a, b] = E[rnd() * E.length | 0], p0 = [B[a][0] + bw, B[a][1]], p3 = [B[b][0] - bw, B[b][1]], m = (p3[0] - p0[0]) * 0.5, t = rnd(), u = 1 - t;
+      const x = u * u * u * p0[0] + 3 * u * u * t * (p0[0] + m) + 3 * u * t * t * (p3[0] - m) + t * t * t * p3[0], y = u * u * u * p0[1] + 3 * u * u * t * p0[1] + 3 * u * t * t * p3[1] + t * t * t * p3[1];
+      return [x, y, (rnd() - 0.5) * 0.02]; };
+    const port = () => { const k = rnd() * B.length | 0, s = rnd() < 0.5 ? -1 : 1, a = rnd() * TAU; return [B[k][0] + s * bw + Math.cos(a) * 0.025, B[k][1] + Math.sin(a) * 0.025, 0]; };
+    const parts = B.map((_, k) => [0.085, box(k)]).concat(B.map((_, k) => [0.02, icon(k)]), [[0.3, wire], [0.07, port]]);
+    return pick(parts, n).map((v, i) => i % 3 === 0 ? v * 0.84 : i % 3 === 1 ? v * 0.95 : v);
+  },
+  browser(n){ return sample2D((c, S) => { c.lineWidth = 12; c.lineJoin = 'round'; c.beginPath(); c.roundRect(40, 70, S - 80, S - 140, 22); c.stroke();
+    c.beginPath(); c.moveTo(40, 118); c.lineTo(S - 40, 118); c.stroke(); for (let k = 0; k < 3; k++) { c.beginPath(); c.arc(72 + k * 26, 94, 8, 0, TAU); c.fill(); }
+    c.font = `700 ${S * 0.26}px "Space Grotesk", sans-serif`; c.textAlign = 'center'; c.textBaseline = 'middle'; c.fillText('</>', S / 2, S / 2 + 38); }, n, 0.14, 0.12); },
+  shield(n){ return sample2D((c, S) => { const p = new Path2D('M200 40 L330 90 L330 190 C330 275 272 330 200 365 C128 330 70 275 70 190 L70 90 Z'); c.lineWidth = 16; c.lineJoin = 'round'; c.stroke(p);
+    const q = new Path2D('M200 70 L302 110 L302 190 C302 258 256 302 200 332 C144 302 98 258 98 190 L98 110 Z'); c.lineWidth = 5; c.stroke(q);
+    c.lineWidth = 24; c.lineCap = 'round'; c.beginPath(); c.moveTo(145, 200); c.lineTo(188, 243); c.lineTo(262, 158); c.stroke(); }, n, 0.12, 0.3); },
+  rack(n){
+    const box = y0 => () => { // aristas de una caja
+      const w = 0.62, h = 0.15, d = 0.42, e = rnd() * 12 | 0, t = rnd() * 2 - 1, s = [[1, 1], [1, -1], [-1, 1], [-1, -1]][e % 4];
+      if (e < 4) return [t * w, y0 + s[0] * h, s[1] * d]; if (e < 8) return [s[0] * w, y0 + t * h, s[1] * d]; return [s[0] * w, y0 + s[1] * h, t * d]; };
+    const face = y0 => () => [(rnd() * 2 - 1) * 0.55, y0 + (rnd() - 0.5) * 0.08, 0.42];
+    const led = y0 => () => [0.4 + (rnd() * 3 | 0) * 0.06, y0 + 0.05, 0.43];
+    const cable = () => { const t = rnd(), k = rnd() * 3 | 0; return [-0.62 - t * 0.35, 0.36 - k * 0.36 - t * t * 0.3, 0.2]; };
+    return pick([[0.22, box(0.36)], [0.22, box(0)], [0.22, box(-0.36)], [0.07, face(0.36)], [0.07, face(0)], [0.07, face(-0.36)], [0.03, led(0.36)], [0.03, led(0)], [0.03, led(-0.36)], [0.04, cable]], n);
+  },
+  wrench(n){ return sample2D((c, S) => { c.save(); c.translate(S / 2, S / 2); c.rotate(-0.78);
+    c.fillRect(-26, -20, 52, 185); c.beginPath(); c.arc(0, 165, 40, 0, TAU); c.fill();
+    c.beginPath(); c.arc(0, -85, 82, 0, TAU); c.fill(); c.globalCompositeOperation = 'destination-out'; c.fillRect(-30, -190, 60, 120); c.beginPath(); c.arc(0, 165, 14, 0, TAU); c.fill(); c.restore(); }, n, 0.16); },
+  laptop(n){
+    const base = () => [(rnd() * 2 - 1) * 0.82, -0.42, (rnd() * 2 - 1) * 0.5 + 0.2];
+    const baseEdge = () => { const t = rnd() * 2 - 1; return rnd() < 0.5 ? [t * 0.82, -0.42, rnd() < 0.5 ? -0.3 : 0.7] : [rnd() < 0.5 ? -0.82 : 0.82, -0.42, 0.2 + t * 0.5]; };
+    const keys = () => [((rnd() * 12 | 0) - 5.5) * 0.11, -0.41, ((rnd() * 4 | 0) - 1.5) * 0.1 + 0.15];
+    const scr = (u, v) => [u * 0.8, -0.42 + v * 0.95 * Math.cos(0.22), -0.3 - v * 0.95 * Math.sin(0.22)];
+    const screenEdge = () => { const t = rnd(), k = rnd() * 4 | 0; return k < 2 ? scr(t * 2 - 1, k) : scr(k === 2 ? -1 : 1, t); };
+    const screenLines = () => { const row = rnd() * 6 | 0, len = 0.3 + ((row * 37) % 5) * 0.12; return scr(-0.8 + rnd() * len * 1.6, 0.2 + row * 0.12); };
+    return pick([[0.16, base], [0.14, baseEdge], [0.12, keys], [0.3, screenEdge], [0.28, screenLines]], n);
+  },
+  chain(n){
+    const C = [[-0.95, -0.15], [-0.32, 0.18], [0.32, -0.15], [0.95, 0.18]];
+    const ball = k => () => { const d = onSphere(); return [C[k][0] + d[0] * 0.22, C[k][1] + d[1] * 0.22, d[2] * 0.22]; };
+    const link = () => { const k = rnd() * 3 | 0, t = rnd(), a = C[k], b = C[k + 1]; return [a[0] + (b[0] - a[0]) * t, a[1] + (b[1] - a[1]) * t + Math.sin(t * Math.PI) * 0.06, (rnd() - 0.5) * 0.04]; };
+    return pick([[0.2, ball(0)], [0.2, ball(1)], [0.2, ball(2)], [0.2, ball(3)], [0.2, link]], n);
+  },
+  globe(n){
+    const surf = () => onSphere().map(v => v * 0.85);
+    const lat = () => { const k = (rnd() * 5 | 0) - 2, y = Math.sin(k * 0.5), r = Math.cos(k * 0.5), a = rnd() * TAU; return [Math.cos(a) * r * 0.85, y * 0.85, Math.sin(a) * r * 0.85]; };
+    const lon = () => { const k = rnd() * 8 | 0, a = k / 8 * Math.PI, t = rnd() * TAU; return [Math.cos(t) * Math.cos(a) * 0.85, Math.sin(t) * 0.85, Math.cos(t) * Math.sin(a) * 0.85]; };
+    const ring = () => { const a = rnd() * TAU; return [Math.cos(a) * 1.18, Math.sin(a) * 1.18 * 0.22, Math.sin(a) * 1.18 * 0.95]; };
+    return pick([[0.34, surf], [0.24, lat], [0.24, lon], [0.18, ring]], n);
+  }
+};
+
+let W = 0, H = 0, DPR = 1, scale = HQ ? 1 : (coarse ? 0.6 : 0.85), maxScale = HQ ? 1 : (coarse ? 0.8 : 1), RT = null, B1 = null, B2 = null, RR = null, RR2 = null;
+const FOV = 0.95;
+let EYE = [0, 400, 1200], TGT = [0, 40, 0], VP = new Float32Array(16), BASIS = null;
+const lerp3 = (a, b, k) => [a[0] + (b[0] - a[0]) * k, a[1] + (b[1] - a[1]) * k, a[2] + (b[2] - a[2]) * k];
+const smooth = x => x * x * (3 - 2 * x);
+
+/* ---------- sitios de hologramas: torres altas repartidas por la ciudad ---------- */
+const SITES = [];
+function buildSites(){
+  const cands = ROOF.filter(r => r.h > 45).sort((a, b) => b.h - a.h);
+  let sp = 170, chosen = [];
+  while (sp > 60) { chosen = []; for (const r of cands) { if (chosen.every(c => Math.hypot(c.p[0] - r.p[0], c.p[2] - r.p[2]) > sp)) chosen.push(r); if (chosen.length >= 11) break; } if (chosen.length >= 11) break; sp -= 15; }
+  const top = chosen[0], rest = chosen.slice(1, 11).sort((a, b) => Math.atan2(a.p[2] - DC[1], a.p[0] - DC[0]) - Math.atan2(b.p[2] - DC[1], b.p[0] - DC[0]));
+  const NHP = coarse ? 600 : 1000;
+  SECS.forEach((s, k) => {
+    const shp = s.dataset.shape; let roof, S, c;
+    if (k === 0) { roof = {p: [DC[0], 0, DC[1]], h: 0}; S = coarse ? 170 : 230; c = [DC[0], 360, DC[1]]; }
+    else if (k === SECS.length - 1) { roof = top; S = 34; c = [top.p[0], top.p[1] + 55, top.p[2]]; }
+    else { roof = rest[(k - 1) % rest.length]; S = 32; c = [roof.p[0], roof.p[1] + S * 1.7 + 28, roof.p[2]]; }
+    const raw = SHAPE[shp](NHP), P = new Float32Array(NHP * 4), L = [];
+    for (let i = 0; i < NHP; i++) { P[i * 4] = raw[i * 3]; P[i * 4 + 1] = raw[i * 3 + 1]; P[i * 4 + 2] = raw[i * 3 + 2]; P[i * 4 + 3] = Math.random(); }
+    const th = 0.13 * 0.13;
+    for (let i = 0; i < NHP; i++) { const d = []; for (let j = 0; j < NHP; j++) if (j !== i) { const q = (P[i * 4] - P[j * 4]) ** 2 + (P[i * 4 + 1] - P[j * 4 + 1]) ** 2 + (P[i * 4 + 2] - P[j * 4 + 2]) ** 2; if (q < th) d.push([q, j]); }
+      d.sort((a, b) => a[0] - b[0]); for (let m = 0; m < Math.min(2, d.length); m++) if (d[m][1] > i) L.push(i, d[m][1]); }
+    SITES.push({k, shp, base: [roof.p[0], roof.p[1], roof.p[2]], c, S, P, L, n: NHP, word: k === 0});
+  });
+  // recorrido de cámara: afuera de cada torre mirando hacia el centro, con la ciudad detrás
+  SITES.forEach((s, k) => {
+    if (k === 0) { s.pos = [DC[0] + 760, 560, DC[1] + 880]; s.tgt = [DC[0], 230, DC[1]]; return; }
+    let dx = s.c[0] - DC[0], dz = s.c[2] - DC[1], l = Math.hypot(dx, dz) || 1; dx /= l; dz /= l;
+    const a = 0.55 * (k % 2 ? 1 : -1), ca = Math.cos(a), sa = Math.sin(a), ox = dx * ca - dz * sa, oz = dx * sa + dz * ca;
+    const dist = k === SECS.length - 1 ? 150 : 118;
+    s.pos = [s.c[0] + ox * dist, Math.max(30, s.c[1] - 34), s.c[2] + oz * dist]; s.tgt = s.c.slice();
+  });
+}
+function catmull(P, x){ const n = P.length, i = Math.min(n - 2, Math.max(0, Math.floor(x))), f = x - i, p0 = P[Math.max(0, i - 1)], p1 = P[i], p2 = P[i + 1], p3 = P[Math.min(n - 1, i + 2)];
+  const f2 = f * f, f3 = f2 * f; return [0, 1, 2].map(k => 0.5 * (2 * p1[k] + (-p0[k] + p2[k]) * f + (2 * p0[k] - 5 * p1[k] + 4 * p2[k] - p3[k]) * f2 + (-p0[k] + 3 * p1[k] - 3 * p2[k] + p3[k]) * f3)); }
+
+/* ---------- scroll ---------- */
+let sPos = 0, sOn = 0, lastS = 0, sVel = 0, mouse = [0, 0], mouseS = [0, 0];
+function scrollPos(){
+  const c = SECS.map(s => { const r = s.getBoundingClientRect(); return r.top + r.height / 2 - H / 2; });
+  let k = 0; while (k < c.length - 1 && c[k + 1] <= 0) k++;
+  let f = 0; if (k < c.length - 1 && c[k] <= 0) f = -c[k] / (c[k + 1] - c[k]);
+  sOn = f < 0.5 ? k : Math.min(k + 1, SECS.length - 1); DOTS.forEach((d, i) => d.classList.toggle('on', i === sOn));
+  const hold = f < 0.15 ? 0 : f > 0.85 ? 1 : (f - 0.15) / 0.7; return Math.min(SECS.length - 1, k + smooth(hold));
+}
+function updateCamera(dt){
+  sPos = scrollPos(); sVel += (Math.abs(sPos - lastS) / Math.max(dt, 1e-3) - sVel) * Math.min(1, dt * 4); lastS = sPos;
+  let pos = catmull(SITES.map(s => s.pos), sPos), tgt = catmull(SITES.map(s => s.tgt), sPos);
+  const fr = sPos - Math.floor(sPos); if (sPos > 1 && sPos < SECS.length - 1) pos[1] = Math.max(28, pos[1] - Math.sin(Math.PI * fr) * 35); // pasadas bajas entre torres
+  mouseS[0] += (mouse[0] - mouseS[0]) * Math.min(1, dt * 2.5); mouseS[1] += (mouse[1] - mouseS[1]) * Math.min(1, dt * 2.5);
+  const f0 = norm([tgt[0] - pos[0], tgt[1] - pos[1], tgt[2] - pos[2]]), r0 = norm(crossV(f0, [0, 1, 0])), u0 = crossV(r0, f0), dist = Math.hypot(tgt[0] - pos[0], tgt[1] - pos[1], tgt[2] - pos[2]);
+  const hand = reduce ? [0, 0, 0] : [Math.sin(wall * 0.37) * 1.6, Math.sin(wall * 0.51) * 1.2, Math.cos(wall * 0.29) * 1.6];
+  pos = [pos[0] + r0[0] * mouseS[0] * dist * 0.05 + hand[0], pos[1] - mouseS[1] * dist * 0.03 + hand[1], pos[2] + r0[2] * mouseS[0] * dist * 0.05 + hand[2]];
+  // el texto está a la izquierda (o abajo en celular): corremos el encuadre para que el holograma quede libre
+  const tn = Math.tan(FOV / 2), asp = W / H;
+  if (W < 760) tgt = [tgt[0] - u0[0] * dist * tn * 0.42, tgt[1] - u0[1] * dist * tn * 0.42, tgt[2] - u0[2] * dist * tn * 0.42];
+  else tgt = [tgt[0] - r0[0] * dist * tn * asp * 0.34, tgt[1], tgt[2] - r0[2] * dist * tn * asp * 0.34];
+  EYE = pos; TGT = tgt;
+  const f = norm([TGT[0] - EYE[0], TGT[1] - EYE[1], TGT[2] - EYE[2]]), r = norm(crossV(f, [0, 1, 0])), u = crossV(r, f);
+  const V = [r[0], u[0], -f[0], 0, r[1], u[1], -f[1], 0, r[2], u[2], -f[2], 0, -dotV(r, EYE), -dotV(u, EYE), dotV(f, EYE), 1];
+  const n = 0.8, fa = 8000, Pm = [1 / (asp * tn), 0, 0, 0, 0, 1 / tn, 0, 0, 0, 0, -(fa + n) / (fa - n), -1, 0, 0, -2 * fa * n / (fa - n), 0];
+  for (let i = 0; i < 4; i++) for (let j = 0; j < 4; j++) { let s2 = 0; for (let m = 0; m < 4; m++) s2 += Pm[m * 4 + i] * V[j * 4 + m]; VP[j * 4 + i] = s2; }
+  BASIS = {r, u, f, tn, asp};
+}
+
+/* ---------- hologramas y reflectores (se agregan a la geometría dinámica) ---------- */
+const CY = [0.1, 0.89, 1.0], MG = [1.0, 0.18, 0.53], AM = [1.0, 0.69, 0.0];
+function holograms(){
+  const scan = (wall * 0.5) % 2.6 - 1.3, glitch = (wall % 4.3) < 0.08;
+  for (const s of SITES) {
+    const act = Math.max(0, 1 - Math.abs(sPos - s.k) * 1.15), asm = smooth(act), b = s.base;
+    // columna del proyector y anillo en la azotea (siempre visibles, tenues)
+    if (!s.word) { const idle = 0.05 + 0.4 * asm, rr = s.S * 0.55;
+      for (let q = 0; q < 16; q++) { const a0 = q / 16 * TAU + wall * 0.4, a1 = (q + 1) / 16 * TAU + wall * 0.4, c = q % 2 ? CY : MG;
+        dl(b[0] + Math.cos(a0) * rr, b[1] + 1, b[2] + Math.sin(a0) * rr, c[0] * idle, c[1] * idle, c[2] * idle); dl(b[0] + Math.cos(a1) * rr, b[1] + 1, b[2] + Math.sin(a1) * rr, c[0] * idle, c[1] * idle, c[2] * idle); }
+      for (let q = 0; q < 10; q++) { const a = q / 10 * TAU + wall * 0.2, x = s.c[0] + Math.cos(a) * s.S * 0.8, z = s.c[2] + Math.sin(a) * s.S * 0.8, y = s.c[1] - s.S * 0.7, I = 0.03 + 0.12 * asm;
+        dl(b[0], b[1] + 1, b[2], CY[0] * I, CY[1] * I, CY[2] * I); dl(x, y, z, 0, 0, 0); } }
+    if (act <= 0.001) continue;
+    const yaw = s.word ? Math.sin(wall * 0.2) * 0.35 : wall * 0.35 + s.k, cy = Math.cos(yaw), sy = Math.sin(yaw), n = s.n, P = s.P, X = s.X || (s.X = new Float32Array(n * 3));
+    for (let i = 0; i < n; i++) {
+      const lx = P[i * 4], ly = P[i * 4 + 1], lz = P[i * 4 + 2], ph = P[i * 4 + 3];
+      const e = smooth(Math.min(1, Math.max(0, asm * 1.6 - ph * 0.6)));
+      let x = s.c[0] + (lx * cy + lz * sy) * s.S, y = s.c[1] + ly * s.S, z = s.c[2] + (-lx * sy + lz * cy) * s.S;
+      if (glitch && Math.abs(ly - scan) < 0.2) x += Math.sin(ly * 40) * s.S * 0.06;
+      x = b[0] + (x - b[0]) * e; y = b[1] + (y - b[1]) * e; z = b[2] + (z - b[2]) * e; X[i * 3] = x; X[i * 3 + 1] = y; X[i * 3 + 2] = z;
+      const m = (ly + 1) / 2, band = Math.exp(-((ly - scan) ** 2) * 40), fl = 0.8 + 0.2 * Math.sin(wall * 30 + ph * 50), I = (0.9 + 2.2 * band) * fl * asm * (s.word ? 1.4 : 1);
+      dp(x, y, z, (CY[0] + (MG[0] - CY[0]) * m) * I, (CY[1] + (MG[1] - CY[1]) * m) * I, (CY[2] + (MG[2] - CY[2]) * m) * I);
+    }
+    const L = s.L, lw = 0.55 * asm * asm;
+    for (let q = 0; q < L.length; q += 2) { const i = L[q], j = L[q + 1], m = (P[i * 4 + 1] + 1) / 2, c = [CY[0] + (MG[0] - CY[0]) * m, CY[1] + (MG[1] - CY[1]) * m, CY[2] + (MG[2] - CY[2]) * m];
+      dl(X[i * 3], X[i * 3 + 1], X[i * 3 + 2], c[0] * lw, c[1] * lw, c[2] * lw); dl(X[j * 3], X[j * 3 + 1], X[j * 3 + 2], c[0] * lw, c[1] * lw, c[2] * lw); }
+  }
+  // reflectores que barren el cielo desde las torres más altas
+  for (let k = 0; k < SITES.length; k += 2) { const s = SITES[k]; if (s.word) continue; const a = wall * 0.25 + k * 1.7, tilt = 0.32 + 0.1 * Math.sin(wall * 0.4 + k), d = norm([Math.cos(a) * tilt, 1, Math.sin(a) * tilt]);
+    const o = [s.base[0], s.base[1] + 2, s.base[2]], e = [o[0] + d[0] * 900, o[1] + d[1] * 900, o[2] + d[2] * 900], side = norm(crossV(d, [0, 1, 0])), up = crossV(side, d);
+    for (let q = 0; q < 22; q++) { const t2 = q / 22 * TAU, rr = 55, x = e[0] + (side[0] * Math.cos(t2) + up[0] * Math.sin(t2)) * rr, y = e[1] + (side[1] * Math.cos(t2) + up[1] * Math.sin(t2)) * rr, z = e[2] + (side[2] * Math.cos(t2) + up[2] * Math.sin(t2)) * rr, c = k % 4 ? CY : [0.9, 0.9, 1.0];
+      dl(o[0], o[1], o[2], c[0] * 0.06, c[1] * 0.06, c[2] * 0.06); dl(x, y, z, 0, 0, 0); } }
+}
+
+/* ---------- lluvia (GPU): cada gota es una estela que cae con viento ---------- */
+const RAIN_VS = `#version 300 es
+in vec4 aS; uniform mat4 uVP; uniform vec3 uEye; uniform float uT; uniform vec2 uWind; uniform vec3 uBox; out vec3 vC;
+void main(){ vec3 v = vec3(uWind.x, -42.0, uWind.y), p = aS.xyz * uBox + v * uT * (0.85 + 0.3 * fract(aS.x * 91.7));
+  vec3 rel = mod(p - uEye, uBox) - uBox * 0.5, P = uEye + rel - v * 0.03 * aS.w; gl_Position = uVP * vec4(P, 1.0);
+  float d = length(rel); vC = vec3(0.6, 0.7, 1.0) * 0.28 * smoothstep(90.0, 4.0, d) * step(0.0, P.y) * (1.0 - aS.w * 0.85); }`;
+const RAIN_FS = `#version 300 es
+precision highp float; in vec3 vC; out vec4 o; void main(){ o = vec4(vC, 1.0); }`;
+/* ---------- niebla luminosa: sprites grandes y suaves teñidos por el neón ---------- */
+const FOG_VS = `#version 300 es
+in vec3 aP; in vec3 aC; in vec2 aK; uniform mat4 uVP; uniform vec3 uEye; uniform float uT; uniform float uPxK; uniform float uDpr; out vec3 vC;
+void main(){ vec3 p = aP + vec3(sin(uT * 0.03 + aK.y) * 30.0, sin(uT * 0.05 + aK.y * 2.0) * 3.0, cos(uT * 0.025 + aK.y) * 30.0);
+  gl_Position = uVP * vec4(p, 1.0); float d = max(distance(p, uEye), 5.0), s = aK.x * uPxK / d;
+  vC = aC * smoothstep(15.0, 90.0, d) * exp(-d * 0.0005) * min(1.0, s / 30.0); gl_PointSize = clamp(s, 2.0, 200.0) * uDpr; }`;
+const FOG_FS = `#version 300 es
+precision highp float; in vec3 vC; out vec4 o; void main(){ vec2 q = gl_PointCoord - 0.5; o = vec4(vC * exp(-dot(q, q) * 14.0), 1.0); }`;
+const COPY = `#version 300 es
+precision highp float; in vec2 vUv; uniform sampler2D uTex; uniform float uGain; out vec4 o; void main(){ o = vec4(texture(uTex, vUv).rgb * uGain, 1.0); }`;
+function prog2(vs, fs, attrs){ const p = gl.createProgram(); gl.attachShader(p, sh(gl.VERTEX_SHADER, vs)); gl.attachShader(p, sh(gl.FRAGMENT_SHADER, fs)); attrs.forEach((a, i) => gl.bindAttribLocation(p, i, a)); gl.linkProgram(p);
+  if (!gl.getProgramParameter(p, gl.LINK_STATUS)) throw new Error(gl.getProgramInfoLog(p)); const u = {}, n = gl.getProgramParameter(p, gl.ACTIVE_UNIFORMS); for (let i = 0; i < n; i++) { const nm = gl.getActiveUniform(p, i).name; u[nm] = gl.getUniformLocation(p, nm); } return {p, u}; }
+const PRAIN = prog2(RAIN_VS, RAIN_FS, ['aS']), PFOG = prog2(FOG_VS, FOG_FS, ['aP', 'aC', 'aK']), PCOPY = prog2(VS_FULL, COPY, []);
+const NRAIN = coarse ? 5000 : 12000, RB = new Float32Array(NRAIN * 8);
+for (let i = 0; i < NRAIN; i++) { const x = Math.random(), y = Math.random(), z = Math.random(); RB.set([x, y, z, 0, x, y, z, 1], i * 8); }
+const VRAIN = gl.createVertexArray(); { gl.bindVertexArray(VRAIN); const b = gl.createBuffer(); gl.bindBuffer(gl.ARRAY_BUFFER, b); gl.bufferData(gl.ARRAY_BUFFER, RB, gl.STATIC_DRAW); gl.enableVertexAttribArray(0); gl.vertexAttribPointer(0, 4, gl.FLOAT, false, 16, 0); gl.bindVertexArray(null); }
+const NFOG = coarse ? 1200 : 2600, FB = new Float32Array(NFOG * 8);
+for (let i = 0; i < NFOG; i++) { const r = Math.pow(Math.random(), 0.7) * 820, a = Math.random() * TAU, near = Math.exp(-r / 400), pick = Math.random();
+  const c = pick < 0.45 ? MG : pick < 0.8 ? CY : pick < 0.92 ? [0.6, 0.3, 1.0] : AM, I = (0.003 + 0.006 * near) * (0.6 + 0.8 * Math.random());
+  FB.set([DC[0] * 0.5 + Math.cos(a) * r, 4 + Math.pow(Math.random(), 2) * 60, DC[1] * 0.5 + Math.sin(a) * r, c[0] * I, c[1] * I, c[2] * I, 28 + Math.random() * 40, Math.random() * 100], i * 8); }
+const VFOG = gl.createVertexArray(); { gl.bindVertexArray(VFOG); const b = gl.createBuffer(); gl.bindBuffer(gl.ARRAY_BUFFER, b); gl.bufferData(gl.ARRAY_BUFFER, FB, gl.STATIC_DRAW);
+  gl.enableVertexAttribArray(0); gl.vertexAttribPointer(0, 3, gl.FLOAT, false, 32, 0); gl.enableVertexAttribArray(1); gl.vertexAttribPointer(1, 3, gl.FLOAT, false, 32, 12); gl.enableVertexAttribArray(2); gl.vertexAttribPointer(2, 2, gl.FLOAT, false, 32, 24); gl.bindVertexArray(null); }
+
+/* ---------- render ---------- */
+function resizeT(){ [RT, B1, B2, RR, RR2].forEach(free); const w = Math.max(64, Math.round(W * DPR * scale)), h = Math.max(64, Math.round(H * DPR * scale)); RT = target(w, h); B1 = target(Math.max(16, w >> 2), Math.max(16, h >> 2)); B2 = target(B1.w, B1.h); RR = target(w >> 1, h >> 1); RR2 = target(w >> 1, h >> 1); }
+function resize(){ DPR = Math.min(window.devicePixelRatio || 1, coarse ? 1.5 : 2); W = window.innerWidth; H = window.innerHeight; cv.width = Math.round(W * DPR); cv.height = Math.round(H * DPR); resizeT(); }
+function pass(P, out){ gl.useProgram(P.p); gl.bindFramebuffer(gl.FRAMEBUFFER, out ? out.f : null); if (out) gl.viewport(0, 0, out.w, out.h); else gl.viewport(0, 0, cv.width, cv.height); }
+function tex(unit, t, loc){ gl.activeTexture(gl.TEXTURE0 + unit); gl.bindTexture(gl.TEXTURE_2D, t); gl.uniform1i(loc, unit); }
+function geoUniforms(hour, refl){ const u = PG.u;
+  gl.uniformMatrix4fv(u.uVP, false, VP); gl.uniform3fv(u.uEye, EYE); gl.uniform1f(u.uT, wall); gl.uniform1f(u.uLitR, litR(hour)); gl.uniform1f(u.uLitO, litO(hour)); gl.uniform1f(u.uNet, st.net); gl.uniform1f(u.uDpr, DPR * scale * (refl ? 0.5 : 1));
+  gl.uniform4f(u.uBlk, BLK_.c[0], BLK_.c[1], BLK_.on ? BLK_.r1 : 0, BLK_.r2); gl.uniform1f(u.uDay, 0); { const e = WAVE ? wall - WAVE.t0 : 99; gl.uniform4f(u.uWave, WAVE ? WAVE.c[0] : 0, WAVE ? WAVE.c[1] : 0, e * 260, e < 7 ? Math.min(1, e * 4) * (1 - e / 7) : 0); }
+  gl.uniform1f(u.uGain, 1); gl.uniform1f(u.uRefl, refl ? 1 : 0); }
+function drawGeo(refl){ const u = PG.u;
+  if (!refl) { gl.uniform1f(u.uRound, 0); gl.uniform1f(u.uIsPt, 0); gl.uniform1f(u.uPt, 1); gl.bindVertexArray(VSL.v); gl.drawArrays(gl.LINES, 0, staticL.length / 8); }
+  gl.uniform1f(u.uRound, 0); gl.uniform1f(u.uIsPt, 0); gl.bindVertexArray(VDL.v); gl.drawArrays(gl.LINES, 0, nDL & ~1);
+  if (!refl || !coarse) { gl.uniform1f(u.uRound, 1); gl.uniform1f(u.uIsPt, 1); gl.uniform1f(u.uPt, 1.6); gl.bindVertexArray(VSP.v); gl.drawArrays(gl.POINTS, 0, staticP.length / 8); }
+  gl.uniform1f(u.uRound, 1); gl.uniform1f(u.uIsPt, 1); gl.uniform1f(u.uPt, 2.2); gl.bindVertexArray(VDP.v); gl.drawArrays(gl.POINTS, 0, nDP); }
+function render(hour){
+  gl.bindVertexArray(VDL.v); gl.bindBuffer(gl.ARRAY_BUFFER, VDL.b); gl.bufferSubData(gl.ARRAY_BUFFER, 0, dynL, 0, nDL * 8);
+  gl.bindVertexArray(VDP.v); gl.bindBuffer(gl.ARRAY_BUFFER, VDP.b); gl.bufferSubData(gl.ARRAY_BUFFER, 0, dynP, 0, nDP * 8);
+  // 1) reflejos en el asfalto mojado: la ciudad espejada, estirada en vertical
+  gl.bindVertexArray(vao); gl.bindFramebuffer(gl.FRAMEBUFFER, RR.f); gl.viewport(0, 0, RR.w, RR.h); gl.clearColor(0, 0, 0, 1); gl.clear(gl.COLOR_BUFFER_BIT);
+  gl.enable(gl.BLEND); gl.blendFunc(gl.ONE, gl.ONE); gl.useProgram(PG.p); geoUniforms(hour, true); drawGeo(true); gl.disable(gl.BLEND); gl.bindVertexArray(vao);
+  for (let k = 0; k < 3; k++) { const s = 1.5 * Math.pow(2.2, k); pass(PB, RR2); tex(0, RR.t, PB.u.uTex); gl.uniform2f(PB.u.uDir, 0.25 / RR.w, s / RR.h); gl.drawArrays(gl.TRIANGLES, 0, 3);
+    pass(PB, RR); tex(0, RR2.t, PB.u.uTex); gl.uniform2f(PB.u.uDir, 0, s * 1.6 / RR.h); gl.drawArrays(gl.TRIANGLES, 0, 3); }
+  // 2) cielo
+  pass(PSKY, RT); const B = BASIS; gl.uniform2f(PSKY.u.uRes, RT.w, RT.h); gl.uniformMatrix3fv(PSKY.u.uRot, false, new Float32Array([B.r[0], B.r[1], B.r[2], B.u[0], B.u[1], B.u[2], -B.f[0], -B.f[1], -B.f[2]])); gl.uniform1f(PSKY.u.uTan, B.tn);
+  gl.uniform1f(PSKY.u.uDay, 0); gl.uniform1f(PSKY.u.uDusk, 0); gl.uniform1f(PSKY.u.uT, wall); gl.drawArrays(gl.TRIANGLES, 0, 3);
+  gl.enable(gl.BLEND); gl.blendFunc(gl.ONE, gl.ONE);
+  gl.useProgram(PCOPY.p); tex(0, RR.t, PCOPY.u.uTex); gl.uniform1f(PCOPY.u.uGain, 0.75); gl.drawArrays(gl.TRIANGLES, 0, 3);
+  // 3) niebla luminosa
+  gl.useProgram(PFOG.p); gl.uniformMatrix4fv(PFOG.u.uVP, false, VP); gl.uniform3fv(PFOG.u.uEye, EYE); gl.uniform1f(PFOG.u.uT, wall); gl.uniform1f(PFOG.u.uPxK, RT.h / (2 * Math.tan(FOV / 2)) / (DPR * scale)); gl.uniform1f(PFOG.u.uDpr, DPR * scale);
+  gl.bindVertexArray(VFOG); gl.drawArrays(gl.POINTS, 0, NFOG);
+  // 4) ciudad
+  gl.useProgram(PG.p); geoUniforms(hour, false); drawGeo(false);
+  // 5) lluvia
+  if (!reduce) { gl.useProgram(PRAIN.p); gl.uniformMatrix4fv(PRAIN.u.uVP, false, VP); gl.uniform3fv(PRAIN.u.uEye, EYE); gl.uniform1f(PRAIN.u.uT, wall); const w = 5 + Math.min(40, sVel * 30);
+    gl.uniform2f(PRAIN.u.uWind, BASIS.r[0] * w, BASIS.r[2] * w); gl.uniform3f(PRAIN.u.uBox, 170, 130, 170); gl.bindVertexArray(VRAIN); gl.drawArrays(gl.LINES, 0, NRAIN * 2); }
+  gl.disable(gl.BLEND); gl.bindVertexArray(vao);
+  pass(PD, B1); tex(0, RT.t, PD.u.uTex); gl.uniform2f(PD.u.uTexel, 1 / RT.w, 1 / RT.h); gl.drawArrays(gl.TRIANGLES, 0, 3);
+  for (let k = 0; k < 3; k++) { const s = 1 + k * 1.6; pass(PB, B2); tex(0, B1.t, PB.u.uTex); gl.uniform2f(PB.u.uDir, s / B1.w, 0); gl.drawArrays(gl.TRIANGLES, 0, 3);
+    pass(PB, B1); tex(0, B2.t, PB.u.uTex); gl.uniform2f(PB.u.uDir, 0, s / B1.h); gl.drawArrays(gl.TRIANGLES, 0, 3); }
+  pass(PC, null); tex(0, RT.t, PC.u.uScene); tex(1, B1.t, PC.u.uBloom); gl.uniform1f(PC.u.uT, wall); gl.drawArrays(gl.TRIANGLES, 0, 3);
+}
+
+/* ---------- ciclo ---------- */
+const nf = n => n.toLocaleString('es-PE');
+let last = performance.now(), fpsAcc = 0, frames = 0, hudT = 0;
+function advance(dt){
+  wall += dt; const hour = minute / 60, act = actAt(hour);
+  stats.cars = stepTraffic(dt, act); stepBlackout(); updateCamera(dt); dynamic(dt, act); holograms();
+  return hour;
+}
+function frame(now){
+  const dt = Math.min(0.05, (now - last) / 1000); last = now;
+  const hour = advance(dt); render(hour);
+  hudT -= dt; if (hudT <= 0) { hudT = 0.3; $hud.innerHTML = `<b>${SECS[sOn].dataset.zone}</b> · 23:15 · lluvia · ${nf(stats.cars)} autos · ${nf(stats.pk)} paquetes de datos · clic para enviar un pulso`; }
+  fpsAcc += dt; frames++; if (fpsAcc >= 1) { const fps = frames / fpsAcc; fpsAcc = 0; frames = 0;
+    if (!HQ) { if (fps < 38 && scale > 0.4) { scale = Math.max(0.4, scale - 0.1); resizeT(); } else if (fps > 57 && scale < maxScale) { scale = Math.min(maxScale, scale + 0.05); resizeT(); } } }
+  requestAnimationFrame(frame);
+}
+function cursorAt(px, py){ if (!BASIS) return null; const d = rayAt(px, py), yPlane = 55; if (Math.abs(d[1]) < 1e-3) return null; const t = (yPlane - EYE[1]) / d[1]; if (t < 0 || t > 3000) return null; return [EYE[0] + d[0] * t, yPlane, EYE[2] + d[2] * t]; }
+addEventListener('pointermove', e => { if (e.pointerType !== 'mouse') return; mouse = [e.clientX / W * 2 - 1, e.clientY / H * 2 - 1]; cursor = e.target.closest('a,button,input,select,textarea,label,nav,form') ? null : cursorAt(e.clientX, e.clientY); });
+addEventListener('pointerdown', e => { if (e.target.closest('a,button,input,select,textarea,label,nav,form')) return; const p = cursorAt(e.clientX, e.clientY); if (!p) return;
+  let best = 0, bd = 1e12; ROOF.forEach((r, i) => { const d = (r.p[0] - p[0]) ** 2 + (r.p[2] - p[2]) ** 2; if (d < bd) { bd = d; best = i; } }); pulseFrom(best); });
+document.addEventListener('pointerleave', () => { cursor = null; });
+let rtm = 0; window.addEventListener('resize', () => { clearTimeout(rtm); rtm = setTimeout(resize, 150); });
+function start(){
+  buildSites(); resize();
+  const hq = location.hash.match(/#hq-(\d+)(?:-(\w+))?/); if (hq) { document.documentElement.style.scrollBehavior = 'auto'; scrollTo(0, +hq[1]); }
+  for (let k = 0; k < (HQ ? 150 : 30); k++) advance(1 / 30);
+  if (hq && hq[2] === 'pulso') { pulseFrom(SITES[SITES.length - 1] ? ROOF.indexOf(ROOF.reduce((b, r) => r.h > b.h ? r : b)) : 0); for (let k = 0; k < 40; k++) advance(1 / 30); }
+  render(minute / 60);
+  requestAnimationFrame(t => { last = t; requestAnimationFrame(frame); });
+}
+(document.fonts && document.fonts.ready ? Promise.race([document.fonts.ready, new Promise(r => setTimeout(r, 2500))]) : Promise.resolve()).then(start);
+})();
+</script>
+
+<div id="ah-demo" style="position:fixed;left:12px;bottom:12px;z-index:2147483000;display:flex;align-items:center;gap:10px;padding:8px 8px 8px 14px;border-radius:999px;background:rgba(3,9,15,.86);border:1px solid rgba(44,245,200,.45);box-shadow:0 6px 24px -8px rgba(0,0,0,.6);font:500 12px/1.2 system-ui,-apple-system,Segoe UI,sans-serif;color:#eefcf8;max-width:calc(100vw - 24px);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)"><span style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis">Concepto de diseño «Distrito» · Aurora Hub Perú</span><a href="https://www.aurorahubperu.com/#proyectos" style="flex:none;color:#03140f;background:linear-gradient(90deg,#2cf5c8,#7cf9e0);border-radius:999px;padding:6px 11px;text-decoration:none;font-weight:700">Ver portafolio</a></div></body></html>

@@ -1,0 +1,307 @@
+<!doctype html><html><head><meta name="robots" content="noindex"><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Mimitos · Tu cuento pintado en acuarela</title>
+<meta name="description" content="Cuento infantil personalizado de Mimitos Baby Store: el nombre de tu hijo o hija y de sus mascotas, versos que riman e ilustraciones en acuarela.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Patrick+Hand&family=Nunito:wght@400;600;700;800&display=swap">
+<style>
+:root{
+  color-scheme: light;
+  --paper:#f6efe4; --page:#fbf7f0; --ink:#5e4b3f; --muted:#8f7f72; --rose:#c9837f; --rose2:#e8b9b0; --sage:#8fa382; --line:rgba(94,75,63,.16);
+  --hand:"Patrick Hand", "Comic Sans MS", cursive; --sans:"Nunito", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);line-height:1.55;-webkit-font-smoothing:antialiased;
+  background-image:radial-gradient(ellipse at 20% 0%,rgba(255,255,255,.7),transparent 50%),radial-gradient(ellipse at 90% 100%,rgba(232,185,176,.25),transparent 55%)}
+a{color:inherit}
+nav{position:fixed;top:0;left:0;right:0;z-index:20;display:flex;justify-content:space-between;align-items:center;padding:12px 18px;background:linear-gradient(to bottom,rgba(246,239,228,.95),rgba(246,239,228,0))}
+.logo{display:flex;align-items:center;gap:8px;font:800 18px/1 var(--sans);letter-spacing:.02em;text-decoration:none;color:var(--ink)}
+.logo svg{width:30px;height:30px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font:700 15px/1 var(--sans);text-decoration:none;border-radius:999px;padding:13px 22px;border:1.5px solid var(--ink);color:var(--ink);background:transparent;cursor:pointer}
+.btn.solid{background:var(--rose);border-color:var(--rose);color:#fff}
+.btn.solid:hover{background:#b96f6b}
+.btn.sm{padding:9px 16px;font-size:14px}
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid var(--rose);outline-offset:3px}
+
+/* libro que se queda fijo mientras se pasan las páginas */
+#libro{position:relative}
+.sticky{position:sticky;top:0;height:100vh;height:100svh;display:grid;place-items:center;padding:62px 18px 18px}
+.book{position:relative;width:min(1180px,100%);aspect-ratio:2/1.28;max-height:calc(100svh - 90px);display:grid;grid-template-columns:1fr 1fr;border-radius:6px 6px 10px 10px;
+  box-shadow:0 30px 60px -30px rgba(94,75,63,.45),0 2px 0 #e9dfd0,0 5px 0 #e2d6c4,0 8px 0 #dacdb9}
+.pg{position:relative;background:var(--page);overflow:hidden}
+.pg.l{border-radius:6px 0 0 10px;background:linear-gradient(to left,rgba(94,75,63,.12),rgba(94,75,63,0) 8%),var(--page)}
+.pg.r{border-radius:0 6px 10px 0;background:linear-gradient(to right,rgba(94,75,63,.14),rgba(94,75,63,0) 9%),var(--page);padding:clamp(18px,4vw,54px) clamp(18px,4vw,56px);display:flex;flex-direction:column;justify-content:center}
+#paint{position:absolute;inset:0;width:100%;height:100%;display:block;touch-action:pan-y}
+.txt{position:absolute;inset:clamp(18px,4vw,54px) clamp(18px,4vw,56px);display:flex;flex-direction:column;justify-content:center;opacity:0;transform:translateY(10px);transition:opacity .8s,transform .8s;pointer-events:none}
+.txt.on{opacity:1;transform:none;pointer-events:auto}
+.kicker{font:700 12px/1 var(--sans);letter-spacing:.16em;text-transform:uppercase;color:var(--sage);margin-bottom:12px}
+.verse{font:400 clamp(20px,2.1vw,30px)/1.45 var(--hand);color:var(--ink);margin:0}
+.verse .n,.verse .a,.verse .b,.hand .n{color:var(--rose);background:radial-gradient(ellipse 60% 40% at 50% 70%,rgba(232,185,176,.55),transparent 75%);padding:0 .12em}
+.hand{font:400 clamp(26px,2.8vw,40px)/1.15 var(--hand);margin:0 0 10px;color:var(--ink)}
+.small{font-size:15px;color:var(--muted);margin:0 0 16px}
+.form{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.form label:first-child{grid-column:1/-1}
+label{font:700 11px/1 var(--sans);letter-spacing:.1em;text-transform:uppercase;color:var(--muted);display:grid;gap:6px}
+input,select,textarea{font:600 16px/1.3 var(--sans);color:var(--ink);background:#fff;border:1.5px solid var(--line);border-radius:12px;padding:11px 13px;width:100%}
+.orn{margin-top:18px;color:var(--sage);font:400 22px/1 var(--hand);letter-spacing:.3em}
+.pager{position:absolute;left:0;right:0;bottom:-34px;display:flex;justify-content:center;align-items:center;gap:10px;font:700 12px/1 var(--sans);color:var(--muted)}
+.pager i{width:8px;height:8px;border-radius:50%;background:rgba(94,75,63,.2)}
+.pager i.on{background:var(--rose);width:22px;border-radius:5px;transition:width .3s}
+.hint{position:absolute;left:50%;bottom:-62px;transform:translateX(-50%);font:600 13px/1 var(--sans);color:var(--muted);white-space:nowrap}
+
+/* pedido */
+.order{max-width:1100px;margin:0 auto;padding:110px 18px 50px;display:grid;grid-template-columns:1.1fr 1fr;gap:48px;align-items:start}
+.order h2{font:400 clamp(38px,5vw,64px)/1.02 var(--hand);margin:8px 0 14px}
+.order p{font-size:17px;margin:0 0 16px}
+.feats{list-style:none;padding:0;margin:0 0 22px;display:grid;gap:10px}
+.feats li{display:flex;gap:12px;align-items:baseline}
+.feats li::before{content:"✿";color:var(--rose)}
+.card{background:var(--page);border:1px solid var(--line);border-radius:22px;padding:24px;display:grid;gap:12px;box-shadow:0 20px 40px -30px rgba(94,75,63,.4)}
+footer{max-width:1100px;margin:0 auto;padding:20px 18px 40px;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-size:13px;color:var(--muted)}
+
+@media (max-width:760px){
+  .sticky{padding:58px 10px 84px;place-items:start center}
+  .book{grid-template-columns:1fr;grid-template-rows:auto 1fr;aspect-ratio:auto;height:calc(100svh - 164px);max-height:none}
+  .pg.l{border-radius:6px 6px 0 0;aspect-ratio:1/0.86;background:var(--page)}
+  .pg.r{border-radius:0 0 10px 10px;background:linear-gradient(to bottom,rgba(94,75,63,.1),rgba(94,75,63,0) 7%),var(--page);padding:0}
+  .txt{inset:16px 18px}
+  .verse{font-size:clamp(18px,4.8vw,22px)}
+  .hand{font-size:26px}
+  .small{font-size:14px;margin-bottom:10px}
+  .pager{bottom:-28px}.hint{bottom:-66px;white-space:normal;text-align:center;width:92%;font-size:12px;line-height:1.3}
+  .order{grid-template-columns:1fr;padding-top:80px}
+}
+</style>
+
+<nav><a class="logo" href="#libro" aria-label="Mimitos Baby Store"><svg viewBox="0 0 32 32" fill="none" aria-hidden="true"><path d="M5 22a11 11 0 0 1 22 0" stroke="#c9837f" stroke-width="2.4" stroke-linecap="round"/><path d="M9 22a7 7 0 0 1 14 0" stroke="#e8b9b0" stroke-width="2.4" stroke-linecap="round"/><path d="M13 22a3 3 0 0 1 6 0" stroke="#8fa382" stroke-width="2.4" stroke-linecap="round"/></svg>mimitos</a><a class="btn sm solid" href="#pedido">Quiero su cuento</a></nav>
+
+<main>
+<section id="libro" aria-label="Cuento de muestra personalizado">
+  <div class="sticky">
+    <div class="book">
+      <div class="pg l"><canvas id="paint" aria-label="Ilustración en acuarela que se pinta en vivo"></canvas></div>
+      <div class="pg r">
+        <div class="txt on" data-p="0">
+          <div class="kicker">Cuento personalizado · Mimitos</div>
+          <p class="hand">Escribe su nombre y mira cómo se pinta <span class="n">su</span> cuento.</p>
+          <p class="small">Historias que acompañan momentos que se quedan: versos que riman, acuarelas pintadas para tu peque y sus mascotas.</p>
+          <div class="form">
+            <label>Nombre de tu peque<input id="iN" maxlength="16" value="Paz" autocomplete="off"></label>
+            <label>Mascota 1<input id="iA" maxlength="14" value="Kala" autocomplete="off"></label>
+            <label>Mascota 2<input id="iB" maxlength="14" value="Canela" autocomplete="off"></label>
+          </div>
+        </div>
+        <div class="txt" data-p="1"><div class="kicker">Página 1 · La mañana</div><p class="verse">Cuando el sol se asoma y pinta el día,<br><span class="a">Kala</span> y <span class="b">Canela</span> saltan con alegría.<br>—¡Despierta, <span class="n">Paz</span>! —dicen sin parar—,<br>hoy es un día para jugar.</p><div class="orn">~ ✿ ~</div></div>
+        <div class="txt" data-p="2"><div class="kicker">Página 2 · El jardín</div><p class="verse">Por el jardín corren sin parar,<br>las mariposas los quieren atrapar.<br><span class="n">Paz</span> ríe, <span class="a">Kala</span> salta, <span class="b">Canela</span> va detrás,<br>y el viento les canta: ¡un poquito más!</p><div class="orn">~ ✿ ~</div></div>
+        <div class="txt" data-p="3"><div class="kicker">Página 3 · La lluvia</div><p class="verse">Llegó la lluvia con su canción,<br>y cada charco es una invitación.<br>¡Splash! salta <span class="n">Paz</span> con gran diversión,<br><span class="a">Kala</span> y <span class="b">Canela</span> chapotean con emoción.</p><div class="orn">~ ✿ ~</div></div>
+        <div class="txt" data-p="4"><div class="kicker">Página 4 · La noche</div><p class="verse">Cuando la luna se asoma a mirar,<br>los tres amigos se van a soñar.<br>Juntitos, abrazados, con mucho calor:<br><span class="n">Paz</span>, <span class="a">Kala</span> y <span class="b">Canela</span>, ¡que sueñen con amor!</p><div class="orn">~ ☾ ~</div></div>
+      </div>
+      <div class="pager" id="pager" aria-hidden="true"></div>
+      <div class="hint" id="hint">Desliza para pasar la página · toca el dibujo con tu dedo</div>
+    </div>
+  </div>
+</section>
+
+<section class="order" id="pedido">
+  <div>
+    <div class="kicker">Tu cuento, pintado para siempre</div>
+    <h2>El cuento de <span class="n2">Paz</span>, listo para pintarse.</h2>
+    <p>Creamos un cuento único con el nombre de tu peque y de sus mascotas, versos que riman y acuarelas pintadas para su historia.</p>
+    <ul class="feats"><li>Su nombre y el de sus mascotas en cada página</li><li>Ilustraciones en acuarela con sus personajes</li><li>Versos que riman, para leer antes de dormir</li><li>Un regalo para cumpleaños, nacimientos o Navidad</li></ul>
+    <p class="small">Formato, número de páginas y precio: por definir.</p>
+  </div>
+  <form class="card" id="form">
+    <label>Nombre de tu peque<input name="n" id="fN" required></label>
+    <div class="form"><label style="grid-column:auto">Mascota 1<input name="a" id="fA"></label><label>Mascota 2<input name="b" id="fB"></label></div>
+    <label>Ocasión<select name="o"><option>Cumpleaños</option><option>Nacimiento</option><option>Navidad</option><option>Solo porque sí</option></select></label>
+    <label>Algo especial que quieras contarnos<textarea name="m" rows="3" placeholder="Ej.: le encantan las mariposas"></textarea></label>
+    <button class="btn solid" type="submit">Pedir por WhatsApp</button>
+  </form>
+</section>
+<footer><span>© Mimitos Baby Store · mimitosbabystore.pe</span><span>Prototipo · precios y datos de contacto por definir</span></footer>
+</main>
+
+<script>
+(() => {
+'use strict';
+const WHATSAPP = ''; // número con código de país, p. ej. 51XXXXXXXXX
+const PAGES = [{src: 'p0.jpg', night: false}, {src: 'p1.jpg'}, {src: 'p2.jpg'}, {src: 'p3.jpg'}, {src: 'p4.jpg', night: true}];
+const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const HQ = location.hash.startsWith('#hq');
+
+/* ---------- nombres ---------- */
+const $iN = document.getElementById('iN'), $iA = document.getElementById('iA'), $iB = document.getElementById('iB');
+const $fN = document.getElementById('fN'), $fA = document.getElementById('fA'), $fB = document.getElementById('fB');
+const names = () => ({n: $iN.value.trim() || 'tu peque', a: $iA.value.trim() || 'su mascota', b: $iB.value.trim() || 'su amiga'});
+function syncNames(){ const N = names(); document.querySelectorAll('.verse .n, .n2').forEach(e => e.textContent = N.n); document.querySelectorAll('.verse .a').forEach(e => e.textContent = N.a); document.querySelectorAll('.verse .b').forEach(e => e.textContent = N.b);
+  if (document.activeElement !== $fN) $fN.value = $iN.value; if (document.activeElement !== $fA) $fA.value = $iA.value; if (document.activeElement !== $fB) $fB.value = $iB.value; }
+let nameT = 0; [$iN, $iA, $iB].forEach(i => i.addEventListener('input', () => { syncNames(); clearTimeout(nameT); nameT = setTimeout(() => painter && painter.repaintTitle(), 450); }));
+syncNames();
+document.getElementById('form').addEventListener('submit', e => { e.preventDefault(); const f = new FormData(e.target);
+  const t = `Hola Mimitos, quiero el cuento personalizado de ${f.get('n')}${f.get('a') ? ' con ' + f.get('a') + (f.get('b') ? ' y ' + f.get('b') : '') : ''}. Ocasión: ${f.get('o')}. ${f.get('m') || ''}`.trim();
+  window.open(`https://wa.me/${WHATSAPP}?text=${encodeURIComponent(t)}`, '_blank', 'noopener'); });
+
+/* ---------- páginas con scroll ---------- */
+const $libro = document.getElementById('libro'), $pager = document.getElementById('pager'), TXT = [...document.querySelectorAll('.txt')];
+$libro.style.height = (PAGES.length * 90 + 30) + 'vh';
+PAGES.forEach(() => $pager.appendChild(document.createElement('i')));
+function pageFromScroll(){ const r = $libro.getBoundingClientRect(), span = r.height - innerHeight, p = span > 0 ? Math.min(1, Math.max(0, -r.top / span)) : 0; return Math.min(PAGES.length - 1, Math.floor(p * PAGES.length * 0.999)); }
+let shown = -1;
+function showText(k){ TXT.forEach((t, i) => t.classList.toggle('on', i === k)); [...$pager.children].forEach((d, i) => d.classList.toggle('on', i === k)); document.getElementById('hint').style.opacity = k === PAGES.length - 1 ? 0 : 1; }
+
+/* ================= pintor de acuarela (WebGL2) ================= */
+const cv = document.getElementById('paint');
+const gl = cv.getContext('webgl2', {antialias: false, alpha: false, premultipliedAlpha: false, preserveDrawingBuffer: true});
+let painter = null;
+if (!gl) { // sin WebGL: mostramos la imagen directamente
+  const im = new Image(); im.src = PAGES[0].src; im.style.cssText = 'width:100%;height:100%;object-fit:contain'; cv.replaceWith(im);
+  addEventListener('scroll', () => { const k = pageFromScroll(); if (k !== shown) { shown = k; showText(k); im.src = PAGES[k].src; } }, {passive: true}); showText(0); return; }
+
+const VS = `#version 300 es
+out vec2 vUv; void main(){ vec2 p = vec2((gl_VertexID << 1) & 2, gl_VertexID & 2); vUv = p; gl_Position = vec4(p * 2.0 - 1.0, 0.0, 1.0); }`;
+const NOISE = `float h12(vec2 p){ vec3 q = fract(vec3(p.xyx) * 0.1031); q += dot(q, q.yzx + 33.33); return fract((q.x + q.y) * q.z); }
+float vn(vec2 p){ vec2 i = floor(p), f = fract(p); f = f * f * (3.0 - 2.0 * f); return mix(mix(h12(i), h12(i + vec2(1, 0)), f.x), mix(h12(i + vec2(0, 1)), h12(i + vec2(1, 1)), f.x), f.y); }
+float fbm(vec2 p){ float s = 0.0, a = 0.5; for (int k = 0; k < 5; k++) { s += a * vn(p); p = p * 2.03 + 1.7; a *= 0.5; } return s; }`;
+// papel de algodón: color crema con fibras y granulado
+const PAPER = `#version 300 es
+precision highp float; in vec2 vUv; uniform vec2 uRes; out vec4 o; ${NOISE}
+void main(){ vec2 p = gl_FragCoord.xy; float g = fbm(p * 0.02) * 0.5 + fbm(p * 0.25) * 0.35 + h12(p) * 0.15;
+  vec3 c = vec3(0.984, 0.968, 0.94) - vec3(0.035, 0.04, 0.045) * g; vec2 q = vUv - 0.5; c -= vec3(0.02, 0.025, 0.03) * dot(q, q) * 2.0; o = vec4(c, 1.0); }`;
+// cada partícula es una gota de pigmento: borde irregular, borde más oscuro (el agua lleva el pigmento al borde) y granulado del papel
+const STAMP_VS = `#version 300 es
+in vec2 aP; in vec3 aC; in vec3 aK; uniform vec2 uRes; out vec3 vC; out vec2 vK;
+void main(){ gl_Position = vec4(aP.x / uRes.x * 2.0 - 1.0, 1.0 - aP.y / uRes.y * 2.0, 0.0, 1.0); vC = aC; vK = aK.xz; gl_PointSize = aK.y; }`;
+const STAMP_FS = `#version 300 es
+precision highp float; in vec3 vC; in vec2 vK; out vec4 o; ${NOISE}
+void main(){ vec2 q = gl_PointCoord - 0.5; float ang = atan(q.y, q.x), r = length(q) * 2.0;
+  float edge = 0.78 + 0.22 * vn(vec2(ang * 2.2 + vK.y * 37.0, vK.y * 11.0)) ; if (r > edge) discard;
+  float rim = smoothstep(edge * 0.55, edge, r), body = 0.62 + 0.38 * rim * rim, gran = 0.78 + 0.22 * vn(gl_FragCoord.xy * 0.7);
+  float a = vK.x * body * gran * smoothstep(edge, edge * 0.92, r); o = vec4(vC * (0.97 - 0.12 * rim), a); }`;
+// revelado final: la ilustración aparece a través de una máscara de manchas que se expande
+const REVEAL = `#version 300 es
+precision highp float; in vec2 vUv; uniform sampler2D uImg; uniform vec4 uRect; uniform vec2 uRes; uniform float uK; uniform float uA; out vec4 o; ${NOISE}
+void main(){ vec2 px = vec2(gl_FragCoord.x, uRes.y - gl_FragCoord.y), uv = (px - uRect.xy) / uRect.zw; if (uv.x < 0.0 || uv.y < 0.0 || uv.x > 1.0 || uv.y > 1.0) discard;
+  vec2 e = min(uv, 1.0 - uv); float vig = smoothstep(0.0, 0.09, min(e.x, e.y * 1.2) + (fbm(uv * 9.0) - 0.5) * 0.06);
+  float m = fbm(uv * 3.5 + 2.0) * 0.8 + (1.0 - length(uv - 0.5) * 1.3) * 0.45, a = smoothstep(uK - 0.12, uK + 0.02, m);
+  vec3 c = texture(uImg, uv).rgb; o = vec4(c, a * vig * uA); }`;
+// lavado: al pasar la página, el agua arrastra el pigmento hacia abajo y lo diluye
+const WASH = `#version 300 es
+precision highp float; in vec2 vUv; uniform sampler2D uPrev; uniform float uK; uniform vec2 uRes; out vec4 o; ${NOISE}
+void main(){ float col = vn(vec2(vUv.x * 38.0, 0.0)), drip = (0.004 + 0.012 * col * col) * uK; vec3 c = texture(uPrev, vUv + vec2(0.0, drip)).rgb;
+  vec2 p = gl_FragCoord.xy; float g = fbm(p * 0.02) * 0.5 + fbm(p * 0.25) * 0.35 + h12(p) * 0.15; vec3 paper = vec3(0.984, 0.968, 0.94) - vec3(0.035, 0.04, 0.045) * g;
+  o = vec4(mix(c, paper, 0.05 + 0.1 * uK * (0.5 + fbm(vUv * 6.0))), 1.0); }`;
+const COPY = `#version 300 es
+precision highp float; in vec2 vUv; uniform sampler2D uTex; out vec4 o; void main(){ o = vec4(texture(uTex, vUv).rgb, 1.0); }`;
+// polvo dorado en la luz / luciérnagas de noche (no se acumulan)
+const MOTE_FS = `#version 300 es
+precision highp float; in vec3 vC; in vec2 vK; out vec4 o; void main(){ vec2 q = gl_PointCoord - 0.5; float r = length(q) * 2.0; o = vec4(vC, vK.x * exp(-r * r * 4.0)); }`;
+function sh(t, s){ const x = gl.createShader(t); gl.shaderSource(x, s); gl.compileShader(x); if (!gl.getShaderParameter(x, gl.COMPILE_STATUS)) throw new Error(gl.getShaderInfoLog(x)); return x; }
+function prog(v, f, attrs){ const p = gl.createProgram(); gl.attachShader(p, sh(gl.VERTEX_SHADER, v)); gl.attachShader(p, sh(gl.FRAGMENT_SHADER, f)); (attrs || []).forEach((a, i) => gl.bindAttribLocation(p, i, a)); gl.linkProgram(p);
+  if (!gl.getProgramParameter(p, gl.LINK_STATUS)) throw new Error(gl.getProgramInfoLog(p)); const u = {}, n = gl.getProgramParameter(p, gl.ACTIVE_UNIFORMS); for (let i = 0; i < n; i++) { const nm = gl.getActiveUniform(p, i).name; u[nm] = gl.getUniformLocation(p, nm); } return {p, u}; }
+const PPAPER = prog(VS, PAPER), PST = prog(STAMP_VS, STAMP_FS, ['aP', 'aC', 'aK']), PREV = prog(VS, REVEAL), PWASH = prog(VS, WASH), PCOPY = prog(VS, COPY), PMOTE = prog(STAMP_VS, MOTE_FS, ['aP', 'aC', 'aK']);
+const vao = gl.createVertexArray();
+const MAXS = 6000, SB = new Float32Array(MAXS * 8);
+const sv = gl.createVertexArray(), sb = gl.createBuffer(); gl.bindVertexArray(sv); gl.bindBuffer(gl.ARRAY_BUFFER, sb); gl.bufferData(gl.ARRAY_BUFFER, SB.byteLength, gl.DYNAMIC_DRAW);
+gl.enableVertexAttribArray(0); gl.vertexAttribPointer(0, 2, gl.FLOAT, false, 32, 0); gl.enableVertexAttribArray(1); gl.vertexAttribPointer(1, 3, gl.FLOAT, false, 32, 8); gl.enableVertexAttribArray(2); gl.vertexAttribPointer(2, 3, gl.FLOAT, false, 32, 20); gl.bindVertexArray(null);
+function target(w, h){ const t = gl.createTexture(); gl.bindTexture(gl.TEXTURE_2D, t); gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA8, w, h, 0, gl.RGBA, gl.UNSIGNED_BYTE, null);
+  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR); gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR); gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE); gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
+  const f = gl.createFramebuffer(); gl.bindFramebuffer(gl.FRAMEBUFFER, f); gl.framebufferTexture2D(gl.FRAMEBUFFER, gl.COLOR_ATTACHMENT0, gl.TEXTURE_2D, t, 0); gl.bindFramebuffer(gl.FRAMEBUFFER, null); return {t, f, w, h}; }
+
+/* ---------- imágenes ---------- */
+const IMGS = PAGES.map(p => { const im = new Image(); im.decoding = 'async'; im.src = p.src; return im; });
+const ready = k => IMGS[k].complete && IMGS[k].naturalWidth > 0;
+const rnd = Math.random;
+
+class Painter {
+  constructor(){ this.W = 0; this.H = 0; this.A = null; this.B = null; this.page = -1; this.want = 0; this.phase = 'idle'; this.t = 0; this.stamps = null; this.si = 0; this.title = null; this.ti = 0; this.brush = []; this.tex = null; this.motes = []; this.resize(); }
+  resize(){ const r = cv.getBoundingClientRect(), dpr = Math.min(devicePixelRatio || 1, 2), s = Math.min(dpr, 1500 / Math.max(1, r.width));
+    const w = Math.max(64, Math.round(r.width * s)), h = Math.max(64, Math.round(r.height * s)); if (w === this.W && h === this.H) return;
+    this.W = w; this.H = h; this.S = s; cv.width = w; cv.height = h; [this.A, this.B].forEach(x => { if (x) { gl.deleteTexture(x.t); gl.deleteFramebuffer(x.f); } }); this.A = target(w, h); this.B = target(w, h);
+    this.clearPaper(); if (this.page >= 0) { const k = this.page; this.page = -1; this.go(k, true); } }
+  clearPaper(){ gl.bindFramebuffer(gl.FRAMEBUFFER, this.A.f); gl.viewport(0, 0, this.W, this.H); gl.disable(gl.BLEND); gl.useProgram(PPAPER.p); gl.uniform2f(PPAPER.u.uRes, this.W, this.H); gl.bindVertexArray(vao); gl.drawArrays(gl.TRIANGLES, 0, 3); }
+  layout(){ const W = this.W, H = this.H, cover = this.page === 0, top = cover ? H * 0.2 : H * 0.07, bot = H * 0.06, aw = W * 0.9, ah = H - top - bot, ar = 4 / 3;
+    let w = aw, h = w / ar; if (h > ah) { h = ah; w = h * ar; } return {x: (W - w) / 2, y: top + (ah - h) / 2, w, h}; }
+  go(k, instant){ if (k === this.page && !instant) return; this.want = k; if (this.phase === 'idle' || instant || this.page < 0) this.begin(instant); else if (this.phase !== 'wash') { this.phase = 'wash'; this.t = 0; } }
+  begin(instant){ const k = this.want; if (!ready(k)) { this.pending = true; return; } this.pending = false; this.page = k; this.rect = this.layout();
+    if (this.tex) gl.deleteTexture(this.tex); this.tex = gl.createTexture(); gl.bindTexture(gl.TEXTURE_2D, this.tex); gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, false);
+    gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, IMGS[k]); gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR); gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE); gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
+    this.sample(IMGS[k]); this.build(); this.title = k === 0 ? this.titleStamps() : null; this.ti = 0;
+    this.phase = 'paint'; this.t = instant && (reduce || HQ) ? 99 : 0; this.si = 0; this.motes = [];
+    for (let i = 0; i < (PAGES[k].night ? 26 : 18); i++) this.motes.push({x: this.rect.x + rnd() * this.rect.w, y: this.rect.y + rnd() * this.rect.h, vx: (rnd() - 0.5) * 8, vy: -2 - rnd() * 6, ph: rnd() * 6});
+    if (instant && (reduce || HQ)) { this.clearPaper(); this.flush(1e9); } }
+  sample(img){ const r = this.rect, w = Math.max(8, Math.round(r.w)), h = Math.max(8, Math.round(r.h)), c = document.createElement('canvas'); c.width = w; c.height = h; const x = c.getContext('2d', {willReadFrequently: true});
+    x.drawImage(img, 0, 0, w, h); this.px = x.getImageData(0, 0, w, h).data; this.pw = w; this.ph = h; }
+  col(u, v, rad){ const w = this.pw, h = this.ph, d = this.px; let r = 0, g = 0, b = 0, n = 0, R = Math.max(0, rad | 0), st = Math.max(1, R >> 1);
+    for (let dy = -R; dy <= R; dy += st) for (let dx = -R; dx <= R; dx += st) { const x = Math.min(w - 1, Math.max(0, (u + dx) | 0)), y = Math.min(h - 1, Math.max(0, (v + dy) | 0)), o = (y * w + x) * 4; r += d[o]; g += d[o + 1]; b += d[o + 2]; n++; }
+    return [r / n / 255, g / n / 255, b / n / 255]; }
+  // pinceladas en tres pasadas: aguada grande, manchas medianas, detalle fino (más partículas donde hay contraste)
+  build(){ const r = this.rect, S = [], sc = this.S, vig = (u, v) => { const e = Math.min(u, v, this.pw - u, this.ph - v) / Math.min(this.pw, this.ph); return Math.min(1, e / 0.08); };
+    const ink = c => { const l = 0.3 * c[0] + 0.59 * c[1] + 0.11 * c[2]; return Math.min(1, (1 - l) * 1.6 + (Math.max(...c) - Math.min(...c)) * 1.4); };
+    const add = (n, s0, s1, a, t0, t1, sampR, bias) => { for (let i = 0; i < n; i++) { let u, v, c, tries = 0; do { u = rnd() * this.pw; v = rnd() * this.ph; c = this.col(u, v, sampR); tries++; } while (bias && rnd() > 0.12 + ink(c) && tries < 6);
+      const vg = vig(u, v); if (vg <= 0.02) continue; const size = (s0 + rnd() * (s1 - s0)) * sc, t = t0 + (t1 - t0) * (rnd() * 0.6 + (1 - v / this.ph) * 0.2 + (u / this.pw) * 0.2);
+      S.push([r.x + u * r.w / this.pw, r.y + v * r.h / this.ph, c, a * vg, size, t]); } };
+    const big = Math.round(260 * r.w * r.h / (900 * 650)), mid = Math.round(2400 * r.w * r.h / (900 * 650)), fine = Math.round(15000 * r.w * r.h / (900 * 650)) / (sc > 1.5 ? 1 : 1);
+    add(big, 60, 120, 0.2, 0.0, 1.0, 14, false); add(mid, 14, 30, 0.3, 0.6, 2.1, 5, true); add(fine, 3, 7, 0.55, 1.5, 3.6, 1, true);
+    S.sort((a, b) => a[5] - b[5]); this.stamps = S; }
+  titleStamps(){ const N = names(), r = this.rect, W = this.W, x2 = document.createElement('canvas'), h = Math.round(this.H * 0.17); x2.width = W; x2.height = h; const c = x2.getContext('2d', {willReadFrequently: true});
+    let fs = h * 0.6; c.font = `${fs}px "Patrick Hand", "Comic Sans MS", cursive`; const txt = `El cuento de ${N.n}`; let tw = c.measureText(txt).width; if (tw > W * 0.86) { fs *= W * 0.86 / tw; c.font = `${fs}px "Patrick Hand", "Comic Sans MS", cursive`; tw = c.measureText(txt).width; }
+    c.fillStyle = c.strokeStyle = '#000'; c.lineWidth = Math.max(1.5, fs * 0.05); c.lineJoin = 'round'; c.textBaseline = 'middle'; c.fillText(txt, (W - tw) / 2, h * 0.52); c.strokeText(txt, (W - tw) / 2, h * 0.52); const d = c.getImageData(0, 0, W, h).data, S = [], st = Math.max(2, Math.round(this.S * 1.2)), y0 = this.H * 0.035;
+    const pal = [[0.74, 0.43, 0.43], [0.66, 0.36, 0.37], [0.82, 0.52, 0.5]];
+    for (let y = 0; y < h; y += st) for (let x = 0; x < W; x += st) if (d[(y * W + x) * 4 + 3] > 120 && rnd() < 0.9) S.push([x + (rnd() - 0.5) * st, y0 + y + (rnd() - 0.5) * st, pal[rnd() * 3 | 0], 0.62, (1.6 + rnd() * 2.0) * this.S, 0.3 + (x / W) * 1.6 + rnd() * 0.3]);
+    for (let y = 0; y < h; y += st * 3) for (let x = 0; x < W; x += st * 3) if (d[(y * W + x) * 4 + 3] > 60) S.push([x, y0 + y, pal[rnd() * 3 | 0], 0.14, (5 + rnd() * 5) * this.S, 0.1 + (x / W) * 1.6]);
+    for (let i = 0; i < 26; i++) { const u = (i + 0.5) / 26, x = W * (0.3 + u * 0.4); S.push([x, y0 + h * 0.98 + Math.sin(u * 12) * 3 * this.S, [0.56, 0.64, 0.51], 0.45, 4 * this.S, 1.8 + u * 0.8]); }
+    return S.sort((a, b) => a[5] - b[5]); }
+  repaintTitle(){ if (this.page !== 0 || !this.title) return; // lava solo la franja del título y lo vuelve a pintar
+    gl.bindFramebuffer(gl.FRAMEBUFFER, this.A.f); gl.viewport(0, 0, this.W, this.H); gl.enable(gl.SCISSOR_TEST); gl.scissor(0, Math.round(this.H * 0.8), this.W, Math.round(this.H * 0.2)); gl.disable(gl.BLEND);
+    gl.useProgram(PPAPER.p); gl.uniform2f(PPAPER.u.uRes, this.W, this.H); gl.bindVertexArray(vao); gl.drawArrays(gl.TRIANGLES, 0, 3); gl.disable(gl.SCISSOR_TEST);
+    this.title = this.titleStamps(); this.ti = 0; this.tt = 0; }
+  drawStamps(list, from, to, fb){ let n = 0; for (let i = from; i < to && n < MAXS; i++, n++) { const s = list[i], o = n * 8; SB[o] = s[0]; SB[o + 1] = s[1]; SB[o + 2] = s[2][0]; SB[o + 3] = s[2][1]; SB[o + 4] = s[2][2]; SB[o + 5] = s[3]; SB[o + 6] = s[4]; SB[o + 7] = rnd(); }
+    if (!n) return 0; gl.bindFramebuffer(gl.FRAMEBUFFER, fb); gl.viewport(0, 0, this.W, this.H); gl.enable(gl.BLEND); gl.blendFunc(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA);
+    gl.useProgram(PST.p); gl.uniform2f(PST.u.uRes, this.W, this.H); gl.bindVertexArray(sv); gl.bindBuffer(gl.ARRAY_BUFFER, sb); gl.bufferSubData(gl.ARRAY_BUFFER, 0, SB, 0, n * 8); gl.drawArrays(gl.POINTS, 0, n); return n; }
+  reveal(k, a){ gl.bindFramebuffer(gl.FRAMEBUFFER, this.A.f); gl.viewport(0, 0, this.W, this.H); gl.enable(gl.BLEND); gl.blendFunc(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA); gl.useProgram(PREV.p);
+    gl.activeTexture(gl.TEXTURE0); gl.bindTexture(gl.TEXTURE_2D, this.tex); gl.uniform1i(PREV.u.uImg, 0); const r = this.rect; gl.uniform4f(PREV.u.uRect, r.x, r.y, r.w, r.h); gl.uniform2f(PREV.u.uRes, this.W, this.H);
+    gl.uniform1f(PREV.u.uK, k); gl.uniform1f(PREV.u.uA, a); gl.bindVertexArray(vao); gl.drawArrays(gl.TRIANGLES, 0, 3); }
+  flush(t){ // pinta todo lo programado hasta el tiempo t
+    while (this.si < this.stamps.length && this.stamps[this.si][5] <= t) { const to = Math.min(this.stamps.length, this.si + MAXS); let j = this.si; while (j < to && this.stamps[j][5] <= t) j++; this.drawStamps(this.stamps, this.si, j, this.A.f); this.si = j; }
+    if (this.title) while (this.ti < this.title.length && this.title[this.ti][5] <= t) { const to = Math.min(this.title.length, this.ti + MAXS); let j = this.ti; while (j < to && this.title[j][5] <= t) j++; this.drawStamps(this.title, this.ti, j, this.A.f); this.ti = j; }
+    const rv = Math.min(1, Math.max(0, (t - 2.8) / 1.6)); if (rv > 0 && this.revealed !== 1) { this.reveal(1.25 - rv * 1.4, 0.2 + 0.1 * rv); if (rv >= 1) { this.reveal(-0.3, 0.55); this.revealed = 1; } } }
+  step(dt){ this.resize(); this.t += dt;
+    if (this.pending) this.begin(false);
+    if (this.phase === 'paint') { if (this.t < dt * 1.5) this.revealed = 0; this.flush(this.t * (reduce ? 3 : 1)); if (this.si >= this.stamps.length && this.revealed === 1) this.phase = 'idle'; }
+    else if (this.phase === 'wash') { gl.bindFramebuffer(gl.FRAMEBUFFER, this.B.f); gl.viewport(0, 0, this.W, this.H); gl.disable(gl.BLEND); gl.useProgram(PWASH.p); gl.activeTexture(gl.TEXTURE0); gl.bindTexture(gl.TEXTURE_2D, this.A.t); gl.uniform1i(PWASH.u.uPrev, 0);
+      gl.uniform1f(PWASH.u.uK, Math.min(1, this.t * 2.2)); gl.uniform2f(PWASH.u.uRes, this.W, this.H); gl.bindVertexArray(vao); gl.drawArrays(gl.TRIANGLES, 0, 3); [this.A, this.B] = [this.B, this.A];
+      if (this.t > (reduce ? 0.2 : 0.95)) { this.clearPaper(); this.begin(false); } }
+    else if (this.phase === 'idle' && this.title && this.ti < this.title.length) { this.tt = (this.tt || 0) + dt; while (this.ti < this.title.length && this.title[this.ti][5] <= this.tt) { const j0 = this.ti; let j = j0; while (j < this.title.length && this.title[j][5] <= this.tt && j - j0 < MAXS) j++; this.drawStamps(this.title, j0, j, this.A.f); this.ti = j; } }
+    // el dedo/cursor es un pincel mojado: mezcla y arrastra el color de la ilustración
+    if (this.brush.length && this.page >= 0 && this.phase !== 'wash') { const r = this.rect, list = [];
+      for (const b of this.brush) { const u = (b.x - r.x) / r.w * this.pw, v = (b.y - r.y) / r.h * this.ph; if (u < 2 || v < 2 || u > this.pw - 2 || v > this.ph - 2) continue; const c = this.col(u - b.dx * 0.5, v - b.dy * 0.5, 3);
+        for (let k = 0; k < 4; k++) list.push([b.x + b.dx * k * 0.25 + (rnd() - 0.5) * 6 * this.S, b.y + b.dy * k * 0.25 + (rnd() - 0.5) * 6 * this.S, c, 0.22 * b.w, (10 + rnd() * 12) * this.S, 0]); }
+      this.drawStamps(list, 0, list.length, this.A.f); this.brush = []; }
+    // pantalla: copia del papel pintado + partículas de ambiente
+    gl.bindFramebuffer(gl.FRAMEBUFFER, null); gl.viewport(0, 0, this.W, this.H); gl.disable(gl.BLEND); gl.useProgram(PCOPY.p); gl.activeTexture(gl.TEXTURE0); gl.bindTexture(gl.TEXTURE_2D, this.A.t); gl.uniform1i(PCOPY.u.uTex, 0); gl.bindVertexArray(vao); gl.drawArrays(gl.TRIANGLES, 0, 3);
+    if (this.page >= 0 && !reduce) { const night = PAGES[this.page].night, list = [], r = this.rect;
+      for (const m of this.motes) { m.x += (m.vx + Math.sin(this.t * 0.7 + m.ph) * 6) * dt * this.S; m.y += m.vy * dt * this.S; if (m.y < r.y) { m.y = r.y + r.h; m.x = r.x + rnd() * r.w; }
+        const tw = 0.5 + 0.5 * Math.sin(this.t * (night ? 2.5 : 1.3) + m.ph * 3); list.push([m.x, m.y, night ? [1.0, 0.9, 0.45] : [1.0, 0.86, 0.6], (night ? 0.9 : 0.45) * tw * Math.min(1, this.t / 2), (night ? 10 : 6) * this.S, 0]); }
+      let n = 0; for (const s of list) { const o = n * 8; SB[o] = s[0]; SB[o + 1] = s[1]; SB[o + 2] = s[2][0]; SB[o + 3] = s[2][1]; SB[o + 4] = s[2][2]; SB[o + 5] = s[3]; SB[o + 6] = s[4]; SB[o + 7] = 0; n++; }
+      gl.enable(gl.BLEND); gl.blendFunc(gl.SRC_ALPHA, night ? gl.ONE : gl.ONE_MINUS_SRC_ALPHA); gl.useProgram(PMOTE.p); gl.uniform2f(PMOTE.u.uRes, this.W, this.H); gl.bindVertexArray(sv); gl.bindBuffer(gl.ARRAY_BUFFER, sb); gl.bufferSubData(gl.ARRAY_BUFFER, 0, SB, 0, n * 8); gl.drawArrays(gl.POINTS, 0, n); } }
+}
+painter = new Painter();
+let lastP = null;
+cv.addEventListener('pointermove', e => { const r = cv.getBoundingClientRect(), x = (e.clientX - r.left) * painter.S, y = (e.clientY - r.top) * painter.S;
+  if (lastP) { const dx = x - lastP[0], dy = y - lastP[1]; if (Math.hypot(dx, dy) > 2 && Math.hypot(dx, dy) < 120 * painter.S) painter.brush.push({x, y, dx, dy, w: e.buttons || e.pointerType !== 'mouse' ? 1 : 0.45}); } lastP = [x, y]; });
+cv.addEventListener('pointerleave', () => { lastP = null; });
+
+function onScroll(){ const k = pageFromScroll(); if (k !== shown) { shown = k; showText(k); painter.go(k); } }
+addEventListener('scroll', onScroll, {passive: true});
+let last = performance.now();
+function frame(now){ const dt = Math.min(0.05, (now - last) / 1000); last = now; painter.step(dt); requestAnimationFrame(frame); }
+function start(){ const hq = location.hash.match(/#hq-(\d+)(?:-t(\d+))?/); if (hq) { document.documentElement.style.scrollBehavior = 'auto'; scrollTo(0, +hq[1] * innerHeight / 100); }
+  shown = pageFromScroll(); showText(shown); painter.want = shown; painter.begin(false);
+  if (hq && hq[2]) { const T = +hq[2] / 10; for (let t = 0; t < T; t += 1 / 30) painter.step(1 / 30); }
+  requestAnimationFrame(t => { last = t; requestAnimationFrame(frame); }); }
+Promise.all([document.fonts ? Promise.race([document.fonts.load('40px "Patrick Hand"'), new Promise(r => setTimeout(r, 2000))]) : 0, ...(HQ ? IMGS : [IMGS[0]]).map(im => new Promise(r => { if (im.complete) r(); else { im.onload = r; im.onerror = r; setTimeout(r, 4000); } }))]).then(start);
+})();
+</script>
+
+</body></html>

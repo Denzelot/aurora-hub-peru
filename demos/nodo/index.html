@@ -1,0 +1,591 @@
+<!doctype html><html><head><meta name="robots" content="noindex"><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Nodo v1.2</title>
+<meta name="description" content="Nodo: inteligencia artificial, publicidad en Meta, TikTok y Google, automatizaciones, diseño web, licencias, servicios TI, servicio técnico y asesoría en equipos de cómputo en Lima, Perú.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  color-scheme: dark;
+  --bg:#03090f; --ink:#eefcf8; --muted:#8fb3b6; --line:rgba(44,245,200,.22);
+  --mint:#2cf5c8; --blue:#6a7bff; --pink:#ff4fa3; --soft:#a9fff0;
+  --sans:"Space Grotesk", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono:"JetBrains Mono", ui-monospace, Menlo, Consolas, monospace;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.55;-webkit-font-smoothing:antialiased}
+#net{position:fixed;inset:0;width:100%;height:100%;display:block;z-index:0}
+body.static #net{display:none}
+body.static{background:radial-gradient(circle at 70% 50%,rgba(90,108,255,.2),transparent 40%),radial-gradient(circle at 60% 40%,rgba(44,245,200,.14),transparent 35%),var(--bg) fixed}
+a{color:inherit}
+.wrap{position:relative;z-index:1;width:100%;max-width:1180px;margin:0 auto;padding-inline:16px}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:5;background:linear-gradient(to bottom,rgba(3,9,15,.94),rgba(3,9,15,0))}
+nav .in{max-width:1180px;margin:0 auto;padding:14px 16px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.logo{display:inline-flex;align-items:center;gap:10px;font-weight:700;font-size:18px;letter-spacing:.08em;text-decoration:none}
+.logo svg{width:28px;height:28px}
+nav ul{display:flex;gap:22px;list-style:none;margin:0;padding:0;font-size:14px;color:var(--muted)}
+nav ul a{text-decoration:none}
+nav ul a:hover{color:var(--ink)}
+.btn{display:inline-flex;align-items:center;gap:8px;font:600 14px/1 var(--sans);text-decoration:none;border-radius:10px;padding:13px 18px;border:1px solid var(--line);color:var(--ink);background:rgba(44,245,200,.07);cursor:pointer}
+.btn:hover{background:rgba(44,245,200,.16)}
+.btn.primary{background:linear-gradient(90deg,var(--mint),#8fa6ff 60%,#ff8cc4);border-color:transparent;color:#03121a;box-shadow:0 0 28px -6px rgba(44,245,200,.55)}
+.btn.primary:hover{filter:brightness(1.08)}
+.btn.sm{padding:9px 14px;font-size:13px}
+a:focus-visible,.btn:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid var(--soft);outline-offset:3px}
+
+.sec{min-height:100vh;display:flex;align-items:center;padding:90px 0 60px}
+.copy{max-width:520px;text-shadow:0 1px 18px rgba(3,9,15,.95)}
+.num{font-family:var(--mono);font-size:12px;letter-spacing:.14em;color:var(--muted)}
+.num b{color:var(--mint);font-weight:500}
+.cat{font-family:var(--mono);font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--pink);margin-left:10px}
+h1{font-size:clamp(38px,5.6vw,70px);line-height:1.02;letter-spacing:-.03em;margin:14px 0 18px;font-weight:700;text-wrap:balance}
+h2{font-size:clamp(30px,4vw,50px);line-height:1.04;letter-spacing:-.025em;margin:12px 0 14px;font-weight:700;text-wrap:balance}
+.hl{color:var(--mint)}
+@supports (-webkit-background-clip:text){.hl{background:linear-gradient(90deg,#3dfbd2,#8e9bff 55%,#ff66b2);-webkit-background-clip:text;background-clip:text;color:transparent;text-shadow:none}}
+.lead{font-size:clamp(16px,1.5vw,19px);color:#d5ceda;margin:0 0 24px}
+.copy p{color:#cfc8d6;font-size:16px;margin:0 0 18px}
+.list{list-style:none;margin:0 0 22px;padding:0;display:grid;gap:8px}
+.list li{display:flex;gap:10px;align-items:baseline;font-size:15px;color:#e6e0ea}
+.list li::before{content:"";flex:none;width:7px;height:7px;border-radius:50%;background:var(--mint);box-shadow:0 0 10px var(--mint);transform:translateY(-1px)}
+.more{font-weight:600;font-size:14.5px;color:var(--soft);text-decoration:none}
+.more:hover{text-decoration:underline}
+.cta{display:flex;gap:12px;flex-wrap:wrap}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.steps{list-style:none;margin:0 0 10px;padding:0;display:grid;gap:14px;counter-reset:s}
+.steps li{display:grid;grid-template-columns:44px 1fr;gap:4px 12px;align-items:baseline}
+.steps li::before{counter-increment:s;content:"0" counter(s);grid-row:span 2;font-family:var(--mono);font-size:13px;color:var(--mint)}
+.steps b{font-size:17px}
+.steps span{color:var(--muted);font-size:14.5px}
+form{display:grid;gap:12px;margin-top:6px}
+label{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);display:grid;gap:6px}
+input,select,textarea{font:500 15px/1.4 var(--sans);color:var(--ink);background:rgba(6,18,26,.92);border:1px solid var(--line);border-radius:10px;padding:12px 14px;width:100%}
+textarea{min-height:84px;resize:vertical}
+footer{margin-top:34px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-size:12.5px;color:var(--muted);border-top:1px solid var(--line);padding-top:16px}
+.dots{position:fixed;right:18px;top:50%;transform:translateY(-50%);z-index:4;display:grid;gap:10px}
+.dots a{display:flex;align-items:center;justify-content:flex-end;gap:10px;text-decoration:none;font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:transparent}
+.dots a i{width:8px;height:8px;border-radius:50%;border:1px solid var(--muted);flex:none}
+.dots a:hover,.dots a.on{color:var(--muted)}
+.dots a.on i{background:var(--mint);border-color:var(--mint);box-shadow:0 0 10px var(--mint)}
+.shape{position:fixed;left:0;bottom:16px;z-index:4;font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);pointer-events:none;width:100%;text-align:center}
+body.static .shape{display:none}
+@media (max-width:760px){
+  nav ul{display:none}
+  .sec{align-items:flex-end;padding:52vh 0 48px;min-height:100vh}
+  .sec.hero{padding-top:44vh}
+  .copy{max-width:none}
+  .dots{display:none}
+  .shape{display:none}
+}
+</style>
+
+<canvas id="net" aria-hidden="true"></canvas>
+
+<nav aria-label="Principal"><div class="in">
+  <a class="logo" href="#inicio" aria-label="Nodo, inicio"><svg viewBox="0 0 32 32" fill="none" aria-hidden="true"><path d="M8 22L16 8L25 20Z" stroke="url(#lg)" stroke-width="1.6"/><circle cx="8" cy="22" r="3.4" fill="#2cf5c8"/><circle cx="16" cy="8" r="3.4" fill="#6a7bff"/><circle cx="25" cy="20" r="3.4" fill="#ff4fa3"/><defs><linearGradient id="lg" x1="0" x2="1"><stop offset="0" stop-color="#2cf5c8"/><stop offset=".5" stop-color="#6a7bff"/><stop offset="1" stop-color="#ff4fa3"/></linearGradient></defs></svg>NODO</a>
+  <ul><li><a href="#ia">Marketing e IA</a></li><li><a href="#licencias">Tecnología</a></li><li><a href="#proceso">Proceso</a></li></ul>
+  <a class="btn sm" href="#contacto">Cotizar</a>
+</div></nav>
+<aside class="dots" id="dots" aria-label="Secciones"></aside>
+<div class="shape" id="shapeLbl" aria-hidden="true"></div>
+
+<main>
+<section class="sec hero" id="inicio" data-shape="word" data-label="Inicio"><div class="wrap"><div class="copy">
+  <div class="eyebrow">Tecnología y marketing · Lima, Perú</div>
+  <h1>Conectamos todo lo que tu negocio <span class="hl">necesita para crecer.</span></h1>
+  <p class="lead">Inteligencia artificial, publicidad, automatización con n8n, CRM Kommo, web, licencias y soporte técnico. Cada servicio es un nodo; nosotros hacemos que funcionen juntos.</p>
+  <div class="cta"><a class="btn primary" href="#ia">Explorar servicios</a><a class="btn" href="#contacto">Hablemos</a></div>
+</div></div></section>
+
+<section class="sec" id="ia" data-shape="brain" data-label="IA"><div class="wrap"><div class="copy">
+  <div class="num"><b>01</b> / 09<span class="cat">Crecer</span></div>
+  <h2>Inteligencia artificial</h2>
+  <p>Ponemos la IA a trabajar en tu negocio: responde clientes, crea contenido y te ayuda a decidir con datos.</p>
+  <ul class="list"><li>Chatbots y asistentes para WhatsApp y web</li><li>Imágenes y video generados con IA</li><li>Análisis y reportes automáticos</li><li>Capacitación para tu equipo</li></ul>
+  <a class="more" href="#contacto" data-svc="Inteligencia artificial">Cotizar este servicio →</a>
+</div></div></section>
+
+<section class="sec" id="ads" data-shape="megaphone" data-label="Publicidad"><div class="wrap"><div class="copy">
+  <div class="num"><b>02</b> / 09<span class="cat">Crecer</span></div>
+  <h2>Publicidad en Meta, TikTok y Google</h2>
+  <p>Campañas que llegan a quien sí te va a comprar, con cada sol invertido medido.</p>
+  <ul class="list"><li>Estrategia y segmentación por plataforma</li><li>Creativos pensados para cada formato</li><li>Píxel, eventos y conversiones configurados</li><li>Reporte semanal de resultados</li></ul>
+  <a class="more" href="#contacto" data-svc="Publicidad digital (Meta, TikTok, Google)">Cotizar este servicio →</a>
+</div></div></section>
+
+<section class="sec" id="auto" data-shape="gears" data-label="Automatización"><div class="wrap"><div class="copy">
+  <div class="num"><b>03</b> / 09<span class="cat">Crecer</span></div>
+  <h2>Automatizaciones</h2>
+  <p>Las tareas repetitivas se hacen solas y tu equipo se dedica a lo importante.</p>
+  <ul class="list"><li>Respuestas y seguimiento automático por WhatsApp</li><li>Formularios conectados a CRM y hojas de cálculo</li><li>Cotizaciones y recordatorios automáticos</li><li>Flujos en n8n, Make o Zapier</li></ul>
+  <a class="more" href="#contacto" data-svc="Automatizaciones">Cotizar este servicio →</a>
+</div></div></section>
+
+<section class="sec" id="n8n" data-shape="flow" data-label="n8n · Kommo"><div class="wrap"><div class="copy">
+  <div class="num"><b>04</b> / 09<span class="cat">Crecer</span></div>
+  <h2>n8n y Kommo: implementación y configuración</h2>
+  <p>Diseñamos tus flujos en n8n y dejamos Kommo listo para vender: cada mensaje, lead y venta pasa por el camino correcto sin que nadie lo mueva a mano.</p>
+  <ul class="list"><li>Flujos en n8n que conectan WhatsApp, formularios, hojas de cálculo, correo e IA</li><li>Kommo CRM: embudos, etapas y campos a la medida de tu venta</li><li>WhatsApp, Instagram y Facebook conectados a Kommo</li><li>Salesbots, respuestas automáticas y recordatorios de seguimiento</li><li>Leads de Meta Ads y de tu web directo al CRM</li><li>Configuración de otras apps de negocio y capacitación a tu equipo</li></ul>
+  <a class="more" href="#contacto" data-svc="n8n y Kommo (automatización y CRM)">Cotizar este servicio →</a>
+</div></div></section>
+
+<section class="sec" id="web" data-shape="browser" data-label="Web"><div class="wrap"><div class="copy">
+  <div class="num"><b>05</b> / 09<span class="cat">Crecer</span></div>
+  <h2>Diseño y desarrollo web</h2>
+  <p>Webs rápidas, claras y memorables, hechas para que te encuentren y te escriban.</p>
+  <ul class="list"><li>Landing pages que convierten</li><li>Tiendas online y webs corporativas</li><li>SEO y velocidad de carga</li><li>Experiencias interactivas como esta</li></ul>
+  <a class="more" href="#contacto" data-svc="Diseño y desarrollo web">Cotizar este servicio →</a>
+</div></div></section>
+
+<section class="sec" id="licencias" data-shape="shield" data-label="Licencias"><div class="wrap"><div class="copy">
+  <div class="num"><b>06</b> / 09<span class="cat">Operar</span></div>
+  <h2>Venta de licencias</h2>
+  <p>Software en regla, instalado y activado, para trabajar sin sustos.</p>
+  <ul class="list"><li>Sistemas operativos</li><li>Ofimática y correo</li><li>Antivirus y seguridad</li><li>Software de diseño</li></ul>
+  <a class="more" href="#contacto" data-svc="Licencias de software">Cotizar este servicio →</a>
+</div></div></section>
+
+<section class="sec" id="ti" data-shape="rack" data-label="Servicios TI"><div class="wrap"><div class="copy">
+  <div class="num"><b>07</b> / 09<span class="cat">Operar</span></div>
+  <h2>Servicios TI</h2>
+  <p>La infraestructura de tu oficina, estable y protegida.</p>
+  <ul class="list"><li>Redes cableadas y wifi</li><li>Correo corporativo</li><li>Respaldos y seguridad</li><li>Soporte remoto</li></ul>
+  <a class="more" href="#contacto" data-svc="Servicios TI">Cotizar este servicio →</a>
+</div></div></section>
+
+<section class="sec" id="tecnico" data-shape="wrench" data-label="Servicio técnico"><div class="wrap"><div class="copy">
+  <div class="num"><b>08</b> / 09<span class="cat">Operar</span></div>
+  <h2>Servicio técnico de computadoras</h2>
+  <p>Diagnóstico honesto y reparación rápida, en taller o a domicilio.</p>
+  <ul class="list"><li>Mantenimiento preventivo</li><li>Reparación y diagnóstico</li><li>Formateo y optimización</li><li>Mejoras de SSD y memoria RAM</li><li>Recuperación de información</li></ul>
+  <a class="more" href="#contacto" data-svc="Servicio técnico de computadoras">Cotizar este servicio →</a>
+</div></div></section>
+
+<section class="sec" id="asesoria" data-shape="laptop" data-label="Asesoría"><div class="wrap"><div class="copy">
+  <div class="num"><b>09</b> / 09<span class="cat">Operar</span></div>
+  <h2>Asesoría en equipos de cómputo</h2>
+  <p>Compra lo que necesitas, ni más ni menos. Te decimos qué equipo conviene según tu trabajo y presupuesto.</p>
+  <ul class="list"><li>Laptops y computadoras de escritorio</li><li>Impresoras y periféricos</li><li>Servidores y equipos de red</li><li>Comparativas y cotizaciones</li></ul>
+  <a class="more" href="#contacto" data-svc="Asesoría en equipos de cómputo">Cotizar este servicio →</a>
+</div></div></section>
+
+<section class="sec" id="proceso" data-shape="chain" data-label="Proceso"><div class="wrap"><div class="copy">
+  <div class="num">Cómo trabajamos</div>
+  <h2>Cuatro nodos, <span class="hl">un solo flujo.</span></h2>
+  <ol class="steps">
+    <li><b>Diagnóstico</b><span>Escuchamos qué quieres lograr y revisamos lo que ya tienes.</span></li>
+    <li><b>Propuesta</b><span>Plan, plazos y costo claros antes de empezar.</span></li>
+    <li><b>Implementación</b><span>Lo construimos, configuramos o reparamos contigo al tanto.</span></li>
+    <li><b>Soporte</b><span>Medimos, ajustamos y seguimos disponibles.</span></li>
+  </ol>
+</div></div></section>
+
+<section class="sec" id="contacto" data-shape="globe" data-label="Contacto"><div class="wrap"><div class="copy">
+  <div class="num">Contacto</div>
+  <h2>Conecta con <span class="hl">Nodo.</span></h2>
+  <p>Cuéntanos qué necesitas y te respondemos con una propuesta.</p>
+  <form id="form">
+    <label>Nombre<input name="n" autocomplete="name" required></label>
+    <label>Servicio<select name="s" id="svc">
+      <option>Inteligencia artificial</option><option>Publicidad digital (Meta, TikTok, Google)</option><option>Automatizaciones</option><option>n8n y Kommo (automatización y CRM)</option><option>Diseño y desarrollo web</option>
+      <option>Licencias de software</option><option>Servicios TI</option><option>Servicio técnico de computadoras</option><option>Asesoría en equipos de cómputo</option></select></label>
+    <label>Mensaje<textarea name="m" placeholder="Ej.: necesito un chatbot para responder pedidos"></textarea></label>
+    <button class="btn primary" type="submit">Enviar por WhatsApp</button>
+  </form>
+  <footer><span>© Nodo · Lima, Perú</span><span>Prototipo · datos de contacto por definir</span></footer>
+</div></div></section>
+</main>
+
+<script>
+(() => {
+'use strict';
+const WHATSAPP = '51932462537'; // número con código de país, p. ej. 51XXXXXXXXX
+const $svc = document.getElementById('svc');
+document.querySelectorAll('[data-svc]').forEach(a => a.addEventListener('click', () => { $svc.value = a.dataset.svc; }));
+document.getElementById('form').addEventListener('submit', e => { e.preventDefault(); const f = new FormData(e.target);
+  const t = `Hola Aurora Hub Perú, vi el concepto «Nodo». Soy ${f.get('n')}. Me interesa: ${f.get('s')}. ${f.get('m') || ''}`.trim(); window.open(`https://wa.me/${WHATSAPP}?text=${encodeURIComponent(t)}`, '_blank', 'noopener'); });
+
+const SECS = [...document.querySelectorAll('[data-shape]')];
+const $dots = document.getElementById('dots'), $lbl = document.getElementById('shapeLbl');
+SECS.forEach(s => { const a = document.createElement('a'); a.href = '#' + s.id; a.innerHTML = `${s.dataset.label}<i></i>`; $dots.appendChild(a); });
+const DOTS = [...$dots.children];
+
+const cv = document.getElementById('net');
+const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const gl = cv.getContext('webgl2', {antialias: false, alpha: false, depth: false, stencil: false, preserveDrawingBuffer: true});
+if (!gl) { document.body.classList.add('static'); return; }
+const HALF = !!gl.getExtension('EXT_color_buffer_float');
+const coarse = matchMedia('(pointer: coarse)').matches;
+const HQ = location.hash.startsWith('#hq');
+const N = coarse ? 1100 : 2200;
+const TAU = Math.PI * 2, rnd = Math.random;
+
+/* ================= formas: cada una devuelve N puntos 3D ================= */
+const cvs = document.createElement('canvas'), c2 = cvs.getContext('2d', {willReadFrequently: true});
+function sample2D(draw, n, depth, bulge = 0){
+  const S = 400; cvs.width = cvs.height = S; c2.clearRect(0, 0, S, S); c2.fillStyle = c2.strokeStyle = '#fff'; draw(c2, S);
+  const d = c2.getImageData(0, 0, S, S).data, px = [];
+  for (let y = 0; y < S; y += 2) for (let x = 0; x < S; x += 2) if (d[(y * S + x) * 4 + 3] > 128) px.push(x, y);
+  const out = [], m = px.length / 2;
+  for (let i = 0; i < n; i++) { const k = (rnd() * m | 0) * 2, x = (px[k] + rnd() * 2) / S * 2 - 1, y = 1 - (px[k + 1] + rnd() * 2) / S * 2;
+    out.push(x * 1.05, y * 1.05, (rnd() - 0.5) * depth - bulge * (x * x + y * y)); }
+  return out;
+}
+function onSphere(){ const u = rnd() * 2 - 1, a = rnd() * TAU, r = Math.sqrt(1 - u * u); return [r * Math.cos(a), u, r * Math.sin(a)]; }
+function pick(parts, n){ // parts: [[peso, fn]] → n puntos
+  const tot = parts.reduce((s, p) => s + p[0], 0), out = [];
+  for (let i = 0; i < n; i++) { let r = rnd() * tot, k = 0; while (r > parts[k][0]) { r -= parts[k][0]; k++; } out.push(...parts[k][1]()); }
+  return out;
+}
+const SHAPE = {
+  word(n){ return sample2D((c, S) => { c.font = `700 ${S * 0.36}px "Space Grotesk", sans-serif`; c.textAlign = 'center'; c.textBaseline = 'middle';
+    c.save(); c.translate(S / 2, S / 2); c.scale(1, 1); c.fillText('NODO', 0, 0); c.restore(); }, n, 0.28).map((v, i) => i % 3 === 0 ? v * 1.02 : v); },
+  brain(n){
+    const hemi = () => { const s = rnd() < 0.5 ? -1 : 1, d = onSphere(); let x = d[0], y = d[1], z = d[2]; if (x * s < -0.2) x = -0.2 * s;
+      const f = 1 + 0.07 * Math.sin(y * 16 + z * 11 + s) * Math.sin(z * 9 - y * 5);
+      return [z * 0.82 * f, y * 0.56 * f + 0.1, s * 0.05 + x * 0.42 * f]; };
+    const cereb = () => { const d = onSphere(); return [-0.55 + d[2] * 0.22, -0.38 + d[1] * 0.16, d[0] * 0.3]; };
+    const stem = () => { const t = rnd(), a = rnd() * TAU; return [-0.28 - t * 0.08, -0.35 - t * 0.42, Math.cos(a) * 0.08 + Math.sin(a) * 0.0]; };
+    return pick([[0.84, hemi], [0.11, cereb], [0.05, stem]], n);
+  },
+  megaphone(n){
+    const R = x => 0.12 + 0.46 * Math.pow((x + 0.6) / 1.05, 1.6);
+    const bell = () => { const x = -0.6 + rnd() * 1.05, a = rnd() * TAU, r = R(x); return [x - 0.25, r * Math.cos(a), r * Math.sin(a)]; };
+    const rim = () => { const a = rnd() * TAU, r = R(0.45); return [0.2, r * Math.cos(a), r * Math.sin(a)]; };
+    const back = () => { const x = -0.95 + rnd() * 0.35, a = rnd() * TAU; return [x - 0.0, 0.13 * Math.cos(a), 0.13 * Math.sin(a)]; };
+    const handle = () => [-0.5 + (rnd() - 0.5) * 0.12, -0.12 - rnd() * 0.42, (rnd() - 0.5) * 0.1];
+    const wave = () => { const k = rnd() * 3 | 0, a = (rnd() - 0.5) * 1.3, r = 0.55 + k * 0.2; return [0.2 + Math.cos(a) * r * 0.55 + 0.1, Math.sin(a) * r, (rnd() - 0.5) * 0.05, 9, k]; };
+    return pick([[0.52, bell], [0.1, rim], [0.08, back], [0.08, handle], [0.22, () => wave().slice(0, 3)]], n);
+  },
+  gears(n){
+    const G = [[-0.42, 0.18, 0.56, 10], [0.52, -0.36, 0.4, 7]];
+    const prof = (g, a) => g[2] * (1 + 0.14 * (Math.tanh(Math.sin(a * g[3]) * 4)));
+    const outline = g => () => { const a = rnd() * TAU, r = prof(g, a); return [g[0] + Math.cos(a) * r, g[1] + Math.sin(a) * r, rnd() < 0.5 ? -0.06 : 0.06]; };
+    const hub = g => () => { const a = rnd() * TAU, r = g[2] * 0.28; return [g[0] + Math.cos(a) * r, g[1] + Math.sin(a) * r, (rnd() - 0.5) * 0.18]; };
+    const spoke = g => () => { const k = rnd() * 5 | 0, a = k / 5 * TAU, r = g[2] * (0.28 + rnd() * 0.6); return [g[0] + Math.cos(a) * r, g[1] + Math.sin(a) * r, (rnd() - 0.5) * 0.1]; };
+    return pick([[0.36, outline(G[0])], [0.07, hub(G[0])], [0.12, spoke(G[0])], [0.28, outline(G[1])], [0.06, hub(G[1])], [0.11, spoke(G[1])]], n);
+  },
+  flow(n){
+    const B = [[-1.05, 0], [-0.5, 0], [0.05, 0.36], [0.05, -0.36], [0.6, 0.36], [0.6, -0.36], [1.1, 0]], bw = 0.17, bh = 0.13;
+    const box = k => () => { const [cx, cy] = B[k], t = rnd() * 4, e = t | 0, u = t - e, r = 0.04;
+      let x, y; if (e === 0) { x = -bw + u * 2 * bw; y = bh; } else if (e === 1) { x = bw; y = bh - u * 2 * bh; } else if (e === 2) { x = bw - u * 2 * bw; y = -bh; } else { x = -bw; y = -bh + u * 2 * bh; }
+      if (Math.abs(x) > bw - r && Math.abs(y) > bh - r) { const sx = Math.sign(x), sy = Math.sign(y), a = Math.atan2(y - sy * (bh - r), x - sx * (bw - r)); x = sx * (bw - r) + Math.cos(a) * r; y = sy * (bh - r) + Math.sin(a) * r; }
+      return [cx + x, cy + y, (rnd() - 0.5) * 0.08]; };
+    const icon = k => () => { const [cx, cy] = B[k], a = rnd() * TAU, r = 0.05 + (rnd() < 0.5 ? 0 : 0.02); return [cx + Math.cos(a) * r, cy + Math.sin(a) * r, 0.02]; };
+    const E = [[0, 1], [1, 2], [1, 3], [2, 4], [3, 5], [4, 6], [5, 6]];
+    const wire = () => { const [a, b] = E[rnd() * E.length | 0], p0 = [B[a][0] + bw, B[a][1]], p3 = [B[b][0] - bw, B[b][1]], m = (p3[0] - p0[0]) * 0.5, t = rnd(), u = 1 - t;
+      const x = u * u * u * p0[0] + 3 * u * u * t * (p0[0] + m) + 3 * u * t * t * (p3[0] - m) + t * t * t * p3[0], y = u * u * u * p0[1] + 3 * u * u * t * p0[1] + 3 * u * t * t * p3[1] + t * t * t * p3[1];
+      return [x, y, (rnd() - 0.5) * 0.02]; };
+    const port = () => { const k = rnd() * B.length | 0, s = rnd() < 0.5 ? -1 : 1, a = rnd() * TAU; return [B[k][0] + s * bw + Math.cos(a) * 0.025, B[k][1] + Math.sin(a) * 0.025, 0]; };
+    const parts = B.map((_, k) => [0.085, box(k)]).concat(B.map((_, k) => [0.02, icon(k)]), [[0.3, wire], [0.07, port]]);
+    return pick(parts, n).map((v, i) => i % 3 === 0 ? v * 0.84 : i % 3 === 1 ? v * 0.95 : v);
+  },
+  browser(n){ return sample2D((c, S) => { c.lineWidth = 12; c.lineJoin = 'round'; c.beginPath(); c.roundRect(40, 70, S - 80, S - 140, 22); c.stroke();
+    c.beginPath(); c.moveTo(40, 118); c.lineTo(S - 40, 118); c.stroke(); for (let k = 0; k < 3; k++) { c.beginPath(); c.arc(72 + k * 26, 94, 8, 0, TAU); c.fill(); }
+    c.font = `700 ${S * 0.26}px "Space Grotesk", sans-serif`; c.textAlign = 'center'; c.textBaseline = 'middle'; c.fillText('</>', S / 2, S / 2 + 38); }, n, 0.14, 0.12); },
+  shield(n){ return sample2D((c, S) => { const p = new Path2D('M200 40 L330 90 L330 190 C330 275 272 330 200 365 C128 330 70 275 70 190 L70 90 Z'); c.lineWidth = 16; c.lineJoin = 'round'; c.stroke(p);
+    const q = new Path2D('M200 70 L302 110 L302 190 C302 258 256 302 200 332 C144 302 98 258 98 190 L98 110 Z'); c.lineWidth = 5; c.stroke(q);
+    c.lineWidth = 24; c.lineCap = 'round'; c.beginPath(); c.moveTo(145, 200); c.lineTo(188, 243); c.lineTo(262, 158); c.stroke(); }, n, 0.12, 0.3); },
+  rack(n){
+    const box = y0 => () => { // aristas de una caja
+      const w = 0.62, h = 0.15, d = 0.42, e = rnd() * 12 | 0, t = rnd() * 2 - 1, s = [[1, 1], [1, -1], [-1, 1], [-1, -1]][e % 4];
+      if (e < 4) return [t * w, y0 + s[0] * h, s[1] * d]; if (e < 8) return [s[0] * w, y0 + t * h, s[1] * d]; return [s[0] * w, y0 + s[1] * h, t * d]; };
+    const face = y0 => () => [(rnd() * 2 - 1) * 0.55, y0 + (rnd() - 0.5) * 0.08, 0.42];
+    const led = y0 => () => [0.4 + (rnd() * 3 | 0) * 0.06, y0 + 0.05, 0.43];
+    const cable = () => { const t = rnd(), k = rnd() * 3 | 0; return [-0.62 - t * 0.35, 0.36 - k * 0.36 - t * t * 0.3, 0.2]; };
+    return pick([[0.22, box(0.36)], [0.22, box(0)], [0.22, box(-0.36)], [0.07, face(0.36)], [0.07, face(0)], [0.07, face(-0.36)], [0.03, led(0.36)], [0.03, led(0)], [0.03, led(-0.36)], [0.04, cable]], n);
+  },
+  wrench(n){ return sample2D((c, S) => { c.save(); c.translate(S / 2, S / 2); c.rotate(-0.78);
+    c.fillRect(-26, -20, 52, 185); c.beginPath(); c.arc(0, 165, 40, 0, TAU); c.fill();
+    c.beginPath(); c.arc(0, -85, 82, 0, TAU); c.fill(); c.globalCompositeOperation = 'destination-out'; c.fillRect(-30, -190, 60, 120); c.beginPath(); c.arc(0, 165, 14, 0, TAU); c.fill(); c.restore(); }, n, 0.16); },
+  laptop(n){
+    const base = () => [(rnd() * 2 - 1) * 0.82, -0.42, (rnd() * 2 - 1) * 0.5 + 0.2];
+    const baseEdge = () => { const t = rnd() * 2 - 1; return rnd() < 0.5 ? [t * 0.82, -0.42, rnd() < 0.5 ? -0.3 : 0.7] : [rnd() < 0.5 ? -0.82 : 0.82, -0.42, 0.2 + t * 0.5]; };
+    const keys = () => [((rnd() * 12 | 0) - 5.5) * 0.11, -0.41, ((rnd() * 4 | 0) - 1.5) * 0.1 + 0.15];
+    const scr = (u, v) => [u * 0.8, -0.42 + v * 0.95 * Math.cos(0.22), -0.3 - v * 0.95 * Math.sin(0.22)];
+    const screenEdge = () => { const t = rnd(), k = rnd() * 4 | 0; return k < 2 ? scr(t * 2 - 1, k) : scr(k === 2 ? -1 : 1, t); };
+    const screenLines = () => { const row = rnd() * 6 | 0, len = 0.3 + ((row * 37) % 5) * 0.12; return scr(-0.8 + rnd() * len * 1.6, 0.2 + row * 0.12); };
+    return pick([[0.16, base], [0.14, baseEdge], [0.12, keys], [0.3, screenEdge], [0.28, screenLines]], n);
+  },
+  chain(n){
+    const C = [[-0.95, -0.15], [-0.32, 0.18], [0.32, -0.15], [0.95, 0.18]];
+    const ball = k => () => { const d = onSphere(); return [C[k][0] + d[0] * 0.22, C[k][1] + d[1] * 0.22, d[2] * 0.22]; };
+    const link = () => { const k = rnd() * 3 | 0, t = rnd(), a = C[k], b = C[k + 1]; return [a[0] + (b[0] - a[0]) * t, a[1] + (b[1] - a[1]) * t + Math.sin(t * Math.PI) * 0.06, (rnd() - 0.5) * 0.04]; };
+    return pick([[0.2, ball(0)], [0.2, ball(1)], [0.2, ball(2)], [0.2, ball(3)], [0.2, link]], n);
+  },
+  globe(n){
+    const surf = () => onSphere().map(v => v * 0.85);
+    const lat = () => { const k = (rnd() * 5 | 0) - 2, y = Math.sin(k * 0.5), r = Math.cos(k * 0.5), a = rnd() * TAU; return [Math.cos(a) * r * 0.85, y * 0.85, Math.sin(a) * r * 0.85]; };
+    const lon = () => { const k = rnd() * 8 | 0, a = k / 8 * Math.PI, t = rnd() * TAU; return [Math.cos(t) * Math.cos(a) * 0.85, Math.sin(t) * 0.85, Math.cos(t) * Math.sin(a) * 0.85]; };
+    const ring = () => { const a = rnd() * TAU; return [Math.cos(a) * 1.18, Math.sin(a) * 1.18 * 0.22, Math.sin(a) * 1.18 * 0.95]; };
+    return pick([[0.34, surf], [0.24, lat], [0.24, lon], [0.18, ring]], n);
+  }
+};
+const ANIM = { // formas con movimiento propio
+  gears(p, o, t){ const G = [[-0.42, 0.18, 1], [0.52, -0.36, -0.56 / 0.4]];
+    for (let i = 0; i < N; i++) { const x = p[i * 3], y = p[i * 3 + 1], g = (x - G[0][0]) ** 2 + (y - G[0][1]) ** 2 < (x - G[1][0]) ** 2 + (y - G[1][1]) ** 2 ? G[0] : G[1];
+      const a = t * 0.28 * g[2], c = Math.cos(a), s = Math.sin(a), dx = x - g[0], dy = y - g[1]; o[i * 3] = g[0] + dx * c - dy * s; o[i * 3 + 1] = g[1] + dx * s + dy * c; o[i * 3 + 2] = p[i * 3 + 2]; } },
+  globe(p, o, t){ const c = Math.cos(t * 0.25), s = Math.sin(t * 0.25); for (let i = 0; i < N; i++) { const x = p[i * 3], z = p[i * 3 + 2]; o[i * 3] = x * c + z * s; o[i * 3 + 1] = p[i * 3 + 1]; o[i * 3 + 2] = -x * s + z * c; } },
+  megaphone(p, o, t){ for (let i = 0; i < N; i++) { const x = p[i * 3], y = p[i * 3 + 1]; let dx = 0, dy = 0;
+      if (x > 0.32) { const r = Math.hypot(x - 0.2, y), ph = ((t * 0.35 + r) % 0.25) - 0.125; dx = (x - 0.2) / r * ph * 0.4; dy = y / r * ph * 0.4; }
+      o[i * 3] = x + dx; o[i * 3 + 1] = y + dy; o[i * 3 + 2] = p[i * 3 + 2]; } }
+};
+const SH = {}; // forma → {p: puntos ordenados, cur}
+function buildShapes(){
+  for (const s of SECS) { const k = s.dataset.shape; if (SH[k]) continue;
+    const raw = SHAPE[k](N), idx = [...Array(N).keys()].sort((a, b) => (raw[a * 3] + raw[a * 3 + 1] * 0.6) - (raw[b * 3] + raw[b * 3 + 1] * 0.6));
+    const p = new Float32Array(N * 3); idx.forEach((j, i) => { p[i * 3] = raw[j * 3]; p[i * 3 + 1] = raw[j * 3 + 1]; p[i * 3 + 2] = raw[j * 3 + 2]; });
+    SH[k] = {p, cur: new Float32Array(p)}; }
+}
+
+/* ================= WebGL ================= */
+const VS = `#version 300 es
+out vec2 vUv; void main(){ vec2 p = vec2((gl_VertexID << 1) & 2, gl_VertexID & 2); vUv = p; gl_Position = vec4(p * 2.0 - 1.0, 0.0, 1.0); }`;
+const NOISE = `float h12(vec2 p){ vec3 q = fract(vec3(p.xyx) * 0.1031); q += dot(q, q.yzx + 33.33); return fract((q.x + q.y) * q.z); }
+float vn(vec2 p){ vec2 i = floor(p), f = fract(p); f = f * f * (3.0 - 2.0 * f); return mix(mix(h12(i), h12(i + vec2(1, 0)), f.x), mix(h12(i + vec2(0, 1)), h12(i + vec2(1, 1)), f.x), f.y); }
+float fbm(vec2 p){ float s = 0.0, a = 0.5; for (int k = 0; k < 4; k++) { s += a * vn(p); p = p * 2.07 + 1.3; a *= 0.5; } return s; }`;
+// fondo: nebulosa de aurora que se mueve lento, polvo de estrellas en dos capas y el anillo de la onda de choque
+const BG = `#version 300 es
+precision highp float; uniform vec2 uRes; uniform vec2 uC; uniform float uT; uniform float uWave; uniform float uHue; uniform vec2 uPar; out vec4 o; ${NOISE}
+void main(){ vec2 p = gl_FragCoord.xy, q = (p - uC) / uRes.y; float d = length(q);
+  vec3 mint = vec3(0.10, 0.9, 0.7), blue = vec3(0.26, 0.32, 1.0), pink = vec3(1.0, 0.22, 0.58);
+  vec3 c = vec3(0.010, 0.020, 0.032) + vec3(0.02, 0.05, 0.09) * exp(-d * d * 2.0);
+  vec2 w = q * 1.5 + uPar * 0.15 + vec2(uT * 0.018, -uT * 0.012);
+  float n1 = fbm(w + vec2(fbm(w * 1.4 + uT * 0.025), fbm(w * 1.2 - uT * 0.02)) * 1.3), n2 = fbm(w * 2.3 - 4.1 + uT * 0.015);
+  float hh = 0.5 + 0.5 * sin(uHue);
+  vec3 neb = mix(mix(mint, blue, n2), mix(blue, pink, n2), hh);
+  c += neb * pow(max(n1 - 0.28, 0.0) * 1.6, 2.4) * exp(-d * d * 1.1) * 0.38;
+  c += mix(mint, blue, 0.55) * exp(-d * d * 10.0) * 0.07;
+  // estrellas: dos capas con paralaje
+  for (int L = 0; L < 2; L++) { float sc = L == 0 ? 3.0 : 5.0; vec2 pp = p + uPar * (L == 0 ? 6.0 : 16.0) * uRes.y / 900.0; vec2 g = floor(pp / sc); float s = h12(g + float(L) * 17.0);
+    c += mix(vec3(0.7, 0.95, 1.0), vec3(1.0, 0.75, 0.9), h12(g + 3.0)) * step(0.9982 + float(L) * 0.0012, s) * (0.25 + 0.75 * h12(g + 1.0)) * (0.55 + 0.45 * sin(uT * (1.5 + s * 3.0) + s * 90.0)) * smoothstep(0.5, 0.12, length(fract(pp / sc) - 0.5)); }
+  // onda de choque al cambiar de sección
+  float rw = uWave, ring = exp(-pow((d - rw) * 22.0, 2.0)) * (1.0 - smoothstep(0.1, 1.6, rw)) * step(0.001, rw);
+  c += mix(mint, pink, clamp(rw, 0.0, 1.0)) * ring * 0.28 + vec3(0.9, 1.0, 1.0) * exp(-pow((d - rw) * 70.0, 2.0)) * (1.0 - smoothstep(0.1, 1.2, rw)) * step(0.001, rw) * 0.12;
+  o = vec4(c, 1.0); }`;
+const PVS = `#version 300 es
+in vec3 aP; in vec3 aC; uniform vec2 uRes; uniform float uDpr; out vec3 vC;
+void main(){ vec2 c = aP.xy / uRes * 2.0 - 1.0; gl_Position = vec4(c.x, -c.y, 0.0, 1.0); vC = aC; gl_PointSize = aP.z * uDpr; }`;
+const PFS = `#version 300 es
+precision highp float; in vec3 vC; uniform float uRound; uniform float uGain; out vec4 o;
+void main(){ float a = 1.0; if (uRound > 0.5) { vec2 q = gl_PointCoord - 0.5; float r = dot(q, q); a = smoothstep(0.25, 0.0, r) * 0.7 + exp(-r * 40.0) * 0.6; } o = vec4(vC * a * uGain, 1.0); }`;
+// estelas: el cuadro anterior se desvanece (movimiento = cometas de luz)
+const FADE = `#version 300 es
+precision highp float; in vec2 vUv; uniform sampler2D uTex; uniform float uK; out vec4 o;
+void main(){ o = vec4(max(texture(uTex, vUv).rgb * uK - 1.5 / 255.0, 0.0), 1.0); }`;
+const ADD = `#version 300 es
+precision highp float; in vec2 vUv; uniform sampler2D uTex; uniform float uGain; out vec4 o; void main(){ o = vec4(texture(uTex, vUv).rgb * uGain, 1.0); }`;
+const DOWN = `#version 300 es
+precision highp float; in vec2 vUv; uniform sampler2D uTex; uniform vec2 uTexel; out vec4 o;
+void main(){ vec3 c = vec3(0.0); for (int y = -1; y <= 1; y++) for (int x = -1; x <= 1; x++) c += texture(uTex, vUv + vec2(x, y) * uTexel * 1.5).rgb;
+  c /= 9.0; float l = max(c.r, max(c.g, c.b)); o = vec4(c * smoothstep(0.2, 1.1, l), 1.0); }`;
+const BLUR = `#version 300 es
+precision highp float; in vec2 vUv; uniform sampler2D uTex; uniform vec2 uDir; out vec4 o;
+void main(){ const float w[5] = float[](0.227, 0.194, 0.122, 0.054, 0.016); vec3 c = texture(uTex, vUv).rgb * w[0];
+  for (int i = 1; i < 5; i++) { c += texture(uTex, vUv + uDir * float(i)).rgb * w[i]; c += texture(uTex, vUv - uDir * float(i)).rgb * w[i]; } o = vec4(c, 1.0); }`;
+// composición: bloom, aberración cromática suave en los bordes, viñeta y ACES
+const COMP = `#version 300 es
+precision highp float; in vec2 vUv; uniform sampler2D uScene; uniform sampler2D uBloom; uniform float uCA; out vec4 o;
+float h(vec2 p){ return fract(sin(dot(p, vec2(12.9898, 78.233))) * 43758.5453); }
+vec3 aces(vec3 x){ return clamp((x * (2.51 * x + 0.03)) / (x * (2.43 * x + 0.59) + 0.14), 0.0, 1.0); }
+vec3 at(vec2 uv){ return texture(uScene, uv).rgb + texture(uBloom, uv).rgb * 1.15; }
+void main(){ vec2 dv = vUv - 0.5; float r2 = dot(dv, dv); vec2 off = dv * uCA;
+  vec3 c = vec3(at(vUv + off).r, at(vUv).g, at(vUv - off).b); c = aces(c * 1.12); c *= 1.0 - r2 * 0.6; c += (h(gl_FragCoord.xy) - 0.5) / 255.0; o = vec4(c, 1.0); }`;
+function sh(t, s){ const x = gl.createShader(t); gl.shaderSource(x, s); gl.compileShader(x); if (!gl.getShaderParameter(x, gl.COMPILE_STATUS)) throw new Error(gl.getShaderInfoLog(x)); return x; }
+function prog(v, f){ const p = gl.createProgram(); gl.attachShader(p, sh(gl.VERTEX_SHADER, v)); gl.attachShader(p, sh(gl.FRAGMENT_SHADER, f));
+  gl.bindAttribLocation(p, 0, 'aP'); gl.bindAttribLocation(p, 1, 'aC'); gl.linkProgram(p); if (!gl.getProgramParameter(p, gl.LINK_STATUS)) throw new Error(gl.getProgramInfoLog(p));
+  const u = {}, n = gl.getProgramParameter(p, gl.ACTIVE_UNIFORMS); for (let i = 0; i < n; i++) { const nm = gl.getActiveUniform(p, i).name; u[nm] = gl.getUniformLocation(p, nm); } return {p, u}; }
+const PBG = prog(VS, BG), PP = prog(PVS, PFS), PD = prog(VS, DOWN), PB = prog(VS, BLUR), PC = prog(VS, COMP), PF = prog(VS, FADE), PA = prog(VS, ADD);
+const vao = gl.createVertexArray();
+const DN = coarse ? 420 : 900, MAXP = coarse ? 380 : 700;
+const MAXL = 16000, LB = new Float32Array(MAXL * 2 * 6), PBUF = new Float32Array((N + DN + MAXP * 4 + 8) * 6);
+function mkVao(bytes){ const v = gl.createVertexArray(), b = gl.createBuffer(); gl.bindVertexArray(v); gl.bindBuffer(gl.ARRAY_BUFFER, b); gl.bufferData(gl.ARRAY_BUFFER, bytes, gl.DYNAMIC_DRAW);
+  gl.enableVertexAttribArray(0); gl.vertexAttribPointer(0, 3, gl.FLOAT, false, 24, 0); gl.enableVertexAttribArray(1); gl.vertexAttribPointer(1, 3, gl.FLOAT, false, 24, 12); gl.bindVertexArray(null); return {v, b}; }
+const LV = mkVao(LB.byteLength), PV = mkVao(PBUF.byteLength);
+function target(w, h){ const t = gl.createTexture(); gl.bindTexture(gl.TEXTURE_2D, t);
+  if (HALF) gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA16F, w, h, 0, gl.RGBA, gl.HALF_FLOAT, null); else gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA8, w, h, 0, gl.RGBA, gl.UNSIGNED_BYTE, null);
+  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR); gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
+  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE); gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
+  const f = gl.createFramebuffer(); gl.bindFramebuffer(gl.FRAMEBUFFER, f); gl.framebufferTexture2D(gl.FRAMEBUFFER, gl.COLOR_ATTACHMENT0, gl.TEXTURE_2D, t, 0);
+  gl.clearColor(0, 0, 0, 1); gl.clear(gl.COLOR_BUFFER_BIT); gl.bindFramebuffer(gl.FRAMEBUFFER, null); return {t, f, w, h}; }
+function free(x){ if (x) { gl.deleteTexture(x.t); gl.deleteFramebuffer(x.f); } }
+
+/* ================= estado de los nodos ================= */
+const PX = new Float32Array(N), PY = new Float32Array(N), PZ = new Float32Array(N), VX = new Float32Array(N), VY = new Float32Array(N), VZ = new Float32Array(N);
+const BX = new Float32Array(N), BY = new Float32Array(N), BZ = new Float32Array(N), FIRE = new Float32Array(N), SX = new Float32Array(N), SY = new Float32Array(N), SZ = new Float32Array(N), DEG = new Uint8Array(N), SENT = new Uint8Array(N);
+for (let i = 0; i < N; i++) { const d = onSphere(), r = 0.25 + rnd() * 0.6; BX[i] = d[0] * r; BY[i] = d[1] * r; BZ[i] = d[2] * r; PX[i] = d[0] * 4; PY[i] = d[1] * 4; PZ[i] = d[2] * 4; }
+// polvo: un anillo orbital inclinado y un campo lejano (dan profundidad y paralaje)
+const DX = new Float32Array(DN), DY = new Float32Array(DN), DZ = new Float32Array(DN), DA = new Float32Array(DN), DR = new Float32Array(DN), DT = new Uint8Array(DN);
+for (let i = 0; i < DN; i++) { if (i < DN * 0.55) { DT[i] = 0; DA[i] = rnd() * TAU; DR[i] = 1.42 + Math.pow(rnd(), 2) * 0.32 * (rnd() < 0.5 ? 1 : -0.4); DY[i] = (rnd() - 0.5) * 0.03; }
+  else { DT[i] = 1; const d = onSphere(), r = 1.9 + rnd() * 2.2; DX[i] = d[0] * r; DY[i] = d[1] * r * 0.7; DZ[i] = d[2] * r; } }
+// paquetes de datos que viajan por las conexiones
+const PKa = new Int32Array(MAXP), PKb = new Int32Array(MAXP), PKu = new Float32Array(MAXP), PKs = new Float32Array(MAXP); let nPK = 0;
+const MINT = [0.16, 0.98, 0.78], BLUE = [0.36, 0.44, 1.0], PINK = [1.0, 0.3, 0.64], WH = [0.9, 1.0, 0.98];
+let W = 0, H = 0, DPR = 1, scale = HQ ? 1 : (coarse ? 0.75 : 1), RT = null, B1 = null, B2 = null, TA = null, TB = null;
+let CX = 0, CY = 0, U = 100, t = 0, yawD = 0, pitchD = 0, mouse = null, sPos = 0, prevS = 0, vS = 0, shapeA = 'word', shapeB = 'word', mt = 0, lastOn = -1, waveR = -1, hue = 0;
+function layout(){ const m = W < 760; CX = m ? W * 0.5 : W * 0.66; CY = m ? H * 0.27 : H * 0.52; U = m ? Math.min(W * 0.34, H * 0.19) : Math.min(W * 0.2, H * 0.33); }
+function build(){ [RT, B1, B2, TA, TB].forEach(free); const w = Math.max(64, Math.round(W * DPR * scale)), h = Math.max(64, Math.round(H * DPR * scale)); RT = target(w, h);
+  B1 = target(Math.max(16, w >> 2), Math.max(16, h >> 2)); B2 = target(B1.w, B1.h); TA = target(w >> 1, h >> 1); TB = target(TA.w, TA.h); }
+function resize(){ DPR = Math.min(devicePixelRatio || 1, coarse ? 1.5 : 2); W = innerWidth; H = innerHeight; cv.width = Math.round(W * DPR); cv.height = Math.round(H * DPR); layout(); build(); }
+
+/* scroll → par de formas y avance de la transformación */
+function scrollState(){
+  const c = SECS.map(s => { const r = s.getBoundingClientRect(); return r.top + r.height / 2 - H / 2; });
+  let k = 0; while (k < c.length - 1 && c[k + 1] <= 0) k++;
+  let f = 0; if (k < c.length - 1 && c[k] <= 0) f = -c[k] / (c[k + 1] - c[k]); else if (c[0] > 0) f = 0;
+  sPos = k + f; const on = f < 0.5 ? k : Math.min(k + 1, SECS.length - 1);
+  if (on !== lastOn) { if (lastOn >= 0 && !reduce) waveR = 0; lastOn = on; DOTS.forEach((d, i) => d.classList.toggle('on', i === on)); }
+  return [SECS[k].dataset.shape, SECS[Math.min(k + 1, SECS.length - 1)].dataset.shape, f];
+}
+const smooth = x => x * x * (3 - 2 * x);
+
+/* ================= simulación + plexo ================= */
+const TS = 8192, HEAD = new Int32Array(TS), NEXT = new Int32Array(N);
+let nL = 0, nPt = 0, nTr = 0;
+function step(dt){
+  t += dt; mt += dt;
+  const [a, b, f] = scrollState(); shapeA = a; shapeB = b;
+  // velocidad de scroll: al deslizar rápido la red se abre y gira más
+  const v = Math.abs(sPos - prevS) / Math.max(dt, 1e-3); prevS = sPos; vS += (Math.min(v, 4) - vS) * Math.min(1, dt * 5); const warp = reduce ? 0 : Math.min(1, vS * 0.55);
+  hue += dt * (0.08 + vS * 0.6);
+  const T = reduce ? (f < 0.5 ? 0 : 1) : Math.min(1, Math.max(0, (f - 0.22) / 0.56));
+  for (const k of new Set([a, b])) { const S = SH[k]; if (ANIM[k] && !reduce) ANIM[k](S.p, S.cur, t); }
+  const A = SH[a].cur, B = SH[b].cur;
+  const yaw = 0.42 * Math.sin(t * 0.22) + yawD, pitch = 0.16 + 0.07 * Math.sin(t * 0.17) + pitchD + (b === 'laptop' ? 0.28 * T : a === 'laptop' ? 0.28 * (1 - T) : 0);
+  yawD += dt * vS * 0.35;
+  const cy = Math.cos(yaw), sy = Math.sin(yaw), cp = Math.cos(pitch), sp = Math.sin(pitch), Z = 3.4;
+  // onda de choque (en píxeles de pantalla)
+  if (waveR >= 0) { waveR += dt * Math.max(W, H) * 0.9; if (waveR > Math.max(W, H) * 1.6) waveR = -1; }
+  const wFade = waveR >= 0 ? 1 - Math.min(1, waveR / (Math.max(W, H) * 1.3)) : 0, wBand = U * 0.22;
+  for (let i = 0; i < N; i++) {
+    const ti = Math.min(1, Math.max(0, T * 1.5 - (i / N) * 0.5)), e = smooth(ti), burst = Math.sin(Math.PI * ti) * 1.05 + warp * 0.55;
+    const tx = A[i * 3] + (B[i * 3] - A[i * 3]) * e + BX[i] * burst, ty = A[i * 3 + 1] + (B[i * 3 + 1] - A[i * 3 + 1]) * e + BY[i] * burst, tz = A[i * 3 + 2] + (B[i * 3 + 2] - A[i * 3 + 2]) * e + BZ[i] * burst;
+    const k = reduce ? 1 : 0.075;
+    VX[i] = VX[i] * 0.8 + (tx - PX[i]) * k; VY[i] = VY[i] * 0.8 + (ty - PY[i]) * k; VZ[i] = VZ[i] * 0.8 + (tz - PZ[i]) * k;
+    if (reduce) { VX[i] = tx - PX[i]; VY[i] = ty - PY[i]; VZ[i] = tz - PZ[i]; }
+    PX[i] += VX[i] + Math.sin(t * 0.9 + i * 0.37) * 0.0006; PY[i] += VY[i] + Math.cos(t * 0.8 + i * 0.53) * 0.0006; PZ[i] += VZ[i];
+    const x1 = PX[i] * cy + PZ[i] * sy, z1 = -PX[i] * sy + PZ[i] * cy, y2 = PY[i] * cp - z1 * sp, z2 = PY[i] * sp + z1 * cp, s = Z / (Z - z2);
+    SX[i] = CX + x1 * U * s; SY[i] = CY - y2 * U * s; SZ[i] = z2;
+    if (wFade > 0) { const dx = SX[i] - CX, dy = SY[i] - CY, dd = Math.hypot(dx, dy) + 1e-3, g = Math.exp(-(((dd - waveR) / wBand) ** 2)) * wFade;
+      if (g > 0.01) { SX[i] += dx / dd * g * U * 0.14; SY[i] += dy / dd * g * U * 0.14; if (g > 0.55 && FIRE[i] < 0.2 && rnd() < 0.5) FIRE[i] = 0.85; } }
+    if (mouse) { const dx = SX[i] - mouse[0], dy = SY[i] - mouse[1], d2 = dx * dx + dy * dy; if (d2 < 16000) { const fk = (1 - d2 / 16000) * 0.012, wx = dx / U, wy = -dy / U;
+        VX[i] += wx * cy * fk; VY[i] += wy * cp * fk; VZ[i] += wx * sy * fk; } }
+    FIRE[i] *= Math.exp(-dt * 2.4);
+  }
+  if (!reduce) for (let k = 0; k < 4; k++) if (rnd() < dt * 1.3) FIRE[rnd() * N | 0] = 1;
+  // plexo: vecinos cercanos en 3D con tabla hash
+  const D = coarse ? 0.175 : 0.14, D2 = D * D; HEAD.fill(-1); DEG.fill(0);
+  for (let i = 0; i < N; i++) { const h = ((Math.floor(PX[i] / D) * 73856093) ^ (Math.floor(PY[i] / D) * 19349663) ^ (Math.floor(PZ[i] / D) * 83492791)) & (TS - 1); NEXT[i] = HEAD[h]; HEAD[h] = i; }
+  nL = 0; const maxDeg = 6;
+  for (let i = 0; i < N && nL < MAXL; i++) {
+    const gx = Math.floor(PX[i] / D), gy = Math.floor(PY[i] / D), gz = Math.floor(PZ[i] / D);
+    for (let ox = -1; ox <= 1; ox++) for (let oy = -1; oy <= 1; oy++) for (let oz = -1; oz <= 1; oz++) {
+      let j = HEAD[(((gx + ox) * 73856093) ^ ((gy + oy) * 19349663) ^ ((gz + oz) * 83492791)) & (TS - 1)];
+      for (; j >= 0; j = NEXT[j]) { if (j <= i || DEG[i] >= maxDeg || DEG[j] >= maxDeg) continue;
+        const dx = PX[j] - PX[i], dy = PY[j] - PY[i], dz = PZ[j] - PZ[i], d2 = dx * dx + dy * dy + dz * dz; if (d2 > D2) continue;
+        DEG[i]++; DEG[j]++; const w = Math.pow(1 - Math.sqrt(d2) / D, 1.4), fire = Math.max(FIRE[i], FIRE[j]), dep = 0.5 + 0.5 * Math.max(0, (SZ[i] + SZ[j]) * 0.5 + 0.6);
+        // una neurona que dispara envía paquetes a sus vecinas en reposo
+        if (nPK < MAXP && !reduce) { let s0 = -1, s1 = -1; if (FIRE[i] > 0.75 && !SENT[i] && FIRE[j] < 0.15) { s0 = i; s1 = j; } else if (FIRE[j] > 0.75 && !SENT[j] && FIRE[i] < 0.15) { s0 = j; s1 = i; }
+          if (s0 >= 0 && rnd() < 0.42) { PKa[nPK] = s0; PKb[nPK] = s1; PKu[nPK] = 0; PKs[nPK] = 1.6 + rnd() * 1.6; nPK++; } }
+        const I = (0.1 * w * dep + fire * 0.7 * w);
+        const cA = colorOf(i), o = nL * 12;
+        LB[o] = SX[i]; LB[o + 1] = SY[i]; LB[o + 2] = 1; LB[o + 3] = cA[0] * I; LB[o + 4] = cA[1] * I; LB[o + 5] = cA[2] * I; const cB = colorOf(j);
+        LB[o + 6] = SX[j]; LB[o + 7] = SY[j]; LB[o + 8] = 1; LB[o + 9] = cB[0] * I; LB[o + 10] = cB[1] * I; LB[o + 11] = cB[2] * I; nL++;
+        if (nL >= MAXL) break; }
+    }
+  }
+  for (let i = 0; i < N; i++) { if (FIRE[i] > 0.75) SENT[i] = 1; else if (FIRE[i] < 0.3) SENT[i] = 0; }
+  // nodos
+  nPt = 0;
+  for (let i = 0; i < N; i++) { const c = colorOf(i), dep = Math.max(0.22, 0.7 + SZ[i] * 0.5), fr = FIRE[i], I = (0.5 + 2.4 * fr) * dep, o = nPt * 6;
+    PBUF[o] = SX[i]; PBUF[o + 1] = SY[i]; PBUF[o + 2] = (1.5 + 2.0 * fr) * (0.8 + 0.4 * SZ[i] + 0.2); PBUF[o + 3] = c[0] * I; PBUF[o + 4] = c[1] * I; PBUF[o + 5] = c[2] * I; nPt++; }
+  // paquetes: cabeza brillante + cola corta; al llegar, encienden al vecino
+  for (let p = 0; p < nPK; p++) { PKu[p] += dt * PKs[p];
+    if (PKu[p] >= 1) { const bb = PKb[p]; if (FIRE[bb] < 0.2) FIRE[bb] = 0.95; nPK--; PKa[p] = PKa[nPK]; PKb[p] = PKb[nPK]; PKu[p] = PKu[nPK]; PKs[p] = PKs[nPK]; p--; continue; }
+    const i = PKa[p], j = PKb[p];
+    for (let k = 0; k < 4; k++) { const u = Math.max(0, PKu[p] - k * 0.07), g = k === 0 ? 1 : 0.55 / k, o = nPt * 6, cc = k === 0 ? WH : PINK;
+      PBUF[o] = SX[i] + (SX[j] - SX[i]) * u; PBUF[o + 1] = SY[i] + (SY[j] - SY[i]) * u; PBUF[o + 2] = k === 0 ? 3.6 : 2.4; PBUF[o + 3] = cc[0] * 2.4 * g; PBUF[o + 4] = cc[1] * 2.4 * g; PBUF[o + 5] = cc[2] * 2.4 * g; nPt++; } }
+  nTr = nPt; // los nodos y paquetes dejan estela; el polvo no
+  // polvo orbital y lejano
+  const yf = yaw * 0.6, cyf = Math.cos(yf), syf = Math.sin(yf), tilt = 0.42, ct = Math.cos(tilt), st = Math.sin(tilt);
+  for (let i = 0; i < DN; i++) { let x, y, z;
+    if (DT[i] === 0) { const an = DA[i] + t * (0.09 + 0.05 / DR[i]), r = DR[i]; x = Math.cos(an) * r; const zz = Math.sin(an) * r; y = DY[i] * ct - zz * st; z = DY[i] * st + zz * ct;
+      const x1 = x * cy + z * sy, z1 = -x * sy + z * cy, y2 = y * cp - z1 * sp, z2 = y * sp + z1 * cp, s = Z / (Z - z2); x = CX + x1 * U * s; y = CY - y2 * U * s; z = z2; }
+    else { const x1 = DX[i] * cyf + DZ[i] * syf, z1 = -DX[i] * syf + DZ[i] * cyf, y2 = DY[i] * cp - z1 * sp, z2 = DY[i] * sp + z1 * cp; if (z2 > Z - 0.4) continue; const s = Z / (Z - z2); x = CX + x1 * U * s; y = CY - y2 * U * s; z = z2; }
+    const u = (i * 0.618) % 1, c = mix3(u), I = (DT[i] === 0 ? 0.32 : 0.16) * Math.max(0.2, 0.75 + z * 0.3), o = nPt * 6;
+    PBUF[o] = x; PBUF[o + 1] = y; PBUF[o + 2] = DT[i] === 0 ? 1.6 : 1.3 + (i % 3) * 0.5; PBUF[o + 3] = c[0] * I; PBUF[o + 4] = c[1] * I; PBUF[o + 5] = c[2] * I; nPt++; }
+  // el cursor también es un nodo: se conecta con los cercanos
+  if (mouse) { const o0 = nPt * 6; PBUF.set([mouse[0], mouse[1], 4.5, 1.6, 2.2, 2.0], o0); nPt++;
+    for (let i = 0; i < N && nL < MAXL; i++) { const dx = SX[i] - mouse[0], dy = SY[i] - mouse[1], d = Math.hypot(dx, dy); if (d < 160) { const w = (1 - d / 160) ** 1.5 * 0.6, c = colorOf(i), o = nL * 12;
+      LB[o] = mouse[0]; LB[o + 1] = mouse[1]; LB[o + 2] = 1; LB[o + 3] = w * 0.8; LB[o + 4] = w; LB[o + 5] = w * 0.95; LB[o + 6] = SX[i]; LB[o + 7] = SY[i]; LB[o + 8] = 1; LB[o + 9] = c[0] * w; LB[o + 10] = c[1] * w; LB[o + 11] = c[2] * w; nL++; } } }
+}
+const CC = [0, 0, 0];
+function mix3(u){ if (u < 0.5) { const k = u * 2; CC[0] = MINT[0] + (BLUE[0] - MINT[0]) * k; CC[1] = MINT[1] + (BLUE[1] - MINT[1]) * k; CC[2] = MINT[2] + (BLUE[2] - MINT[2]) * k; }
+  else { const k = (u - 0.5) * 2; CC[0] = BLUE[0] + (PINK[0] - BLUE[0]) * k; CC[1] = BLUE[1] + (PINK[1] - BLUE[1]) * k; CC[2] = BLUE[2] + (PINK[2] - BLUE[2]) * k; } return CC; }
+function colorOf(i){ let u = 0.5 + PX[i] * 0.4 - PY[i] * 0.14 + 0.1 * Math.sin(hue * 0.5 + PZ[i] * 2.0); u = Math.min(1, Math.max(0, u));
+  mix3(u); const f = FIRE[i]; if (f > 0) { CC[0] += (WH[0] - CC[0]) * f; CC[1] += (WH[1] - CC[1]) * f; CC[2] += (WH[2] - CC[2]) * f; } return CC; }
+
+/* ================= render ================= */
+function pass(P, out){ gl.useProgram(P.p); gl.bindFramebuffer(gl.FRAMEBUFFER, out ? out.f : null); if (out) gl.viewport(0, 0, out.w, out.h); else gl.viewport(0, 0, cv.width, cv.height); }
+function tex(unit, x, loc){ gl.activeTexture(gl.TEXTURE0 + unit); gl.bindTexture(gl.TEXTURE_2D, x); gl.uniform1i(loc, unit); }
+function points(n, gain, target){ gl.useProgram(PP.p); gl.uniform2f(PP.u.uRes, W, H); gl.uniform1f(PP.u.uDpr, DPR * scale * (target.w / RT.w)); gl.uniform1f(PP.u.uRound, 1); gl.uniform1f(PP.u.uGain, gain);
+  gl.bindVertexArray(PV.v); gl.drawArrays(gl.POINTS, 0, n); }
+function render(){
+  const k = RT.w / W;
+  // estelas (media resolución): desvanecer + dibujar nodos y paquetes
+  gl.disable(gl.BLEND); gl.bindVertexArray(vao); pass(PF, TB); tex(0, TA.t, PF.u.uTex); gl.uniform1f(PF.u.uK, reduce ? 0 : 0.86); gl.drawArrays(gl.TRIANGLES, 0, 3);
+  gl.bindBuffer(gl.ARRAY_BUFFER, PV.b); gl.bufferSubData(gl.ARRAY_BUFFER, 0, PBUF, 0, nPt * 6);
+  gl.enable(gl.BLEND); gl.blendFunc(gl.ONE, gl.ONE); points(nTr, 0.13, TB); [TA, TB] = [TB, TA];
+  // escena
+  gl.disable(gl.BLEND); gl.bindVertexArray(vao); pass(PBG, RT); gl.uniform2f(PBG.u.uRes, RT.w, RT.h); gl.uniform2f(PBG.u.uC, CX * k, (H - CY) * k); gl.uniform1f(PBG.u.uT, t);
+  gl.uniform1f(PBG.u.uWave, waveR >= 0 ? waveR / H : 0); gl.uniform1f(PBG.u.uHue, hue); gl.uniform2f(PBG.u.uPar, yawD * 0.3 + (mouse ? (mouse[0] / W - 0.5) * 0.4 : 0), sPos * 0.35); gl.drawArrays(gl.TRIANGLES, 0, 3);
+  gl.enable(gl.BLEND); gl.blendFunc(gl.ONE, gl.ONE);
+  gl.useProgram(PA.p); tex(0, TA.t, PA.u.uTex); gl.uniform1f(PA.u.uGain, 1.0); gl.bindVertexArray(vao); gl.drawArrays(gl.TRIANGLES, 0, 3);
+  gl.useProgram(PP.p); gl.uniform2f(PP.u.uRes, W, H); gl.uniform1f(PP.u.uDpr, DPR * scale); gl.uniform1f(PP.u.uGain, 1);
+  gl.uniform1f(PP.u.uRound, 0); gl.bindVertexArray(LV.v); gl.bindBuffer(gl.ARRAY_BUFFER, LV.b); gl.bufferSubData(gl.ARRAY_BUFFER, 0, LB, 0, nL * 12); gl.drawArrays(gl.LINES, 0, nL * 2);
+  points(nPt, 1, RT);
+  gl.disable(gl.BLEND); gl.bindVertexArray(vao);
+  pass(PD, B1); tex(0, RT.t, PD.u.uTex); gl.uniform2f(PD.u.uTexel, 1 / RT.w, 1 / RT.h); gl.drawArrays(gl.TRIANGLES, 0, 3);
+  for (let i = 0; i < 3; i++) { const s = 1 + i * 1.6; pass(PB, B2); tex(0, B1.t, PB.u.uTex); gl.uniform2f(PB.u.uDir, s / B1.w, 0); gl.drawArrays(gl.TRIANGLES, 0, 3);
+    pass(PB, B1); tex(0, B2.t, PB.u.uTex); gl.uniform2f(PB.u.uDir, 0, s / B1.h); gl.drawArrays(gl.TRIANGLES, 0, 3); }
+  pass(PC, null); tex(0, RT.t, PC.u.uScene); tex(1, B1.t, PC.u.uBloom); gl.uniform1f(PC.u.uCA, 0.0022 + Math.min(0.014, vS * 0.01)); gl.drawArrays(gl.TRIANGLES, 0, 3);
+}
+
+/* ================= interacción ================= */
+addEventListener('pointermove', e => { if (e.pointerType === 'mouse') mouse = [e.clientX, e.clientY]; });
+document.addEventListener('pointerleave', () => { mouse = null; });
+let drag = null;
+addEventListener('pointerdown', e => { if (e.target.closest('a,button,input,select,textarea,label')) return;
+  // clic cerca de la red: dispara una sinapsis, lanza una onda y permite girarla
+  let best = -1, bd = 1e9; for (let i = 0; i < N; i++) { const d = (SX[i] - e.clientX) ** 2 + (SY[i] - e.clientY) ** 2; if (d < bd) { bd = d; best = i; } }
+  if (bd < 90 * 90) { for (let i = 0; i < N; i++) if ((SX[i] - SX[best]) ** 2 + (SY[i] - SY[best]) ** 2 < 1200) FIRE[i] = 1; if (!reduce) waveR = 0; if (e.pointerType === 'mouse') drag = [e.clientX, e.clientY]; } });
+addEventListener('pointermove', e => { if (!drag) return; yawD += (e.clientX - drag[0]) * 0.005; pitchD = Math.max(-0.6, Math.min(0.6, pitchD + (e.clientY - drag[1]) * 0.004)); drag = [e.clientX, e.clientY]; });
+addEventListener('pointerup', () => { drag = null; });
+
+/* ================= ciclo ================= */
+const LBL = {word: 'forma · NODO', brain: 'forma · cerebro', megaphone: 'forma · megáfono', gears: 'forma · engranajes', flow: 'forma · flujo n8n', browser: 'forma · navegador', shield: 'forma · escudo',
+  rack: 'forma · servidores', wrench: 'forma · llave', laptop: 'forma · laptop', chain: 'forma · cadena de nodos', globe: 'forma · red global'};
+let last = performance.now(), fA = 0, fN = 0, lblT = 0;
+const fmt = n => n.toLocaleString('es-PE');
+function frame(now){
+  const dt = Math.min(0.05, (now - last) / 1000); last = now;
+  step(dt); render();
+  lblT -= dt; if (lblT <= 0) { lblT = 0.25; const s = sPos % 1 < 0.5 ? shapeA : shapeB; $lbl.textContent = `${LBL[s]} · ${fmt(N)} nodos · ${fmt(nL)} conexiones · ${fmt(nPK)} paquetes en viaje`; }
+  fA += dt; fN++; if (fA >= 1) { const fps = fN / fA; fA = 0; fN = 0; if (!HQ) { if (fps < 42 && scale > 0.55) { scale = Math.max(0.55, scale - 0.1); build(); } else if (fps > 57 && scale < 1) { scale = Math.min(1, scale + 0.05); build(); } } }
+  requestAnimationFrame(frame);
+}
+let rtm = 0; addEventListener('resize', () => { clearTimeout(rtm); rtm = setTimeout(resize, 150); });
+function start(){
+  resize(); buildShapes();
+  const hq = location.hash.match(/#hq-(\d+)(?:-w(\d+))?/); if (hq) { document.documentElement.style.scrollBehavior = 'auto'; scrollTo(0, +hq[1]); }
+  for (let i = 0; i < (HQ ? 170 : 1); i++) { step(1 / 60); if (HQ && i > 150) render(); }
+  if (hq && hq[2]) { waveR = 0; for (let i = 0; i < +hq[2]; i++) { step(1 / 60); render(); } }
+  render(); if (!reduce && !HQ) setTimeout(() => { waveR = 0; }, 900);
+  requestAnimationFrame(tt => { last = tt; requestAnimationFrame(frame); });
+}
+(document.fonts && document.fonts.ready ? Promise.race([document.fonts.ready, new Promise(r => setTimeout(r, 2500))]) : Promise.resolve()).then(start);
+})();
+</script>
+
+<div id="ah-demo" style="position:fixed;left:12px;bottom:12px;z-index:2147483000;display:flex;align-items:center;gap:10px;padding:8px 8px 8px 14px;border-radius:999px;background:rgba(3,9,15,.86);border:1px solid rgba(44,245,200,.45);box-shadow:0 6px 24px -8px rgba(0,0,0,.6);font:500 12px/1.2 system-ui,-apple-system,Segoe UI,sans-serif;color:#eefcf8;max-width:calc(100vw - 24px);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)"><span style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis">Concepto de diseño «Nodo» · Aurora Hub Perú</span><a href="https://www.aurorahubperu.com/#proyectos" style="flex:none;color:#03140f;background:linear-gradient(90deg,#2cf5c8,#7cf9e0);border-radius:999px;padding:6px 11px;text-decoration:none;font-weight:700">Ver portafolio</a></div></body></html>
