@@ -1,0 +1,384 @@
+<!doctype html><html><head><meta name="robots" content="noindex"><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Prisma · Tecnología y marketing en Lima</title>
+<meta name="description" content="Prisma: inteligencia artificial, publicidad en Meta, TikTok y Google, automatizaciones, n8n y Kommo, diseño web, licencias, servicios TI, servicio técnico y asesoría en equipos de cómputo en Lima, Perú.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400&display=swap">
+<style>
+:root{
+  color-scheme: dark;
+  --bg:#07070a; --ink:#f4f3f7; --muted:#9a98a6; --line:rgba(255,255,255,.14);
+  --sans:"Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --serif:"Instrument Serif", Georgia, serif;
+  --mono:"JetBrains Mono", ui-monospace, Menlo, Consolas, monospace;
+  --spec:linear-gradient(90deg,#ff6b6b,#ffb86b,#f9f871,#6bffb8,#6bc7ff,#a78bff,#ff7ad9);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.55;-webkit-font-smoothing:antialiased}
+#gl{position:fixed;inset:0;width:100%;height:100%;display:block;z-index:0}
+body.static #gl{display:none}
+body.static{background:radial-gradient(circle at 70% 48%,rgba(255,255,255,.12),transparent 14%),conic-gradient(from 120deg at 70% 50%,transparent 0 40deg,rgba(255,107,107,.08) 45deg,rgba(107,199,255,.08) 60deg,transparent 65deg),var(--bg) fixed}
+a{color:inherit}
+.wrap{position:relative;z-index:1;width:100%;max-width:1200px;margin:0 auto;padding-inline:16px}
+nav{position:fixed;top:0;left:0;right:0;z-index:5;background:linear-gradient(to bottom,rgba(7,7,10,.9),rgba(7,7,10,0))}
+nav .in{max-width:1200px;margin:0 auto;padding:14px 16px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.logo{display:inline-flex;align-items:center;gap:10px;font:600 17px/1 var(--sans);letter-spacing:.02em;text-decoration:none}
+.logo svg{width:26px;height:26px}
+nav ul{display:flex;gap:24px;list-style:none;margin:0;padding:0;font-size:14px;color:var(--muted)}
+nav ul a{text-decoration:none}
+nav ul a:hover{color:var(--ink)}
+.btn{display:inline-flex;align-items:center;gap:8px;font:500 14px/1 var(--sans);text-decoration:none;border-radius:999px;padding:13px 22px;border:1px solid var(--line);color:var(--ink);background:rgba(255,255,255,.04);cursor:pointer;text-shadow:none;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+.btn:hover{background:rgba(255,255,255,.1)}
+.btn.primary{background:#f4f3f7;color:#0a0a0f;border-color:transparent;position:relative}
+.btn.primary::after{content:"";position:absolute;inset:-1px;border-radius:inherit;padding:1px;background:var(--spec);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;opacity:.9}
+.btn.sm{padding:9px 16px;font-size:13px}
+a:focus-visible,.btn:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid #fff;outline-offset:3px}
+.sec{min-height:120vh;display:flex;align-items:center;padding:90px 0 60px}
+.sec.hero{min-height:100vh}
+.copy{max-width:470px;text-shadow:0 1px 18px rgba(7,7,10,.95),0 0 4px rgba(7,7,10,.8)}
+.num{font-family:var(--mono);font-size:12px;letter-spacing:.12em;color:var(--muted)}
+.num b{color:var(--ink);font-weight:400}
+.cat{font-family:var(--mono);font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;margin-left:10px;color:#c9b8ff}
+h1{font:600 clamp(40px,5.4vw,72px)/1.0 var(--sans);letter-spacing:-.045em;margin:16px 0 18px;text-wrap:balance}
+h2{font:600 clamp(30px,3.6vw,48px)/1.05 var(--sans);letter-spacing:-.035em;margin:10px 0 14px;text-wrap:balance}
+.it{font:italic 400 1.08em/1 var(--serif);letter-spacing:-.01em}
+@supports (-webkit-background-clip:text){.it{background:var(--spec);-webkit-background-clip:text;background-clip:text;color:transparent;text-shadow:none;padding-right:.06em}}
+.lead{font-size:clamp(16px,1.5vw,19px);color:#d6d4de;margin:0 0 26px}
+.copy p{color:#cfcdd8;font-size:16px;margin:0 0 18px}
+.list{list-style:none;margin:0 0 22px;padding:0;display:grid;gap:8px}
+.list li{display:flex;gap:12px;align-items:baseline;font-size:15px;color:#ecebf2}
+.list li::before{content:"";flex:none;width:12px;height:1px;background:var(--spec);transform:translateY(-4px)}
+.more{font-weight:500;font-size:14.5px;text-decoration:none;border-bottom:1px solid var(--line);padding-bottom:2px}
+.more:hover{border-color:#fff}
+.cta{display:flex;gap:12px;flex-wrap:wrap}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+.steps{list-style:none;margin:0 0 10px;padding:0;display:grid;gap:14px;counter-reset:s}
+.steps li{display:grid;grid-template-columns:44px 1fr;gap:4px 12px;align-items:baseline}
+.steps li::before{counter-increment:s;content:"0" counter(s);grid-row:span 2;font-family:var(--mono);font-size:13px;color:var(--muted)}
+.steps b{font-size:17px;font-weight:600}
+.steps span{color:var(--muted);font-size:14.5px}
+form{display:grid;gap:12px;margin-top:6px}
+label{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);display:grid;gap:6px}
+input,select,textarea{font:500 15px/1.4 var(--sans);color:var(--ink);background:rgba(18,18,24,.85);border:1px solid var(--line);border-radius:12px;padding:12px 14px;width:100%}
+textarea{min-height:84px;resize:vertical}
+footer{margin-top:34px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-size:12.5px;color:var(--muted);border-top:1px solid var(--line);padding-top:16px}
+.dots{position:fixed;right:18px;top:50%;transform:translateY(-50%);z-index:4;display:grid;gap:9px}
+.dots a{display:flex;align-items:center;justify-content:flex-end;gap:10px;text-decoration:none;font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:transparent}
+.dots a i{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.25);flex:none}
+.dots a:hover,.dots a.on{color:var(--muted)}
+.dots a.on i{background:#fff;box-shadow:0 0 10px #fff}
+.hud{position:fixed;left:0;right:0;bottom:16px;z-index:4;font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);pointer-events:none;text-align:center;text-shadow:0 1px 8px #000}
+body.static .hud{display:none}
+@media (max-width:760px){
+  nav ul{display:none}
+  .sec{align-items:flex-end;padding:54vh 0 48px}
+  .sec.hero{padding-top:52vh}
+  .copy{max-width:none}
+  .dots,.hud{display:none}
+}
+</style>
+
+<canvas id="gl" aria-hidden="true"></canvas>
+
+<nav aria-label="Principal"><div class="in">
+  <a class="logo" href="#inicio" aria-label="Prisma, inicio"><svg viewBox="0 0 32 32" fill="none" aria-hidden="true"><path d="M13 5L24 25H2Z" stroke="#f4f3f7" stroke-width="1.6" stroke-linejoin="round"/><path d="M0 16l13 2" stroke="#fff" stroke-width="1.4"/><path d="M17 17l15-5M17 18l15-2M17 19l15 1M17 20l15 4" stroke-width="1.3"/><path d="M17 17l15-5" stroke="#ff6b6b"/><path d="M17 18l15-2" stroke="#f9f871"/><path d="M17 19l15 1" stroke="#6bffb8"/><path d="M17 20l15 4" stroke="#a78bff"/></svg>prisma</a>
+  <ul><li><a href="#ia">Marketing e IA</a></li><li><a href="#licencias">Tecnología</a></li><li><a href="#proceso">Proceso</a></li></ul>
+  <a class="btn sm" href="#contacto">Cotizar</a>
+</div></nav>
+<aside class="dots" id="dots" aria-label="Secciones"></aside>
+<div class="hud" id="hud" aria-hidden="true"></div>
+
+<main>
+<section class="sec hero" id="inicio" data-cut="0" data-label="Inicio" data-name="talla brillante"><div class="wrap"><div class="copy">
+  <div class="eyebrow">Tecnología y marketing · Lima, Perú</div>
+  <h1>Una sola luz, <span class="it">todos los colores</span> de tu negocio.</h1>
+  <p class="lead">Inteligencia artificial, publicidad, automatización con n8n y Kommo, web, licencias y soporte técnico. Como un prisma: una idea clara que se abre en soluciones.</p>
+  <div class="cta"><a class="btn primary" href="#ia">Ver servicios</a><a class="btn" href="#contacto">Hablemos</a></div>
+</div></div></section>
+
+<section class="sec" id="ia" data-cut="1" data-label="IA" data-name="icosaedro"><div class="wrap"><div class="copy">
+  <div class="num"><b>01</b> / 09<span class="cat">Crecer</span></div>
+  <h2>Inteligencia <span class="it">artificial</span></h2>
+  <p>La IA trabajando en tu negocio: responde clientes, crea contenido y te ayuda a decidir con datos.</p>
+  <ul class="list"><li>Chatbots y asistentes para WhatsApp y web</li><li>Imágenes y video generados con IA</li><li>Análisis y reportes automáticos</li><li>Capacitación para tu equipo</li></ul>
+  <a class="more" href="#contacto" data-svc="Inteligencia artificial">Cotizar este servicio →</a>
+</div></div></section>
+
+<section class="sec" id="ads" data-cut="2" data-label="Publicidad" data-name="prisma triangular"><div class="wrap"><div class="copy">
+  <div class="num"><b>02</b> / 09<span class="cat">Crecer</span></div>
+  <h2>Publicidad en Meta, TikTok y <span class="it">Google</span></h2>
+  <p>Campañas que llegan a quien sí te va a comprar, con cada sol invertido medido.</p>
+  <ul class="list"><li>Estrategia y segmentación por plataforma</li><li>Creativos pensados para cada formato</li><li>Píxel, eventos y conversiones configurados</li><li>Reporte semanal de resultados</li></ul>
+  <a class="more" href="#contacto" data-svc="Publicidad digital (Meta, TikTok, Google)">Cotizar este servicio →</a>
+</div></div></section>
+
+<section class="sec" id="auto" data-cut="8" data-label="Automatización" data-name="columna torsionada"><div class="wrap"><div class="copy">
+  <div class="num"><b>03</b> / 09<span class="cat">Crecer</span></div>
+  <h2><span class="it">Automatizaciones</span></h2>
+  <p>Las tareas repetitivas se hacen solas y tu equipo se dedica a lo importante.</p>
+  <ul class="list"><li>Respuestas y seguimiento automático por WhatsApp</li><li>Formularios conectados a CRM y hojas de cálculo</li><li>Cotizaciones y recordatorios automáticos</li><li>Flujos en n8n, Make o Zapier</li></ul>
+  <a class="more" href="#contacto" data-svc="Automatizaciones">Cotizar este servicio →</a>
+</div></div></section>
+
+<section class="sec" id="n8n" data-cut="4" data-label="n8n · Kommo" data-name="cuarzo hexagonal"><div class="wrap"><div class="copy">
+  <div class="num"><b>04</b> / 09<span class="cat">Crecer</span></div>
+  <h2>n8n y Kommo: <span class="it">implementación y configuración</span></h2>
+  <p>Tus flujos en n8n y tu CRM Kommo listos para vender: cada mensaje, lead y venta sigue su camino sin que nadie lo mueva a mano.</p>
+  <ul class="list"><li>Flujos en n8n con WhatsApp, formularios, hojas, correo e IA</li><li>Kommo CRM: embudos, etapas y campos a tu medida</li><li>WhatsApp, Instagram y Facebook conectados a Kommo</li><li>Salesbots, respuestas automáticas y seguimiento</li><li>Leads de Meta Ads y de tu web directo al CRM</li><li>Configuración de otras apps y capacitación</li></ul>
+  <a class="more" href="#contacto" data-svc="n8n y Kommo (automatización y CRM)">Cotizar este servicio →</a>
+</div></div></section>
+
+<section class="sec" id="web" data-cut="5" data-label="Web" data-name="cubo"><div class="wrap"><div class="copy">
+  <div class="num"><b>05</b> / 09<span class="cat">Crecer</span></div>
+  <h2>Diseño y desarrollo <span class="it">web</span></h2>
+  <p>Webs rápidas, claras y memorables, hechas para que te encuentren y te escriban.</p>
+  <ul class="list"><li>Landing pages que convierten</li><li>Tiendas online y webs corporativas</li><li>SEO y velocidad de carga</li><li>Experiencias interactivas como esta</li></ul>
+  <a class="more" href="#contacto" data-svc="Diseño y desarrollo web">Cotizar este servicio →</a>
+</div></div></section>
+
+<section class="sec" id="licencias" data-cut="6" data-label="Licencias" data-name="tetraedro"><div class="wrap"><div class="copy">
+  <div class="num"><b>06</b> / 09<span class="cat">Operar</span></div>
+  <h2>Venta de <span class="it">licencias</span></h2>
+  <p>Software en regla, instalado y activado, para trabajar sin sustos.</p>
+  <ul class="list"><li>Sistemas operativos</li><li>Ofimática y correo</li><li>Antivirus y seguridad</li><li>Software de diseño</li></ul>
+  <a class="more" href="#contacto" data-svc="Licencias de software">Cotizar este servicio →</a>
+</div></div></section>
+
+<section class="sec" id="ti" data-cut="7" data-label="Servicios TI" data-name="dodecaedro"><div class="wrap"><div class="copy">
+  <div class="num"><b>07</b> / 09<span class="cat">Operar</span></div>
+  <h2>Servicios <span class="it">TI</span></h2>
+  <p>La infraestructura de tu oficina, estable y protegida.</p>
+  <ul class="list"><li>Redes cableadas y wifi</li><li>Correo corporativo</li><li>Respaldos y seguridad</li><li>Soporte remoto</li></ul>
+  <a class="more" href="#contacto" data-svc="Servicios TI">Cotizar este servicio →</a>
+</div></div></section>
+
+<section class="sec" id="tecnico" data-cut="3" data-label="Servicio técnico" data-name="octaedro"><div class="wrap"><div class="copy">
+  <div class="num"><b>08</b> / 09<span class="cat">Operar</span></div>
+  <h2>Servicio técnico de <span class="it">computadoras</span></h2>
+  <p>Diagnóstico honesto y reparación rápida, en taller o a domicilio.</p>
+  <ul class="list"><li>Mantenimiento preventivo</li><li>Reparación y diagnóstico</li><li>Formateo y optimización</li><li>Mejoras de SSD y memoria RAM</li><li>Recuperación de información</li></ul>
+  <a class="more" href="#contacto" data-svc="Servicio técnico de computadoras">Cotizar este servicio →</a>
+</div></div></section>
+
+<section class="sec" id="asesoria" data-cut="9" data-label="Asesoría" data-name="bipirámide"><div class="wrap"><div class="copy">
+  <div class="num"><b>09</b> / 09<span class="cat">Operar</span></div>
+  <h2>Asesoría en equipos de <span class="it">cómputo</span></h2>
+  <p>Compra lo que necesitas, ni más ni menos: te decimos qué equipo conviene según tu trabajo y presupuesto.</p>
+  <ul class="list"><li>Laptops y computadoras de escritorio</li><li>Impresoras y periféricos</li><li>Servidores y equipos de red</li><li>Comparativas y cotizaciones</li></ul>
+  <a class="more" href="#contacto" data-svc="Asesoría en equipos de cómputo">Cotizar este servicio →</a>
+</div></div></section>
+
+<section class="sec" id="proceso" data-cut="10" data-label="Proceso" data-name="esfera facetada"><div class="wrap"><div class="copy">
+  <div class="num">Cómo trabajamos</div>
+  <h2>Cuatro caras, <span class="it">una misma pieza.</span></h2>
+  <ol class="steps">
+    <li><b>Diagnóstico</b><span>Escuchamos qué quieres lograr y revisamos lo que ya tienes.</span></li>
+    <li><b>Propuesta</b><span>Plan, plazos y costo claros antes de empezar.</span></li>
+    <li><b>Implementación</b><span>Lo construimos, configuramos o reparamos contigo al tanto.</span></li>
+    <li><b>Soporte</b><span>Medimos, ajustamos y seguimos disponibles.</span></li>
+  </ol>
+</div></div></section>
+
+<section class="sec" id="contacto" data-cut="0" data-label="Contacto" data-name="talla brillante"><div class="wrap"><div class="copy">
+  <div class="num">Contacto</div>
+  <h2>Pongamos tu idea <span class="it">bajo la luz.</span></h2>
+  <p>Cuéntanos qué necesitas y te respondemos con una propuesta.</p>
+  <form id="form">
+    <label>Nombre<input name="n" autocomplete="name" required></label>
+    <label>Servicio<select name="s" id="svc">
+      <option>Inteligencia artificial</option><option>Publicidad digital (Meta, TikTok, Google)</option><option>Automatizaciones</option><option>n8n y Kommo (automatización y CRM)</option><option>Diseño y desarrollo web</option>
+      <option>Licencias de software</option><option>Servicios TI</option><option>Servicio técnico de computadoras</option><option>Asesoría en equipos de cómputo</option></select></label>
+    <label>Mensaje<textarea name="m" placeholder="Ej.: quiero automatizar mis ventas con Kommo"></textarea></label>
+    <button class="btn primary" type="submit">Enviar por WhatsApp</button>
+  </form>
+  <footer><span>© Prisma · Lima, Perú</span><span>Prototipo · datos de contacto por definir</span></footer>
+</div></div></section>
+</main>
+
+<script>
+(() => {
+'use strict';
+const WHATSAPP = '51932462537'; // número con código de país, p. ej. 51XXXXXXXXX
+const $svc = document.getElementById('svc');
+document.querySelectorAll('[data-svc]').forEach(a => a.addEventListener('click', () => { $svc.value = a.dataset.svc; }));
+document.getElementById('form').addEventListener('submit', e => { e.preventDefault(); const f = new FormData(e.target);
+  const t = `Hola Aurora Hub Perú, vi el concepto «Prisma». Soy ${f.get('n')}. Me interesa: ${f.get('s')}. ${f.get('m') || ''}`.trim(); window.open(`https://wa.me/${WHATSAPP}?text=${encodeURIComponent(t)}`, '_blank', 'noopener'); });
+
+const SECS = [...document.querySelectorAll('main > section')];
+const $dots = document.getElementById('dots'), $hud = document.getElementById('hud');
+SECS.forEach(s => { const a = document.createElement('a'); a.href = '#' + s.id; a.innerHTML = `${s.dataset.label}<i></i>`; $dots.appendChild(a); });
+const DOTS = [...$dots.children];
+
+const cv = document.getElementById('gl');
+const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const gl = cv.getContext('webgl2', {antialias: false, alpha: false, depth: false, stencil: false, preserveDrawingBuffer: true});
+if (!gl) { document.body.classList.add('static'); return; }
+const HALF = !!gl.getExtension('EXT_color_buffer_float');
+const coarse = matchMedia('(pointer: coarse)').matches;
+const HQ = location.hash.startsWith('#hq');
+
+const VS = `#version 300 es
+out vec2 vUv; void main(){ vec2 p = vec2((gl_VertexID << 1) & 2, gl_VertexID & 2); vUv = p; gl_Position = vec4(p * 2.0 - 1.0, 0.0, 1.0); }`;
+/* El cristal: trazado de rayos sobre funciones de distancia (SDF), con reflexión, refracción de entrada y salida y dispersión cromática (un índice de refracción por color). */
+const FS = `#version 300 es
+precision highp float;
+uniform vec2 uRes; uniform vec2 uShift; uniform mat3 uR; uniform int uA; uniform int uB; uniform float uK; uniform float uT; uniform float uGlow; uniform float uDisp; uniform vec2 uBeam; uniform float uZoom;
+out vec4 o;
+const float PHI = 1.618034;
+float h12(vec2 p){ vec3 q = fract(vec3(p.xyx) * 0.1031); q += dot(q, q.yzx + 33.33); return fract((q.x + q.y) * q.z); }
+float octa(vec3 p){ p = abs(p); return (p.x + p.y + p.z - 1.05) * 0.57735; }
+float dodeca(vec3 p, float r){ vec3 n1 = normalize(vec3(0.0, 1.0, PHI)), n2 = normalize(vec3(0.0, 1.0, -PHI)), n3 = normalize(vec3(1.0, PHI, 0.0)), n4 = normalize(vec3(-1.0, PHI, 0.0)), n5 = normalize(vec3(PHI, 0.0, 1.0)), n6 = normalize(vec3(-PHI, 0.0, 1.0));
+  return max(max(max(abs(dot(p, n1)), abs(dot(p, n2))), max(abs(dot(p, n3)), abs(dot(p, n4)))), max(abs(dot(p, n5)), abs(dot(p, n6)))) - r; }
+float icosa(vec3 p){ float d = 0.0; vec3 a = abs(p); d = dot(a, vec3(0.57735));
+  float ip = 1.0 / PHI; vec3 n1 = normalize(vec3(0.0, ip, PHI)), n2 = normalize(vec3(ip, PHI, 0.0)), n3 = normalize(vec3(PHI, 0.0, ip));
+  d = max(d, max(dot(a, n1), max(dot(a, n2), dot(a, n3)))); return d - 0.82; }
+float tri(vec3 p){ p.xy = vec2(p.x, p.y + 0.15); vec3 q = abs(p); return max(q.z - 0.95, max(q.x * 0.866025 + p.y * 0.5, -p.y) - 0.45); }
+float hexcol(vec3 p){ vec2 q = p.xz; float h = max(max(abs(q.x), abs(dot(q, vec2(0.5, 0.866025)))), abs(dot(q, vec2(-0.5, 0.866025))));
+  return max(h - 0.48, h * 0.8 + abs(p.y) * 0.6 - 0.98) * 0.85; }
+float box(vec3 p, vec3 b, float r){ vec3 q = abs(p) - b + r; return length(max(q, 0.0)) + min(max(q.x, max(q.y, q.z)), 0.0) - r; }
+float tetra(vec3 p){ p.y += 0.12; return (max(max(-p.x - p.y - p.z, p.x + p.y - p.z), max(-p.x + p.y + p.z, p.x - p.y + p.z)) - 0.62) * 0.57735; }
+float twist(vec3 p){ float a = p.y * 1.1, c = cos(a), s = sin(a); p.xz = mat2(c, -s, s, c) * p.xz; return box(p, vec3(0.42, 0.95, 0.42), 0.02) * 0.72; }
+float bipyr(vec3 p){ float d = -1.0; vec3 q = vec3(p.x, abs(p.y), p.z); for (int k = 0; k < 5; k++) { float a = float(k) * 1.256637; d = max(d, dot(q, normalize(vec3(cos(a), 0.62, sin(a))))); } return d - 0.6; }
+float diamond(vec3 p){ float r = length(p.xz), cr = -1.0, pv = -1.0, gd = -1.0;
+  for (int k = 0; k < 8; k++) { float a = float(k) * 0.785398, a2 = a + 0.392699; cr = max(cr, dot(p, normalize(vec3(cos(a), 1.45, sin(a))))); pv = max(pv, dot(p, normalize(vec3(cos(a2), -1.0, sin(a2)))));
+    gd = max(gd, dot(p.xz, vec2(cos(a2 * 0.5 + a * 0.5), sin(a2 * 0.5 + a * 0.5)))); }
+  p.y -= 0.12; return max(max(p.y - 0.42, cr - 0.66), max(gd - 1.02, pv - 0.66)); }
+float gem(vec3 p){ return max(length(p) - 1.0, dodeca(p, 0.9)); }
+float cut(int id, vec3 p){
+  if (id == 0) return diamond(p); if (id == 1) return icosa(p); if (id == 2) return tri(p); if (id == 3) return octa(p); if (id == 4) return hexcol(p);
+  if (id == 5) return box(p, vec3(0.62), 0.03); if (id == 6) return tetra(p); if (id == 7) return dodeca(p, 0.8); if (id == 8) return twist(p); if (id == 9) return bipyr(p); return gem(p); }
+float map(vec3 p){ p = uR * p; float a = cut(uA, p); if (uK < 0.001) return a; return mix(a, cut(uB, p), uK); }
+vec3 nrm(vec3 p){ const vec2 e = vec2(0.0015, 0.0); return normalize(vec3(map(p + e.xyy) - map(p - e.xyy), map(p + e.yxy) - map(p - e.yxy), map(p + e.yyx) - map(p - e.yyx))); }
+vec3 spec(float x){ return clamp(vec3(abs(x * 6.0 - 3.0) - 1.0, 2.0 - abs(x * 6.0 - 2.0), 2.0 - abs(x * 6.0 - 4.0)), 0.0, 1.0); }
+// estudio fotográfico: fondo oscuro, softbox superior, tiras de luz laterales y un anillo espectral tenue
+vec3 env(vec3 d){
+  vec3 c = vec3(0.012, 0.012, 0.018) + vec3(0.035, 0.035, 0.045) * (d.y * 0.5 + 0.5);
+  float top = smoothstep(0.8, 0.88, d.y) * smoothstep(0.5, 0.3, abs(d.x)); c += vec3(1.0) * 1.0 * top * (0.75 + 0.25 * step(0.5, fract(d.z * 3.0 + 0.25)));
+  c += vec3(0.9, 0.95, 1.0) * 2.2 * smoothstep(0.03, 0.0, abs(d.x - 0.78)) * smoothstep(0.7, 0.2, abs(d.y));
+  c += vec3(1.0, 0.94, 0.86) * 1.5 * smoothstep(0.025, 0.0, abs(d.x + 0.86)) * smoothstep(0.6, 0.1, abs(d.y - 0.1));
+  for (int k = 0; k < 4; k++) { float y = -0.45 + float(k) * 0.28; c += vec3(1.0) * 0.9 * smoothstep(0.012, 0.0, abs(d.y - y)) * smoothstep(0.2, -0.3, d.z) * smoothstep(0.9, 0.3, abs(d.x)); }
+  c += vec3(1.0) * 1.2 * smoothstep(0.03, 0.0, abs(d.z + 0.92)) * smoothstep(0.35, 0.0, abs(d.y + 0.05));
+  float a = atan(d.x, -d.z) / 6.2831853 + 0.5; c += spec(fract(a * 2.0 + uT * 0.02)) * 0.1 * smoothstep(0.25, 0.0, abs(d.y + 0.25));
+  return c;
+}
+void main(){
+  vec2 uv = (gl_FragCoord.xy / uRes * 2.0 - 1.0 - uShift) * vec2(uRes.x / uRes.y, 1.0);
+  vec3 ro = vec3(0.0, 0.0, 4.2), rd = normalize(vec3(uv * uZoom, -1.0));
+  // fondo: gradiente, rayo de luz entrante y abanico espectral saliente (en pantalla)
+  vec2 sp = uv / uZoom * 4.2; vec3 col = vec3(0.028, 0.027, 0.036) * (1.0 - 0.35 * length(uv));
+  vec2 inD = normalize(uBeam), q = sp; float along = dot(q, -inD), perp = abs(q.x * inD.y - q.y * inD.x);
+  if (along > 0.0) col += vec3(1.0, 0.98, 0.95) * exp(-perp * perp / 0.004) * 1.4 * uGlow + vec3(0.8, 0.85, 1.0) * exp(-perp * perp / 0.12) * 0.06 * uGlow;
+  float ao = atan(inD.y, inD.x);
+  for (int k = 0; k < 7; k++) { float f = float(k) / 6.0, a = ao + (f - 0.5) * 0.34 * uDisp, dd = dot(q, vec2(cos(a), sin(a))), pp = abs(q.x * sin(a) - q.y * cos(a));
+    if (dd > 0.6) col += spec(f * 0.85) * exp(-pp * pp / (0.006 + dd * 0.0016)) * 0.55 * uGlow * smoothstep(0.6, 1.4, dd) * exp(-dd * 0.12); }
+  // polvo suspendido iluminado por el haz
+  vec2 g = floor(gl_FragCoord.xy / 2.0); float h = h12(g + floor(uT * 0.5)); if (h > 0.9965) col += vec3(0.8) * exp(-perp * perp / 0.2) * (along > 0.0 ? 1.0 : 0.0) * uGlow;
+  // trazado del cristal
+  float b = dot(ro, rd), c0 = dot(ro, ro) - 1.44, disc = b * b - c0;
+  if (disc > 0.0) {
+    float t = max(-b - sqrt(disc), 0.0), tmax = -b + sqrt(disc), d = 1.0; bool hit = false;
+    for (int i = 0; i < 90; i++) { d = map(ro + rd * t); if (d < 0.0008) { hit = true; break; } t += d * 0.9; if (t > tmax) break; }
+    if (hit) {
+      vec3 p = ro + rd * t, n = nrm(p);
+      float fr = 0.04 + 0.96 * pow(1.0 - max(dot(-rd, n), 0.0), 5.0);
+      vec3 refl = env(reflect(rd, n));
+      vec3 r2 = refract(rd, n, 1.0 / 1.55), pi = p - n * 0.004; float ti = 0.0;
+      for (int i = 0; i < 48; i++) { float di = -map(pi + r2 * ti); if (di < 0.0008) break; ti += max(di * 0.9, 0.004); if (ti > 2.6) break; }
+      vec3 pe = pi + r2 * ti, ne = -nrm(pe);
+      vec3 tr;
+      for (int ch = 0; ch < 3; ch++) { float ior = 1.55 + (float(ch) - 1.0) * 0.035 * (0.5 + uDisp);
+        vec3 r3 = refract(r2, ne, ior); if (dot(r3, r3) < 0.01) r3 = reflect(r2, ne);
+        vec3 e = env(r3); tr[ch] = ch == 0 ? e.r : ch == 1 ? e.g : e.b; }
+      tr = min(tr, vec3(1.2)) * exp(-ti * vec3(0.08, 0.06, 0.03));
+      col = mix(tr, refl, fr) + vec3(1.0) * pow(max(dot(reflect(rd, n), normalize(vec3(0.3, 0.9, 0.5))), 0.0), 600.0) * 1.2;
+      // aristas: realce sutil donde la normal cambia rápido
+      col += vec3(0.9) * smoothstep(0.6, 1.0, 1.0 - abs(dot(n, -rd))) * 0.08;
+    }
+  }
+  o = vec4(col, 1.0);
+}`;
+const DOWN = `#version 300 es
+precision highp float; in vec2 vUv; uniform sampler2D uTex; uniform vec2 uTexel; out vec4 o;
+void main(){ vec3 c = vec3(0.0); for (int y = -1; y <= 1; y++) for (int x = -1; x <= 1; x++) c += texture(uTex, vUv + vec2(x, y) * uTexel * 1.5).rgb;
+  c /= 9.0; float l = max(c.r, max(c.g, c.b)); o = vec4(c * smoothstep(1.1, 3.0, l), 1.0); }`;
+const BLUR = `#version 300 es
+precision highp float; in vec2 vUv; uniform sampler2D uTex; uniform vec2 uDir; out vec4 o;
+void main(){ const float w[5] = float[](0.227, 0.194, 0.122, 0.054, 0.016); vec3 c = texture(uTex, vUv).rgb * w[0];
+  for (int i = 1; i < 5; i++) { c += texture(uTex, vUv + uDir * float(i)).rgb * w[i]; c += texture(uTex, vUv - uDir * float(i)).rgb * w[i]; } o = vec4(c, 1.0); }`;
+const COMP = `#version 300 es
+precision highp float; in vec2 vUv; uniform sampler2D uScene; uniform sampler2D uBloom; out vec4 o;
+float h(vec2 p){ return fract(sin(dot(p, vec2(12.9898, 78.233))) * 43758.5453); }
+vec3 aces(vec3 x){ return clamp((x * (2.51 * x + 0.03)) / (x * (2.43 * x + 0.59) + 0.14), 0.0, 1.0); }
+void main(){ vec3 c = texture(uScene, vUv).rgb + texture(uBloom, vUv).rgb * 0.6; c = aces(c * 0.95); c += (h(gl_FragCoord.xy) - 0.5) / 255.0; o = vec4(c, 1.0); }`;
+function sh(t, s){ const x = gl.createShader(t); gl.shaderSource(x, s); gl.compileShader(x); if (!gl.getShaderParameter(x, gl.COMPILE_STATUS)) throw new Error(gl.getShaderInfoLog(x)); return x; }
+function prog(v, f){ const p = gl.createProgram(); gl.attachShader(p, sh(gl.VERTEX_SHADER, v)); gl.attachShader(p, sh(gl.FRAGMENT_SHADER, f)); gl.linkProgram(p); if (!gl.getProgramParameter(p, gl.LINK_STATUS)) throw new Error(gl.getProgramInfoLog(p));
+  const u = {}, n = gl.getProgramParameter(p, gl.ACTIVE_UNIFORMS); for (let i = 0; i < n; i++) { const nm = gl.getActiveUniform(p, i).name; u[nm] = gl.getUniformLocation(p, nm); } return {p, u}; }
+const PM = prog(VS, FS), PD = prog(VS, DOWN), PB = prog(VS, BLUR), PC = prog(VS, COMP);
+const vao = gl.createVertexArray();
+function target(w, h){ const t = gl.createTexture(); gl.bindTexture(gl.TEXTURE_2D, t);
+  if (HALF) gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA16F, w, h, 0, gl.RGBA, gl.HALF_FLOAT, null); else gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA8, w, h, 0, gl.RGBA, gl.UNSIGNED_BYTE, null);
+  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR); gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
+  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE); gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
+  const f = gl.createFramebuffer(); gl.bindFramebuffer(gl.FRAMEBUFFER, f); gl.framebufferTexture2D(gl.FRAMEBUFFER, gl.COLOR_ATTACHMENT0, gl.TEXTURE_2D, t, 0); gl.bindFramebuffer(gl.FRAMEBUFFER, null); return {t, f, w, h}; }
+function free(x){ if (x) { gl.deleteTexture(x.t); gl.deleteFramebuffer(x.f); } }
+
+let W = 0, H = 0, DPR = 1, scale = HQ ? 1 : (coarse ? 0.55 : 0.85), maxS = HQ ? 1 : (coarse ? 0.7 : 1), RT = null, B1 = null, B2 = null, SHIFT = [0, 0];
+let t = 0, sPos = 0, rx = 0.35, ry = 0, mouse = [0, 0], mouseS = [0, 0], spin = 0, dragV = 0, cutA = 0, cutB = 0, kMix = 0;
+function resize(){ DPR = Math.min(devicePixelRatio || 1, coarse ? 1.5 : 2); W = innerWidth; H = innerHeight; cv.width = Math.round(W * DPR); cv.height = Math.round(H * DPR);
+  SHIFT = W < 760 ? [0, 0.46] : [0.4, 0]; build(); }
+function build(){ free(RT); free(B1); free(B2); const w = Math.max(64, Math.round(W * DPR * scale)), h = Math.max(64, Math.round(H * DPR * scale)); RT = target(w, h); B1 = target(Math.max(16, w >> 2), Math.max(16, h >> 2)); B2 = target(B1.w, B1.h); }
+function scrollPos(){
+  const c = SECS.map(s => { const r = s.getBoundingClientRect(); return r.top + r.height / 2 - H / 2; });
+  let k = 0; while (k < c.length - 1 && c[k + 1] <= 0) k++;
+  let f = 0; if (k < c.length - 1 && c[k] <= 0) f = -c[k] / (c[k + 1] - c[k]);
+  const on = f < 0.5 ? k : Math.min(k + 1, SECS.length - 1); DOTS.forEach((d, i) => d.classList.toggle('on', i === on));
+  const hold = f < 0.25 ? 0 : f > 0.75 ? 1 : (f - 0.25) / 0.5, e = hold * hold * (3 - 2 * hold);
+  cutA = +SECS[k].dataset.cut; cutB = +SECS[Math.min(k + 1, SECS.length - 1)].dataset.cut; kMix = e;
+  return [k + e, on];
+}
+function rot(){ const cx = Math.cos(rx), sx = Math.sin(rx), cy = Math.cos(ry), sy = Math.sin(ry);
+  // uR = Rx · Ry (columnas para GLSL)
+  return new Float32Array([cy, sx * sy, -cx * sy, 0, cx, sx, sy, -sx * cy, cx * cy]); }
+function pass(P, out){ gl.useProgram(P.p); gl.bindFramebuffer(gl.FRAMEBUFFER, out ? out.f : null); if (out) gl.viewport(0, 0, out.w, out.h); else gl.viewport(0, 0, cv.width, cv.height); }
+function tex(unit, x, loc){ gl.activeTexture(gl.TEXTURE0 + unit); gl.bindTexture(gl.TEXTURE_2D, x); gl.uniform1i(loc, unit); }
+let glow = 1, disp = 1;
+function render(){
+  gl.bindVertexArray(vao); pass(PM, RT); const u = PM.u;
+  gl.uniform2f(u.uRes, RT.w, RT.h); gl.uniform2fv(u.uShift, SHIFT); gl.uniform1f(u.uZoom, W < 760 ? 0.62 : 0.46); gl.uniformMatrix3fv(u.uR, false, rot()); gl.uniform1i(u.uA, cutA); gl.uniform1i(u.uB, cutB); gl.uniform1f(u.uK, kMix);
+  gl.uniform1f(u.uT, t); gl.uniform1f(u.uGlow, glow); gl.uniform1f(u.uDisp, disp);
+  const a = -2.0 + mouseS[0] * 0.25; gl.uniform2f(u.uBeam, Math.cos(a), Math.sin(a)); // el haz entra desde arriba a la izquierda
+  gl.drawArrays(gl.TRIANGLES, 0, 3);
+  pass(PD, B1); tex(0, RT.t, PD.u.uTex); gl.uniform2f(PD.u.uTexel, 1 / RT.w, 1 / RT.h); gl.drawArrays(gl.TRIANGLES, 0, 3);
+  for (let i = 0; i < 3; i++) { const s = 1 + i * 1.6; pass(PB, B2); tex(0, B1.t, PB.u.uTex); gl.uniform2f(PB.u.uDir, s / B1.w, 0); gl.drawArrays(gl.TRIANGLES, 0, 3);
+    pass(PB, B1); tex(0, B2.t, PB.u.uTex); gl.uniform2f(PB.u.uDir, 0, s / B1.h); gl.drawArrays(gl.TRIANGLES, 0, 3); }
+  pass(PC, null); tex(0, RT.t, PC.u.uScene); tex(1, B1.t, PC.u.uBloom); gl.drawArrays(gl.TRIANGLES, 0, 3);
+}
+let drag = null;
+addEventListener('pointermove', e => { if (e.pointerType === 'mouse') mouse = [e.clientX / W * 2 - 1, e.clientY / H * 2 - 1];
+  if (drag) { spin += (e.clientX - drag[0]) * 0.008; rx += (e.clientY - drag[1]) * 0.006; dragV = (e.clientX - drag[0]) * 0.008; drag = [e.clientX, e.clientY]; } });
+addEventListener('pointerdown', e => { if (e.target.closest('a,button,input,select,textarea,label,nav')) return; if (e.pointerType === 'mouse') drag = [e.clientX, e.clientY]; });
+addEventListener('pointerup', () => { drag = null; });
+let last = performance.now(), fA = 0, fN = 0, hudT = 0, sOn = 0;
+function step(dt){
+  t += dt; const [sp, on] = scrollPos(); sPos = sp; sOn = on;
+  mouseS[0] += (mouse[0] - mouseS[0]) * Math.min(1, dt * 3); mouseS[1] += (mouse[1] - mouseS[1]) * Math.min(1, dt * 3);
+  if (!drag) { spin += dragV; dragV *= Math.exp(-dt * 3); }
+  ry = (reduce ? 0 : t * 0.22) + sPos * 1.9 + spin + mouseS[0] * 0.5; rx = 0.35 + Math.sin(t * 0.3) * 0.12 * (reduce ? 0 : 1) + mouseS[1] * 0.3 + Math.sin(sPos * 1.3) * 0.25;
+  const mid = Math.sin(Math.PI * kMix); glow = 1 + mid * 0.8; disp = 1 + mid * 1.2;
+}
+function frame(now){
+  const dt = Math.min(0.05, (now - last) / 1000); last = now; step(dt); render();
+  hudT -= dt; if (hudT <= 0) { hudT = 0.25; $hud.textContent = `${SECS[sOn].dataset.name} · índice de refracción 1,55 · dispersión ×${disp.toFixed(1).replace('.', ',')} · arrastra para girar`; }
+  fA += dt; fN++; if (fA >= 1) { const fps = fN / fA; fA = 0; fN = 0; if (!HQ) { if (fps < 40 && scale > 0.4) { scale = Math.max(0.4, scale - 0.1); build(); } else if (fps > 57 && scale < maxS) { scale = Math.min(maxS, scale + 0.05); build(); } } }
+  requestAnimationFrame(frame);
+}
+let rtm = 0; addEventListener('resize', () => { clearTimeout(rtm); rtm = setTimeout(resize, 150); });
+resize();
+const hq = location.hash.match(/#hq-(\d+)/); if (hq) { document.documentElement.style.scrollBehavior = 'auto'; scrollTo(0, +hq[1]); }
+t = 2; step(0.016); render();
+requestAnimationFrame(tt => { last = tt; requestAnimationFrame(frame); });
+})();
+</script>
+
+<div id="ah-demo" style="position:fixed;left:12px;bottom:12px;z-index:2147483000;display:flex;align-items:center;gap:10px;padding:8px 8px 8px 14px;border-radius:999px;background:rgba(3,9,15,.86);border:1px solid rgba(44,245,200,.45);box-shadow:0 6px 24px -8px rgba(0,0,0,.6);font:500 12px/1.2 system-ui,-apple-system,Segoe UI,sans-serif;color:#eefcf8;max-width:calc(100vw - 24px);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)"><span style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis">Concepto de diseño «Prisma» · Aurora Hub Perú</span><a href="https://www.aurorahubperu.com/#proyectos" style="flex:none;color:#03140f;background:linear-gradient(90deg,#2cf5c8,#7cf9e0);border-radius:999px;padding:6px 11px;text-decoration:none;font-weight:700">Ver portafolio</a></div></body></html>

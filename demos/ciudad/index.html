@@ -1,0 +1,587 @@
+<!doctype html><html><head><meta name="robots" content="noindex"><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Ciudad que no duerme</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Manrope:wght@400;600;700&display=swap">
+<style>
+:root{
+  color-scheme: dark;
+  --void:#02040a; --ink:#e6f1ff; --muted:#7f97b3; --line:rgba(110,190,255,.2);
+  --panel:rgba(4,10,22,.66); --cyan:#5fd8f0; --on:rgba(95,216,240,.18);
+  --sans:"Manrope", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono:"IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace;
+}
+[hidden]{display:none!important}
+html,body{height:100%}
+body{margin:0;background:var(--void);color:var(--ink);font-family:var(--sans);overflow:hidden}
+#stage{position:fixed;inset:0;width:100%;height:100%;display:block;touch-action:none;cursor:crosshair}
+#stage.drag{cursor:grabbing}
+.hud{position:fixed;left:0;right:0;padding-inline:16px;display:flex;gap:14px;pointer-events:none;z-index:2}
+.top{top:0;padding-top:calc(16px + env(safe-area-inset-top,0px));justify-content:space-between;align-items:flex-start;flex-wrap:wrap}
+.bottom{bottom:0;padding-bottom:calc(16px + env(safe-area-inset-bottom,0px));justify-content:space-between;align-items:flex-end;flex-wrap:wrap}
+.intro{display:flex;flex-direction:column;gap:6px;max-width:46ch;text-shadow:0 1px 14px rgba(0,0,0,.95),0 0 3px rgba(0,0,0,.8)}
+.eyebrow{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+h1{margin:0;font-size:22px;font-weight:700;letter-spacing:-.01em}
+.desc{margin:0;font-size:13px;line-height:1.5;color:#b9cbe0}
+.hint{font-family:var(--mono);font-size:11px;color:var(--cyan)}
+.side{display:flex;flex-direction:column;gap:6px;align-items:flex-end;text-align:right;text-shadow:0 1px 12px #000}
+.clock{font-family:var(--mono);font-size:34px;font-weight:500;font-variant-numeric:tabular-nums;line-height:1}
+.phase{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--cyan)}
+.bar{width:180px;height:4px;border-radius:2px;background:rgba(110,190,255,.15);overflow:hidden}
+.bar i{display:block;height:100%;background:linear-gradient(90deg,#3a7bd5,#5fd8f0,#ffd28a);width:50%}
+.stats{font-family:var(--mono);font-size:11px;line-height:1.7;color:var(--muted);font-variant-numeric:tabular-nums}
+.stats b{color:var(--ink);font-weight:500}
+.panel{display:flex;gap:14px;flex-wrap:wrap;align-items:flex-end;padding:12px 14px;border:1px solid var(--line);border-radius:12px;background:var(--panel);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);pointer-events:auto;max-width:1080px}
+.ctl{display:flex;flex-direction:column;gap:6px}
+.ctl.grow{flex:1;min-width:120px}
+.lbl{display:flex;justify-content:space-between;gap:10px;font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.lbl output{color:var(--ink);font-variant-numeric:tabular-nums;letter-spacing:0}
+.seg{display:flex;gap:2px;padding:2px;border:1px solid var(--line);border-radius:999px}
+.seg button{font:600 12px/1 var(--sans);color:var(--muted);background:none;border:0;border-radius:999px;padding:7px 10px;cursor:pointer;white-space:nowrap}
+.seg button[aria-pressed="true"]{background:var(--on);color:var(--ink)}
+.btn{font:600 12px/1 var(--sans);color:var(--ink);background:rgba(95,216,240,.12);border:1px solid var(--line);border-radius:999px;padding:9px 13px;cursor:pointer;white-space:nowrap}
+.btn:hover{background:rgba(95,216,240,.22)}
+.seg button:focus-visible,.btn:focus-visible,input:focus-visible{outline:2px solid var(--cyan);outline-offset:2px}
+input[type=range]{width:100%;accent-color:var(--cyan)}
+.nogl{position:fixed;inset:0;display:grid;place-items:center;padding-inline:16px;text-align:center;color:var(--muted);font-size:14px}
+@media (max-width:760px){
+  .desc,.eyebrow{display:none}
+  .panel{width:100%;gap:10px 12px}
+  .seg button{padding:7px 8px}
+  .clock{font-size:24px}
+  .bar{width:120px}
+  .stats{font-size:10px;line-height:1.5}
+  .stats .x{display:none}
+}
+</style>
+
+<canvas id="stage" aria-label="Ciudad viva hecha de partículas y trazos"></canvas>
+
+<div class="hud top">
+  <div class="intro">
+    <span class="eyebrow">Plexo urbano · WebGL2 · sin librerías</span>
+    <h1>Ciudad que no duerme</h1>
+    <p class="desc">Cada edificio es una malla de nodos y trazos. Las ventanas se encienden según la hora, el tráfico respeta semáforos, la gente camina por las veredas y las torres se hablan por una red de datos.</p>
+    <span class="hint" id="hint">Mueve el cursor para conectar los nodos · clic para lanzar un pulso de datos · arrastra para girar · rueda para acercarte</span>
+  </div>
+  <div class="side">
+    <div class="clock" id="clock">22:00</div>
+    <div class="phase" id="phase">Noche</div>
+    <div class="bar" aria-hidden="true"><i id="actBar"></i></div>
+    <div class="stats" id="stats"></div>
+  </div>
+</div>
+
+<div class="hud bottom">
+  <div class="panel">
+    <div class="ctl"><span class="lbl">Vista</span>
+      <div class="seg" role="group" aria-label="Vista de cámara">
+        <button data-v="0" aria-pressed="true">Aérea</button>
+        <button data-v="1" aria-pressed="false">Dron</button>
+        <button data-v="2" aria-pressed="false">Calle</button>
+      </div></div>
+    <div class="ctl"><span class="lbl">Reloj</span>
+      <div class="seg" role="group" aria-label="Velocidad del reloj">
+        <button data-c="1" aria-pressed="false">Real</button>
+        <button data-c="60" aria-pressed="true">1 min/s</button>
+        <button data-c="600" aria-pressed="false">10 min/s</button>
+      </div></div>
+    <div class="ctl grow"><label class="lbl" for="hour">Hora <output id="hourOut"></output></label><input id="hour" type="range" min="0" max="1439" step="1" value="1320"></div>
+    <div class="ctl grow"><label class="lbl" for="traffic">Tráfico <output id="trafficOut"></output></label><input id="traffic" type="range" min="0" max="150" step="1" value="100"></div>
+    <div class="ctl grow"><label class="lbl" for="net">Red de datos <output id="netOut"></output></label><input id="net" type="range" min="0" max="150" step="1" value="100"></div>
+    <button class="btn" id="pulse" type="button">Pulso de datos</button>
+    <button class="btn" id="blackout" type="button">Apagón</button>
+  </div>
+</div>
+
+<div class="nogl" id="nogl" hidden>Este navegador no tiene WebGL2 activo. En producción aquí se mostraría un video del recorrido nocturno.</div>
+
+<script>
+(() => {
+'use strict';
+const cv = document.getElementById('stage');
+const gl = cv.getContext('webgl2', {antialias:false, alpha:false, depth:false, stencil:false, preserveDrawingBuffer:true});
+if (!gl) { document.getElementById('nogl').hidden = false; return; }
+const HALF_F = !!gl.getExtension('EXT_color_buffer_float');
+const coarse = matchMedia('(pointer: coarse)').matches;
+const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const HQ = location.hash.startsWith('#hq');
+if (coarse) document.getElementById('hint').textContent = 'Toca para lanzar un pulso de datos · arrastra para girar · pellizca para acercarte';
+
+/* ---------- azar reproducible ---------- */
+let seed = 20260926;
+const rnd = () => { seed |= 0; seed = seed + 0x6D2B79F5 | 0; let t = Math.imul(seed ^ seed >>> 15, 1 | seed); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; };
+const R = (a, b) => a + (b - a) * rnd();
+
+/* ---------- trazado de la ciudad (metros) ---------- */
+const NB = 14, BLK = 100, HALF = NB * BLK / 2, STW = 11;       // 14×14 manzanas, calles cada 100 m
+const street = k => -HALF + k * BLK;
+const DC = [60, -40];                                            // centro financiero
+const SL = [], SP = [];                                          // trazos y nodos estáticos: x y z r g b tipo fase
+let phN = 0;
+function lv(x, y, z, c, k, ph){ SL.push(x, y, z, c[0], c[1], c[2], k, ph); }
+function seg(a, b, c, k, ph){ lv(a[0], a[1], a[2], c, k, ph); lv(b[0], b[1], b[2], c, k, ph); }
+function pt(p, c, k, ph){ SP.push(p[0], p[1], p[2], c[0], c[1], c[2], k, ph); }
+const mul = (c, s) => [c[0] * s, c[1] * s, c[2] * s];
+// tipos: 0 estructura · 1 ventana residencial · 2 letrero LED · 3 baliza · 4 calle · 5 ventana de oficina · 6 enlace de datos · 7 árbol · 8 metro · 10 farol
+const C_EDGE = [0.2, 0.42, 0.9], C_CORNER = [0.45, 0.72, 1.0], C_DIAG = [0.16, 0.34, 0.8];
+const C_WARM = [1.0, 0.76, 0.46], C_COOL = [0.72, 0.86, 1.0], NEON = [[1.0, 0.25, 0.7], [0.3, 0.95, 1.0], [1.0, 0.72, 0.25], [0.6, 0.45, 1.0]];
+const ROOF = [], FACE = [];                                      // nodos de azotea (red) y muestra de nodos de fachada (cursor)
+
+function ringAt(t, shape, cx, cz, w, d, h){
+  // puntos del perímetro a la altura relativa t
+  let sc = 1, rot = 0;
+  if (shape.kind === 'step') sc = t < 0.55 ? 1 : t < 0.8 ? 0.78 : 0.56;
+  if (shape.kind === 'taper') sc = 1 - 0.38 * t;
+  if (shape.kind === 'twist') rot = t * shape.tw;
+  const pts = [];
+  if (shape.kind === 'cyl') { const rr = Math.min(w, d) / 2 * (1 - 0.15 * t); for (let k = 0; k < shape.n; k++) { const a = k / shape.n * Math.PI * 2; pts.push([cx + Math.cos(a) * rr, cz + Math.sin(a) * rr, k === 0 || k === shape.n / 2]); } return pts; }
+  const hw = w / 2 * sc, hd = d / 2 * sc, cr = Math.cos(rot), sr = Math.sin(rot);
+  const corners = [[-hw, -hd], [hw, -hd], [hw, hd], [-hw, hd]];
+  for (let f = 0; f < 4; f++) { const a = corners[f], b = corners[(f + 1) % 4], nc = Math.max(1, Math.round((f % 2 ? d : w) / shape.col));
+    for (let k = 0; k < nc; k++) { const u = k / nc, x = a[0] + (b[0] - a[0]) * u, z = a[1] + (b[1] - a[1]) * u; pts.push([cx + x * cr - z * sr, cz + x * sr + z * cr, k === 0]); } }
+  return pts;
+}
+function building(x0, z0, x1, z1, h){
+  const cx = (x0 + x1) / 2, cz = (z0 + z1) / 2, w = x1 - x0, d = z1 - z0, r = rnd();
+  const office = h > 70;
+  let shape = {kind: 'box', col: R(8, 12)};
+  if (h > 150 && r < 0.3) shape = {kind: 'twist', col: 9, tw: R(0.5, 1.1) * (rnd() < 0.5 ? -1 : 1)};
+  else if (h > 110 && r < 0.5) shape = {kind: 'step', col: 9};
+  else if (h > 90 && r < 0.65) shape = {kind: 'cyl', n: 14};
+  else if (h > 60 && r < 0.75) shape = {kind: 'taper', col: 10};
+  const grp = h > 160 ? 4 : 3, nL = Math.max(2, Math.round(h / (3.6 * grp)));
+  const rings = []; for (let li = 0; li <= nL; li++) rings.push(ringAt(li / nL, shape, cx, cz, w, d, h));
+  const n = rings[0].length, bid = phN++;
+  for (let li = 0; li <= nL; li++) {
+    const y = h * li / nL, ring = rings[li], top = li === nL, e = top ? mul(C_CORNER, 0.9) : mul(C_EDGE, li === 0 ? 0.25 : 0.55);
+    for (let k = 0; k < n; k++) {
+      const a = ring[k], b = ring[(k + 1) % n];
+      seg([a[0], y, a[1]], [b[0], y, b[1]], e, 0, 0);
+      if (li < nL) {
+        const up = rings[li + 1][k], up2 = rings[li + 1][(k + 1) % n], y2 = h * (li + 1) / nL;
+        seg([a[0], y, a[1]], [up[0], y2, up[1]], a[2] ? mul(C_CORNER, 0.75) : mul(C_EDGE, 0.42), 0, 0);
+        if (rnd() < 0.55) { if (rnd() < 0.5) seg([a[0], y, a[1]], [up2[0], y2, up2[1]], mul(C_DIAG, 0.3), 0, 0); else seg([b[0], y, b[1]], [up[0], y2, up[1]], mul(C_DIAG, 0.3), 0, 0); }
+        // ventanas: puntos en el paño
+        const nw = h > 150 ? 3 : 2;
+        for (let q = 0; q < nw; q++) { const u = R(0.15, 0.85), v = R(0.2, 0.8), px = a[0] + (b[0] - a[0]) * u, pz = a[1] + (b[1] - a[1]) * u, py = y + (y2 - y) * v;
+          const c = rnd() < 0.62 ? C_WARM : rnd() < 0.9 ? C_COOL : NEON[(rnd() * 4) | 0];
+          pt([px + (px - cx) * 0.01, py, pz + (pz - cz) * 0.01], mul(c, R(0.55, 1)), office ? 5 : 1, bid * 13.37 + li * 1.91 + k * 0.713 + q * 0.37); }
+      }
+      if (li > 0 && (k % 2 === 0) && rnd() < 0.5) FACE.push(a[0], y, a[1]);
+      if (li > 0 && rnd() < 0.3) pt([a[0], y, a[1]], mul(C_CORNER, 0.35), 0, 0);
+    }
+  }
+  // azotea: trazos al centro, corona LED y antena
+  const top = rings[nL], ry = h;
+  for (let k = 0; k < n; k++) if (rnd() < 0.35) seg([top[k][0], ry, top[k][1]], [cx, ry + 2, cz], mul(C_EDGE, 0.4), 0, 0);
+  if (h > 60 && rnd() < 0.45) { const c = NEON[(rnd() * 4) | 0], ph = rnd(); for (let k = 0; k < n; k++) { const a = top[k], b = top[(k + 1) % n]; seg([a[0], ry - 1.5, a[1]], [b[0], ry - 1.5, b[1]], mul(c, 0.9), 2, ph); } }
+  let ay = ry + 2;
+  if (h > 120) { const sp = h * R(0.08, 0.18); seg([cx, ry, cz], [cx, ry + sp, cz], mul(C_CORNER, 0.7), 0, 0); ay = ry + sp; pt([cx, ay, cz], [1.0, 0.12, 0.08], 3, rnd()); }
+  else if (h > 70) pt([cx, ry + 1, cz], [1.0, 0.15, 0.1], 3, rnd());
+  ROOF.push({p: [cx, ay, cz], h, nb: [], flash: -99});
+}
+function tree(x, z){ const hgt = R(5, 9); seg([x, 0, z], [x, hgt * 0.6, z], [0.08, 0.25, 0.2], 7, 0); for (let k = 0; k < 6; k++) pt([x + R(-2.5, 2.5), hgt * R(0.55, 1), z + R(-2.5, 2.5)], [0.2, 0.75, 0.55], 7, rnd()); }
+
+(function build(){
+  const parks = new Set(['5,9', '9,3', '2,4']), plaza = '7,6';
+  for (let i = 0; i < NB; i++) for (let j = 0; j < NB; j++) {
+    const x0 = street(i) + STW, x1 = street(i + 1) - STW, z0 = street(j) + STW, z1 = street(j + 1) - STW, key = i + ',' + j;
+    if (parks.has(key)) { for (let k = 0; k < 40; k++) tree(R(x0 + 3, x1 - 3), R(z0 + 3, z1 - 3)); for (let k = 0; k < 4; k++) seg([x0, 0.2, z0 + k * (z1 - z0) / 3], [x1, 0.2, z0 + k * (z1 - z0) / 3], [0.06, 0.18, 0.14], 7, 0); continue; }
+    if (key === plaza) { for (let k = 0; k < 24; k++) { const a = k / 24 * Math.PI * 2; pt([(x0 + x1) / 2 + Math.cos(a) * 22, 0.5, (z0 + z1) / 2 + Math.sin(a) * 22], [0.4, 0.8, 1.0], 2, k / 24); } continue; }
+    const cx = (x0 + x1) / 2, cz = (z0 + z1) / 2, dist = Math.hypot(cx - DC[0], cz - DC[1]);
+    const core = Math.exp(-((dist / 330) ** 2)), split = rnd() < 0.25 + 0.4 * (1 - core) ? 4 : rnd() < 0.6 ? 2 : 1;
+    const lots = [];
+    if (split === 1) lots.push([x0, z0, x1, z1]);
+    else if (split === 2) { if (rnd() < 0.5) { const m = R(x0 + 30, x1 - 30); lots.push([x0, z0, m, z1], [m, z0, x1, z1]); } else { const m = R(z0 + 30, z1 - 30); lots.push([x0, z0, x1, m], [x0, m, x1, z1]); } }
+    else { const mx = (x0 + x1) / 2, mz = (z0 + z1) / 2; lots.push([x0, z0, mx, mz], [mx, z0, x1, mz], [x0, mz, mx, z1], [mx, mz, x1, z1]); }
+    for (const L of lots) {
+      const sb = R(2, 5), h = Math.max(9, 12 + 300 * core * Math.pow(rnd(), 1.4) + 45 * rnd() * (0.4 + core));
+      building(L[0] + sb, L[1] + sb, L[2] - sb, L[3] - sb, h);
+    }
+  }
+  // calles: bordes de vereda y cruces
+  const E = HALF + 60;
+  for (let k = 0; k <= NB; k++) { const s = street(k);
+    for (const o of [-STW + 1.5, STW - 1.5]) { seg([s + o, 0.05, -E], [s + o, 0.05, E], [0.07, 0.16, 0.36], 4, 0); seg([-E, 0.05, s + o], [E, 0.05, s + o], [0.07, 0.16, 0.36], 4, 0); }
+    for (let m = 0; m <= NB; m++) { const t2 = street(m); for (let q = -3; q <= 3; q++) { pt([s + q * 1.6, 0.1, t2 - STW - 1], [0.3, 0.45, 0.7], 4, 0); pt([s - STW - 1, 0.1, t2 + q * 1.6], [0.3, 0.45, 0.7], 4, 0); } }
+    // faroles cada 25 m a ambos lados
+    for (let u = -HALF; u <= HALF; u += 25) for (const o of [-STW + 0.5, STW - 0.5]) { pt([s + o, 7, u + 12], [1.0, 0.62, 0.3], 10, u * 0.01 + s * 0.003); pt([u + 12, 7, s + o], [1.0, 0.62, 0.3], 10, u * 0.013 + s * 0.002); }
+  }
+})();
+
+/* ---------- red de datos entre azoteas ---------- */
+const LINKS = [];
+(function(){
+  for (let a = 0; a < ROOF.length; a++) {
+    const A = ROOF[a], cand = [];
+    for (let b = 0; b < ROOF.length; b++) if (b !== a) { const B = ROOF[b], d = Math.hypot(A.p[0] - B.p[0], A.p[2] - B.p[2]); if (d < 320) cand.push([d, b]); }
+    cand.sort((x, y) => x[0] - y[0]); const k = A.h > 120 ? 5 : 3;
+    for (let c = 0; c < Math.min(k, cand.length); c++) { const b = cand[c][1]; if (!A.nb.includes(b)) { A.nb.push(b); ROOF[b].nb.push(a); LINKS.push([a, b]); } }
+  }
+  for (const [a, b] of LINKS) { const A = ROOF[a].p, B = ROOF[b].p, ph = rnd(); seg(A, B, [0.18, 0.55, 0.95], 6, ph); }
+  for (const r of ROOF) pt(r.p, [0.5, 0.85, 1.0], 6, rnd());
+})();
+
+/* ---------- metro elevado ---------- */
+const METRO = [{axis: 1, s: street(6) + 4, y: 14}, {axis: 0, s: street(8) - 4, y: 14}];
+(function(){
+  const E = HALF + 60;
+  for (const m of METRO) { const P = (u, y) => m.axis === 0 ? [u, y, m.s] : [m.s, y, u];
+    for (const o of [-2, 2]) { const a = m.axis === 0 ? [-E, m.y, m.s + o] : [m.s + o, m.y, -E], b = m.axis === 0 ? [E, m.y, m.s + o] : [m.s + o, m.y, E]; seg(a, b, [0.25, 0.5, 0.8], 8, 0); }
+    for (let u = -HALF; u <= HALF; u += 40) seg(P(u, 0), P(u, m.y), [0.12, 0.26, 0.5], 8, 0); }
+})();
+
+const staticL = new Float32Array(SL), staticP = new Float32Array(SP), FACEA = new Float32Array(FACE);
+
+/* ---------- shaders ---------- */
+const VS_FULL = `#version 300 es
+out vec2 vUv; void main(){ vec2 p = vec2((gl_VertexID << 1) & 2, gl_VertexID & 2); vUv = p; gl_Position = vec4(p * 2.0 - 1.0, 0.0, 1.0); }`;
+const SKY = `#version 300 es
+precision highp float; uniform vec2 uRes; uniform mat3 uRot; uniform float uTan; uniform float uDay; uniform float uDusk; uniform float uT; out vec4 o;
+float h13(vec3 p){ p = fract(p * 0.1031); p += dot(p, p.zyx + 31.32); return fract((p.x + p.y) * p.z); }
+void main(){
+  vec2 uv = (gl_FragCoord.xy - 0.5 * uRes) / uRes.y; vec3 d = normalize(uRot * vec3(uv * 2.0 * uTan, -1.0));
+  float y = d.y, hz = exp(-abs(y) * 9.0);
+  vec3 night = mix(vec3(0.006, 0.012, 0.03), vec3(0.0, 0.002, 0.008), smoothstep(0.0, 0.6, y));
+  vec3 day = mix(vec3(0.11, 0.17, 0.27), vec3(0.03, 0.07, 0.16), smoothstep(0.0, 0.7, y));
+  vec3 c = mix(night, day, uDay) + vec3(0.55, 0.28, 0.18) * hz * 0.11 * (1.0 - uDay * 0.5) + vec3(1.0, 0.45, 0.25) * uDusk * hz * 0.35 * smoothstep(-0.05, 0.3, y + 0.05);
+  if (y > 0.0) { vec3 p = d * 170.0, cc = floor(p), f = fract(p) - 0.5; float h = h13(cc); if (h > 0.985) c += vec3(0.75, 0.85, 1.0) * smoothstep(0.12, 0.0, length(f)) * (0.3 + 0.7 * h13(cc + 3.0)) * (1.0 - uDay) * smoothstep(0.02, 0.2, y) * (0.7 + 0.3 * sin(uT * 2.0 + h * 90.0)); }
+  else c = mix(c, vec3(0.004, 0.008, 0.018) + vec3(0.02, 0.035, 0.07) * uDay, smoothstep(0.0, -0.02, y));
+  o = vec4(c, 1.0);
+}`;
+const GEO_VS = `#version 300 es
+in vec3 aP; in vec3 aC; in vec2 aK;
+uniform mat4 uVP; uniform vec3 uEye; uniform float uT; uniform float uLitR; uniform float uLitO; uniform float uNet; uniform float uPt; uniform float uDpr; uniform float uGain;
+uniform vec4 uBlk; uniform float uDay; uniform float uIsPt; uniform vec4 uWave;
+out vec3 vC;
+float hh(float x){ return fract(sin(x * 127.1 + 11.7) * 43758.5453); }
+void main(){
+  gl_Position = uVP * vec4(aP, 1.0);
+  float d = distance(aP, uEye), k = aK.x, ph = aK.y; vec3 c = aC;
+  float pw = 1.0; if (uBlk.z > 0.0) { float r = distance(aP.xz, uBlk.xy); pw = (r < uBlk.z && r > uBlk.w) ? 0.0 : 1.0; }
+  float sz = 1.0;
+  if (k < 0.5) { c *= mix(0.35, 1.0, pw) * (1.0 + uDay * 0.6) * 0.8; if (uWave.w > 0.0) { float wr = distance(aP.xz, uWave.xy) - uWave.z; c += vec3(1.0, 0.72, 0.35) * uWave.w * (exp(-wr * wr / 700.0) * 1.4 + 0.25 * smoothstep(0.0, -300.0, wr) * exp(wr / 400.0)); } }
+  else if (k < 1.5 || (k > 4.5 && k < 5.5)) {
+    float lit = k < 1.5 ? uLitR : uLitO, h = hh(ph), per = 8.0 + 60.0 * hh(ph + 1.3), slot = floor((uT + h * 500.0) / per);
+    float on = step(hh(ph * 1.7 + slot * 3.1), lit);
+    float tv = step(0.94, hh(ph + 7.7)); float fl = mix(1.0, 0.45 + 0.55 * abs(sin(uT * (3.0 + 9.0 * h) + ph)), tv);
+    c *= on * fl * pw * (1.0 - uDay * 0.55) * 2.0; sz = 1.5;
+  }
+  else if (k < 2.5) { c *= (0.5 + 0.5 * sin(uT * 1.4 + ph * 6.2831)) * pw; }
+  else if (k < 3.5) { c *= step(0.8, fract(uT * 0.75 + ph * 0.08)) * 1.6; sz = 1.8; }
+  else if (k < 4.5) { c *= 1.0 + uDay; }
+  else if (k < 6.5) { c *= uNet * (0.55 + 0.45 * sin(uT * 1.7 + ph * 6.2831)) * mix(0.3, 1.0, pw) * 1.8; }
+  else if (k < 7.5) { c *= 0.8 + 0.2 * sin(uT * 0.9 + ph * 6.28); }
+  else if (k < 8.5) { c *= 1.0; }
+  else if (k > 9.5) { c *= pw * (1.0 - uDay * 0.8) * 2.2; sz = 1.7; }
+  float att = uIsPt > 0.5 ? exp(-d * 0.0003) * clamp(700.0 / (d + 80.0), 0.4, 1.0) * mix(0.45, 1.0, smoothstep(40.0, 500.0, d)) : exp(-d * 0.00045) * clamp(380.0 / (d + 40.0), 0.07, 1.3);
+  vC = c * att * uGain;
+  gl_PointSize = clamp(uPt * sz * 300.0 / d, 1.0, 3.2 * sz) * uDpr;
+}`;
+const GEO_FS = `#version 300 es
+precision highp float; in vec3 vC; uniform float uRound; out vec4 o;
+void main(){ float a = 1.0; if (uRound > 0.5) { vec2 q = gl_PointCoord - 0.5; a = smoothstep(0.25, 0.04, dot(q, q)); } o = vec4(vC * a, 1.0); }`;
+const DOWN = `#version 300 es
+precision highp float; in vec2 vUv; uniform sampler2D uTex; uniform vec2 uTexel; out vec4 o;
+void main(){ vec3 c = vec3(0.0); for (int y = -1; y <= 1; y++) for (int x = -1; x <= 1; x++) c += texture(uTex, vUv + vec2(x, y) * uTexel * 1.5).rgb;
+  c /= 9.0; float l = max(c.r, max(c.g, c.b)); o = vec4(c * smoothstep(0.12, 0.9, l), 1.0); }`;
+const BLUR = `#version 300 es
+precision highp float; in vec2 vUv; uniform sampler2D uTex; uniform vec2 uDir; out vec4 o;
+void main(){ const float w[5] = float[](0.227, 0.194, 0.122, 0.054, 0.016); vec3 c = texture(uTex, vUv).rgb * w[0];
+  for (int i = 1; i < 5; i++) { c += texture(uTex, vUv + uDir * float(i)).rgb * w[i]; c += texture(uTex, vUv - uDir * float(i)).rgb * w[i]; } o = vec4(c, 1.0); }`;
+const COMP = `#version 300 es
+precision highp float; in vec2 vUv; uniform sampler2D uScene; uniform sampler2D uBloom; out vec4 o;
+float h(vec2 p){ return fract(sin(dot(p, vec2(12.9898, 78.233))) * 43758.5453); }
+vec3 aces(vec3 x){ return clamp((x * (2.51 * x + 0.03)) / (x * (2.43 * x + 0.59) + 0.14), 0.0, 1.0); }
+void main(){ vec3 c = texture(uScene, vUv).rgb + texture(uBloom, vUv).rgb * 0.8; vec2 q = vUv - 0.5; c *= 1.0 - dot(q, q) * 0.5; c = aces(c * 1.05); c += (h(gl_FragCoord.xy) - 0.5) / 255.0; o = vec4(c, 1.0); }`;
+
+function sh(type, src){ const s = gl.createShader(type); gl.shaderSource(s, src); gl.compileShader(s); if (!gl.getShaderParameter(s, gl.COMPILE_STATUS)) throw new Error(gl.getShaderInfoLog(s)); return s; }
+function prog(vs, fs){ const p = gl.createProgram(); gl.attachShader(p, sh(gl.VERTEX_SHADER, vs)); gl.attachShader(p, sh(gl.FRAGMENT_SHADER, fs));
+  gl.bindAttribLocation(p, 0, 'aP'); gl.bindAttribLocation(p, 1, 'aC'); gl.bindAttribLocation(p, 2, 'aK'); gl.linkProgram(p); if (!gl.getProgramParameter(p, gl.LINK_STATUS)) throw new Error(gl.getProgramInfoLog(p));
+  const u = {}, n = gl.getProgramParameter(p, gl.ACTIVE_UNIFORMS); for (let i = 0; i < n; i++) { const nm = gl.getActiveUniform(p, i).name.replace('[0]', ''); u[nm] = gl.getUniformLocation(p, nm); } return {p, u}; }
+const PSKY = prog(VS_FULL, SKY), PG = prog(GEO_VS, GEO_FS), PD = prog(VS_FULL, DOWN), PB = prog(VS_FULL, BLUR), PC = prog(VS_FULL, COMP);
+const vao = gl.createVertexArray();
+function mkVao(data, dynamic){ const v = gl.createVertexArray(), b = gl.createBuffer(); gl.bindVertexArray(v); gl.bindBuffer(gl.ARRAY_BUFFER, b); gl.bufferData(gl.ARRAY_BUFFER, data, dynamic ? gl.DYNAMIC_DRAW : gl.STATIC_DRAW);
+  gl.enableVertexAttribArray(0); gl.vertexAttribPointer(0, 3, gl.FLOAT, false, 32, 0); gl.enableVertexAttribArray(1); gl.vertexAttribPointer(1, 3, gl.FLOAT, false, 32, 12); gl.enableVertexAttribArray(2); gl.vertexAttribPointer(2, 2, gl.FLOAT, false, 32, 24); gl.bindVertexArray(null); return {v, b}; }
+const VSL = mkVao(staticL, false), VSP = mkVao(staticP, false);
+const MAXD = 60000, dynL = new Float32Array(MAXD * 8), dynP = new Float32Array(MAXD * 8);
+const VDL = mkVao(dynL.byteLength, true), VDP = mkVao(dynP.byteLength, true);
+function target(w, h){ const t = gl.createTexture(); gl.bindTexture(gl.TEXTURE_2D, t);
+  if (HALF_F) gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA16F, w, h, 0, gl.RGBA, gl.HALF_FLOAT, null); else gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA8, w, h, 0, gl.RGBA, gl.UNSIGNED_BYTE, null);
+  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR); gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
+  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE); gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
+  const f = gl.createFramebuffer(); gl.bindFramebuffer(gl.FRAMEBUFFER, f); gl.framebufferTexture2D(gl.FRAMEBUFFER, gl.COLOR_ATTACHMENT0, gl.TEXTURE_2D, t, 0); gl.bindFramebuffer(gl.FRAMEBUFFER, null); return {t, f, w, h}; }
+function free(x){ if (x) { gl.deleteTexture(x.t); gl.deleteFramebuffer(x.f); } }
+
+/* ---------- reloj y ritmo de la ciudad ---------- */
+const st = {view: 0, clock: 60, traffic: 1, net: 1};
+let minute = 22 * 60, wall = 0;
+const g = (h, c, w) => Math.exp(-((((h - c + 36) % 24 - 12) / w) ** 2));
+const actAt = h => Math.min(1, 0.28 + 0.62 * g(h, 8.3, 1.6) + 0.5 * g(h, 13, 2.2) + 0.72 * g(h, 18.6, 2.0) + 0.35 * g(h, 22, 2.2));
+const litR = h => Math.min(0.92, 0.18 + 0.7 * g(h, 21, 3.2) + 0.22 * g(h, 6.8, 1.2));
+const litO = h => Math.min(0.9, 0.2 + 0.62 * g(h, 12.5, 4.6) + 0.12 * g(h, 21, 2));
+const dayAt = h => Math.max(0, Math.min(1, (Math.min(h - 6, 19 - h)) / 1.5)) * 0.9;
+const duskAt = h => Math.max(g(h, 18.6, 0.8), g(h, 6.2, 0.7));
+const phaseName = h => h < 5 ? 'Madrugada · la ciudad sigue despierta' : h < 7 ? 'Amanecer' : h < 9.5 ? 'Hora punta de la mañana' : h < 17 ? 'Día laboral' : h < 20 ? 'Hora punta de la tarde' : h < 23.5 ? 'Noche' : 'Medianoche';
+
+/* ---------- tráfico: carriles, semáforos y autos ---------- */
+const LANES = [];
+for (let axis = 0; axis < 2; axis++) for (let k = 0; k <= NB; k++) for (const dir of [1, -1]) for (let l = 0; l < 2; l++) LANES.push({axis, k, dir, off: (2.4 + l * 3.4), cars: []});
+const NCAR = coarse ? 1400 : 2600, SPAN = 2 * HALF + 120;
+const car = [];
+for (let i = 0; i < NCAR; i++) { const lane = (rnd() * LANES.length) | 0; car.push({lane, s: R(-SPAN / 2, SPAN / 2), v: R(6, 13), v0: R(11, 16), a: 0, on: rnd() < 0.7, px: 0, pz: 0}); LANES[lane].cars.push(i); }
+const lightOff = [];
+for (let k = 0; k <= NB; k++) for (let m = 0; m <= NB; m++) lightOff.push(((k + m) * 2.1 + rnd() * 3) % 26);
+function light(k, m, axis, bo){ // 0 verde · 1 ámbar · 2 rojo · 3 apagado (intermitente)
+  if (bo) return 3; const u = (wall + lightOff[k * (NB + 1) + m]) % 26;
+  if (axis === 0) return u < 10.5 ? 0 : u < 13 ? 1 : 2; return u < 13 ? 2 : u < 23.5 ? 0 : 1;
+}
+function carXZ(L, s){ const o = L.dir * L.off; return L.axis === 0 ? [s, street(L.k) + o] : [street(L.k) - o, s]; }
+function inBlackout(x, z){ return BLK_.on && (() => { const r = Math.hypot(x - BLK_.c[0], z - BLK_.c[1]); return r < BLK_.r1 && r > BLK_.r2; })(); }
+function stepTraffic(dt, act){
+  const want = Math.round(NCAR * Math.min(1, act * st.traffic));
+  let on = 0; for (const c of car) if (c.on) on++;
+  for (const L of LANES) {
+    L.cars.sort((a, b) => (car[b].s - car[a].s) * L.dir);
+    let lead = null;
+    for (const i of L.cars) {
+      const c = car[i]; if (!c.on) continue;
+      let gap = 1e9, dv = 0;
+      if (lead) { gap = (lead.s - c.s) * L.dir - 5; dv = c.v - lead.v; if (gap < -20) gap = 1e9; }
+      // semáforo más próximo por delante
+      const sAhead = c.s * L.dir; let best = 1e9, bm = -1;
+      for (let m = 0; m <= NB; m++) { const stop = (street(m) * L.dir) - STW - 1.5, dd = stop - sAhead; if (dd > -1 && dd < best) { best = dd; bm = m; } }
+      if (bm >= 0 && best < 70) { const [x, z] = carXZ(L, street(bm)), lt = light(L.axis === 0 ? bm : L.k, L.axis === 0 ? L.k : bm, L.axis, inBlackout(x, z));
+        if (lt === 2 || (lt === 1 && best > c.v * 1.2) || (lt === 3 && best > 2 && ((wall * 0.7 + i * 0.13) % 1) < 0.6)) { if (best < gap) { gap = Math.max(0.1, best); dv = c.v; } } }
+      const sStar = 2 + c.v * 1.1 + c.v * dv / (2 * Math.sqrt(2.2 * 3));
+      c.a = 2.2 * (1 - Math.pow(c.v / c.v0, 4) - Math.pow(Math.max(0, sStar) / Math.max(0.5, gap), 2));
+      c.a = Math.max(-9, Math.min(2.5, c.a)); c.v = Math.max(0, c.v + c.a * dt); c.s += c.v * dt * L.dir;
+      lead = c;
+    }
+    for (const i of L.cars) { const c = car[i];
+      if (c.s * L.dir > SPAN / 2) { c.s -= L.dir * SPAN; if (on > want && c.on) { c.on = false; on--; } else if (on < want && !c.on) { c.on = true; on++; c.v = c.v0 * 0.8; } }
+      if (!c.on && on < want && rnd() < 0.002) { c.on = true; on++; } }
+  }
+  return on;
+}
+
+/* ---------- peatones ---------- */
+const NPED = coarse ? 1500 : 3200, ped = [];
+for (let i = 0; i < NPED; i++) ped.push({axis: rnd() < 0.5 ? 0 : 1, k: (rnd() * (NB + 1)) | 0, side: rnd() < 0.5 ? -1 : 1, s: R(-HALF, HALF), v: R(0.9, 1.6) * (rnd() < 0.5 ? -1 : 1), on: rnd(), c: rnd() < 0.7 ? [1.0, 0.82, 0.6] : [0.7, 0.85, 1.0]});
+
+/* ---------- metro, drones, aviones ---------- */
+const trains = []; for (let m = 0; m < 2; m++) for (let k = 0; k < 4; k++) trains.push({m, s: R(-HALF, HALF), dir: k % 2 ? 1 : -1, v: 17 + rnd() * 3, lane: k % 2 ? 2 : -2});
+const drones = []; for (let k = 0; k < 14; k++) drones.push({c: [R(-500, 500), R(110, 230), R(-500, 500)], a: R(60, 260), b: R(60, 260), w: R(0.03, 0.08), ph: R(0, 6.28), trail: []});
+const planes = [{p: [-2600, 900, -400], v: [70, 0, 12], ph: 0}, {p: [2200, 1100, 900], v: [-60, 0, -20], ph: 0.5}];
+
+/* ---------- paquetes de datos ---------- */
+const packets = [];
+function sendPacket(a, b, t0, dur, wave){ packets.push({a, b, t0, dur, wave}); }
+function pulseFrom(src){
+  // onda por la red: cada nodo se alcanza por el camino más corto
+  const dist = new Float64Array(ROOF.length).fill(1e9), par = new Int32Array(ROOF.length).fill(-1); dist[src] = 0; const q = [src];
+  while (q.length) { q.sort((x, y) => dist[y] - dist[x]); const a = q.pop();
+    for (const b of ROOF[a].nb) { const d = dist[a] + Math.hypot(ROOF[a].p[0] - ROOF[b].p[0], ROOF[a].p[2] - ROOF[b].p[2]); if (d < dist[b]) { if (dist[b] === 1e9) q.push(b); dist[b] = d; par[b] = a; } } }
+  const sp = 260; ROOF[src].flash = wall; WAVE = {c: [ROOF[src].p[0], ROOF[src].p[2]], t0: wall};
+  for (let b = 0; b < ROOF.length; b++) if (par[b] >= 0) { const a = par[b], d = dist[b] - dist[a]; sendPacket(a, b, wall + dist[a] / sp, d / sp, true); }
+}
+
+/* ---------- apagón ---------- */
+let WAVE = null;
+const BLK_ = {on: false, c: [0, 0], t0: 0, r1: 0, r2: 0};
+function blackout(){ const a = rnd() * 6.28; BLK_.on = true; BLK_.c = [Math.cos(a) * 250, Math.sin(a) * 250]; BLK_.t0 = wall; }
+function stepBlackout(){ if (!BLK_.on) return; const t = wall - BLK_.t0; BLK_.r1 = Math.min(2600, t * 420); BLK_.r2 = t < 5.5 ? 0 : (t - 5.5) * 260; if (BLK_.r2 > 2400) BLK_.on = false; }
+
+/* ---------- cámara ---------- */
+let W = 0, H = 0, DPR = 1, scale = HQ ? 1 : (coarse ? 0.65 : 0.9), maxScale = HQ ? 1 : (coarse ? 0.85 : 1), RT = null, B1 = null, B2 = null;
+const FOV = 0.9, cam = {yaw: 0.6, pitch: 0.42, dist: 1250, look: 0, lookP: 0};
+let EYE = [0, 400, 1200], TGT = [0, 40, 0], VP = new Float32Array(16), BASIS = null, followCar = -1, droneT = 0;
+const DRONE_PATH = [[-420, 140, 380], [-120, 95, 160], [60, 120, -40], [230, 150, -210], [420, 110, 40], [260, 90, 300], [-40, 130, 420], [-300, 160, 120], [-460, 120, -200], [-150, 100, -380], [120, 170, -330]];
+function cr(p0, p1, p2, p3, t){ const t2 = t * t, t3 = t2 * t; return [0, 1, 2].map(k => 0.5 * (2 * p1[k] + (-p0[k] + p2[k]) * t + (2 * p0[k] - 5 * p1[k] + 4 * p2[k] - p3[k]) * t2 + (-p0[k] + 3 * p1[k] - 3 * p2[k] + p3[k]) * t3)); }
+function dronePos(t){ const n = DRONE_PATH.length, i = Math.floor(t) % n, f = t - Math.floor(t); return cr(DRONE_PATH[(i + n - 1) % n], DRONE_PATH[i], DRONE_PATH[(i + 1) % n], DRONE_PATH[(i + 2) % n], f); }
+function pickCar(){ let best = -1, bd = 1e9; for (let i = 0; i < car.length; i++) { const c = car[i]; if (!c.on) continue; const L = LANES[c.lane], [x, z] = carXZ(L, c.s), ahead = L.axis === 0 ? [L.dir, 0] : [0, L.dir], toC = [DC[0] - x, DC[1] - z], dd = Math.hypot(toC[0], toC[1]);
+  if (dd > 250 && dd < 700 && (toC[0] * ahead[0] + toC[1] * ahead[1]) / dd > 0.7 && dd < bd) { bd = dd; best = i; } } return best; }
+const lerp3 = (a, b, k) => [a[0] + (b[0] - a[0]) * k, a[1] + (b[1] - a[1]) * k, a[2] + (b[2] - a[2]) * k];
+function updateCamera(dt){
+  let eye, tgt;
+  if (st.view === 0) {
+    if (!dragging && !reduce) cam.yaw += dt * 0.035;
+    const cp = Math.cos(cam.pitch); tgt = [DC[0] * 0.5, 45, DC[1] * 0.5];
+    eye = [tgt[0] + cam.dist * cp * Math.sin(cam.yaw), tgt[1] + cam.dist * Math.sin(cam.pitch), tgt[2] + cam.dist * cp * Math.cos(cam.yaw)];
+  } else if (st.view === 1) {
+    droneT += dt * 0.055; const p = dronePos(droneT), q = dronePos(droneT + 0.12); eye = p;
+    const fw = [q[0] - p[0], q[1] - p[1] - 18, q[2] - p[2]], ya = cam.look, c = Math.cos(ya), s = Math.sin(ya);
+    tgt = [p[0] + fw[0] * c - fw[2] * s, p[1] + fw[1], p[2] + fw[0] * s + fw[2] * c];
+  } else {
+    if (followCar < 0 || !car[followCar].on) followCar = pickCar();
+    const c = car[Math.max(0, followCar)], L = LANES[c.lane], [x, z] = carXZ(L, c.s);
+    if (followCar >= 0 && Math.hypot(x - DC[0], z - DC[1]) > 760) followCar = pickCar();
+    const f = L.axis === 0 ? [L.dir, 0] : [0, L.dir], ya = cam.look, cs = Math.cos(ya), sn = Math.sin(ya), fx = f[0] * cs - f[1] * sn, fz = f[0] * sn + f[1] * cs;
+    eye = [x - f[0] * 7, 3.2, z - f[1] * 7]; tgt = [eye[0] + fx * 40, 3.2 + 40 * Math.tan(0.18 + cam.lookP), eye[2] + fz * 40];
+  }
+  const k = HQ ? 1 : 1 - Math.exp(-dt * (st.view === 2 ? 6 : 3));
+  EYE = lerp3(EYE, eye, transT > 0 ? Math.min(1, k * 0.6) : 1); TGT = lerp3(TGT, tgt, transT > 0 ? Math.min(1, k * 0.6) : 1); transT = Math.max(0, transT - dt);
+  // matrices
+  const f = norm([TGT[0] - EYE[0], TGT[1] - EYE[1], TGT[2] - EYE[2]]), r = norm(crossV(f, [0, 1, 0])), u = crossV(r, f);
+  const V = [r[0], u[0], -f[0], 0, r[1], u[1], -f[1], 0, r[2], u[2], -f[2], 0, -dotV(r, EYE), -dotV(u, EYE), dotV(f, EYE), 1];
+  const asp = W / H, tn = Math.tan(FOV / 2), n = 0.8, fa = 8000, Pm = [1 / (asp * tn), 0, 0, 0, 0, 1 / tn, 0, 0, 0, 0, -(fa + n) / (fa - n), -1, 0, 0, -2 * fa * n / (fa - n), 0];
+  for (let i = 0; i < 4; i++) for (let j = 0; j < 4; j++) { let s2 = 0; for (let m = 0; m < 4; m++) s2 += Pm[m * 4 + i] * V[j * 4 + m]; VP[j * 4 + i] = s2; }
+  BASIS = {r, u, f, tn, asp};
+}
+let transT = 0;
+const norm = v => { const l = Math.hypot(v[0], v[1], v[2]) || 1; return [v[0] / l, v[1] / l, v[2] / l]; };
+const crossV = (a, b) => [a[1] * b[2] - a[2] * b[1], a[2] * b[0] - a[0] * b[2], a[0] * b[1] - a[1] * b[0]];
+const dotV = (a, b) => a[0] * b[0] + a[1] * b[1] + a[2] * b[2];
+function rayAt(px, py){ const B = BASIS, x = (px / W * 2 - 1) * B.tn * B.asp, y = (1 - py / H * 2) * B.tn; return norm([B.f[0] + B.r[0] * x + B.u[0] * y, B.f[1] + B.r[1] * x + B.u[1] * y, B.f[2] + B.r[2] * x + B.u[2] * y]); }
+
+/* ---------- geometría dinámica por cuadro ---------- */
+let nDL = 0, nDP = 0;
+function dl(x, y, z, r, g2, b){ if (nDL >= MAXD) return; const o = nDL * 8; dynL[o] = x; dynL[o + 1] = y; dynL[o + 2] = z; dynL[o + 3] = r; dynL[o + 4] = g2; dynL[o + 5] = b; dynL[o + 6] = 9; dynL[o + 7] = 0; nDL++; }
+function dp(x, y, z, r, g2, b){ if (nDP >= MAXD) return; const o = nDP * 8; dynP[o] = x; dynP[o + 1] = y; dynP[o + 2] = z; dynP[o + 3] = r; dynP[o + 4] = g2; dynP[o + 5] = b; dynP[o + 6] = 9; dynP[o + 7] = 0; nDP++; }
+let cursor = null, stats = {cars: 0, peds: 0, pk: 0};
+function dynamic(dt, act){
+  nDL = 0; nDP = 0;
+  // autos: blanco si vienen hacia la cámara, rojo si se alejan (como en una foto de larga exposición)
+  for (const c of car) { if (!c.on) continue; const L = LANES[c.lane], [x, z] = carXZ(L, c.s), fx = L.axis === 0 ? L.dir : 0, fz = L.axis === 0 ? 0 : L.dir;
+    const toward = fx * (EYE[0] - x) + fz * (EYE[2] - z) > 0, len = 3 + c.v * 0.55, brake = c.a < -1.2 ? 1 : 0;
+    const col = toward ? [1.0, 0.92, 0.78] : [1.0, 0.13 + 0.05 * brake, 0.08];
+    const I = (toward ? 1.8 : 1.5 + brake * 1.5) * (st.view === 2 ? 1.3 : 1);
+    dl(x - fx * len, 0.8, z - fz * len, col[0] * I * 0.25, col[1] * I * 0.25, col[2] * I * 0.25); dl(x, 0.8, z, col[0] * I, col[1] * I, col[2] * I);
+    dp(x, 0.8, z, col[0] * I, col[1] * I, col[2] * I); }
+  // peatones
+  const vis = Math.round(NPED * (0.25 + 0.75 * act)); let np = 0;
+  for (let i = 0; i < NPED; i++) { const p = ped[i]; p.s += p.v * dt; if (p.s > HALF) p.s -= 2 * HALF; if (p.s < -HALF) p.s += 2 * HALF; if (i >= vis) continue; np++;
+    const o = street(p.k) + p.side * (STW - 3), x = p.axis === 0 ? p.s : o, z = p.axis === 0 ? o : p.s, fl = 0.6 + 0.4 * Math.sin(wall * 5 + i);
+    dp(x, 1.2, z, p.c[0] * 0.28 * fl, p.c[1] * 0.28 * fl, p.c[2] * 0.28 * fl); }
+  // semáforos
+  for (let k = 0; k <= NB; k++) for (let m = 0; m <= NB; m++) { const x = street(k), z = street(m), bo = inBlackout(x, z);
+    for (let axis = 0; axis < 2; axis++) { const lt = light(k, m, axis, bo), col = lt === 0 ? [0.1, 1.0, 0.5] : lt === 1 ? [1.0, 0.6, 0.05] : lt === 2 ? [1.0, 0.08, 0.05] : ((wall % 1) < 0.5 ? [1.0, 0.55, 0.05] : [0, 0, 0]);
+      for (const s of [-1, 1]) dp(axis === 0 ? x + s * (STW + 1) : x + s * (STW + 1) * 0.3, 5.5, axis === 0 ? z + s * (STW + 1) * 0.3 : z + s * (STW + 1), col[0] * 0.8, col[1] * 0.8, col[2] * 0.8); } }
+  // metro
+  for (const tr of trains) { tr.s += tr.v * tr.dir * dt; if (tr.s * tr.dir > HALF + 60) tr.s = -tr.dir * (HALF + 60); const M = METRO[tr.m];
+    for (let k = 0; k < 5; k++) { const s0 = tr.s - tr.dir * k * 17, s1 = s0 - tr.dir * 15, P = s => M.axis === 0 ? [s, M.y + 1.5, M.s + tr.lane] : [M.s + tr.lane, M.y + 1.5, s];
+      const a = P(s0), b = P(s1); dl(a[0], a[1], a[2], 0.5, 0.95, 1.0); dl(b[0], b[1], b[2], 0.5, 0.95, 1.0);
+      for (let w2 = 0; w2 < 4; w2++) { const q = P(s0 - tr.dir * (2 + w2 * 3.5)); dp(q[0], q[1] + 0.8, q[2], 1.0, 0.9, 0.7); } } }
+  // drones con luces de navegación
+  for (const d of drones) { const t = wall * d.w + d.ph, x = d.c[0] + Math.sin(t) * d.a, z = d.c[2] + Math.sin(t * 1.7) * d.b, y = d.c[1] + Math.sin(t * 0.9) * 15, bl = (wall * 1.3 + d.ph) % 1 < 0.12;
+    dp(x - 1.5, y, z, 1.0, 0.1, 0.05); dp(x + 1.5, y, z, 0.1, 1.0, 0.3); if (bl) dp(x, y + 0.6, z, 2.5, 2.5, 2.5);
+    d.trail.push(x, y, z); if (d.trail.length > 90) d.trail.splice(0, 3);
+    for (let k = 3; k < d.trail.length; k += 3) { const a = k / d.trail.length * 0.12; dl(d.trail[k - 3], d.trail[k - 2], d.trail[k - 1], 0.3 * a, 0.7 * a, a); dl(d.trail[k], d.trail[k + 1], d.trail[k + 2], 0.3 * a, 0.7 * a, a); } }
+  for (const p of planes) { for (let k = 0; k < 3; k++) p.p[k] += p.v[k] * dt; if (Math.abs(p.p[0]) > 3200) { p.p[0] *= -0.98; p.p[2] = R(-900, 900); }
+    const bl = (wall + p.ph) % 1.3 < 0.08; dp(p.p[0], p.p[1], p.p[2], 1.0, 0.1, 0.05); if (bl) dp(p.p[0], p.p[1] + 3, p.p[2], 4, 4, 4); }
+  // red de datos: paquetes normales + onda de pulso
+  const rate = 70 * st.net * (0.4 + 0.6 * act);
+  let spawn = rate * dt; while (spawn > 0) { if (rnd() > spawn) break; spawn--; const a = (rnd() * ROOF.length) | 0, nb = ROOF[a].nb; if (nb.length) { const b = nb[(rnd() * nb.length) | 0]; sendPacket(a, b, wall, Math.hypot(ROOF[a].p[0] - ROOF[b].p[0], ROOF[a].p[2] - ROOF[b].p[2]) / 380, false); } }
+  let live = 0;
+  for (let i = packets.length - 1; i >= 0; i--) { const pk = packets[i], u = (wall - pk.t0) / pk.dur; if (u < 0) { live++; continue; }
+    if (u >= 1) { ROOF[pk.b].flash = Math.max(ROOF[pk.b].flash, pk.wave ? wall : ROOF[pk.b].flash);
+      if (!pk.wave && rnd() < 0.72 && packets.length < 3000) { const nb = ROOF[pk.b].nb, c = nb[(rnd() * nb.length) | 0]; if (c !== undefined && c !== pk.a) sendPacket(pk.b, c, wall, Math.hypot(ROOF[pk.b].p[0] - ROOF[c].p[0], ROOF[pk.b].p[2] - ROOF[c].p[2]) / 380, false); }
+      packets.splice(i, 1); continue; }
+    live++; const A = ROOF[pk.a].p, B = ROOF[pk.b].p, u0 = pk.wave ? 0 : Math.max(0, u - 0.18), P = v => [A[0] + (B[0] - A[0]) * v, A[1] + (B[1] - A[1]) * v + Math.sin(v * Math.PI) * 6, A[2] + (B[2] - A[2]) * v];
+    const p = P(u), q = P(u0), c = pk.wave ? [1.0, 0.9, 0.6] : [0.45, 0.9, 1.0], I = pk.wave ? 5.0 : 1.0;
+    dl(q[0], q[1], q[2], c[0] * (pk.wave ? 0.6 : 0.05), c[1] * (pk.wave ? 0.6 : 0.05), c[2] * (pk.wave ? 0.6 : 0.05)); dl(p[0], p[1], p[2], c[0] * I * 0.8, c[1] * I * 0.8, c[2] * I * 0.8); dp(p[0], p[1], p[2], c[0] * I, c[1] * I, c[2] * I); if (pk.wave) { dp(p[0], p[1] + 1, p[2], c[0] * I, c[1] * I, c[2] * I); } }
+  for (const r of ROOF) { const e = wall - r.flash; if (e >= 0 && e < 1.2) { const k = (1 - e / 1.2) ** 2 * 5; dp(r.p[0], r.p[1], r.p[2], k, k * 0.95, k * 0.75); for (let q = 0; q < 12; q++) { const a = q / 12 * 6.283, rr = 6 + e * 40; dp(r.p[0] + Math.cos(a) * rr, r.p[1], r.p[2] + Math.sin(a) * rr, k * 0.4, k * 0.38, k * 0.3); } } }
+  // plexo del cursor: nodos cercanos se conectan con el puntero
+  if (cursor) { const [cx, cy, cz] = cursor, R2 = 150 * 150; let n = 0;
+    dp(cx, cy, cz, 2.2, 2.4, 2.6);
+    for (let i = 0; i < FACEA.length && n < 180; i += 3) { const dx = FACEA[i] - cx, dy = FACEA[i + 1] - cy, dz = FACEA[i + 2] - cz, d2 = dx * dx + dy * dy + dz * dz;
+      if (d2 < R2) { const a = (1 - Math.sqrt(d2) / 150) ** 1.5 * 3; dl(cx, cy, cz, 0.5 * a, 0.85 * a, a); dl(FACEA[i], FACEA[i + 1], FACEA[i + 2], 0.3 * a, 0.6 * a, a); dp(FACEA[i], FACEA[i + 1], FACEA[i + 2], 0.7 * a, 0.95 * a, a * 1.2); n++; } } }
+  stats.peds = np; stats.pk = live;
+}
+
+/* ---------- render ---------- */
+function resizeT(){ free(RT); free(B1); free(B2); const w = Math.max(64, Math.round(W * DPR * scale)), h = Math.max(64, Math.round(H * DPR * scale)); RT = target(w, h); B1 = target(Math.max(16, w >> 2), Math.max(16, h >> 2)); B2 = target(B1.w, B1.h); }
+function resize(){ DPR = Math.min(window.devicePixelRatio || 1, coarse ? 1.5 : 2); W = window.innerWidth; H = window.innerHeight; cv.width = Math.round(W * DPR); cv.height = Math.round(H * DPR); resizeT(); if (H > W) cam.dist = 1900; }
+function pass(P, out){ gl.useProgram(P.p); gl.bindFramebuffer(gl.FRAMEBUFFER, out ? out.f : null); if (out) gl.viewport(0, 0, out.w, out.h); else gl.viewport(0, 0, cv.width, cv.height); }
+function tex(unit, t, loc){ gl.activeTexture(gl.TEXTURE0 + unit); gl.bindTexture(gl.TEXTURE_2D, t); gl.uniform1i(loc, unit); }
+function render(hour){
+  gl.disable(gl.BLEND); gl.bindVertexArray(vao); pass(PSKY, RT);
+  const B = BASIS; gl.uniform2f(PSKY.u.uRes, RT.w, RT.h); gl.uniformMatrix3fv(PSKY.u.uRot, false, new Float32Array([B.r[0], B.r[1], B.r[2], B.u[0], B.u[1], B.u[2], -B.f[0], -B.f[1], -B.f[2]])); gl.uniform1f(PSKY.u.uTan, B.tn);
+  gl.uniform1f(PSKY.u.uDay, dayAt(hour)); gl.uniform1f(PSKY.u.uDusk, duskAt(hour)); gl.uniform1f(PSKY.u.uT, wall); gl.drawArrays(gl.TRIANGLES, 0, 3);
+  gl.enable(gl.BLEND); gl.blendFunc(gl.ONE, gl.ONE); gl.useProgram(PG.p); const u = PG.u;
+  gl.uniformMatrix4fv(u.uVP, false, VP); gl.uniform3fv(u.uEye, EYE); gl.uniform1f(u.uT, wall); gl.uniform1f(u.uLitR, litR(hour)); gl.uniform1f(u.uLitO, litO(hour)); gl.uniform1f(u.uNet, st.net); gl.uniform1f(u.uDpr, DPR * scale);
+  gl.uniform4f(u.uBlk, BLK_.c[0], BLK_.c[1], BLK_.on ? BLK_.r1 : 0, BLK_.r2); gl.uniform1f(u.uDay, dayAt(hour)); { const e = WAVE ? wall - WAVE.t0 : 99; gl.uniform4f(u.uWave, WAVE ? WAVE.c[0] : 0, WAVE ? WAVE.c[1] : 0, e * 260, e < 7 ? Math.min(1, e * 4) * (1 - e / 7) : 0); } gl.uniform1f(u.uGain, st.view === 2 ? 0.8 : 1);
+  gl.uniform1f(u.uRound, 0); gl.uniform1f(u.uIsPt, 0); gl.uniform1f(u.uPt, 1); gl.bindVertexArray(VSL.v); gl.drawArrays(gl.LINES, 0, staticL.length / 8);
+  gl.bindVertexArray(VDL.v); gl.bindBuffer(gl.ARRAY_BUFFER, VDL.b); gl.bufferSubData(gl.ARRAY_BUFFER, 0, dynL, 0, nDL * 8); gl.drawArrays(gl.LINES, 0, nDL & ~1);
+  gl.uniform1f(u.uRound, 1); gl.uniform1f(u.uIsPt, 1); gl.uniform1f(u.uPt, 1.6); gl.bindVertexArray(VSP.v); gl.drawArrays(gl.POINTS, 0, staticP.length / 8);
+  gl.uniform1f(u.uPt, 2.2); gl.bindVertexArray(VDP.v); gl.bindBuffer(gl.ARRAY_BUFFER, VDP.b); gl.bufferSubData(gl.ARRAY_BUFFER, 0, dynP, 0, nDP * 8); gl.drawArrays(gl.POINTS, 0, nDP);
+  gl.disable(gl.BLEND); gl.bindVertexArray(vao);
+  pass(PD, B1); tex(0, RT.t, PD.u.uTex); gl.uniform2f(PD.u.uTexel, 1 / RT.w, 1 / RT.h); gl.drawArrays(gl.TRIANGLES, 0, 3);
+  for (let k = 0; k < 3; k++) { const s = 1 + k * 1.6; pass(PB, B2); tex(0, B1.t, PB.u.uTex); gl.uniform2f(PB.u.uDir, s / B1.w, 0); gl.drawArrays(gl.TRIANGLES, 0, 3);
+    pass(PB, B1); tex(0, B2.t, PB.u.uTex); gl.uniform2f(PB.u.uDir, 0, s / B1.h); gl.drawArrays(gl.TRIANGLES, 0, 3); }
+  pass(PC, null); tex(0, RT.t, PC.u.uScene); tex(1, B1.t, PC.u.uBloom); gl.drawArrays(gl.TRIANGLES, 0, 3);
+}
+
+/* ---------- HUD ---------- */
+const $clock = document.getElementById('clock'), $phase = document.getElementById('phase'), $bar = document.getElementById('actBar'), $stats = document.getElementById('stats'), $hour = document.getElementById('hour'), $hourOut = document.getElementById('hourOut');
+const fmtH = m => String(Math.floor(m / 60) % 24).padStart(2, '0') + ':' + String(Math.floor(m % 60)).padStart(2, '0');
+const nf = n => n.toLocaleString('es-PE');
+let hudT = 0;
+function hud(act, hour){
+  $clock.textContent = fmtH(minute); $phase.textContent = BLK_.on ? 'Apagón · la red se reinicia' : phaseName(hour); $bar.style.width = Math.round(act * 100) + '%';
+  $stats.innerHTML = `actividad <b>${Math.round(act * 100)}%</b> · autos <b>${nf(stats.cars)}</b> · peatones <b>${nf(stats.peds)}</b><br>ventanas encendidas <b>${Math.round((litR(hour) * 0.6 + litO(hour) * 0.4) * 100)}%</b> · paquetes de datos <b>${nf(stats.pk)}</b><span class="x"><br>${ROOF.length} edificios · ${nf(LINKS.length)} enlaces · ${nf((staticL.length + staticP.length) / 8 | 0)} nodos y trazos</span>`;
+  if (document.activeElement !== $hour) $hour.value = Math.floor(minute) % 1440; $hourOut.textContent = fmtH(minute);
+}
+
+/* ---------- ciclo ---------- */
+let last = performance.now(), fpsAcc = 0, frames = 0, fps = 0;
+function advance(dt){
+  wall += dt; minute = (minute + dt * st.clock / 60) % 1440;
+  const hour = minute / 60, act = actAt(hour);
+  stats.cars = stepTraffic(dt, act); stepBlackout();
+  updateCamera(dt); dynamic(dt, act);
+  return [hour, act];
+}
+function frame(now){
+  const dt = Math.min(0.05, (now - last) / 1000); last = now;
+  const [hour, act] = advance(dt); render(hour);
+  hudT -= dt; if (hudT <= 0) { hud(act, hour); hudT = 0.25; }
+  fpsAcc += dt; frames++; if (fpsAcc >= 1) { fps = Math.round(frames / fpsAcc); fpsAcc = 0; frames = 0;
+    if (!HQ) { if (fps < 40 && scale > 0.45) { scale = Math.max(0.45, scale - 0.1); resizeT(); } else if (fps > 57 && scale < maxScale) { scale = Math.min(maxScale, scale + 0.05); resizeT(); } } }
+  requestAnimationFrame(frame);
+}
+
+/* ---------- controles ---------- */
+function setView(v){ st.view = v; transT = 1.5; cam.look = 0; cam.lookP = 0; followCar = -1; document.querySelectorAll('[data-v]').forEach(b => b.setAttribute('aria-pressed', +b.dataset.v === v ? 'true' : 'false')); }
+document.querySelectorAll('[data-v]').forEach(b => b.addEventListener('click', () => setView(+b.dataset.v)));
+document.querySelectorAll('[data-c]').forEach(b => b.addEventListener('click', () => { st.clock = +b.dataset.c; document.querySelectorAll('[data-c]').forEach(x => x.setAttribute('aria-pressed', x === b ? 'true' : 'false')); }));
+$hour.addEventListener('input', () => { minute = +$hour.value; $hourOut.textContent = fmtH(minute); });
+const $tr = document.getElementById('traffic'), $net = document.getElementById('net');
+const syncS = () => { document.getElementById('trafficOut').textContent = $tr.value + '%'; document.getElementById('netOut').textContent = $net.value + '%'; };
+$tr.addEventListener('input', () => { st.traffic = +$tr.value / 100; syncS(); });
+$net.addEventListener('input', () => { st.net = +$net.value / 100; syncS(); });
+document.getElementById('pulse').addEventListener('click', () => { let best = 0, bh = 0; ROOF.forEach((r, i) => { if (r.h > bh) { bh = r.h; best = i; } }); pulseFrom(best); });
+document.getElementById('blackout').addEventListener('click', () => blackout());
+let dragging = false, lx = 0, ly = 0, moved = 0; const touches = new Map(); let pinch = 0;
+function cursorAt(px, py){ if (!BASIS) return null; const d = rayAt(px, py), yPlane = 55; if (Math.abs(d[1]) < 1e-3) return null; const t = (yPlane - EYE[1]) / d[1]; if (t < 0 || t > 5000) return null; return [EYE[0] + d[0] * t, yPlane, EYE[2] + d[2] * t]; }
+cv.addEventListener('pointerdown', e => { touches.set(e.pointerId, [e.clientX, e.clientY]); dragging = true; moved = 0; lx = e.clientX; ly = e.clientY; cv.classList.add('drag'); cv.setPointerCapture(e.pointerId);
+  if (touches.size === 2) { const [a, b] = [...touches.values()]; pinch = Math.hypot(a[0] - b[0], a[1] - b[1]); } });
+cv.addEventListener('pointermove', e => {
+  if (e.pointerType === 'mouse') cursor = cursorAt(e.clientX, e.clientY);
+  if (!touches.has(e.pointerId)) return; touches.set(e.pointerId, [e.clientX, e.clientY]);
+  if (touches.size === 2) { const [a, b] = [...touches.values()], d = Math.hypot(a[0] - b[0], a[1] - b[1]); if (pinch > 0) cam.dist = Math.min(2800, Math.max(220, cam.dist * pinch / d)); pinch = d; moved = 99; return; }
+  const dx = e.clientX - lx, dy = e.clientY - ly; moved += Math.abs(dx) + Math.abs(dy); lx = e.clientX; ly = e.clientY;
+  if (st.view === 0) { cam.yaw -= dx * 0.004; cam.pitch = Math.min(1.35, Math.max(0.06, cam.pitch + dy * 0.003)); }
+  else { cam.look = Math.max(-2.6, Math.min(2.6, cam.look - dx * 0.004)); cam.lookP = Math.max(-0.3, Math.min(0.9, cam.lookP + dy * 0.003)); } });
+const up = e => { const wasTap = touches.size === 1 && moved < 6; touches.delete(e.pointerId); if (!touches.size) { dragging = false; cv.classList.remove('drag'); } pinch = 0;
+  if (wasTap) { const p = cursorAt(e.clientX, e.clientY); if (p) { let best = 0, bd = 1e12; ROOF.forEach((r, i) => { const d = (r.p[0] - p[0]) ** 2 + (r.p[2] - p[2]) ** 2; if (d < bd) { bd = d; best = i; } }); pulseFrom(best); } } };
+cv.addEventListener('pointerup', up); cv.addEventListener('pointercancel', up);
+cv.addEventListener('pointerleave', () => { cursor = null; });
+cv.addEventListener('wheel', e => { e.preventDefault(); if (st.view === 0) cam.dist = Math.min(2800, Math.max(220, cam.dist * Math.exp(e.deltaY * 0.0012))); }, {passive: false});
+let rtm = 0; window.addEventListener('resize', () => { clearTimeout(rtm); rtm = setTimeout(resize, 150); });
+
+resize(); syncS();
+/* #hq-<vista>-<hora>[-apagon|-pulso|-cursor] para capturas de prueba */
+const hq = location.hash.match(/#hq-(\d)-(\d+)(?:-(\w+))?/);
+if (hq) { setView(+hq[1]); minute = +hq[2] * 60; st.clock = 0; }
+for (let k = 0; k < (HQ ? 240 : 40); k++) advance(1 / 30);
+if (hq && hq[3] === 'apagon') { blackout(); for (let k = 0; k < 60; k++) advance(1 / 30); }
+if (hq && hq[3] === 'pulso') { pulseFrom(ROOF.reduce((b, r, i, a) => r.h > a[b].h ? i : b, 0)); for (let k = 0; k < 40; k++) advance(1 / 30); }
+if (hq && hq[3] === 'cursor') { cursor = [40, 55, -20]; advance(1 / 30); }
+{ const hour = minute / 60; render(hour); hud(actAt(hour), hour); }
+requestAnimationFrame(t => { last = t; requestAnimationFrame(frame); });
+})();
+</script>
+
+<div id="ah-demo" style="position:fixed;left:12px;bottom:12px;z-index:2147483000;display:flex;align-items:center;gap:10px;padding:8px 8px 8px 14px;border-radius:999px;background:rgba(3,9,15,.86);border:1px solid rgba(44,245,200,.45);box-shadow:0 6px 24px -8px rgba(0,0,0,.6);font:500 12px/1.2 system-ui,-apple-system,Segoe UI,sans-serif;color:#eefcf8;max-width:calc(100vw - 24px);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)"><span style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis">Experiencia interactiva · Aurora Hub Perú</span><a href="https://www.aurorahubperu.com/#proyectos" style="flex:none;color:#03140f;background:linear-gradient(90deg,#2cf5c8,#7cf9e0);border-radius:999px;padding:6px 11px;text-decoration:none;font-weight:700">Ver portafolio</a></div></body></html>

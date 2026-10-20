@@ -1,0 +1,584 @@
+<!doctype html><html><head><meta name="robots" content="noindex"><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Cosmos · Tecnología y marketing en Lima</title>
+<meta name="description" content="Cosmos: inteligencia artificial, publicidad en Meta, TikTok y Google, automatizaciones, n8n y Kommo, diseño web, licencias, servicios TI, servicio técnico y asesoría en equipos de cómputo en Lima, Perú.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;600;700&family=DM+Sans:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  color-scheme: dark;
+  --bg:#030208; --ink:#f6f1e7; --muted:#a8a2b8; --line:rgba(245,196,107,.24);
+  --gold:#f5c46b; --rose:#ff6fae; --ice:#9fd4ff;
+  --head:"Unbounded", system-ui, sans-serif;
+  --sans:"DM Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono:"DM Mono", ui-monospace, Menlo, Consolas, monospace;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.55;-webkit-font-smoothing:antialiased}
+#sky{position:fixed;inset:0;width:100%;height:100%;display:block;z-index:0}
+body.static #sky{display:none}
+body.static{background:radial-gradient(ellipse 40% 25% at 68% 45%,rgba(255,210,140,.28),transparent 60%),radial-gradient(ellipse 60% 40% at 68% 45%,rgba(120,150,255,.12),transparent 70%),var(--bg) fixed}
+a{color:inherit}
+.wrap{position:relative;z-index:1;width:100%;max-width:1200px;margin:0 auto;padding-inline:16px}
+nav{position:fixed;top:0;left:0;right:0;z-index:5;background:linear-gradient(to bottom,rgba(3,2,8,.92),rgba(3,2,8,0))}
+nav .in{max-width:1200px;margin:0 auto;padding:14px 16px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.logo{display:inline-flex;align-items:center;gap:10px;font:600 16px/1 var(--head);letter-spacing:.18em;text-decoration:none}
+.logo svg{width:28px;height:28px}
+nav ul{display:flex;gap:22px;list-style:none;margin:0;padding:0;font-size:14px;color:var(--muted)}
+nav ul a{text-decoration:none}
+nav ul a:hover{color:var(--ink)}
+.btn{display:inline-flex;align-items:center;gap:8px;font:600 14px/1 var(--sans);text-decoration:none;border-radius:999px;padding:13px 20px;border:1px solid var(--line);color:var(--ink);background:rgba(245,196,107,.08);cursor:pointer}
+.btn:hover{background:rgba(245,196,107,.16)}
+.btn{text-shadow:none}
+.btn.primary{background:linear-gradient(90deg,#f5c46b,#ff8fb8);border-color:transparent;color:#1a0d05}
+.btn.sm{padding:9px 15px;font-size:13px}
+a:focus-visible,.btn:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+.sec{min-height:115vh;display:flex;align-items:center;padding:90px 0 60px}
+.sec.hero{min-height:100vh}
+.copy{max-width:500px;text-shadow:0 1px 18px rgba(3,2,8,.95),0 0 4px rgba(3,2,8,.8)}
+.num{font-family:var(--mono);font-size:12px;letter-spacing:.14em;color:var(--muted)}
+.num b{color:var(--gold);font-weight:500}
+.cat{font-family:var(--mono);font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--rose);margin-left:10px}
+h1{font:700 clamp(32px,4.6vw,60px)/1.06 var(--head);letter-spacing:-.02em;margin:16px 0 18px;text-wrap:balance}
+h2{font:600 clamp(24px,3vw,38px)/1.12 var(--head);letter-spacing:-.015em;margin:12px 0 14px;text-wrap:balance}
+.hl{color:var(--gold)}
+@supports (-webkit-background-clip:text){.hl{background:linear-gradient(90deg,#f5c46b,#ff8fb8 60%,#9fd4ff);-webkit-background-clip:text;background-clip:text;color:transparent;text-shadow:none}}
+.lead{font-size:clamp(16px,1.5vw,19px);color:#dcd5e6;margin:0 0 24px}
+.copy p{color:#d2cbdc;font-size:16px;margin:0 0 18px}
+.list{list-style:none;margin:0 0 22px;padding:0;display:grid;gap:8px}
+.list li{display:flex;gap:10px;align-items:baseline;font-size:15px;color:#ece6f2}
+.list li::before{content:"✦";flex:none;font-size:11px;color:var(--gold);text-shadow:0 0 10px var(--gold)}
+.more{font-weight:600;font-size:14.5px;color:var(--gold);text-decoration:none}
+.more:hover{text-decoration:underline}
+.cta{display:flex;gap:12px;flex-wrap:wrap}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.steps{list-style:none;margin:0 0 10px;padding:0;display:grid;gap:14px;counter-reset:s}
+.steps li{display:grid;grid-template-columns:44px 1fr;gap:4px 12px;align-items:baseline}
+.steps li::before{counter-increment:s;content:"0" counter(s);grid-row:span 2;font-family:var(--mono);font-size:13px;color:var(--gold)}
+.steps b{font-size:17px}
+.steps span{color:var(--muted);font-size:14.5px}
+form{display:grid;gap:12px;margin-top:6px}
+label{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);display:grid;gap:6px}
+input,select,textarea{font:500 15px/1.4 var(--sans);color:var(--ink);background:rgba(12,9,20,.9);border:1px solid var(--line);border-radius:12px;padding:12px 14px;width:100%}
+textarea{min-height:84px;resize:vertical}
+footer{margin-top:34px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-size:12.5px;color:var(--muted);border-top:1px solid var(--line);padding-top:16px}
+.dots{position:fixed;right:18px;top:50%;transform:translateY(-50%);z-index:4;display:grid;gap:9px}
+.dots a{display:flex;align-items:center;justify-content:flex-end;gap:10px;text-decoration:none;font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:transparent}
+.dots a i{width:7px;height:7px;border-radius:50%;border:1px solid var(--muted);flex:none;transform:rotate(45deg);border-radius:1px}
+.dots a:hover,.dots a.on{color:var(--muted)}
+.dots a.on i{background:var(--gold);border-color:var(--gold);box-shadow:0 0 10px var(--gold)}
+.hud{position:fixed;left:0;right:0;bottom:16px;z-index:4;font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);pointer-events:none;text-align:center;text-shadow:0 1px 8px #000}
+body.static .hud{display:none}
+@media (max-width:760px){
+  nav ul{display:none}
+  .sec{align-items:flex-end;padding:54vh 0 48px}
+  .sec.hero{padding-top:50vh}
+  .copy{max-width:none}
+  .dots,.hud{display:none}
+}
+</style>
+
+<canvas id="sky" aria-hidden="true"></canvas>
+
+<nav aria-label="Principal"><div class="in">
+  <a class="logo" href="#inicio" aria-label="Cosmos, inicio"><svg viewBox="0 0 32 32" fill="none" aria-hidden="true"><path d="M16 16c0-3 2.5-5 5-4.5s4 3.5 2.5 6.5-6 5-10 3.5S6.5 15 8.5 10.5 16 4 21 5.5" stroke="url(#cg)" stroke-width="1.8" stroke-linecap="round"/><circle cx="16" cy="16" r="2.4" fill="#f5c46b"/><circle cx="21" cy="5.5" r="1.4" fill="#9fd4ff"/><defs><linearGradient id="cg" x1="0" x2="1"><stop offset="0" stop-color="#f5c46b"/><stop offset="1" stop-color="#ff8fb8"/></linearGradient></defs></svg>COSMOS</a>
+  <ul><li><a href="#ia">Marketing e IA</a></li><li><a href="#licencias">Tecnología</a></li><li><a href="#proceso">Proceso</a></li></ul>
+  <a class="btn sm" href="#contacto">Cotizar</a>
+</div></nav>
+<aside class="dots" id="dots" aria-label="Secciones"></aside>
+<div class="hud" id="hud" aria-hidden="true"></div>
+
+<main>
+<section class="sec hero" id="inicio" data-label="Inicio"><div class="wrap"><div class="copy">
+  <div class="eyebrow">Tecnología y marketing · Lima, Perú</div>
+  <h1>Todo un universo de soluciones <span class="hl">para tu negocio.</span></h1>
+  <p class="lead">Inteligencia artificial, publicidad, automatización con n8n y Kommo, web, licencias y soporte técnico. Desliza y recorre la galaxia: cada servicio es una constelación.</p>
+  <div class="cta"><a class="btn primary" href="#ia">Iniciar el viaje</a><a class="btn" href="#contacto">Hablemos</a></div>
+</div></div></section>
+
+<section class="sec" id="ia" data-shape="brain" data-label="IA"><div class="wrap"><div class="copy">
+  <div class="num"><b>01</b> / 09<span class="cat">Crecer</span></div>
+  <h2>Inteligencia artificial</h2>
+  <p>La IA trabajando en tu negocio: responde clientes, crea contenido y te ayuda a decidir con datos.</p>
+  <ul class="list"><li>Chatbots y asistentes para WhatsApp y web</li><li>Imágenes y video generados con IA</li><li>Análisis y reportes automáticos</li><li>Capacitación para tu equipo</li></ul>
+  <a class="more" href="#contacto" data-svc="Inteligencia artificial">Cotizar este servicio →</a>
+</div></div></section>
+
+<section class="sec" id="ads" data-shape="megaphone" data-label="Publicidad"><div class="wrap"><div class="copy">
+  <div class="num"><b>02</b> / 09<span class="cat">Crecer</span></div>
+  <h2>Publicidad en Meta, TikTok y Google</h2>
+  <p>Campañas que llegan a quien sí te va a comprar, con cada sol invertido medido.</p>
+  <ul class="list"><li>Estrategia y segmentación por plataforma</li><li>Creativos pensados para cada formato</li><li>Píxel, eventos y conversiones configurados</li><li>Reporte semanal de resultados</li></ul>
+  <a class="more" href="#contacto" data-svc="Publicidad digital (Meta, TikTok, Google)">Cotizar este servicio →</a>
+</div></div></section>
+
+<section class="sec" id="auto" data-shape="gears" data-label="Automatización"><div class="wrap"><div class="copy">
+  <div class="num"><b>03</b> / 09<span class="cat">Crecer</span></div>
+  <h2>Automatizaciones</h2>
+  <p>Las tareas repetitivas se hacen solas y tu equipo se dedica a lo importante.</p>
+  <ul class="list"><li>Respuestas y seguimiento automático por WhatsApp</li><li>Formularios conectados a CRM y hojas de cálculo</li><li>Cotizaciones y recordatorios automáticos</li><li>Flujos en n8n, Make o Zapier</li></ul>
+  <a class="more" href="#contacto" data-svc="Automatizaciones">Cotizar este servicio →</a>
+</div></div></section>
+
+<section class="sec" id="n8n" data-shape="flow" data-label="n8n · Kommo"><div class="wrap"><div class="copy">
+  <div class="num"><b>04</b> / 09<span class="cat">Crecer</span></div>
+  <h2>n8n y Kommo: implementación y configuración</h2>
+  <p>Tus flujos en n8n y tu CRM Kommo listos para vender: cada mensaje, lead y venta sigue su órbita sin que nadie lo mueva a mano.</p>
+  <ul class="list"><li>Flujos en n8n con WhatsApp, formularios, hojas, correo e IA</li><li>Kommo CRM: embudos, etapas y campos a tu medida</li><li>WhatsApp, Instagram y Facebook conectados a Kommo</li><li>Salesbots, respuestas automáticas y seguimiento</li><li>Leads de Meta Ads y de tu web directo al CRM</li><li>Configuración de otras apps y capacitación</li></ul>
+  <a class="more" href="#contacto" data-svc="n8n y Kommo (automatización y CRM)">Cotizar este servicio →</a>
+</div></div></section>
+
+<section class="sec" id="web" data-shape="browser" data-label="Web"><div class="wrap"><div class="copy">
+  <div class="num"><b>05</b> / 09<span class="cat">Crecer</span></div>
+  <h2>Diseño y desarrollo web</h2>
+  <p>Webs rápidas, claras y memorables, hechas para que te encuentren y te escriban.</p>
+  <ul class="list"><li>Landing pages que convierten</li><li>Tiendas online y webs corporativas</li><li>SEO y velocidad de carga</li><li>Experiencias interactivas como esta</li></ul>
+  <a class="more" href="#contacto" data-svc="Diseño y desarrollo web">Cotizar este servicio →</a>
+</div></div></section>
+
+<section class="sec" id="licencias" data-shape="shield" data-label="Licencias"><div class="wrap"><div class="copy">
+  <div class="num"><b>06</b> / 09<span class="cat">Operar</span></div>
+  <h2>Venta de licencias</h2>
+  <p>Software en regla, instalado y activado, para trabajar sin sustos.</p>
+  <ul class="list"><li>Sistemas operativos</li><li>Ofimática y correo</li><li>Antivirus y seguridad</li><li>Software de diseño</li></ul>
+  <a class="more" href="#contacto" data-svc="Licencias de software">Cotizar este servicio →</a>
+</div></div></section>
+
+<section class="sec" id="ti" data-shape="rack" data-label="Servicios TI"><div class="wrap"><div class="copy">
+  <div class="num"><b>07</b> / 09<span class="cat">Operar</span></div>
+  <h2>Servicios TI</h2>
+  <p>La infraestructura de tu oficina, estable y protegida.</p>
+  <ul class="list"><li>Redes cableadas y wifi</li><li>Correo corporativo</li><li>Respaldos y seguridad</li><li>Soporte remoto</li></ul>
+  <a class="more" href="#contacto" data-svc="Servicios TI">Cotizar este servicio →</a>
+</div></div></section>
+
+<section class="sec" id="tecnico" data-shape="wrench" data-label="Servicio técnico"><div class="wrap"><div class="copy">
+  <div class="num"><b>08</b> / 09<span class="cat">Operar</span></div>
+  <h2>Servicio técnico de computadoras</h2>
+  <p>Diagnóstico honesto y reparación rápida, en taller o a domicilio.</p>
+  <ul class="list"><li>Mantenimiento preventivo</li><li>Reparación y diagnóstico</li><li>Formateo y optimización</li><li>Mejoras de SSD y memoria RAM</li><li>Recuperación de información</li></ul>
+  <a class="more" href="#contacto" data-svc="Servicio técnico de computadoras">Cotizar este servicio →</a>
+</div></div></section>
+
+<section class="sec" id="asesoria" data-shape="laptop" data-label="Asesoría"><div class="wrap"><div class="copy">
+  <div class="num"><b>09</b> / 09<span class="cat">Operar</span></div>
+  <h2>Asesoría en equipos de cómputo</h2>
+  <p>Compra lo que necesitas, ni más ni menos: te decimos qué equipo conviene según tu trabajo y presupuesto.</p>
+  <ul class="list"><li>Laptops y computadoras de escritorio</li><li>Impresoras y periféricos</li><li>Servidores y equipos de red</li><li>Comparativas y cotizaciones</li></ul>
+  <a class="more" href="#contacto" data-svc="Asesoría en equipos de cómputo">Cotizar este servicio →</a>
+</div></div></section>
+
+<section class="sec" id="proceso" data-shape="chain" data-label="Proceso"><div class="wrap"><div class="copy">
+  <div class="num">Cómo trabajamos</div>
+  <h2>Cuatro pasos, <span class="hl">una misma órbita.</span></h2>
+  <ol class="steps">
+    <li><b>Diagnóstico</b><span>Escuchamos qué quieres lograr y revisamos lo que ya tienes.</span></li>
+    <li><b>Propuesta</b><span>Plan, plazos y costo claros antes de empezar.</span></li>
+    <li><b>Implementación</b><span>Lo construimos, configuramos o reparamos contigo al tanto.</span></li>
+    <li><b>Soporte</b><span>Medimos, ajustamos y seguimos disponibles.</span></li>
+  </ol>
+</div></div></section>
+
+<section class="sec" id="contacto" data-label="Contacto"><div class="wrap"><div class="copy">
+  <div class="num">Contacto</div>
+  <h2>Llegaste al <span class="hl">centro de todo.</span></h2>
+  <p>Cuéntanos qué necesitas y te respondemos con una propuesta.</p>
+  <form id="form">
+    <label>Nombre<input name="n" autocomplete="name" required></label>
+    <label>Servicio<select name="s" id="svc">
+      <option>Inteligencia artificial</option><option>Publicidad digital (Meta, TikTok, Google)</option><option>Automatizaciones</option><option>n8n y Kommo (automatización y CRM)</option><option>Diseño y desarrollo web</option>
+      <option>Licencias de software</option><option>Servicios TI</option><option>Servicio técnico de computadoras</option><option>Asesoría en equipos de cómputo</option></select></label>
+    <label>Mensaje<textarea name="m" placeholder="Ej.: quiero configurar Kommo con WhatsApp"></textarea></label>
+    <button class="btn primary" type="submit">Enviar por WhatsApp</button>
+  </form>
+  <footer><span>© Cosmos · Lima, Perú</span><span>Prototipo · datos de contacto por definir</span></footer>
+</div></div></section>
+</main>
+
+<script>
+(() => {
+'use strict';
+const WHATSAPP = '51932462537'; // número con código de país, p. ej. 51XXXXXXXXX
+const $svc = document.getElementById('svc');
+document.querySelectorAll('[data-svc]').forEach(a => a.addEventListener('click', () => { $svc.value = a.dataset.svc; }));
+document.getElementById('form').addEventListener('submit', e => { e.preventDefault(); const f = new FormData(e.target);
+  const t = `Hola Aurora Hub Perú, vi el concepto «Cosmos». Soy ${f.get('n')}. Me interesa: ${f.get('s')}. ${f.get('m') || ''}`.trim(); window.open(`https://wa.me/${WHATSAPP}?text=${encodeURIComponent(t)}`, '_blank', 'noopener'); });
+
+const SECS = [...document.querySelectorAll('main > section')];
+const $dots = document.getElementById('dots'), $hud = document.getElementById('hud');
+SECS.forEach(s => { const a = document.createElement('a'); a.href = '#' + s.id; a.innerHTML = `${s.dataset.label}<i></i>`; $dots.appendChild(a); });
+const DOTS = [...$dots.children];
+
+const cv = document.getElementById('sky');
+const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const gl = cv.getContext('webgl2', {antialias: false, alpha: false, depth: false, stencil: false, preserveDrawingBuffer: true});
+if (!gl) { document.body.classList.add('static'); return; }
+const HALF = !!gl.getExtension('EXT_color_buffer_float');
+const coarse = matchMedia('(pointer: coarse)').matches;
+const HQ = location.hash.startsWith('#hq');
+const TAU = Math.PI * 2, rnd = Math.random;
+const gauss = () => { let u = 0, v = 0; while (!u) u = rnd(); while (!v) v = rnd(); return Math.sqrt(-2 * Math.log(u)) * Math.cos(TAU * v); };
+
+/* ================= la galaxia ================= */
+// unidades: 1 = 500 años luz · radio del disco ≈ 100 (≈ 50.000 años luz, como la Vía Láctea)
+const K = 1 / Math.tan(0.25), R0 = 12;                    // brazos logarítmicos con 14° de apertura
+const armTheta = (r, a) => a + K * Math.log(r / R0);
+const NSTAR = coarse ? 110000 : 280000;
+function buildGalaxy(){
+  const A = new Float32Array(NSTAR * 8); let o = 0;
+  const put = (r, th, y, lum, c, ph) => { A[o++] = r; A[o++] = th; A[o++] = y; A[o++] = lum; A[o++] = c[0]; A[o++] = c[1]; A[o++] = c[2]; A[o++] = ph; };
+  const warm = () => { const k = rnd(); return [1.0, 0.78 + 0.12 * k, 0.5 + 0.2 * k]; };
+  const white = () => { const k = rnd(); return [1.0, 0.9 + 0.08 * k, 0.8 + 0.15 * k]; };
+  const blue = () => { const k = rnd(); return [0.65 + 0.2 * k, 0.78 + 0.15 * k, 1.0]; };
+  const ARMS = [[0, 1], [Math.PI, 1], [Math.PI / 2, 0.45], [Math.PI * 1.5, 0.45]];
+  for (let i = 0; i < NSTAR; i++) {
+    const k = rnd();
+    if (i < 1800) { // disco de acreción del agujero negro central
+      const r = 1.7 + Math.pow(rnd(), 1.8) * 4.5; put(r, rnd() * TAU, gauss() * 0.04, 4.5 * Math.pow(1.7 / r, 1.2), [1.0, 0.85 + 0.1 * rnd(), 0.65 + 0.3 * (1.7 / r)], rnd()); }
+    else if (k < 0.2) { // bulbo
+      const r3 = Math.abs(gauss()) * 7 + 0.8, d = [gauss(), gauss() * 0.6, gauss()], l = Math.hypot(d[0], d[1], d[2]) || 1, rr = r3 * Math.hypot(d[0], d[2]) / l;
+      put(Math.max(1.2, rr), rnd() * TAU, r3 * d[1] / l, 1.1 + rnd() * 0.8, warm(), rnd()); }
+    else if (k < 0.55) { // disco viejo
+      const r = Math.min(115, 6 + -Math.log(1 - rnd() * 0.995) * 26); put(r, rnd() * TAU, gauss() * (0.9 + r * 0.012), 0.6 + rnd() * 0.7, rnd() < 0.6 ? white() : warm(), rnd()); }
+    else { // brazos: estrellas jóvenes azules
+      let a; do { a = ARMS[rnd() * 4 | 0]; } while (rnd() > a[1]);
+      const r = R0 + Math.pow(rnd(), 0.85) * 96, th = armTheta(r, a[0]) + gauss() * (0.14 + 2.2 / r), rr = r + gauss() * 1.5;
+      const giant = rnd() < 0.015; put(rr, th, gauss() * 0.5, giant ? 4 + rnd() * 4 : 0.7 + rnd() * 1.1, giant ? (rnd() < 0.7 ? blue() : [1, 0.6, 0.4]) : (rnd() < 0.75 ? blue() : white()), rnd()); }
+  }
+  // nebulosas (regiones HII rosadas y algunas azuladas) y polvo en los brazos
+  const NN = coarse ? 1400 : 3000, NDUST = coarse ? 1500 : 3500, NB = new Float32Array(NN * 8), DB = new Float32Array(NDUST * 8);
+  let q = 0; const clusters = [];
+  for (let c = 0; c < NN / 14; c++) { const a = ARMS[rnd() < 0.8 ? rnd() * 2 | 0 : 2 + (rnd() * 2 | 0)][0], r = R0 + 4 + rnd() * 88; clusters.push([r, armTheta(r, a) + 0.06 + gauss() * 0.05]); }
+  for (let i = 0; i < NN; i++) { const cl = clusters[i % clusters.length], r = cl[0] + gauss() * 1.6, th = cl[1] + gauss() * 1.6 / r, pink = rnd() < 0.8;
+    NB.set([r, th, gauss() * 0.4, 0.6 + rnd() * 0.8, pink ? 1.0 : 0.45, pink ? 0.32 + rnd() * 0.12 : 0.75, pink ? 0.55 + rnd() * 0.15 : 1.0, 2 + rnd() * 3], q); q += 8; }
+  q = 0;
+  for (let i = 0; i < NDUST; i++) { const a = ARMS[rnd() * 2 | 0][0], r = R0 + 2 + Math.pow(rnd(), 0.9) * 90, th = armTheta(r, a) - 0.12 + gauss() * 0.06;
+    DB.set([r + gauss(), th, gauss() * 0.25, 0.25 + rnd() * 0.35, 0, 0, 0, 3 + rnd() * 3], q); q += 8; }
+  return {A, NB, NN, DB, NDUST};
+}
+
+/* ================= constelaciones (formas de los servicios) ================= */
+const cvs = document.createElement('canvas'), c2 = cvs.getContext('2d', {willReadFrequently: true});
+function sample2D(draw, n, depth, bulge = 0){
+  const S = 400; cvs.width = cvs.height = S; c2.clearRect(0, 0, S, S); c2.fillStyle = c2.strokeStyle = '#fff'; draw(c2, S);
+  const d = c2.getImageData(0, 0, S, S).data, px = [];
+  for (let y = 0; y < S; y += 2) for (let x = 0; x < S; x += 2) if (d[(y * S + x) * 4 + 3] > 128) px.push(x, y);
+  const out = [], m = px.length / 2;
+  for (let i = 0; i < n; i++) { const k = (rnd() * m | 0) * 2, x = (px[k] + rnd() * 2) / S * 2 - 1, y = 1 - (px[k + 1] + rnd() * 2) / S * 2;
+    out.push(x * 1.05, y * 1.05, (rnd() - 0.5) * depth - bulge * (x * x + y * y)); }
+  return out;
+}
+function onSphere(){ const u = rnd() * 2 - 1, a = rnd() * TAU, r = Math.sqrt(1 - u * u); return [r * Math.cos(a), u, r * Math.sin(a)]; }
+function pick(parts, n){ const tot = parts.reduce((s, p) => s + p[0], 0), out = [];
+  for (let i = 0; i < n; i++) { let r = rnd() * tot, k = 0; while (r > parts[k][0]) { r -= parts[k][0]; k++; } out.push(...parts[k][1]()); } return out; }
+const SHAPE = {
+  word(n){ return sample2D((c, S) => { c.font = `700 ${S * 0.36}px "Space Grotesk", sans-serif`; c.textAlign = 'center'; c.textBaseline = 'middle';
+    c.save(); c.translate(S / 2, S / 2); c.scale(1, 1); c.fillText('NODO', 0, 0); c.restore(); }, n, 0.28).map((v, i) => i % 3 === 0 ? v * 1.02 : v); },
+  brain(n){
+    const hemi = () => { const s = rnd() < 0.5 ? -1 : 1, d = onSphere(); let x = d[0], y = d[1], z = d[2]; if (x * s < -0.2) x = -0.2 * s;
+      const f = 1 + 0.07 * Math.sin(y * 16 + z * 11 + s) * Math.sin(z * 9 - y * 5);
+      return [z * 0.82 * f, y * 0.56 * f + 0.1, s * 0.05 + x * 0.42 * f]; };
+    const cereb = () => { const d = onSphere(); return [-0.55 + d[2] * 0.22, -0.38 + d[1] * 0.16, d[0] * 0.3]; };
+    const stem = () => { const t = rnd(), a = rnd() * TAU; return [-0.28 - t * 0.08, -0.35 - t * 0.42, Math.cos(a) * 0.08 + Math.sin(a) * 0.0]; };
+    return pick([[0.84, hemi], [0.11, cereb], [0.05, stem]], n);
+  },
+  megaphone(n){
+    const R = x => 0.12 + 0.46 * Math.pow((x + 0.6) / 1.05, 1.6);
+    const bell = () => { const x = -0.6 + rnd() * 1.05, a = rnd() * TAU, r = R(x); return [x - 0.25, r * Math.cos(a), r * Math.sin(a)]; };
+    const rim = () => { const a = rnd() * TAU, r = R(0.45); return [0.2, r * Math.cos(a), r * Math.sin(a)]; };
+    const back = () => { const x = -0.95 + rnd() * 0.35, a = rnd() * TAU; return [x - 0.0, 0.13 * Math.cos(a), 0.13 * Math.sin(a)]; };
+    const handle = () => [-0.5 + (rnd() - 0.5) * 0.12, -0.12 - rnd() * 0.42, (rnd() - 0.5) * 0.1];
+    const wave = () => { const k = rnd() * 3 | 0, a = (rnd() - 0.5) * 1.3, r = 0.55 + k * 0.2; return [0.2 + Math.cos(a) * r * 0.55 + 0.1, Math.sin(a) * r, (rnd() - 0.5) * 0.05, 9, k]; };
+    return pick([[0.52, bell], [0.1, rim], [0.08, back], [0.08, handle], [0.22, () => wave().slice(0, 3)]], n);
+  },
+  gears(n){
+    const G = [[-0.42, 0.18, 0.56, 10], [0.52, -0.36, 0.4, 7]];
+    const prof = (g, a) => g[2] * (1 + 0.14 * (Math.tanh(Math.sin(a * g[3]) * 4)));
+    const outline = g => () => { const a = rnd() * TAU, r = prof(g, a); return [g[0] + Math.cos(a) * r, g[1] + Math.sin(a) * r, rnd() < 0.5 ? -0.06 : 0.06]; };
+    const hub = g => () => { const a = rnd() * TAU, r = g[2] * 0.28; return [g[0] + Math.cos(a) * r, g[1] + Math.sin(a) * r, (rnd() - 0.5) * 0.18]; };
+    const spoke = g => () => { const k = rnd() * 5 | 0, a = k / 5 * TAU, r = g[2] * (0.28 + rnd() * 0.6); return [g[0] + Math.cos(a) * r, g[1] + Math.sin(a) * r, (rnd() - 0.5) * 0.1]; };
+    return pick([[0.36, outline(G[0])], [0.07, hub(G[0])], [0.12, spoke(G[0])], [0.28, outline(G[1])], [0.06, hub(G[1])], [0.11, spoke(G[1])]], n);
+  },
+  flow(n){
+    const B = [[-1.05, 0], [-0.5, 0], [0.05, 0.36], [0.05, -0.36], [0.6, 0.36], [0.6, -0.36], [1.1, 0]], bw = 0.17, bh = 0.13;
+    const box = k => () => { const [cx, cy] = B[k], t = rnd() * 4, e = t | 0, u = t - e, r = 0.04;
+      let x, y; if (e === 0) { x = -bw + u * 2 * bw; y = bh; } else if (e === 1) { x = bw; y = bh - u * 2 * bh; } else if (e === 2) { x = bw - u * 2 * bw; y = -bh; } else { x = -bw; y = -bh + u * 2 * bh; }
+      if (Math.abs(x) > bw - r && Math.abs(y) > bh - r) { const sx = Math.sign(x), sy = Math.sign(y), a = Math.atan2(y - sy * (bh - r), x - sx * (bw - r)); x = sx * (bw - r) + Math.cos(a) * r; y = sy * (bh - r) + Math.sin(a) * r; }
+      return [cx + x, cy + y, (rnd() - 0.5) * 0.08]; };
+    const icon = k => () => { const [cx, cy] = B[k], a = rnd() * TAU, r = 0.05 + (rnd() < 0.5 ? 0 : 0.02); return [cx + Math.cos(a) * r, cy + Math.sin(a) * r, 0.02]; };
+    const E = [[0, 1], [1, 2], [1, 3], [2, 4], [3, 5], [4, 6], [5, 6]];
+    const wire = () => { const [a, b] = E[rnd() * E.length | 0], p0 = [B[a][0] + bw, B[a][1]], p3 = [B[b][0] - bw, B[b][1]], m = (p3[0] - p0[0]) * 0.5, t = rnd(), u = 1 - t;
+      const x = u * u * u * p0[0] + 3 * u * u * t * (p0[0] + m) + 3 * u * t * t * (p3[0] - m) + t * t * t * p3[0], y = u * u * u * p0[1] + 3 * u * u * t * p0[1] + 3 * u * t * t * p3[1] + t * t * t * p3[1];
+      return [x, y, (rnd() - 0.5) * 0.02]; };
+    const port = () => { const k = rnd() * B.length | 0, s = rnd() < 0.5 ? -1 : 1, a = rnd() * TAU; return [B[k][0] + s * bw + Math.cos(a) * 0.025, B[k][1] + Math.sin(a) * 0.025, 0]; };
+    const parts = B.map((_, k) => [0.085, box(k)]).concat(B.map((_, k) => [0.02, icon(k)]), [[0.3, wire], [0.07, port]]);
+    return pick(parts, n).map((v, i) => i % 3 === 0 ? v * 0.84 : i % 3 === 1 ? v * 0.95 : v);
+  },
+  browser(n){ return sample2D((c, S) => { c.lineWidth = 12; c.lineJoin = 'round'; c.beginPath(); c.roundRect(40, 70, S - 80, S - 140, 22); c.stroke();
+    c.beginPath(); c.moveTo(40, 118); c.lineTo(S - 40, 118); c.stroke(); for (let k = 0; k < 3; k++) { c.beginPath(); c.arc(72 + k * 26, 94, 8, 0, TAU); c.fill(); }
+    c.font = `700 ${S * 0.26}px "Space Grotesk", sans-serif`; c.textAlign = 'center'; c.textBaseline = 'middle'; c.fillText('</>', S / 2, S / 2 + 38); }, n, 0.14, 0.12); },
+  shield(n){ return sample2D((c, S) => { const p = new Path2D('M200 40 L330 90 L330 190 C330 275 272 330 200 365 C128 330 70 275 70 190 L70 90 Z'); c.lineWidth = 16; c.lineJoin = 'round'; c.stroke(p);
+    const q = new Path2D('M200 70 L302 110 L302 190 C302 258 256 302 200 332 C144 302 98 258 98 190 L98 110 Z'); c.lineWidth = 5; c.stroke(q);
+    c.lineWidth = 24; c.lineCap = 'round'; c.beginPath(); c.moveTo(145, 200); c.lineTo(188, 243); c.lineTo(262, 158); c.stroke(); }, n, 0.12, 0.3); },
+  rack(n){
+    const box = y0 => () => { // aristas de una caja
+      const w = 0.62, h = 0.15, d = 0.42, e = rnd() * 12 | 0, t = rnd() * 2 - 1, s = [[1, 1], [1, -1], [-1, 1], [-1, -1]][e % 4];
+      if (e < 4) return [t * w, y0 + s[0] * h, s[1] * d]; if (e < 8) return [s[0] * w, y0 + t * h, s[1] * d]; return [s[0] * w, y0 + s[1] * h, t * d]; };
+    const face = y0 => () => [(rnd() * 2 - 1) * 0.55, y0 + (rnd() - 0.5) * 0.08, 0.42];
+    const led = y0 => () => [0.4 + (rnd() * 3 | 0) * 0.06, y0 + 0.05, 0.43];
+    const cable = () => { const t = rnd(), k = rnd() * 3 | 0; return [-0.62 - t * 0.35, 0.36 - k * 0.36 - t * t * 0.3, 0.2]; };
+    return pick([[0.22, box(0.36)], [0.22, box(0)], [0.22, box(-0.36)], [0.07, face(0.36)], [0.07, face(0)], [0.07, face(-0.36)], [0.03, led(0.36)], [0.03, led(0)], [0.03, led(-0.36)], [0.04, cable]], n);
+  },
+  wrench(n){ return sample2D((c, S) => { c.save(); c.translate(S / 2, S / 2); c.rotate(-0.78);
+    c.fillRect(-26, -20, 52, 185); c.beginPath(); c.arc(0, 165, 40, 0, TAU); c.fill();
+    c.beginPath(); c.arc(0, -85, 82, 0, TAU); c.fill(); c.globalCompositeOperation = 'destination-out'; c.fillRect(-30, -190, 60, 120); c.beginPath(); c.arc(0, 165, 14, 0, TAU); c.fill(); c.restore(); }, n, 0.16); },
+  laptop(n){
+    const base = () => [(rnd() * 2 - 1) * 0.82, -0.42, (rnd() * 2 - 1) * 0.5 + 0.2];
+    const baseEdge = () => { const t = rnd() * 2 - 1; return rnd() < 0.5 ? [t * 0.82, -0.42, rnd() < 0.5 ? -0.3 : 0.7] : [rnd() < 0.5 ? -0.82 : 0.82, -0.42, 0.2 + t * 0.5]; };
+    const keys = () => [((rnd() * 12 | 0) - 5.5) * 0.11, -0.41, ((rnd() * 4 | 0) - 1.5) * 0.1 + 0.15];
+    const scr = (u, v) => [u * 0.8, -0.42 + v * 0.95 * Math.cos(0.22), -0.3 - v * 0.95 * Math.sin(0.22)];
+    const screenEdge = () => { const t = rnd(), k = rnd() * 4 | 0; return k < 2 ? scr(t * 2 - 1, k) : scr(k === 2 ? -1 : 1, t); };
+    const screenLines = () => { const row = rnd() * 6 | 0, len = 0.3 + ((row * 37) % 5) * 0.12; return scr(-0.8 + rnd() * len * 1.6, 0.2 + row * 0.12); };
+    return pick([[0.16, base], [0.14, baseEdge], [0.12, keys], [0.3, screenEdge], [0.28, screenLines]], n);
+  },
+  chain(n){
+    const C = [[-0.95, -0.15], [-0.32, 0.18], [0.32, -0.15], [0.95, 0.18]];
+    const ball = k => () => { const d = onSphere(); return [C[k][0] + d[0] * 0.22, C[k][1] + d[1] * 0.22, d[2] * 0.22]; };
+    const link = () => { const k = rnd() * 3 | 0, t = rnd(), a = C[k], b = C[k + 1]; return [a[0] + (b[0] - a[0]) * t, a[1] + (b[1] - a[1]) * t + Math.sin(t * Math.PI) * 0.06, (rnd() - 0.5) * 0.04]; };
+    return pick([[0.2, ball(0)], [0.2, ball(1)], [0.2, ball(2)], [0.2, ball(3)], [0.2, link]], n);
+  },
+  globe(n){
+    const surf = () => onSphere().map(v => v * 0.85);
+    const lat = () => { const k = (rnd() * 5 | 0) - 2, y = Math.sin(k * 0.5), r = Math.cos(k * 0.5), a = rnd() * TAU; return [Math.cos(a) * r * 0.85, y * 0.85, Math.sin(a) * r * 0.85]; };
+    const lon = () => { const k = rnd() * 8 | 0, a = k / 8 * Math.PI, t = rnd() * TAU; return [Math.cos(t) * Math.cos(a) * 0.85, Math.sin(t) * 0.85, Math.cos(t) * Math.sin(a) * 0.85]; };
+    const ring = () => { const a = rnd() * TAU; return [Math.cos(a) * 1.18, Math.sin(a) * 1.18 * 0.22, Math.sin(a) * 1.18 * 0.95]; };
+    return pick([[0.34, surf], [0.24, lat], [0.24, lon], [0.18, ring]], n);
+  }
+};
+
+
+/* ================= WebGL ================= */
+const VS = `#version 300 es
+out vec2 vUv; void main(){ vec2 p = vec2((gl_VertexID << 1) & 2, gl_VertexID & 2); vUv = p; gl_Position = vec4(p * 2.0 - 1.0, 0.0, 1.0); }`;
+const SKY = `#version 300 es
+precision highp float; uniform vec2 uRes; uniform mat3 uRot; uniform float uTan; uniform vec2 uShift; out vec4 o;
+float h13(vec3 p){ p = fract(p * 0.1031); p += dot(p, p.zyx + 31.32); return fract((p.x + p.y) * p.z); }
+void main(){ vec2 uv = (gl_FragCoord.xy / uRes * 2.0 - 1.0 - uShift) * vec2(uRes.x / uRes.y, 1.0);
+  vec3 d = normalize(uRot * vec3(uv * uTan, -1.0)), c = vec3(0.004, 0.003, 0.012);
+  for (int L = 0; L < 2; L++) { float sc = 220.0 + float(L) * 260.0; vec3 p = d * sc, cc = floor(p), f = fract(p) - 0.5; float h = h13(cc + float(L) * 7.0);
+    if (h > 0.985) c += mix(vec3(0.7, 0.8, 1.0), vec3(1.0, 0.85, 0.7), h13(cc + 3.0)) * smoothstep(0.35, 0.0, length(f)) * (0.12 + 0.3 * h13(cc + 9.0)); }
+  o = vec4(c, 1.0); }`;
+// estrellas: la posición se calcula en la GPU (órbitas, vaivén y rotación del núcleo)
+const STAR = `#version 300 es
+in vec4 aA; in vec4 aB;
+uniform mat4 uVP; uniform vec3 uEye; uniform float uT; uniform float uPxK; uniform float uDpr; uniform vec2 uShift; uniform float uMode; uniform float uGain;
+out vec3 vC; out float vK;
+void main(){
+  float r = aA.x, th = aA.y;
+  th += uT * (r < 7.0 ? 0.55 * pow(1.7 / max(r, 1.7), 1.5) : 0.05 * smoothstep(24.0, 4.0, r) * 6.0 / (r + 2.0));
+  vec3 p = vec3(r * cos(th), aA.z, r * sin(th));
+  float ph = aB.w * 6.2831; if (uMode < 0.5) p.xz += vec2(cos(uT * 0.25 + ph), sin(uT * 0.21 + ph)) * 0.18;
+  vec4 c = uVP * vec4(p, 1.0); c.xy += uShift * c.w; gl_Position = c;
+  float d = max(distance(p, uEye), 0.3), px = uPxK / d;
+  if (uMode < 0.5) {            // estrella
+    float I = aA.w * (0.05 * clamp(55.0 / d, 0.2, 7.0) + 0.16 * smoothstep(50.0, 190.0, d)) * smoothstep(0.4, 2.5, d);
+    vC = aB.rgb * I * uGain; vK = 0.0; gl_PointSize = clamp(0.9 + aA.w * 0.5 * clamp(26.0 / d, 0.0, 2.2), 1.0, 4.5) * uDpr;
+  } else if (uMode < 1.5) {     // nebulosa
+    float s = aB.w * px; vC = aB.rgb * aA.w * 0.05 * clamp(s / 6.0, 0.15, 1.0) * smoothstep(1.5, 8.0, d) * (1.0 - 0.45 * smoothstep(60.0, 190.0, d)) * uGain; vK = 1.0; gl_PointSize = clamp(s, 2.0, 110.0) * uDpr;
+  } else {                      // polvo (multiplica)
+    float s = aB.w * px; vC = vec3(aA.w * smoothstep(10.0, 30.0, d) * 0.8); vK = 2.0; gl_PointSize = clamp(s, 2.0, 90.0) * uDpr;
+  }
+}`;
+const STARF = `#version 300 es
+precision highp float; in vec3 vC; in float vK; out vec4 o;
+void main(){ vec2 q = gl_PointCoord - 0.5; float r2 = dot(q, q);
+  if (vK < 0.5) { o = vec4(vC * smoothstep(0.25, 0.0, r2), 1.0); }
+  else if (vK < 1.5) { o = vec4(vC * exp(-r2 * 14.0), 1.0); }
+  else { o = vec4(vec3(1.0 - vC.r * exp(-r2 * 10.0)), 1.0); } }`;
+// constelaciones, supernovas y líneas: posiciones en el mundo
+const GEO = `#version 300 es
+in vec3 aP; in vec4 aC; uniform mat4 uVP; uniform vec2 uShift; uniform float uDpr; uniform vec3 uEye; out vec3 vC;
+void main(){ vec4 c = uVP * vec4(aP, 1.0); c.xy += uShift * c.w; gl_Position = c; vC = aC.rgb; gl_PointSize = aC.a * uDpr; }`;
+const GEOF = `#version 300 es
+precision highp float; in vec3 vC; uniform float uRound; out vec4 o;
+void main(){ float a = 1.0; if (uRound > 0.5) { vec2 q = gl_PointCoord - 0.5; float r2 = dot(q, q); a = smoothstep(0.25, 0.0, r2) + exp(-r2 * 60.0); } o = vec4(vC * a, 1.0); }`;
+const LENS = `#version 300 es
+precision highp float; uniform sampler2D uTex; uniform vec2 uRes; uniform vec2 uC; uniform float uS; uniform float uE; uniform float uK; out vec4 o;
+void main(){ vec2 d = gl_FragCoord.xy - uC; float b = length(d); vec3 c;
+  if (uK <= 0.0) { o = vec4(texture(uTex, gl_FragCoord.xy / uRes).rgb, 1.0); return; }
+  if (b < uS) { c = mix(texture(uTex, gl_FragCoord.xy / uRes).rgb, vec3(0.0), uK); o = vec4(c, 1.0); return; }
+  float fall = exp(-pow(max(b / uE - 1.0, 0.0), 2.0) / 1.6), bs = b - uE * uE / b * fall * uK;
+  c = texture(uTex, (uC + d / b * bs) / uRes).rgb + vec3(1.0, 0.85, 0.6) * exp(-pow((b - uS * 1.05) / (uS * 0.05), 2.0)) * 1.2 * uK;
+  o = vec4(c, 1.0); }`;
+const DOWN = `#version 300 es
+precision highp float; in vec2 vUv; uniform sampler2D uTex; uniform vec2 uTexel; out vec4 o;
+void main(){ vec3 c = vec3(0.0); for (int y = -1; y <= 1; y++) for (int x = -1; x <= 1; x++) c += texture(uTex, vUv + vec2(x, y) * uTexel * 1.5).rgb;
+  c /= 9.0; float l = max(c.r, max(c.g, c.b)); o = vec4(c * smoothstep(0.3, 1.4, l), 1.0); }`;
+const BLUR = `#version 300 es
+precision highp float; in vec2 vUv; uniform sampler2D uTex; uniform vec2 uDir; out vec4 o;
+void main(){ const float w[5] = float[](0.227, 0.194, 0.122, 0.054, 0.016); vec3 c = texture(uTex, vUv).rgb * w[0];
+  for (int i = 1; i < 5; i++) { c += texture(uTex, vUv + uDir * float(i)).rgb * w[i]; c += texture(uTex, vUv - uDir * float(i)).rgb * w[i]; } o = vec4(c, 1.0); }`;
+const COMP = `#version 300 es
+precision highp float; in vec2 vUv; uniform sampler2D uScene; uniform sampler2D uBloom; out vec4 o;
+float h(vec2 p){ return fract(sin(dot(p, vec2(12.9898, 78.233))) * 43758.5453); }
+vec3 aces(vec3 x){ return clamp((x * (2.51 * x + 0.03)) / (x * (2.43 * x + 0.59) + 0.14), 0.0, 1.0); }
+void main(){ vec3 c = texture(uScene, vUv).rgb + texture(uBloom, vUv).rgb * 0.85; vec2 q = vUv - 0.5; c *= 1.0 - dot(q, q) * 0.35; c = aces(c * 1.05); c += (h(gl_FragCoord.xy) - 0.5) / 255.0; o = vec4(c, 1.0); }`;
+function sh(t, s){ const x = gl.createShader(t); gl.shaderSource(x, s); gl.compileShader(x); if (!gl.getShaderParameter(x, gl.COMPILE_STATUS)) throw new Error(gl.getShaderInfoLog(x)); return x; }
+function prog(v, f, attrs){ const p = gl.createProgram(); gl.attachShader(p, sh(gl.VERTEX_SHADER, v)); gl.attachShader(p, sh(gl.FRAGMENT_SHADER, f));
+  (attrs || []).forEach((a, i) => gl.bindAttribLocation(p, i, a)); gl.linkProgram(p); if (!gl.getProgramParameter(p, gl.LINK_STATUS)) throw new Error(gl.getProgramInfoLog(p));
+  const u = {}, n = gl.getProgramParameter(p, gl.ACTIVE_UNIFORMS); for (let i = 0; i < n; i++) { const nm = gl.getActiveUniform(p, i).name; u[nm] = gl.getUniformLocation(p, nm); } return {p, u}; }
+const PSKY = prog(VS, SKY), PST = prog(STAR, STARF, ['aA', 'aB']), PG = prog(GEO, GEOF, ['aP', 'aC']), PL = prog(VS, LENS), PD = prog(VS, DOWN), PB = prog(VS, BLUR), PC = prog(VS, COMP);
+const vao = gl.createVertexArray();
+function mkVao(data, stride, sizes, dynamic){ const v = gl.createVertexArray(), b = gl.createBuffer(); gl.bindVertexArray(v); gl.bindBuffer(gl.ARRAY_BUFFER, b); gl.bufferData(gl.ARRAY_BUFFER, data, dynamic ? gl.DYNAMIC_DRAW : gl.STATIC_DRAW);
+  let off = 0; sizes.forEach((s, i) => { gl.enableVertexAttribArray(i); gl.vertexAttribPointer(i, s, gl.FLOAT, false, stride, off); off += s * 4; }); gl.bindVertexArray(null); return {v, b}; }
+function target(w, h){ const t = gl.createTexture(); gl.bindTexture(gl.TEXTURE_2D, t);
+  if (HALF) gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA16F, w, h, 0, gl.RGBA, gl.HALF_FLOAT, null); else gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA8, w, h, 0, gl.RGBA, gl.UNSIGNED_BYTE, null);
+  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR); gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
+  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE); gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
+  const f = gl.createFramebuffer(); gl.bindFramebuffer(gl.FRAMEBUFFER, f); gl.framebufferTexture2D(gl.FRAMEBUFFER, gl.COLOR_ATTACHMENT0, gl.TEXTURE_2D, t, 0); gl.bindFramebuffer(gl.FRAMEBUFFER, null); return {t, f, w, h}; }
+function free(x){ if (x) { gl.deleteTexture(x.t); gl.deleteFramebuffer(x.f); } }
+
+const G = buildGalaxy();
+const VSTAR = mkVao(G.A, 32, [4, 4]), VNEB = mkVao(G.NB, 32, [4, 4]), VDUST = mkVao(G.DB, 32, [4, 4]);
+const MAXG = 60000, GL_ = new Float32Array(MAXG * 7), GP = new Float32Array(MAXG * 7);
+const VGL = mkVao(GL_.byteLength, 28, [3, 4], true), VGP = mkVao(GP.byteLength, 28, [3, 4], true);
+
+/* ================= recorrido de la cámara ================= */
+const armPt = (r, y = 0) => { const th = armTheta(r, 0); return [r * Math.cos(th), y, r * Math.sin(th)]; };
+const norm = v => { const l = Math.hypot(v[0], v[1], v[2]) || 1; return [v[0] / l, v[1] / l, v[2] / l]; };
+const cross = (a, b) => [a[1] * b[2] - a[2] * b[1], a[2] * b[0] - a[0] * b[2], a[0] * b[1] - a[1] * b[0]];
+const dot = (a, b) => a[0] * b[0] + a[1] * b[1] + a[2] * b[2];
+const add = (a, b, k = 1) => [a[0] + b[0] * k, a[1] + b[1] * k, a[2] + b[2] * k];
+const WP = [], CONS = [], NC = coarse ? 230 : 340;
+(function(){
+  WP.push({pos: [-55, 150, 175], tgt: [0, -6, 0]});
+  const shapes = SECS.map(s => s.dataset.shape).filter(Boolean), n = shapes.length;
+  shapes.forEach((shp, k) => {
+    const r = 88 - k * (62 / (n - 1)), C = armPt(r, 3.5), T = norm([armPt(r - 1)[0] - C[0], 0, armPt(r - 1)[2] - C[2]]);
+    const pos = add(add(C, T, -26), [0, 7.5, 0]), f = norm([C[0] - pos[0], C[1] - pos[1], C[2] - pos[2]]), right = norm(cross(f, [0, 1, 0])), up = cross(right, f);
+    WP.push({pos, tgt: C});
+    // la constelación: puntos de la forma + enlaces a sus vecinos más cercanos
+    const raw = SHAPE[shp](NC), P = [], L = [];
+    for (let i = 0; i < NC; i++) { const x = raw[i * 3], y = raw[i * 3 + 1], z = raw[i * 3 + 2], S = 6.2;
+      P.push({p: add(add(add(C, right, x * S), up, y * S), f, -z * S), s: norm([gauss(), gauss() * 0.5, gauss()]), big: rnd() < 0.08}); }
+    for (let i = 0; i < NC; i++) { const d = []; for (let j = 0; j < NC; j++) if (j !== i) { const a = P[i].p, b = P[j].p, q = (a[0] - b[0]) ** 2 + (a[1] - b[1]) ** 2 + (a[2] - b[2]) ** 2; if (q < 1.9) d.push([q, j]); }
+      d.sort((a, b) => a[0] - b[0]); for (let m = 0; m < Math.min(2, d.length); m++) if (d[m][1] > i) L.push([i, d[m][1], d[m][0]]); }
+    CONS.push({C, P, L, idx: k + 1});
+  });
+  const last = WP[WP.length - 1].tgt, dir = norm([last[0], 0, last[2]]);
+  WP.push({pos: add(add([0, 0, 0], dir, 17), [0, 4.2, 0]), tgt: [0, 0, 0]});
+})();
+function catmull(P, t){ const n = P.length, i = Math.min(n - 2, Math.max(0, Math.floor(t))), f = t - i, p0 = P[Math.max(0, i - 1)], p1 = P[i], p2 = P[i + 1], p3 = P[Math.min(n - 1, i + 2)];
+  const f2 = f * f, f3 = f2 * f; return [0, 1, 2].map(k => 0.5 * (2 * p1[k] + (-p0[k] + p2[k]) * f + (2 * p0[k] - 5 * p1[k] + 4 * p2[k] - p3[k]) * f2 + (-p0[k] + 3 * p1[k] - 3 * p2[k] + p3[k]) * f3)); }
+
+/* ================= estado ================= */
+let W = 0, H = 0, DPR = 1, scale = HQ ? 1 : (coarse ? 0.7 : 1), RT = null, RL = null, B1 = null, B2 = null;
+let t = 0, sPos = 0, EYE = [0, 150, 175], VP = new Float32Array(16), BASIS = null, SHIFT = [0, 0], mouse = [0, 0], mouseS = [0, 0], FOV = 0.9;
+const novas = [];
+function resize(){ DPR = Math.min(devicePixelRatio || 1, coarse ? 1.5 : 2); W = innerWidth; H = innerHeight; cv.width = Math.round(W * DPR); cv.height = Math.round(H * DPR);
+  SHIFT = W < 760 ? [0, 0.36] : [0.36, 0]; free(RT); free(RL); free(B1); free(B2);
+  const w = Math.max(64, Math.round(W * DPR * scale)), h = Math.max(64, Math.round(H * DPR * scale)); RT = target(w, h); RL = target(w, h); B1 = target(Math.max(16, w >> 2), Math.max(16, h >> 2)); B2 = target(B1.w, B1.h); }
+function scrollPos(){
+  const c = SECS.map(s => { const r = s.getBoundingClientRect(); return r.top + r.height / 2 - H / 2; });
+  let k = 0; while (k < c.length - 1 && c[k + 1] <= 0) k++;
+  let f = 0; if (k < c.length - 1 && c[k] <= 0) f = -c[k] / (c[k + 1] - c[k]);
+  const on = f < 0.5 ? k : Math.min(k + 1, SECS.length - 1); DOTS.forEach((d, i) => d.classList.toggle('on', i === on));
+  const hold = f < 0.12 ? 0 : f > 0.88 ? 1 : (f - 0.12) / 0.76, e = hold * hold * (3 - 2 * hold);
+  return Math.min(SECS.length - 1, k + e);
+}
+function camera(dt){
+  sPos = scrollPos();
+  let pos = catmull(WP.map(w => w.pos), sPos), tgt = catmull(WP.map(w => w.tgt), sPos);
+  if (!reduce) { mouseS[0] += (mouse[0] - mouseS[0]) * Math.min(1, dt * 3); mouseS[1] += (mouse[1] - mouseS[1]) * Math.min(1, dt * 3); }
+  const f0 = norm([tgt[0] - pos[0], tgt[1] - pos[1], tgt[2] - pos[2]]), r0 = norm(cross(f0, [0, 1, 0])), dist = Math.hypot(tgt[0] - pos[0], tgt[1] - pos[1], tgt[2] - pos[2]);
+  pos = add(add(pos, r0, mouseS[0] * dist * 0.06), [0, 1, 0], -mouseS[1] * dist * 0.04);
+  // deriva lenta para que la cámara nunca esté quieta
+  pos = add(pos, [Math.sin(t * 0.13) * dist * 0.015, Math.sin(t * 0.11) * dist * 0.01, Math.cos(t * 0.09) * dist * 0.015]);
+  EYE = pos;
+  const f = norm([tgt[0] - pos[0], tgt[1] - pos[1], tgt[2] - pos[2]]), r = norm(cross(f, [0, 1, 0])), u = cross(r, f);
+  const V = [r[0], u[0], -f[0], 0, r[1], u[1], -f[1], 0, r[2], u[2], -f[2], 0, -dot(r, pos), -dot(u, pos), dot(f, pos), 1];
+  const asp = W / H, tn = Math.tan(FOV / 2), n = 0.2, fa = 3000, P = [1 / (asp * tn), 0, 0, 0, 0, 1 / tn, 0, 0, 0, 0, -(fa + n) / (fa - n), -1, 0, 0, -2 * fa * n / (fa - n), 0];
+  for (let i = 0; i < 4; i++) for (let j = 0; j < 4; j++) { let s = 0; for (let m = 0; m < 4; m++) s += P[m * 4 + i] * V[j * 4 + m]; VP[j * 4 + i] = s; }
+  BASIS = {r, u, f, tn, asp};
+}
+function project(p){ const c = [0, 1, 2, 3].map(i => VP[i] * p[0] + VP[4 + i] * p[1] + VP[8 + i] * p[2] + VP[12 + i]); if (c[3] <= 0.01) return null;
+  const x = c[0] / c[3] + SHIFT[0], y = c[1] / c[3] + SHIFT[1]; return [(x * 0.5 + 0.5) * W, (1 - (y * 0.5 + 0.5)) * H, c[3]]; }
+
+/* ================= geometría por cuadro: constelaciones y supernovas ================= */
+let nGL = 0, nGP = 0;
+const GOLD = [1.0, 0.8, 0.45], ROSE = [1.0, 0.45, 0.7];
+function lp(a, b, c, i){ if (nGL >= MAXG - 2) return; let o = nGL * 7; GL_.set([a[0], a[1], a[2], c[0] * i, c[1] * i, c[2] * i, 1], o); o += 7; GL_.set([b[0], b[1], b[2], c[0] * i, c[1] * i, c[2] * i, 1], o); nGL += 2; }
+function pp(a, c, i, s){ if (nGP >= MAXG) return; GP.set([a[0], a[1], a[2], c[0] * i, c[1] * i, c[2] * i, s], nGP * 7); nGP++; }
+function geometry(){
+  nGL = 0; nGP = 0;
+  for (const K of CONS) {
+    const act = Math.max(0, 1 - Math.abs(sPos - K.idx) * 1.25), asm = act * act * (3 - 2 * act); if (act <= 0.001) continue;
+    const pos = K.P.map(q => { const sc = (1 - asm) * 16; return add(q.p, q.s, sc); });
+    const tw = i => 0.75 + 0.25 * Math.sin(t * 2.2 + i * 1.7);
+    K.P.forEach((q, i) => { const I = (0.25 + 1.4 * asm) * tw(i) * (q.big ? 2.2 : 1), c = q.big ? [1.0, 0.92, 0.75] : GOLD; pp(pos[i], c, I, q.big ? 4.2 : 2.4); });
+    if (asm > 0.02) K.L.forEach(([a, b, d2], m) => { const w = asm * asm * (1 - d2 / 1.9) * 0.55 * (0.7 + 0.3 * Math.sin(t * 1.3 + m)); lp(pos[a], pos[b], m % 5 === 0 ? ROSE : GOLD, w); });
+  }
+  for (let i = novas.length - 1; i >= 0; i--) { const n = novas[i], a = t - n.t0; if (a > 4) { novas.splice(i, 1); continue; }
+    const k = Math.exp(-a * 1.2); pp(n.p, [1, 0.95, 0.85], 14 * Math.exp(-a * 3), 22 * (1 - Math.exp(-a * 6)) + 4);
+    n.d.forEach((d, j) => { const r = n.R * (1 - Math.exp(-a * 1.6)) * (0.8 + 0.4 * n.v[j]); pp(add(n.p, d, r), j % 3 ? [1.0, 0.6, 0.35] : [0.6, 0.8, 1.0], 1.6 * k, 2.2); }); }
+}
+
+/* ================= render ================= */
+function pass(P, out){ gl.useProgram(P.p); gl.bindFramebuffer(gl.FRAMEBUFFER, out ? out.f : null); if (out) gl.viewport(0, 0, out.w, out.h); else gl.viewport(0, 0, cv.width, cv.height); }
+function tex(unit, x, loc){ gl.activeTexture(gl.TEXTURE0 + unit); gl.bindTexture(gl.TEXTURE_2D, x); gl.uniform1i(loc, unit); }
+function render(){
+  const k = RT.w / W, pxK = RT.h / (2 * Math.tan(FOV / 2)) / (DPR * scale);
+  gl.disable(gl.BLEND); gl.bindVertexArray(vao); pass(PSKY, RT);
+  gl.uniform2f(PSKY.u.uRes, RT.w, RT.h); gl.uniformMatrix3fv(PSKY.u.uRot, false, new Float32Array([...BASIS.r, ...BASIS.u, -BASIS.f[0], -BASIS.f[1], -BASIS.f[2]])); gl.uniform1f(PSKY.u.uTan, BASIS.tn); gl.uniform2fv(PSKY.u.uShift, SHIFT); gl.drawArrays(gl.TRIANGLES, 0, 3);
+  gl.enable(gl.BLEND); gl.blendFunc(gl.ONE, gl.ONE); gl.useProgram(PST.p); const u = PST.u;
+  gl.uniformMatrix4fv(u.uVP, false, VP); gl.uniform3fv(u.uEye, EYE); gl.uniform1f(u.uT, reduce ? 0 : t); gl.uniform1f(u.uPxK, pxK); gl.uniform1f(u.uDpr, DPR * scale); gl.uniform2fv(u.uShift, SHIFT);
+  gl.uniform1f(u.uGain, coarse ? 1.9 : 1);
+  gl.uniform1f(u.uMode, 0); gl.bindVertexArray(VSTAR.v); gl.drawArrays(gl.POINTS, 0, NSTAR);
+  gl.uniform1f(u.uMode, 1); gl.bindVertexArray(VNEB.v); gl.drawArrays(gl.POINTS, 0, G.NN);
+  gl.blendFunc(gl.ZERO, gl.SRC_COLOR); gl.uniform1f(u.uMode, 2); gl.bindVertexArray(VDUST.v); gl.drawArrays(gl.POINTS, 0, G.NDUST);
+  gl.blendFunc(gl.ONE, gl.ONE); gl.useProgram(PG.p); gl.uniformMatrix4fv(PG.u.uVP, false, VP); gl.uniform2fv(PG.u.uShift, SHIFT); gl.uniform1f(PG.u.uDpr, DPR * scale);
+  gl.uniform1f(PG.u.uRound, 0); gl.bindVertexArray(VGL.v); gl.bindBuffer(gl.ARRAY_BUFFER, VGL.b); gl.bufferSubData(gl.ARRAY_BUFFER, 0, GL_, 0, nGL * 7); gl.drawArrays(gl.LINES, 0, nGL);
+  gl.uniform1f(PG.u.uRound, 1); gl.bindVertexArray(VGP.v); gl.bindBuffer(gl.ARRAY_BUFFER, VGP.b); gl.bufferSubData(gl.ARRAY_BUFFER, 0, GP, 0, nGP * 7); gl.drawArrays(gl.POINTS, 0, nGP);
+  gl.disable(gl.BLEND); gl.bindVertexArray(vao);
+  // lente gravitacional del agujero negro central (solo al final del viaje)
+  const bh = project([0, 0, 0]), kL = Math.max(0, Math.min(1, (sPos - (SECS.length - 2)) * 1.1));
+  pass(PL, RL); tex(0, RT.t, PL.u.uTex); gl.uniform2f(PL.u.uRes, RL.w, RL.h);
+  if (bh && kL > 0) { const rs = 0.95 * pxK / bh[2] * (DPR * scale); gl.uniform2f(PL.u.uC, bh[0] * k, (H - bh[1]) * k); gl.uniform1f(PL.u.uS, rs); gl.uniform1f(PL.u.uE, rs * 1.45); gl.uniform1f(PL.u.uK, kL); }
+  else gl.uniform1f(PL.u.uK, 0);
+  gl.drawArrays(gl.TRIANGLES, 0, 3);
+  pass(PD, B1); tex(0, RL.t, PD.u.uTex); gl.uniform2f(PD.u.uTexel, 1 / RL.w, 1 / RL.h); gl.drawArrays(gl.TRIANGLES, 0, 3);
+  for (let i = 0; i < 3; i++) { const s = 1 + i * 1.6; pass(PB, B2); tex(0, B1.t, PB.u.uTex); gl.uniform2f(PB.u.uDir, s / B1.w, 0); gl.drawArrays(gl.TRIANGLES, 0, 3);
+    pass(PB, B1); tex(0, B2.t, PB.u.uTex); gl.uniform2f(PB.u.uDir, 0, s / B1.h); gl.drawArrays(gl.TRIANGLES, 0, 3); }
+  pass(PC, null); tex(0, RL.t, PC.u.uScene); tex(1, B1.t, PC.u.uBloom); gl.drawArrays(gl.TRIANGLES, 0, 3);
+}
+
+/* ================= interacción ================= */
+addEventListener('pointermove', e => { if (e.pointerType === 'mouse') mouse = [e.clientX / W * 2 - 1, e.clientY / H * 2 - 1]; });
+addEventListener('pointerdown', e => { if (e.target.closest('a,button,input,select,textarea,label,nav')) return; if (!BASIS) return;
+  // supernova donde hiciste clic, a la distancia de la constelación actual
+  const B = BASIS, x = ((e.clientX / W) * 2 - 1 - SHIFT[0]) * B.tn * B.asp, y = ((1 - e.clientY / H) * 2 - 1 - SHIFT[1]) * B.tn;
+  const d = norm(add(add(B.f, B.r, x), B.u, y)), tgt = catmull(WP.map(w => w.tgt), sPos), dist = Math.hypot(tgt[0] - EYE[0], tgt[1] - EYE[1], tgt[2] - EYE[2]);
+  const p = add(EYE, d, dist), dirs = [], v = []; for (let i = 0; i < 260; i++) { dirs.push(norm([gauss(), gauss(), gauss()])); v.push(rnd()); }
+  novas.push({p, t0: t, d: dirs, v, R: dist * 0.12}); if (novas.length > 4) novas.shift(); });
+
+/* ================= ciclo ================= */
+const LY = n => (Math.round(n / 1000) * 1000).toLocaleString('es-PE');
+let last = performance.now(), fA = 0, fN = 0, hudT = 0;
+function frame(now){
+  const dt = Math.min(0.05, (now - last) / 1000); last = now; t += dt;
+  camera(dt); geometry(); render();
+  hudT -= dt; if (hudT <= 0) { hudT = 0.2; const dc = Math.hypot(EYE[0], EYE[1], EYE[2]) * 500;
+    $hud.textContent = sPos < 0.5 ? `galaxia espiral · ${NSTAR.toLocaleString('es-PE')} estrellas · clic para una supernova` : sPos > SECS.length - 1.5 ? `núcleo galáctico · agujero negro supermasivo · a ${LY(dc)} años luz` : `brazo espiral · a ${LY(dc)} años luz del núcleo`; }
+  fA += dt; fN++; if (fA >= 1) { const fps = fN / fA; fA = 0; fN = 0; if (!HQ) { if (fps < 40 && scale > 0.5) { scale = Math.max(0.5, scale - 0.1); resize(); } else if (fps > 57 && scale < (coarse ? 0.9 : 1)) { scale = Math.min(coarse ? 0.9 : 1, scale + 0.05); resize(); } } }
+  requestAnimationFrame(frame);
+}
+let rtm = 0; addEventListener('resize', () => { clearTimeout(rtm); rtm = setTimeout(resize, 150); });
+resize();
+const hq = location.hash.match(/#hq-(\d+)/); if (hq) { document.documentElement.style.scrollBehavior = 'auto'; scrollTo(0, +hq[1]); }
+t = 5; camera(0.016); geometry(); render();
+requestAnimationFrame(tt => { last = tt; requestAnimationFrame(frame); });
+})();
+</script>
+
+<div id="ah-demo" style="position:fixed;left:12px;bottom:12px;z-index:2147483000;display:flex;align-items:center;gap:10px;padding:8px 8px 8px 14px;border-radius:999px;background:rgba(3,9,15,.86);border:1px solid rgba(44,245,200,.45);box-shadow:0 6px 24px -8px rgba(0,0,0,.6);font:500 12px/1.2 system-ui,-apple-system,Segoe UI,sans-serif;color:#eefcf8;max-width:calc(100vw - 24px);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)"><span style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis">Concepto de diseño «Cosmos» · Aurora Hub Perú</span><a href="https://www.aurorahubperu.com/#proyectos" style="flex:none;color:#03140f;background:linear-gradient(90deg,#2cf5c8,#7cf9e0);border-radius:999px;padding:6px 11px;text-decoration:none;font-weight:700">Ver portafolio</a></div></body></html>

@@ -1,0 +1,449 @@
+<!doctype html><html><head><meta name="robots" content="noindex"><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Átomo · Tecnología y marketing en Lima</title>
+<meta name="description" content="Átomo: inteligencia artificial, publicidad en Meta, TikTok y Google, automatizaciones, n8n y Kommo, diseño web, licencias, servicios TI, servicio técnico y asesoría en equipos de cómputo en Lima, Perú.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  color-scheme: light;
+  --paper:#f3efe6; --card:#f8f5ee; --ink:#151412; --muted:#6b665c; --line:rgba(21,20,18,.14);
+  --acc:#ff4d1f; --cob:#2340ff;
+  --sans:"Bricolage Grotesque", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono:"JetBrains Mono", ui-monospace, Menlo, Consolas, monospace;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);line-height:1.5;-webkit-font-smoothing:antialiased}
+#fx{position:fixed;inset:0;width:100%;height:100%;display:block;z-index:50;pointer-events:none}
+a{color:inherit}
+.wrap{max-width:1240px;margin:0 auto;padding-inline:16px}
+nav{position:sticky;top:0;z-index:40;background:rgba(243,239,230,.86);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+nav .in{max-width:1240px;margin:0 auto;padding:12px 16px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.logo{display:inline-flex;align-items:center;gap:10px;font-weight:800;font-size:20px;letter-spacing:-.02em;text-decoration:none}
+.logo svg{width:28px;height:28px}
+nav ul{display:flex;gap:26px;list-style:none;margin:0;padding:0;font-size:15px;color:var(--muted)}
+nav ul a{text-decoration:none}
+nav ul a:hover{color:var(--ink)}
+.btn{display:inline-flex;align-items:center;gap:10px;font:600 15px/1 var(--sans);text-decoration:none;border-radius:999px;padding:14px 22px;border:1.5px solid var(--ink);color:var(--ink);background:transparent;cursor:pointer}
+.btn:hover{background:var(--ink);color:var(--paper)}
+.btn.solid{background:var(--ink);color:var(--paper)}
+.btn.solid:hover{background:var(--acc);border-color:var(--acc)}
+.btn.sm{padding:9px 16px;font-size:14px}
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid var(--cob);outline-offset:3px}
+.mono{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+
+/* hero editorial */
+.hero{padding:26px 0 0}
+.stage{height:clamp(170px,26vw,360px);position:relative}
+.stage .hint{position:absolute;right:0;bottom:6px}
+.hero-grid{display:grid;grid-template-columns:1.3fr 1fr;gap:40px;align-items:end;padding:28px 0 36px;border-bottom:1px solid var(--line)}
+.hero h1{font-size:clamp(34px,4.4vw,62px);line-height:1.02;letter-spacing:-.035em;margin:0;font-weight:800;text-wrap:balance}
+.hero h1 em{font-style:normal;color:var(--acc)}
+.hero p{margin:0 0 20px;font-size:18px;color:#3b3833}
+.cta{display:flex;gap:12px;flex-wrap:wrap}
+.ticker{overflow:hidden;border-bottom:1px solid var(--line);white-space:nowrap}
+.ticker div{display:inline-block;padding:14px 0;animation:tk 40s linear infinite;font-size:20px;font-weight:600;letter-spacing:-.01em}
+.ticker span{margin:0 22px}
+.ticker i{font-style:normal;color:var(--acc)}
+@keyframes tk{to{transform:translateX(-50%)}}
+
+/* bento */
+.head{display:flex;justify-content:space-between;align-items:end;gap:20px;padding:64px 0 22px;flex-wrap:wrap}
+.head h2{font-size:clamp(30px,3.6vw,50px);line-height:1.02;letter-spacing:-.03em;margin:8px 0 0;font-weight:800;max-width:18ch}
+.head p{max-width:42ch;margin:0;color:var(--muted);font-size:16px}
+.bento{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));grid-auto-rows:290px;gap:14px;
+  grid-template-areas:"ia ia ads ads" "ia ia auto lic" "n8n n8n n8n ti" "web tec ase ase"}
+.card{position:relative;background:var(--card);border:1px solid var(--line);border-radius:22px;padding:20px 22px;display:flex;flex-direction:column;overflow:hidden;transition:border-color .2s}
+.card:hover{border-color:rgba(21,20,18,.4)}
+.card .top{display:flex;justify-content:space-between;gap:10px;align-items:start}
+.card h3{font-size:22px;line-height:1.1;letter-spacing:-.02em;margin:6px 0 6px;font-weight:800}
+.card.big h3{font-size:34px}
+.card p{margin:0;color:var(--muted);font-size:14.5px;max-width:40ch}
+.card .sim{position:relative;flex:1;margin:6px -22px -20px;min-height:90px}
+.card .cap{order:2;font-family:var(--mono);font-size:11px;letter-spacing:.02em;color:var(--cob);margin-top:8px;min-height:1.4em}
+.card .top{order:1}.card .sim{order:3}
+.open{flex:none;width:38px;height:38px;border-radius:50%;border:1.5px solid var(--ink);background:var(--card);font:600 20px/1 var(--sans);cursor:pointer;display:grid;place-items:center;z-index:2}
+.open:hover{background:var(--ink);color:var(--paper)}
+.card:nth-child(1){grid-area:ia}.card:nth-child(2){grid-area:ads}.card:nth-child(3){grid-area:auto}.card:nth-child(4){grid-area:lic}.card:nth-child(5){grid-area:n8n}
+.card:nth-child(6){grid-area:ti}.card:nth-child(7){grid-area:web}.card:nth-child(8){grid-area:tec}.card:nth-child(9){grid-area:ase}
+
+/* proceso */
+.proc{margin-top:64px;border-top:1px solid var(--line)}
+.proc .sim{height:200px;position:relative}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;list-style:none;margin:0;padding:0 0 10px;text-align:center}
+.steps b{display:block;font-size:20px;letter-spacing:-.02em}
+.steps span{color:var(--muted);font-size:14.5px}
+
+/* contacto */
+.contact{display:grid;grid-template-columns:1fr 1fr;gap:40px;padding:70px 0 40px;border-top:1px solid var(--line);margin-top:56px}
+.contact h2{font-size:clamp(34px,4.6vw,66px);line-height:1;letter-spacing:-.035em;margin:10px 0 16px;font-weight:800}
+.contact h2 em{font-style:normal;color:var(--cob)}
+form{display:grid;gap:12px}
+label{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);display:grid;gap:6px}
+input,select,textarea{font:500 16px/1.4 var(--sans);color:var(--ink);background:var(--card);border:1.5px solid var(--line);border-radius:14px;padding:13px 15px;width:100%}
+textarea{min-height:90px;resize:vertical}
+footer{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;padding:20px 0 30px;border-top:1px solid var(--line);font-size:13px;color:var(--muted)}
+
+/* detalle */
+.modal{position:fixed;inset:0;z-index:45;background:var(--paper);display:none;overflow:auto}
+.modal.on{display:block}
+.modal .in{max-width:1240px;margin:0 auto;padding:22px 16px 40px;display:grid;grid-template-columns:1fr 1.25fr;gap:40px;min-height:100%}
+.modal h2{font-size:clamp(34px,4.4vw,60px);line-height:1;letter-spacing:-.035em;margin:10px 0 14px;font-weight:800}
+.modal p{font-size:17px;color:#3b3833;margin:0 0 18px}
+.modal ul{list-style:none;padding:0;margin:0 0 26px;display:grid;gap:10px}
+.modal li{display:flex;gap:12px;align-items:baseline;font-size:16px;border-bottom:1px solid var(--line);padding-bottom:10px}
+.modal li::before{content:"";flex:none;width:8px;height:8px;border-radius:50%;background:var(--acc);transform:translateY(-1px)}
+.modal .msim{position:relative;min-height:420px;border:1px solid var(--line);border-radius:22px;background:var(--card)}
+.modal .close{position:absolute;top:18px;right:18px;z-index:2}
+.modal .mcap{position:absolute;left:18px;bottom:14px;font-family:var(--mono);font-size:12px;color:var(--muted)}
+
+@media (max-width:980px){
+  .bento{grid-template-columns:repeat(2,minmax(0,1fr));grid-template-areas:"ia ia" "ia ia" "ads ads" "auto lic" "n8n n8n" "ti web" "tec ase"}
+  .hero-grid,.contact,.modal .in{grid-template-columns:1fr}
+}
+@media (max-width:620px){
+  nav ul{display:none}
+  .bento{grid-template-columns:1fr;grid-auto-rows:300px;grid-template-areas:"ia" "ia" "ads" "auto" "lic" "n8n" "ti" "web" "tec" "ase"}
+  .steps{grid-template-columns:repeat(2,1fr);row-gap:18px}
+  .modal .msim{min-height:320px}
+}
+@media (prefers-reduced-motion: reduce){.ticker div{animation:none}}
+</style>
+
+<canvas id="fx" aria-hidden="true"></canvas>
+
+<nav aria-label="Principal"><div class="in">
+  <a class="logo" href="#inicio" aria-label="Átomo, inicio"><svg viewBox="0 0 32 32" fill="none" aria-hidden="true"><circle cx="16" cy="16" r="3.2" fill="#ff4d1f"/><ellipse cx="16" cy="16" rx="13" ry="5" stroke="#151412" stroke-width="1.6"/><ellipse cx="16" cy="16" rx="13" ry="5" stroke="#151412" stroke-width="1.6" transform="rotate(60 16 16)"/><ellipse cx="16" cy="16" rx="13" ry="5" stroke="#2340ff" stroke-width="1.6" transform="rotate(-60 16 16)"/></svg>átomo</a>
+  <ul><li><a href="#servicios">Servicios</a></li><li><a href="#proceso">Proceso</a></li><li><a href="#contacto">Contacto</a></li></ul>
+  <a class="btn sm solid" href="#contacto">Cotizar</a>
+</div></nav>
+
+<main id="inicio">
+<section class="hero"><div class="wrap">
+  <div class="stage" data-sim="sand" aria-label="La palabra átomo formada por partículas"><span class="mono hint">Pasa el cursor · haz clic</span></div>
+  <div class="hero-grid">
+    <h1>Tecnología y marketing, <em>partícula por partícula.</em></h1>
+    <div><p>Somos un estudio en Lima que junta inteligencia artificial, publicidad, automatización, web y soporte técnico. Cada tarjeta de abajo no es un adorno: sus partículas te muestran cómo funciona el servicio.</p>
+      <div class="cta"><a class="btn solid" href="#servicios">Ver servicios</a><a class="btn" href="#contacto">Hablemos</a></div></div>
+  </div>
+</div>
+<div class="ticker" aria-hidden="true"><div>
+  <span>Inteligencia artificial <i>●</i></span><span>Meta · TikTok · Google Ads <i>●</i></span><span>Automatizaciones <i>●</i></span><span>n8n + Kommo <i>●</i></span><span>Diseño web <i>●</i></span><span>Licencias <i>●</i></span><span>Servicios TI <i>●</i></span><span>Servicio técnico <i>●</i></span><span>Asesoría en equipos <i>●</i></span>
+  <span>Inteligencia artificial <i>●</i></span><span>Meta · TikTok · Google Ads <i>●</i></span><span>Automatizaciones <i>●</i></span><span>n8n + Kommo <i>●</i></span><span>Diseño web <i>●</i></span><span>Licencias <i>●</i></span><span>Servicios TI <i>●</i></span><span>Servicio técnico <i>●</i></span><span>Asesoría en equipos <i>●</i></span>
+</div></div>
+</section>
+
+<section class="wrap" id="servicios">
+  <div class="head"><div><span class="mono">Servicios · 09</span><h2>Nueve servicios, nueve experimentos vivos.</h2></div><p>Mira cada simulación: el embudo filtra clientes, la automatización ordena el caos, el CRM mueve leads y el técnico repara el chip. Toca «+» para ver el detalle.</p></div>
+  <div class="bento" id="bento"></div>
+</section>
+
+<section class="wrap proc" id="proceso">
+  <div class="head"><div><span class="mono">Cómo trabajamos</span><h2>Entra una idea en bruto, sale un resultado.</h2></div><p>Las partículas cambian de color en cada etapa: así transformamos lo que nos traes.</p></div>
+  <div class="sim" data-sim="flow"></div>
+  <ol class="steps"><li><b>Diagnóstico</b><span>Escuchamos y revisamos lo que ya tienes.</span></li><li><b>Propuesta</b><span>Plan, plazos y costo claros.</span></li><li><b>Implementación</b><span>Construimos, configuramos o reparamos.</span></li><li><b>Soporte</b><span>Medimos, ajustamos y seguimos contigo.</span></li></ol>
+</section>
+
+<section class="wrap contact" id="contacto">
+  <div><span class="mono">Contacto</span><h2>Empecemos por <em>una partícula.</em></h2><p style="color:var(--muted);font-size:17px;margin:0">Cuéntanos qué necesitas y te respondemos con una propuesta. Lima, Perú · atención presencial y remota.</p></div>
+  <form id="form">
+    <label>Nombre<input name="n" autocomplete="name" required></label>
+    <label>Servicio<select name="s" id="svc"></select></label>
+    <label>Mensaje<textarea name="m" placeholder="Ej.: quiero conectar WhatsApp con Kommo"></textarea></label>
+    <button class="btn solid" type="submit" id="send">Enviar por WhatsApp →</button>
+  </form>
+</section>
+<footer class="wrap"><span>© Átomo · Lima, Perú</span><span id="count">Prototipo · datos de contacto por definir</span></footer>
+</main>
+
+<div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="mTitle"><div class="in">
+  <div><span class="mono" id="mNum"></span><h2 id="mTitle"></h2><p id="mText"></p><ul id="mList"></ul><div class="cta"><a class="btn solid" href="#contacto" id="mCta">Cotizar este servicio</a><button class="btn" type="button" id="mBack">Volver</button></div></div>
+  <div class="msim" id="msim"><button class="open close" type="button" id="mClose" aria-label="Cerrar">×</button><span class="mcap" id="mCap"></span></div>
+</div></div>
+
+<script>
+(() => {
+'use strict';
+const WHATSAPP = '51932462537'; // número con código de país, p. ej. 51XXXXXXXXX
+const SVC = [
+  {id: 'ia', sim: 'neural', big: true, name: 'Inteligencia artificial', short: 'Asistentes que responden, contenido generado y decisiones con datos.', cap: 'red neuronal · señales en vivo',
+   text: 'Ponemos la IA a trabajar en tu negocio: responde clientes a cualquier hora, crea contenido y te ayuda a decidir con datos.', list: ['Chatbots y asistentes para WhatsApp y web', 'Imágenes y video generados con IA', 'Análisis y reportes automáticos', 'Capacitación para tu equipo']},
+  {id: 'ads', sim: 'funnel', name: 'Meta, TikTok y Google Ads', short: 'Miles de impactos entran; salen clientes.', cap: '',
+   text: 'Campañas que llegan a quien sí te va a comprar. El embudo de la derecha es literal: las tres plataformas alimentan, la segmentación filtra y abajo quedan los clientes.', list: ['Estrategia y segmentación por plataforma', 'Creativos pensados para cada formato', 'Píxel, eventos y conversiones configurados', 'Reporte semanal de resultados']},
+  {id: 'auto', sim: 'sort', name: 'Automatizaciones', short: 'Del caos al orden, sin tocar nada.', cap: '',
+   text: 'Las tareas repetitivas se hacen solas: los mensajes, formularios y pedidos entran desordenados y salen clasificados, cada uno a su lugar.', list: ['Respuestas y seguimiento automático por WhatsApp', 'Formularios conectados a CRM y hojas de cálculo', 'Cotizaciones y recordatorios automáticos', 'Flujos en n8n, Make o Zapier']},
+  {id: 'lic', sim: 'shield', name: 'Licencias', short: 'Software en regla y protegido.', cap: '',
+   text: 'Licencias originales, instaladas y activadas. Tus equipos quedan protegidos: lo de afuera rebota, lo de adentro trabaja tranquilo.', list: ['Sistemas operativos', 'Ofimática y correo', 'Antivirus y seguridad', 'Software de diseño']},
+  {id: 'n8n', sim: 'pipeline', name: 'n8n y Kommo', short: 'Cada lead avanza solo por tu embudo de ventas.', cap: '',
+   text: 'Implementamos y configuramos Kommo y lo conectamos con n8n: cada lead entra, se contacta, recibe su propuesta y se cierra, con salesbots y seguimiento automático.', list: ['Flujos en n8n con WhatsApp, formularios, hojas, correo e IA', 'Kommo CRM: embudos, etapas y campos a tu medida', 'WhatsApp, Instagram y Facebook conectados a Kommo', 'Salesbots, respuestas automáticas y seguimiento', 'Leads de Meta Ads y de tu web directo al CRM', 'Configuración de otras apps y capacitación']},
+  {id: 'ti', sim: 'network', name: 'Servicios TI', short: 'Red, correo y respaldos funcionando.', cap: '',
+   text: 'La infraestructura de tu oficina, estable y protegida: redes, correo corporativo, respaldos y soporte remoto.', list: ['Redes cableadas y wifi', 'Correo corporativo', 'Respaldos y seguridad', 'Soporte remoto']},
+  {id: 'web', sim: 'build', name: 'Diseño web', short: 'Webs que se arman para vender.', cap: 'armando una landing',
+   text: 'Landing pages, tiendas y webs corporativas rápidas, claras y memorables, hechas para que te encuentren y te escriban. Como esta.', list: ['Landing pages que convierten', 'Tiendas online y webs corporativas', 'SEO y velocidad de carga', 'Experiencias interactivas']},
+  {id: 'tec', sim: 'repair', name: 'Servicio técnico', short: 'Diagnóstico y reparación.', cap: '',
+   text: 'Diagnóstico honesto y reparación rápida de computadoras, en taller o a domicilio.', list: ['Mantenimiento preventivo', 'Reparación y diagnóstico', 'Formateo y optimización', 'Mejoras de SSD y memoria RAM', 'Recuperación de información']},
+  {id: 'ase', sim: 'bars', name: 'Asesoría en equipos', short: 'Comparamos por ti y elegimos lo que conviene.', cap: '',
+   text: 'Compra lo que necesitas, ni más ni menos: comparamos laptops, PCs, impresoras y servidores según tu uso y presupuesto.', list: ['Laptops y computadoras de escritorio', 'Impresoras y periféricos', 'Servidores y equipos de red', 'Comparativas y cotizaciones']}
+];
+const $b = document.getElementById('bento'), $svc = document.getElementById('svc');
+SVC.forEach((s, i) => {
+  const a = document.createElement('article'); a.className = 'card' + (s.big ? ' big' : ''); a.id = s.id;
+  a.innerHTML = `<div class="top"><div><span class="mono">0${i + 1}</span><h3>${s.name}</h3><p>${s.short}</p></div><button class="open" type="button" aria-label="Ver detalle de ${s.name}">+</button></div><div class="sim" data-sim="${s.sim}"></div><span class="cap">${s.cap}</span>`;
+  $b.appendChild(a); const o = document.createElement('option'); o.textContent = s.name; $svc.appendChild(o);
+  a.querySelector('.open').addEventListener('click', () => openModal(i));
+});
+
+/* ===================== WebGL: un solo lienzo encima de todo, dibuja cada región ===================== */
+const cv = document.getElementById('fx');
+const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const gl = cv.getContext('webgl2', {antialias: true, alpha: true, premultipliedAlpha: true, preserveDrawingBuffer: true});
+const coarse = matchMedia('(pointer: coarse)').matches;
+const HQ = location.hash.startsWith('#hq');
+const TAU = Math.PI * 2, rnd = Math.random, clamp = (x, a, b) => Math.max(a, Math.min(b, x));
+const INK = [0.08, 0.078, 0.07], ACC = [1.0, 0.3, 0.12], COB = [0.14, 0.25, 1.0], GRY = [0.62, 0.6, 0.56];
+const MAXP = 40000, MAXL = 12000, PB = new Float32Array(MAXP * 7), LB = new Float32Array(MAXL * 2 * 6);
+let nP = 0, nL = 0, W = 0, H = 0, DPR = 1, OX = 0, OY = 0;
+function P(x, y, c, a, s){ if (nP >= MAXP) return; const o = nP * 7; PB[o] = OX + x; PB[o + 1] = OY + y; PB[o + 2] = c[0]; PB[o + 3] = c[1]; PB[o + 4] = c[2]; PB[o + 5] = a; PB[o + 6] = s; nP++; }
+function L(x1, y1, x2, y2, c, a){ if (nL >= MAXL) return; const o = nL * 12; LB[o] = OX + x1; LB[o + 1] = OY + y1; LB[o + 2] = c[0]; LB[o + 3] = c[1]; LB[o + 4] = c[2]; LB[o + 5] = a; LB[o + 6] = OX + x2; LB[o + 7] = OY + y2; LB[o + 8] = c[0]; LB[o + 9] = c[1]; LB[o + 10] = c[2]; LB[o + 11] = a; nL++; }
+const mix3 = (a, b, k) => [a[0] + (b[0] - a[0]) * k, a[1] + (b[1] - a[1]) * k, a[2] + (b[2] - a[2]) * k];
+
+/* ---------------- simulaciones (coordenadas locales en px) ---------------- */
+class Sim { constructor(el, cap){ this.el = el; this.cap = cap; this.w = 0; this.h = 0; this.t = 0; } size(w, h){ if (Math.abs(w - this.w) > 1 || Math.abs(h - this.h) > 1) { this.w = w; this.h = h; this.init(); } } say(s){ if (this.cap && this.cap.textContent !== s) this.cap.textContent = s; } }
+function repel(p, m, R, k){ if (!m) return; const dx = p.x - m.x, dy = p.y - m.y, d = Math.hypot(dx, dy); if (d < R && d > 0.01) { const f = (1 - d / R) ** 2 * k; p.vx += dx / d * f; p.vy += dy / d * f; } }
+
+// 0) arena: la palabra formada por partículas; el cursor la sopla, el clic la explota
+class Sand extends Sim {
+  init(){ const w = Math.max(10, Math.round(this.w)), h = Math.max(10, Math.round(this.h)), c = document.createElement('canvas'); c.width = w; c.height = h; const x = c.getContext('2d');
+    let fs = h * 1.02; x.font = `800 ${fs}px "Bricolage Grotesque", sans-serif`; const mw = x.measureText('átomo').width; if (mw > w * 0.98) fs *= w * 0.98 / mw;
+    x.font = `800 ${fs}px "Bricolage Grotesque", sans-serif`; x.textBaseline = 'alphabetic'; x.fillStyle = '#000'; const tw = x.measureText('átomo').width; x.fillText('átomo', (w - tw) / 2, h * 0.84);
+    const d = x.getImageData(0, 0, w, h).data, T = [], st = coarse ? 4 : 3; for (let y = 0; y < h; y += st) for (let xx = 0; xx < w; xx += st) if (d[(y * w + xx) * 4 + 3] > 140) T.push(xx + (rnd() - 0.5) * 1.5, y + (rnd() - 0.5) * 1.5);
+    const n = Math.min(T.length / 2, coarse ? 5000 : 11000); this.p = [];
+    for (let i = 0; i < n; i++) { const k = (rnd() * T.length / 2 | 0) * 2; this.p.push({tx: T[k], ty: T[k + 1], x: rnd() * w, y: h + rnd() * 200, vx: 0, vy: 0, c: rnd() < 0.06 ? ACC : rnd() < 0.04 ? COB : INK}); } }
+  boom(m){ for (const p of this.p) { const dx = p.x - m.x, dy = p.y - m.y, d = Math.hypot(dx, dy) + 20; p.vx += dx / d * 900 / Math.sqrt(d) * (0.5 + rnd()); p.vy += dy / d * 900 / Math.sqrt(d) * (0.5 + rnd()) - 3; } }
+  step(dt, m){ for (const p of this.p) { p.vx += (p.tx - p.x) * 0.018; p.vy += (p.ty - p.y) * 0.018; repel(p, m, 80, 9); p.vx *= 0.86; p.vy *= 0.86; p.x += p.vx; p.y += p.vy; } }
+  draw(){ for (const p of this.p) { const sp = Math.min(1, Math.hypot(p.vx, p.vy) * 0.15); P(p.x, p.y, sp > 0.3 ? mix3(p.c, ACC, sp) : p.c, 0.9, 2.1); } }
+}
+// 1) IA: red neuronal con señales que viajan de la entrada a la salida
+class Neural extends Sim {
+  init(){ const w = this.w, h = this.h, Ls = [4, 7, 7, 3]; this.N = []; this.layers = [];
+    Ls.forEach((n, li) => { const col = []; for (let k = 0; k < n; k++) { const node = {x: w * (0.1 + li * 0.8 / (Ls.length - 1)), y: h * (0.12 + (k + 0.5) / n * 0.8), a: 0, li}; col.push(this.N.length); this.N.push(node); } this.layers.push(col); });
+    this.s = []; }
+  step(dt){ this.t += dt; if (this.s.length < 160 && rnd() < dt * 40) { const a = this.layers[0][rnd() * this.layers[0].length | 0]; this.go({from: a, u: 0, tr: []}); }
+    for (let i = this.s.length - 1; i >= 0; i--) { const s = this.s[i]; s.u += dt * s.sp; const A = this.N[s.from], B = this.N[s.to];
+      s.x = A.x + (B.x - A.x) * s.u; s.y = A.y + (B.y - A.y) * s.u; s.tr.push(s.x, s.y); if (s.tr.length > 14) s.tr.splice(0, 2);
+      if (s.u >= 1) { B.a = 1; if (B.li === this.layers.length - 1) { this.s.splice(i, 1); this.fired = (this.fired || 0) + 1; } else { s.from = s.to; s.u = 0; this.pick(s); } } }
+    for (const n of this.N) n.a *= Math.exp(-dt * 2.2);
+    this.say(`${this.fired || 0} respuestas generadas · ${this.s.length} señales en vivo`); }
+  go(s){ this.pick(s); s.sp = 1.2 + rnd() * 0.8; s.c = rnd() < 0.5 ? ACC : COB; this.s.push(s); }
+  pick(s){ const nx = this.layers[this.N[s.from].li + 1]; s.to = nx[rnd() * nx.length | 0]; }
+  draw(){ for (let a = 0; a < this.layers.length - 1; a++) for (const i of this.layers[a]) for (const j of this.layers[a + 1]) { const A = this.N[i], B = this.N[j]; L(A.x, A.y, B.x, B.y, INK, 0.07 + 0.25 * Math.min(A.a, B.a)); }
+    for (const s of this.s) { for (let k = 2; k < s.tr.length; k += 2) L(s.tr[k - 2], s.tr[k - 1], s.tr[k], s.tr[k + 1], s.c, k / s.tr.length * 0.8); P(s.x, s.y, s.c, 1, 4.5); }
+    for (const n of this.N) { P(n.x, n.y, INK, 1, 12 + n.a * 8); P(n.x, n.y, mix3([0.97, 0.96, 0.93], n.li === this.layers.length - 1 ? ACC : COB, n.a), 1, 8 + n.a * 6); } }
+}
+// 2) Ads: embudo que filtra impactos hasta clientes
+class Funnel extends Sim {
+  init(){ this.p = []; this.imp = 0; this.clk = 0; this.cli = 0; this.pile = []; }
+  geo(y){ const w = this.w, h = this.h, y0 = h * 0.1, y1 = h * 0.72, t = clamp((y - y0) / (y1 - y0), 0, 1), half = w * 0.36 * (1 - t) + w * 0.035 * t; return [w / 2 - half, w / 2 + half, y0, y1]; }
+  step(dt){ const w = this.w, h = this.h, src = [0.2, 0.5, 0.8]; this.t += dt;
+    for (let k = 0; k < 3; k++) if (rnd() < dt * 22) { this.p.push({x: w * (0.5 + (src[k] - 0.5) * 0.72) + (rnd() - 0.5) * 20, y: -4, vx: (rnd() - 0.5) * 20, vy: 30 + rnd() * 30, c: [COB, ACC, INK][k], st: 0, a: 1}); this.imp++; }
+    const fy = h * 0.4;
+    for (let i = this.p.length - 1; i >= 0; i--) { const p = this.p[i]; p.vy += 260 * dt; p.vx *= 0.99; p.x += p.vx * dt; p.y += p.vy * dt;
+      if (p.st === 0 && p.y > fy) { if (rnd() < 0.3) { p.st = 1; this.clk++; } else { p.st = 2; p.vx = (p.x < w / 2 ? -1 : 1) * (60 + rnd() * 80); p.c = GRY; } }
+      if (p.st !== 2) { const [l, r, y0, y1] = this.geo(p.y); if (p.y > y0 && p.y < y1) { if (p.x < l) { p.x = l; p.vx = Math.abs(p.vx) * 0.4 + 10; } if (p.x > r) { p.x = r; p.vx = -Math.abs(p.vx) * 0.4 - 10; } } else if (p.y >= y1) { p.x += (w / 2 - p.x) * 0.2; } }
+      else p.a -= dt * 1.4;
+      if (p.st === 1 && p.y > h * 0.86) { this.cli++; this.pile.push(p.c); if (this.pile.length > 60) this.pile.shift(); this.p.splice(i, 1); continue; }
+      if (p.y > h + 10 || p.a <= 0) this.p.splice(i, 1); }
+    this.say(`Impactos ${this.imp.toLocaleString('es-PE')} · Clics ${this.clk.toLocaleString('es-PE')} · Clientes ${this.cli.toLocaleString('es-PE')}`); }
+  draw(){ const w = this.w, h = this.h; let pr = null;
+    for (let k = 0; k <= 20; k++) { const y = this.geo(0)[2] + (this.geo(0)[3] - this.geo(0)[2]) * k / 20, g = this.geo(y); if (pr) { L(pr[0], pr[2], g[0], y, INK, 0.5); L(pr[1], pr[2], g[1], y, INK, 0.5); } pr = [g[0], g[1], y]; }
+    L(w * 0.18, h * 0.4, w * 0.82, h * 0.4, ACC, 0.35);
+    for (const p of this.p) P(p.x, p.y, p.c, clamp(p.a, 0, 1), 3.4);
+    this.pile.forEach((c, i) => P(w / 2 - 36 + (i % 12) * 6.5, h * 0.95 - Math.floor(i / 12) * 6.5, c, 1, 5)); }
+}
+// 3) Automatizaciones: entran desordenados, salen clasificados en tres carriles
+class Sort extends Sim {
+  init(){ this.p = []; this.n = 0; }
+  step(dt){ const w = this.w, h = this.h, gx = w * 0.46; this.t += dt;
+    if (rnd() < dt * 30) this.p.push({x: -6, y: h * (0.08 + rnd() * 0.84), vx: 40 + rnd() * 40, vy: (rnd() - 0.5) * 30, k: rnd() * 3 | 0, ph: rnd() * 9, done: false});
+    for (let i = this.p.length - 1; i >= 0; i--) { const p = this.p[i];
+      if (p.x < gx) { p.vy += Math.sin(this.t * 3 + p.ph) * 60 * dt; p.vy = clamp(p.vy, -60, 60); p.x += p.vx * dt; p.y = clamp(p.y + p.vy * dt, h * 0.05, h * 0.95); if (p.x >= gx) { p.done = true; this.n++; } }
+      else { const ly = h * (0.22 + p.k * 0.28); p.y += (ly - p.y) * Math.min(1, dt * 7); p.x += 55 * dt; }
+      if (p.x > w + 6) this.p.splice(i, 1); }
+    this.say(`${this.n.toLocaleString('es-PE')} tareas clasificadas sin intervención`); }
+  draw(){ const w = this.w, h = this.h, gx = w * 0.46, C = [ACC, COB, INK];
+    L(gx - 10, h * 0.04, gx + 10, h * 0.04, INK, 0.8); L(gx - 10, h * 0.96, gx + 10, h * 0.96, INK, 0.8); L(gx - 10, h * 0.04, gx - 10, h * 0.96, INK, 0.8); L(gx + 10, h * 0.04, gx + 10, h * 0.96, INK, 0.8);
+    for (let k = 0; k < 3; k++) { const y = h * (0.22 + k * 0.28); L(gx + 14, y, w, y, C[k], 0.12); }
+    P(gx, h * 0.5, (this.t % 0.6) < 0.3 ? ACC : INK, 1, 6);
+    for (const p of this.p) P(p.x, p.y, p.x < gx ? GRY : C[p.k], 1, 3.6); }
+}
+// 4) Licencias: escudo; adentro trabaja tranquilo, lo de afuera rebota
+class Shield extends Sim {
+  init(){ const w = this.w, h = this.h, s = Math.min(w * 0.5, h * 0.8), cx = w * 0.55, cy = h * 0.47;
+    this.poly = [[0, -0.5], [0.42, -0.36], [0.42, 0.02], [0.3, 0.3], [0, 0.52], [-0.3, 0.3], [-0.42, 0.02], [-0.42, -0.36]].map(q => [cx + q[0] * s, cy + q[1] * s]);
+    this.in = []; for (let i = 0; i < 160; i++) { let x, y; do { x = cx + (rnd() - 0.5) * s * 0.8; y = cy + (rnd() - 0.5) * s; } while (!this.inside(x, y)); this.in.push({x, y, vx: (rnd() - 0.5) * 30, vy: (rnd() - 0.5) * 30}); }
+    this.out = []; this.spark = []; this.blocked = 0; this.cx = cx; this.cy = cy; }
+  inside(x, y){ let c = false; const P2 = this.poly; for (let i = 0, j = P2.length - 1; i < P2.length; j = i++) { const [xi, yi] = P2[i], [xj, yj] = P2[j]; if ((yi > y) !== (yj > y) && x < (xj - xi) * (y - yi) / (yj - yi) + xi) c = !c; } return c; }
+  step(dt, m){ const w = this.w, h = this.h; this.t += dt;
+    for (const p of this.in) { p.vx += (rnd() - 0.5) * 40 * dt; p.vy += (rnd() - 0.5) * 40 * dt; const nx = p.x + p.vx * dt, ny = p.y + p.vy * dt; if (this.inside(nx, ny)) { p.x = nx; p.y = ny; } else { p.vx = -p.vx; p.vy = -p.vy; } }
+    if (this.out.length < 50 && rnd() < dt * 8) { const a = rnd() * TAU; this.out.push({x: this.cx + Math.cos(a) * w * 0.6, y: this.cy + Math.sin(a) * h * 0.6, vx: 0, vy: 0, a: 1}); }
+    for (let i = this.out.length - 1; i >= 0; i--) { const p = this.out[i], dx = this.cx - p.x, dy = this.cy - p.y, d = Math.hypot(dx, dy) + 1; p.vx += dx / d * 60 * dt; p.vy += dy / d * 60 * dt; if (m) repel(p, m, 60, 40);
+      const nx = p.x + p.vx * dt, ny = p.y + p.vy * dt; if (this.inside(nx, ny)) { this.spark.push({x: p.x, y: p.y, a: 1}); p.vx = -p.vx * 1.6; p.vy = -p.vy * 1.6; this.blocked++; } else { p.x = nx; p.y = ny; }
+      if (Math.hypot(p.x - this.cx, p.y - this.cy) > Math.max(w, h)) this.out.splice(i, 1); }
+    for (let i = this.spark.length - 1; i >= 0; i--) { this.spark[i].a -= dt * 2.5; if (this.spark[i].a <= 0) this.spark.splice(i, 1); }
+    this.say(`${this.blocked.toLocaleString('es-PE')} amenazas bloqueadas`); }
+  draw(){ const P2 = this.poly; for (let i = 0; i < P2.length; i++) { const a = P2[i], b = P2[(i + 1) % P2.length]; L(a[0], a[1], b[0], b[1], INK, 0.85); for (let k = 0; k < 10; k++) P(a[0] + (b[0] - a[0]) * k / 10, a[1] + (b[1] - a[1]) * k / 10, INK, 0.9, 2.4); }
+    for (const p of this.in) P(p.x, p.y, COB, 0.9, 3.2); for (const p of this.out) P(p.x, p.y, ACC, 0.9, 3.6); for (const s of this.spark) P(s.x, s.y, ACC, s.a * 0.6, 18 * (1.2 - s.a)); }
+}
+// 5) n8n + Kommo: embudo de ventas con etapas; los leads avanzan solos
+class Pipeline extends Sim {
+  init(){ this.p = []; this.won = 0; this.tick = 0; this.names = ['Nuevo', 'Contactado', 'Propuesta', 'Ganado']; }
+  col(k){ const w = this.w; return [w * (0.08 + k * 0.24), w * 0.18]; }
+  step(dt){ const h = this.h; this.t += dt; this.tick += dt;
+    if (rnd() < dt * 7 && this.p.filter(p => p.st === 0).length < 60) this.p.push({st: 0, x: this.col(0)[0] + rnd() * this.col(0)[1], y: -6, vx: 0, vy: 0, a: 1, id: this.t + rnd()});
+    if (this.tick > 0.22) { this.tick = 0; for (let s = 2; s >= 0; s--) { const c = this.p.filter(p => p.st === s && p.a >= 1); if (c.length && rnd() < 0.55) { const p = c[0]; if (rnd() < 0.22 && s < 2) { p.drop = true; } else { p.st = s + 1; p.vy = -180; p.id = this.t + rnd(); if (p.st === 3) this.won++; } } } }
+    const won = this.p.filter(p => p.st === 3); if (won.length > 70) won.slice(0, won.length - 70).forEach(p => p.drop = true);
+    const slots = [0, 0, 0, 0]; this.p.sort((a, b) => a.id - b.id);
+    for (let i = this.p.length - 1; i >= 0; i--) { const p = this.p[i]; if (p.drop) { p.a -= dt * 2; p.vy += 300 * dt; p.y += p.vy * dt; if (p.a <= 0) this.p.splice(i, 1); } }
+    for (const p of this.p) { if (p.drop) continue; const [cx, cw] = this.col(p.st), k = slots[p.st]++, per = 10, cell = cw / per, tx = cx + (k % per + 0.5) * cell, ty = h * 0.94 - (Math.floor(k / per) + 0.5) * cell;
+      p.vx += (tx - p.x) * 60 * dt; p.vy += (ty - p.y) * 60 * dt; p.vx *= 0.82; p.vy *= 0.82; p.x += p.vx * dt; p.y += p.vy * dt; }
+    this.say(`Nuevo ${slots[0]} → Contactado ${slots[1]} → Propuesta ${slots[2]} → Ganado ${this.won.toLocaleString('es-PE')}`); }
+  draw(){ const h = this.h, C = [GRY, COB, ACC, INK];
+    for (let k = 0; k < 4; k++) { const [x, w] = this.col(k); L(x, h * 0.2, x + w, h * 0.2, C[k], 0.8); L(x, h * 0.2, x, h * 0.96, INK, 0.12); L(x + w, h * 0.2, x + w, h * 0.96, INK, 0.12);
+      if (k < 3) { const [x2] = this.col(k + 1), ax = x + w, bx = x2, y = h * 0.12; let px = ax, py = h * 0.2; for (let q = 1; q <= 16; q++) { const u = q / 16, xx = ax + (bx - ax) * u, yy = h * 0.2 - Math.sin(u * Math.PI) * h * 0.1; L(px, py, xx, yy, INK, 0.25); px = xx; py = yy; }
+        const u = (this.t * 0.6 + k * 0.3) % 1; P(ax + (bx - ax) * u, h * 0.2 - Math.sin(u * Math.PI) * h * 0.1, ACC, 1, 5); } }
+    for (const p of this.p) P(p.x, p.y, C[p.st], clamp(p.a, 0, 1), Math.min(8, this.col(0)[1] / 10 * 0.72)); }
+}
+// 6) Servicios TI: red con paquetes que viajan entre equipos
+class Network extends Sim {
+  init(){ const w = this.w, h = this.h, pts = [[0.15, 0.3], [0.4, 0.15], [0.7, 0.25], [0.88, 0.5], [0.62, 0.62], [0.33, 0.55], [0.12, 0.8], [0.5, 0.88], [0.82, 0.85]];
+    this.N = pts.map(q => ({x: q[0] * w, y: q[1] * h, a: 0})); this.E = [[0, 1], [1, 2], [2, 3], [3, 4], [4, 5], [5, 0], [5, 6], [6, 7], [7, 4], [7, 8], [8, 3], [1, 5], [2, 4]];
+    this.adj = this.N.map((_, i) => this.E.filter(e => e[0] === i || e[1] === i).map(e => e[0] === i ? e[1] : e[0])); this.k = []; this.cnt = 0; this.rate = 0; }
+  step(dt){ this.t += dt; if (this.k.length < 60 && rnd() < dt * 25) { const a = rnd() * this.N.length | 0; this.k.push({a, b: this.adj[a][rnd() * this.adj[a].length | 0], u: 0, sp: 1.5 + rnd(), hops: 0, c: rnd() < 0.8 ? COB : ACC}); }
+    for (let i = this.k.length - 1; i >= 0; i--) { const p = this.k[i]; p.u += dt * p.sp; if (p.u >= 1) { this.N[p.b].a = 1; this.cnt++; p.hops++; if (p.hops > 4) { this.k.splice(i, 1); continue; } const nb = this.adj[p.b]; p.a = p.b; p.b = nb[rnd() * nb.length | 0]; p.u = 0; } }
+    for (const n of this.N) n.a *= Math.exp(-dt * 3); this.rate += (this.k.length * 1.8 - this.rate) * dt;
+    this.say(`${Math.round(this.rate * 10)} paquetes/s · latencia ${(8 + Math.sin(this.t) * 2).toFixed(0)} ms · 0 caídas`); }
+  draw(){ for (const [a, b] of this.E) L(this.N[a].x, this.N[a].y, this.N[b].x, this.N[b].y, INK, 0.28);
+    for (const p of this.k) { const A = this.N[p.a], B = this.N[p.b]; P(A.x + (B.x - A.x) * p.u, A.y + (B.y - A.y) * p.u, p.c, 1, 4.5); }
+    for (const n of this.N) { P(n.x, n.y, INK, 1, 14); P(n.x, n.y, mix3([0.97, 0.96, 0.93], COB, n.a), 1, 9); } }
+}
+// 7) Web: las partículas arman el layout de una landing, lo desarman y arman otro
+class Build extends Sim {
+  init(){ const w = this.w, h = this.h, n = coarse ? 380 : 620; this.p = []; for (let i = 0; i < n; i++) this.p.push({x: rnd() * w, y: rnd() * h, vx: 0, vy: 0, tx: 0, ty: 0, c: INK}); this.v = -1; this.next(); }
+  next(){ const w = this.w, h = this.h, V = [
+      [[0.06, 0.08, 0.94, 0.14, INK], [0.06, 0.22, 0.56, 0.58, COB], [0.6, 0.22, 0.94, 0.58, ACC], [0.06, 0.66, 0.34, 0.94, GRY], [0.36, 0.66, 0.64, 0.94, GRY], [0.66, 0.66, 0.94, 0.94, GRY]],
+      [[0.06, 0.08, 0.94, 0.14, INK], [0.06, 0.22, 0.94, 0.5, ACC], [0.06, 0.58, 0.48, 0.94, COB], [0.52, 0.58, 0.94, 0.72, GRY], [0.52, 0.8, 0.94, 0.94, GRY]]];
+    this.v = (this.v + 1) % V.length; const blocks = V[this.v], T = [];
+    for (const b of blocks) { const sp = 5.5; for (let y = b[1] * h; y <= b[3] * h; y += sp) for (let x = b[0] * w; x <= b[2] * w; x += sp) { const edge = y - b[1] * h < sp || b[3] * h - y < sp || x - b[0] * w < sp || b[2] * w - x < sp; if (edge || rnd() < 0.35) T.push([x, y, b[4]]); } }
+    for (let i = 0; i < this.p.length; i++) { const q = T[(i * 7919) % T.length]; this.p[i].tx = q[0]; this.p[i].ty = q[1]; this.p[i].c = q[2]; } this.ph = 0; }
+  step(dt, m){ this.t += dt; this.ph += dt; if (this.ph > 6.5) this.next(); const swirl = this.ph > 5.2, cx = this.w / 2, cy = this.h / 2;
+    for (const p of this.p) { if (swirl) { const dx = p.x - cx, dy = p.y - cy; p.vx += -dy * 0.06 * dt * 20 + dx * 0.004; p.vy += dx * 0.06 * dt * 20 + dy * 0.004; } else { p.vx += (p.tx - p.x) * 0.08; p.vy += (p.ty - p.y) * 0.08; } repel(p, m, 50, 3); p.vx *= 0.78; p.vy *= 0.78; p.x += p.vx; p.y += p.vy; } }
+  draw(){ for (const p of this.p) P(p.x, p.y, p.c, 0.9, 2.8); }
+}
+// 8) Servicio técnico: un chip se daña y un escaneo lo repara
+class Repair extends Sim {
+  init(){ const w = this.w, h = this.h, s = Math.min(w * 0.62, h * 0.82), x0 = (w - s) / 2, y0 = (h - s) / 2 + h * 0.02, n = 18; this.p = []; this.box = [x0, y0, s];
+    for (let j = 0; j < n; j++) for (let i = 0; i < n; i++) { const x = x0 + (i + 0.5) / n * s, y = y0 + (j + 0.5) / n * s; this.p.push({hx: x, hy: y, x, y, vx: 0, vy: 0, br: 0}); } this.ph = 0; }
+  step(dt, m){ this.ph += dt; const [x0, y0, s] = this.box, T = this.ph % 7;
+    if (T < dt * 1.5 && this.ph > 1) { this.bx = x0 + s * (0.25 + rnd() * 0.5); this.by = y0 + s * (0.25 + rnd() * 0.5); }
+    if (T > 1 && T < 1 + dt * 1.5 && this.bx) for (const p of this.p) if (Math.hypot(p.x - this.bx, p.y - this.by) < s * 0.28) { p.br = 1; p.vx = (rnd() - 0.5) * 12; p.vy = (rnd() - 0.5) * 12; }
+    const scan = T > 2.5 && T < 5.5 ? x0 + (T - 2.5) / 3 * s : -1e9;
+    for (const p of this.p) { if (p.br && p.hx < scan) p.br = Math.max(0, p.br - dt * 3); if (p.br > 0.5) { p.vx += (rnd() - 0.5) * 1.5; p.vy += (rnd() - 0.5) * 1.5 + 0.05; } else { p.vx += (p.hx - p.x) * 0.12; p.vy += (p.hy - p.y) * 0.12; }
+      repel(p, m, 40, 2); p.vx *= 0.8; p.vy *= 0.8; p.x += p.vx; p.y += p.vy; }
+    this.scan = scan; this.say(T < 1 ? 'Equipo operativo ✓' : T < 2.5 ? 'Falla detectada · diagnosticando…' : T < 5.5 ? 'Reparando…' : 'Reparado y probado ✓'); }
+  draw(){ const [x0, y0, s] = this.box; L(x0 - 6, y0 - 6, x0 + s + 6, y0 - 6, INK, 0.7); L(x0 + s + 6, y0 - 6, x0 + s + 6, y0 + s + 6, INK, 0.7); L(x0 + s + 6, y0 + s + 6, x0 - 6, y0 + s + 6, INK, 0.7); L(x0 - 6, y0 + s + 6, x0 - 6, y0 - 6, INK, 0.7);
+    for (let k = 1; k < 8; k++) { const u = k / 8 * s; L(x0 + u, y0 - 6, x0 + u, y0 - 16, INK, 0.5); L(x0 + u, y0 + s + 6, x0 + u, y0 + s + 16, INK, 0.5); L(x0 - 6, y0 + u, x0 - 16, y0 + u, INK, 0.5); L(x0 + s + 6, y0 + u, x0 + s + 16, y0 + u, INK, 0.5); }
+    if (this.scan > -1e8) { L(this.scan, y0 - 14, this.scan, y0 + s + 14, COB, 0.9); L(this.scan - 3, y0 - 14, this.scan - 3, y0 + s + 14, COB, 0.3); }
+    for (const p of this.p) P(p.x, p.y, mix3(INK, ACC, p.br), 1, 3.6); }
+}
+// 9) Asesoría: las opciones se comparan y gana la que conviene
+class Bars extends Sim {
+  init(){ this.round(); }
+  round(){ const w = this.w; this.hs = [0.35 + rnd() * 0.3, 0.35 + rnd() * 0.3, 0.35 + rnd() * 0.3]; this.win = this.hs.indexOf(Math.max(...this.hs)); this.hs[this.win] = 0.92; this.p = this.p ? this.p.map(p => (p.out = true, p)) : []; this.ph = 0; this.cnt = [0, 0, 0]; this.cols = [0.22, 0.5, 0.78].map(u => u * w); }
+  step(dt){ const w = this.w, h = this.h, per = 7, cell = Math.min(w * 0.2 / per, 9), cap = this.hs.map(v => Math.floor(v * h * 0.8 / cell) * per); this.ph += dt; if (this.ph > 7.5) this.round();
+    if (this.ph < 6 && rnd() < dt * 90) { const c = [0, 1, 2].filter(k => this.cnt[k] < cap[k]); if (c.length) { const k = c[rnd() * c.length | 0], slot = this.cnt[k]++; this.p.push({x: rnd() * w, y: -5, vx: 0, vy: 0, k, slot}); } }
+    for (let i = this.p.length - 1; i >= 0; i--) { const p = this.p[i]; if (p.out) { p.vy += 400 * dt; p.y += p.vy * dt; if (p.y > h + 10) this.p.splice(i, 1); continue; }
+      const tx = this.cols[p.k] - per * cell / 2 + (p.slot % per + 0.5) * cell, ty = h * 0.95 - (Math.floor(p.slot / per) + 0.5) * cell; p.vx += (tx - p.x) * 30 * dt; p.vy += (ty - p.y) * 30 * dt; p.vx *= 0.86; p.vy *= 0.86; p.x += p.vx * dt * 10; p.y += p.vy * dt * 10; }
+    this.say(this.ph > 3 ? `Opción ${'ABC'[this.win]} recomendada · mejor rendimiento por sol invertido` : 'Comparando rendimiento, precio y uso…'); }
+  draw(){ const h = this.h; L(this.w * 0.06, h * 0.96, this.w * 0.94, h * 0.96, INK, 0.6);
+    for (const p of this.p) P(p.x, p.y, p.k === this.win && this.ph > 3 ? ACC : p.k === this.win ? INK : GRY, 1, 5.4); }
+}
+// proceso: flujo que atraviesa cuatro etapas y cambia de color en cada una
+class Flow extends Sim {
+  init(){ this.p = []; for (let i = 0; i < (coarse ? 260 : 520); i++) this.p.push({u: rnd(), o: (rnd() - 0.5), sp: 0.05 + rnd() * 0.05}); }
+  path(u){ const w = this.w, h = this.h; return [w * (0.02 + u * 0.96), h * 0.5 + Math.sin(u * TAU * 2 + 0.6) * h * 0.18]; }
+  step(dt){ this.t += dt; for (const p of this.p) { p.u += p.sp * dt; if (p.u > 1) p.u -= 1; } }
+  draw(){ const C = [GRY, COB, ACC, INK], nodes = [0.125, 0.375, 0.625, 0.875];
+    for (const p of this.p) { const [x, y] = this.path(p.u), st = p.u < nodes[0] ? 0 : p.u < nodes[1] ? 1 : p.u < nodes[2] ? 2 : 3, spread = [26, 16, 9, 3][st], jit = Math.sin(this.t * 2 + p.o * 40) * spread * p.o * 2;
+      P(x, y + jit, C[st], 0.95, [2.2, 3, 3.8, 4.8][st]); }
+    nodes.forEach((u, i) => { const [x, y] = this.path(u); P(x, y, INK, 1, 22); P(x, y, [0.97, 0.96, 0.93], 1, 16); P(x, y, C[i], 1, 7); }); }
+}
+const CLS = {sand: Sand, neural: Neural, funnel: Funnel, sort: Sort, shield: Shield, pipeline: Pipeline, network: Network, build: Build, repair: Repair, bars: Bars, flow: Flow};
+
+/* ---------------- regiones ---------------- */
+let REG = [...document.querySelectorAll('[data-sim]')].map(el => ({el, sim: new CLS[el.dataset.sim](el, el.parentElement.querySelector('.cap'))}));
+let modalReg = null, burst = [];
+const mouse = {x: -1e4, y: -1e4, in: false};
+addEventListener('pointermove', e => { mouse.x = e.clientX; mouse.y = e.clientY; mouse.in = true; });
+addEventListener('pointerdown', e => { for (const r of REG.concat(modalReg ? [modalReg] : [])) { if (!(r.sim instanceof Sand)) continue; const b = r.el.getBoundingClientRect(); if (e.clientX > b.left && e.clientX < b.right && e.clientY > b.top && e.clientY < b.bottom) r.sim.boom({x: e.clientX - b.left, y: e.clientY - b.top}); } });
+document.addEventListener('pointerleave', () => { mouse.in = false; });
+
+/* ---------------- detalle de cada servicio ---------------- */
+const $m = document.getElementById('modal'), $ms = document.getElementById('msim');
+function openModal(i){ const s = SVC[i]; document.getElementById('mNum').textContent = `Servicio 0${i + 1}`; document.getElementById('mTitle').textContent = s.name; document.getElementById('mText').textContent = s.text;
+  document.getElementById('mList').innerHTML = s.list.map(x => `<li>${x}</li>`).join(''); $ms.dataset.sim = s.sim; modalReg = {el: $ms, sim: new CLS[s.sim]($ms, document.getElementById('mCap'))};
+  document.getElementById('mCta').onclick = () => { $svc.selectedIndex = i; closeModal(); }; $m.classList.add('on'); document.body.style.overflow = 'hidden'; document.getElementById('mClose').focus(); }
+function closeModal(){ $m.classList.remove('on'); modalReg = null; document.body.style.overflow = ''; }
+document.getElementById('mClose').onclick = closeModal; document.getElementById('mBack').onclick = closeModal;
+addEventListener('keydown', e => { if (e.key === 'Escape' && modalReg) closeModal(); });
+
+/* ---------------- formulario ---------------- */
+document.getElementById('form').addEventListener('submit', e => { e.preventDefault(); const f = new FormData(e.target);
+  const b = document.getElementById('send').getBoundingClientRect(); for (let i = 0; i < 260; i++) { const a = rnd() * TAU, v = 120 + rnd() * 420; burst.push({x: b.left + b.width / 2, y: b.top + b.height / 2, vx: Math.cos(a) * v, vy: Math.sin(a) * v - 160, a: 1, c: [INK, ACC, COB][i % 3]}); }
+  const t = `Hola Aurora Hub Perú, vi el concepto «Átomo». Soy ${f.get('n')}. Me interesa: ${f.get('s')}. ${f.get('m') || ''}`.trim(); setTimeout(() => window.open(`https://wa.me/${WHATSAPP}?text=${encodeURIComponent(t)}`, '_blank', 'noopener'), 500); });
+
+if (!gl) return; // sin WebGL la página funciona igual, solo sin partículas
+
+const VS = `#version 300 es
+in vec2 aP; in vec4 aC; in float aS; uniform vec2 uRes; uniform float uDpr; out vec4 vC;
+void main(){ vec2 c = aP / uRes * 2.0 - 1.0; gl_Position = vec4(c.x, -c.y, 0.0, 1.0); vC = aC; gl_PointSize = aS * uDpr; }`;
+const FS = `#version 300 es
+precision highp float; in vec4 vC; uniform float uRound; out vec4 o;
+void main(){ float a = vC.a; if (uRound > 0.5) { vec2 q = gl_PointCoord - 0.5; float r = length(q); a *= smoothstep(0.5, 0.36, r); } o = vec4(vC.rgb * a, a); }`;
+function sh(t, s){ const x = gl.createShader(t); gl.shaderSource(x, s); gl.compileShader(x); if (!gl.getShaderParameter(x, gl.COMPILE_STATUS)) throw new Error(gl.getShaderInfoLog(x)); return x; }
+const pr = gl.createProgram(); gl.attachShader(pr, sh(gl.VERTEX_SHADER, VS)); gl.attachShader(pr, sh(gl.FRAGMENT_SHADER, FS)); gl.bindAttribLocation(pr, 0, 'aP'); gl.bindAttribLocation(pr, 1, 'aC'); gl.bindAttribLocation(pr, 2, 'aS'); gl.linkProgram(pr);
+const U = n => gl.getUniformLocation(pr, n), uRes = U('uRes'), uDpr = U('uDpr'), uRound = U('uRound');
+function vao(buf, stride, sizes){ const v = gl.createVertexArray(), b = gl.createBuffer(); gl.bindVertexArray(v); gl.bindBuffer(gl.ARRAY_BUFFER, b); gl.bufferData(gl.ARRAY_BUFFER, buf.byteLength, gl.DYNAMIC_DRAW);
+  let off = 0; sizes.forEach((s, i) => { if (!s) { gl.disableVertexAttribArray(i); gl.vertexAttrib1f(i, 1); return; } gl.enableVertexAttribArray(i); gl.vertexAttribPointer(i, s, gl.FLOAT, false, stride, off); off += s * 4; }); gl.bindVertexArray(null); return {v, b}; }
+const VPt = vao(PB, 28, [2, 4, 1]), VLn = vao(LB, 24, [2, 4, 0]);
+function resize(){ DPR = Math.min(devicePixelRatio || 1, 2); W = innerWidth; H = innerHeight; cv.width = Math.round(W * DPR); cv.height = Math.round(H * DPR); }
+let last = performance.now(), fA = 0, fN = 0, tc = 0;
+function frame(now){
+  const dt = Math.min(0.05, (now - last) / 1000) * (reduce ? 0.25 : 1); last = now; nP = 0; nL = 0;
+  const regs = modalReg ? [modalReg] : REG;
+  const cuts = [];
+  for (const r of regs) { const b = r.el.getBoundingClientRect(); if (b.bottom < -20 || b.top > H + 20 || b.width < 4) continue; const p0 = nP, l0 = nL;
+    r.sim.size(b.width, b.height); const m = mouse.in && mouse.x > b.left && mouse.x < b.right && mouse.y > b.top && mouse.y < b.bottom ? {x: mouse.x - b.left, y: mouse.y - b.top} : null;
+    r.sim.step(dt, m); OX = b.left; OY = b.top; r.sim.draw(); const cr = r.el.closest('.card') || r.el, cb = cr.getBoundingClientRect(); cuts.push([p0, nP, l0, nL, cb]); }
+  const pb0 = nP;
+  OX = 0; OY = 0; for (let i = burst.length - 1; i >= 0; i--) { const p = burst[i]; p.vy += 600 * dt; p.x += p.vx * dt; p.y += p.vy * dt; p.a -= dt * 0.8; if (p.a <= 0) { burst.splice(i, 1); continue; } P(p.x, p.y, p.c, p.a, 4); }
+  gl.viewport(0, 0, cv.width, cv.height); gl.clearColor(0, 0, 0, 0); gl.clear(gl.COLOR_BUFFER_BIT); gl.enable(gl.BLEND); gl.blendFunc(gl.ONE, gl.ONE_MINUS_SRC_ALPHA);
+  gl.useProgram(pr); gl.uniform2f(uRes, W, H); gl.uniform1f(uDpr, DPR);
+  gl.bindBuffer(gl.ARRAY_BUFFER, VLn.b); gl.bufferSubData(gl.ARRAY_BUFFER, 0, LB, 0, nL * 12); gl.bindBuffer(gl.ARRAY_BUFFER, VPt.b); gl.bufferSubData(gl.ARRAY_BUFFER, 0, PB, 0, nP * 7);
+  gl.enable(gl.SCISSOR_TEST);
+  const navB = modalReg ? 0 : document.querySelector('nav').getBoundingClientRect().bottom;
+  for (const [p0, p1, l0, l1, b] of cuts) { const top = Math.max(b.top, navB), hh = b.bottom - top; if (hh <= 0) continue; const x = Math.max(0, Math.floor(b.left * DPR)), y = Math.max(0, Math.floor((H - b.bottom) * DPR)); gl.scissor(x, y, Math.max(0, Math.ceil(b.width * DPR)), Math.max(0, Math.ceil(hh * DPR)));
+    gl.uniform1f(uRound, 0); gl.bindVertexArray(VLn.v); gl.drawArrays(gl.LINES, l0 * 2, (l1 - l0) * 2); gl.uniform1f(uRound, 1); gl.bindVertexArray(VPt.v); gl.drawArrays(gl.POINTS, p0, p1 - p0); }
+  gl.disable(gl.SCISSOR_TEST); gl.uniform1f(uRound, 1); gl.bindVertexArray(VPt.v); gl.drawArrays(gl.POINTS, pb0, nP - pb0);
+  tc -= dt; if (tc <= 0) { tc = 1; document.getElementById('count').textContent = `${nP.toLocaleString('es-PE')} partículas en pantalla · prototipo · datos de contacto por definir`; }
+  requestAnimationFrame(frame);
+}
+addEventListener('resize', resize);
+function start(){ resize(); const hq = location.hash.match(/#hq-(\d+)/); if (hq) { document.documentElement.style.scrollBehavior = 'auto'; scrollTo(0, +hq[1]); }
+  if (HQ) { const warm = +(location.hash.match(/-w(\d+)/) || [0, 180])[1]; for (let k = 0; k < warm; k++) { for (const r of REG) { const b = r.el.getBoundingClientRect(); if (b.width < 4) continue; r.sim.size(b.width, b.height); r.sim.step(1 / 30, null); } } }
+  requestAnimationFrame(t => { last = t; requestAnimationFrame(frame); }); }
+(document.fonts ? Promise.race([document.fonts.load('800 100px "Bricolage Grotesque"').then(() => document.fonts.ready), new Promise(r => setTimeout(r, 2500))]) : Promise.resolve()).then(start);
+})();
+</script>
+
+<div id="ah-demo" style="position:fixed;left:12px;bottom:12px;z-index:2147483000;display:flex;align-items:center;gap:10px;padding:8px 8px 8px 14px;border-radius:999px;background:rgba(3,9,15,.86);border:1px solid rgba(44,245,200,.45);box-shadow:0 6px 24px -8px rgba(0,0,0,.6);font:500 12px/1.2 system-ui,-apple-system,Segoe UI,sans-serif;color:#eefcf8;max-width:calc(100vw - 24px);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)"><span style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis">Concepto de diseño «Átomo» · Aurora Hub Perú</span><a href="https://www.aurorahubperu.com/#proyectos" style="flex:none;color:#03140f;background:linear-gradient(90deg,#2cf5c8,#7cf9e0);border-radius:999px;padding:6px 11px;text-decoration:none;font-weight:700">Ver portafolio</a></div></body></html>
