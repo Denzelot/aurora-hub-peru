@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://www.aurorahubperu.com/</loc>
-    <lastmod>2026-10-17</lastmod>
+    <lastmod>2026-10-21</lastmod>
     <image:image>
       <image:loc>https://www.aurorahubperu.com/assets/og-image.jpg</image:loc>
     </image:image>
@@ -34,6 +34,26 @@
   <url>
     <loc>https://www.aurorahubperu.com/servicios/chatbot-whatsapp-ia/</loc>
     <lastmod>2026-10-18</lastmod>
+  </url>
+  <url>
+    <loc>https://www.aurorahubperu.com/servicios/diseno-web/</loc>
+    <lastmod>2026-10-21</lastmod>
+  </url>
+  <url>
+    <loc>https://www.aurorahubperu.com/servicios/meta-ads/</loc>
+    <lastmod>2026-10-21</lastmod>
+  </url>
+  <url>
+    <loc>https://www.aurorahubperu.com/servicios/soporte-tecnico-remoto/</loc>
+    <lastmod>2026-10-21</lastmod>
+  </url>
+  <url>
+    <loc>https://www.aurorahubperu.com/servicios/seo-google-maps/</loc>
+    <lastmod>2026-10-21</lastmod>
+  </url>
+  <url>
+    <loc>https://www.aurorahubperu.com/servicios/automatizacion-n8n-kommo/</loc>
+    <lastmod>2026-10-21</lastmod>
   </url>
   <url>
     <loc>https://www.aurorahubperu.com/pulse/</loc>
