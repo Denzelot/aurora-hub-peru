@@ -1,0 +1,357 @@
+<!doctype html>
+<html lang="es">
+<head><meta name="robots" content="noindex">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Casa Golondrina · Tattoo estudio</title>
+  <meta name="description" content="Estudio de tatuaje tradicional en Lima. Flash disponible, probador 3D sobre el cuerpo y reserva con depósito online.">
+  <meta name="theme-color" content="#131312">
+  <meta property="og:title" content="Casa Golondrina · Tattoo estudio">
+  <meta property="og:description" content="Elige un flash, pruébalo en 3D y separa tu cita con depósito online.">
+  <meta property="og:image" content="assets/video/hero-poster.jpg">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23131312'/%3E%3Cpath d='M14 30c8-2 14 0 20 4l14-2-10 6 12 8-16-4c-8 0-14-2-20-8z' fill='%23C8302A'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="preload" href="assets/fonts/DakotaRough-Regular.ttf" as="font" type="font/ttf" crossorigin>
+  <link rel="stylesheet" href="assets/css/estilos.css">
+  <script type="importmap">
+    { "imports": { "three": "./vendor/three.module.min.js", "three/addons/": "./vendor/addons/" } }
+  </script>
+</head>
+<body>
+  <a class="saltar" href="#reserva">Ir a reservar</a>
+  <div class="grano" aria-hidden="true"></div>
+  <div class="cursor oculto" aria-hidden="true"></div>
+
+  <!-- ── Cabecera ───────────────────────────────────────────── -->
+  <header class="cab" id="cab">
+    <a class="marca" href="#inicio" aria-label="Casa Golondrina, inicio">
+      <span class="marca-ave" data-mini="golondrina"></span>
+      <span class="marca-txt">Casa Golondrina</span>
+    </a>
+    <nav class="nav" aria-label="Principal">
+      <a href="#flash">Flash</a>
+      <a href="#probador">Probador 3D</a>
+      <a href="#artistas">Artistas</a>
+      <a href="#proceso">Proceso</a>
+      <a href="#faq">Preguntas</a>
+    </nav>
+    <span class="libros"><i></i> Agenda abierta</span>
+    <a class="btn btn-rojo btn-cab" href="#reserva">Reservar</a>
+    <button class="menu-btn" aria-label="Abrir menú" aria-expanded="false" aria-controls="menu-movil"><span></span><span></span></button>
+  </header>
+  <div class="menu-movil" id="menu-movil" hidden>
+    <a href="#flash">Flash</a>
+    <a href="#probador">Probador 3D</a>
+    <a href="#artistas">Artistas</a>
+    <a href="#proceso">Proceso</a>
+    <a href="#faq">Preguntas</a>
+    <a href="#reserva" class="btn btn-rojo">Reservar cita</a>
+  </div>
+
+  <main>
+    <!-- ── Hero: el video crece hasta pantalla completa al hacer scroll ── -->
+    <section class="hero" id="inicio">
+      <div class="hero-pin">
+        <div class="hero-txt">
+          <p class="hero-chip"><i></i> Tattoo estudio · Lima</p>
+          <h1 class="hero-h1"><span>Hecho</span> <span>para</span> <span class="rojo">durar.</span></h1>
+          <p class="hero-sub">Tatuaje tradicional y neo tradicional. Elige un flash, pruébalo en 3D sobre el cuerpo y separa tu cita con depósito online, sin esperar respuesta por DM.</p>
+          <div class="hero-ctas">
+            <a class="btn btn-rojo btn-xl" href="#reserva">Reservar cita</a>
+            <a class="btn btn-linea btn-xl" href="#probador">Probar en 3D</a>
+          </div>
+          <ul class="hero-datos">
+            <li>Material 100 % descartable</li>
+            <li>Depósito que se descuenta</li>
+            <li>Retoque incluido</li>
+          </ul>
+        </div>
+        <div class="hero-marco" aria-hidden="true">
+          <video class="hero-video" autoplay muted loop playsinline preload="auto" poster="assets/video/hero-poster.jpg">
+            <source src="assets/video/hero-720.mp4" type="video/mp4" media="(max-width: 900px)">
+            <source src="assets/video/hero-1080.mp4" type="video/mp4">
+          </video>
+          <span class="cinta-adhesiva c1"></span><span class="cinta-adhesiva c2"></span>
+        </div>
+        <p class="hero-scroll" aria-hidden="true">Baja <span>↓</span></p>
+      </div>
+    </section>
+
+    <div class="marquesina" aria-hidden="true">
+      <div class="marq-pista">
+        <span>Old school</span><b>★</b><span>Neo tradicional</span><b>★</b><span>Blackwork</span><b>★</b><span>Fine line</span><b>★</b><span>Lettering</span><b>★</b><span>Cover-up</span><b>★</b>
+        <span>Old school</span><b>★</b><span>Neo tradicional</span><b>★</b><span>Blackwork</span><b>★</b><span>Fine line</span><b>★</b><span>Lettering</span><b>★</b><span>Cover-up</span><b>★</b>
+      </div>
+    </div>
+
+    <!-- ── Flash ──────────────────────────────────────────────── -->
+    <section class="flash" id="flash">
+      <div class="hoja">
+        <header class="sec-cab">
+          <p class="eyebrow">01 · Catálogo</p>
+          <h2 class="titulo-mano">Flash disponible</h2>
+          <p class="sec-lead">Diseños propios del estudio a precio fijo. Cada pieza se tatúa una sola vez: cuando alguien la separa, queda sellada.</p>
+        </header>
+        <div class="flash-grid" id="flash-grid"></div>
+        <p class="nota solo-movil">Desliza para ver los 6 diseños →</p>
+        <p class="nota">Precios de ejemplo para esta demostración. Incluyen la sesión; el depósito se descuenta del total.</p>
+      </div>
+    </section>
+
+    <!-- ── Probador 3D ────────────────────────────────────────── -->
+    <section class="probador" id="probador">
+      <header class="sec-cab sec-cab-claro">
+        <p class="eyebrow">02 · Probador 3D</p>
+        <h2 class="titulo-grande">Pruébalo antes<br>de tatuarlo.</h2>
+        <p class="sec-lead">Gira el maniquí, haz clic donde lo quieres y ajusta el tamaño. Ves la zona, los centímetros y una estimación antes de escribirnos.</p>
+      </header>
+      <div class="p3d">
+        <div class="p3d-lienzo" id="p3d-lienzo">
+          <div class="p3d-cargando"><span class="tinta-gota"></span> Preparando el maniquí…</div>
+          <p class="p3d-ayuda" data-tactil="<b>Desliza de lado</b> para girar · <b>toca</b> para colocar"><b>Arrastra</b> para girar · <b>clic</b> para colocar · <b>rueda</b> para acercar</p>
+          <div class="p3d-vistas" role="group" aria-label="Vista">
+            <button type="button" data-vista="frente" class="activo">Frente</button>
+            <button type="button" data-vista="espalda">Espalda</button>
+          </div>
+        </div>
+        <aside class="p3d-panel" aria-label="Controles del probador">
+          <fieldset class="p3d-bloque">
+            <legend>Diseño</legend>
+            <div class="p3d-disenos" id="p3d-disenos"></div>
+          </fieldset>
+          <div class="p3d-bloque">
+            <label class="p3d-rango">
+              <span>Tamaño <output id="p3d-cm">9 cm</output></span>
+              <input type="range" id="p3d-tam" min="4" max="25" step="1" value="9">
+            </label>
+            <label class="p3d-rango">
+              <span>Giro <output id="p3d-giro-v">0°</output></span>
+              <input type="range" id="p3d-giro" min="-180" max="180" step="5" value="0">
+            </label>
+          </div>
+          <dl class="p3d-resumen">
+            <div><dt>Zona</dt><dd id="p3d-zona">Antebrazo derecho</dd></div>
+            <div><dt>Sesión</dt><dd id="p3d-horas">≈ 1,5 h</dd></div>
+            <div><dt>Desde</dt><dd id="p3d-precio">S/ 280</dd></div>
+          </dl>
+          <p class="p3d-nota">Estimación referencial. El artista la confirma al ver tu idea.</p>
+          <button type="button" class="btn btn-rojo btn-xl btn-bloque" id="p3d-reservar">Reservar con este diseño</button>
+        </aside>
+      </div>
+    </section>
+
+    <!-- ── Artistas ───────────────────────────────────────────── -->
+    <section class="artistas" id="artistas">
+      <header class="sec-cab">
+        <p class="eyebrow">03 · Artistas</p>
+        <h2 class="titulo-grande oscuro">Tres manos,<br>un mismo oficio.</h2>
+      </header>
+      <div class="art-grid">
+        <article class="art" data-revelar>
+          <div class="art-foto" data-mini="rosa"></div>
+          <div class="art-cuerpo">
+            <p class="art-estado abierto"><i></i> Agenda abierta</p>
+            <h3>Vale Quispe</h3>
+            <p class="art-rol">Residente · 9 años tatuando</p>
+            <ul class="chips"><li>Old school</li><li>Neo tradicional</li><li>Color</li></ul>
+            <a class="btn btn-negro" href="#reserva" data-artista="Vale Quispe">Reservar con Vale</a>
+          </div>
+        </article>
+        <article class="art" data-revelar>
+          <div class="art-foto" data-mini="calavera"></div>
+          <div class="art-cuerpo">
+            <p class="art-estado espera"><i></i> Lista de espera · reabre 15 dic</p>
+            <h3>Toño Huamán</h3>
+            <p class="art-rol">Residente · 12 años tatuando</p>
+            <ul class="chips"><li>Blackwork</li><li>Lettering</li><li>Cover-up</li></ul>
+            <a class="btn btn-linea-oscuro" href="#reserva" data-artista="Toño Huamán">Unirme a la lista</a>
+          </div>
+        </article>
+        <article class="art" data-revelar>
+          <div class="art-foto" data-mini="golondrina"></div>
+          <div class="art-cuerpo">
+            <p class="art-estado abierto"><i></i> Agenda abierta</p>
+            <h3>Mika Sato</h3>
+            <p class="art-rol">Artista invitada · nov – dic</p>
+            <ul class="chips"><li>Fine line</li><li>Botánico</li><li>Minimal</li></ul>
+            <a class="btn btn-negro" href="#reserva" data-artista="Mika Sato">Reservar con Mika</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ── Proceso ────────────────────────────────────────────── -->
+    <section class="proceso" id="proceso">
+      <header class="sec-cab sec-cab-claro">
+        <p class="eyebrow">04 · Cómo trabajamos</p>
+        <h2 class="titulo-grande">De la idea<br>a la piel.</h2>
+      </header>
+      <ol class="pasos">
+        <li data-revelar><span class="num">01</span><h3>Cuéntanos tu idea</h3><p>Zona, tamaño, estilo y referencias en un solo formulario de dos minutos.</p></li>
+        <li data-revelar><span class="num">02</span><h3>Separa con depósito</h3><p>Eliges fecha y hora con cupos reales. El depósito se descuenta del total.</p></li>
+        <li data-revelar><span class="num">03</span><h3>Boceto por WhatsApp</h3><p>Tu artista te manda el boceto antes de la cita para ajustarlo contigo.</p></li>
+        <li data-revelar><span class="num">04</span><h3>Sesión y cuidados</h3><p>Cabina privada, material descartable y guía de cuidados. Retoque incluido el primer mes.</p></li>
+      </ol>
+    </section>
+
+    <!-- ── Reserva ────────────────────────────────────────────── -->
+    <section class="reserva" id="reserva">
+      <div class="res-intro">
+        <p class="eyebrow">05 · Reserva</p>
+        <h2 class="titulo-mano">Reserva tu cita</h2>
+        <p class="sec-lead">Cinco pasos y listo. Al final confirmas por WhatsApp con todo el detalle ya escrito.</p>
+        <ol class="res-mapa" id="res-mapa" aria-label="Pasos">
+          <li class="activo">Tu idea</li><li>Zona y tamaño</li><li>Referencias</li><li>Fecha</li><li>Depósito</li>
+        </ol>
+      </div>
+      <form class="res-form" id="res-form" novalidate>
+        <div class="res-barra"><span id="res-barra"></span></div>
+
+        <fieldset class="paso activo" data-paso="1">
+          <legend>¿Qué te quieres tatuar?</legend>
+          <div class="opciones-idea">
+            <label class="op"><input type="radio" name="tipo" value="flash" checked><span><b>Un flash del catálogo</b><small>Precio fijo, listo para tatuar</small></span></label>
+            <label class="op"><input type="radio" name="tipo" value="propio"><span><b>Un diseño propio</b><small>Lo dibujamos desde tu idea</small></span></label>
+            <label class="op"><input type="radio" name="tipo" value="cover"><span><b>Un cover-up</b><small>Tapar o renovar uno que ya tienes</small></span></label>
+          </div>
+          <div class="campo" data-si="flash">
+            <span class="campo-et">Elige el flash</span>
+            <div class="res-flash" id="res-flash"></div>
+          </div>
+          <label class="campo" data-si="propio cover" hidden>
+            <span class="campo-et">Cuéntanos la idea</span>
+            <textarea name="idea" rows="4" placeholder="Ej.: una golondrina con una rosa, línea gruesa y color, que mire hacia el hombro."></textarea>
+          </label>
+        </fieldset>
+
+        <fieldset class="paso" data-paso="2">
+          <legend>¿Dónde y de qué tamaño?</legend>
+          <label class="campo">
+            <span class="campo-et">Zona del cuerpo</span>
+            <select name="zona" id="res-zona"></select>
+          </label>
+          <label class="campo p3d-rango">
+            <span class="campo-et">Tamaño aproximado <output id="res-cm-v">9 cm</output></span>
+            <input type="range" name="cm" id="res-cm" min="4" max="30" value="9">
+          </label>
+          <div class="campo">
+            <span class="campo-et">Estilo</span>
+            <div class="chips chips-sel" id="res-estilos">
+              <label><input type="checkbox" name="estilo" value="Old school" checked><span>Old school</span></label>
+              <label><input type="checkbox" name="estilo" value="Neo tradicional"><span>Neo tradicional</span></label>
+              <label><input type="checkbox" name="estilo" value="Blackwork"><span>Blackwork</span></label>
+              <label><input type="checkbox" name="estilo" value="Fine line"><span>Fine line</span></label>
+              <label><input type="checkbox" name="estilo" value="Lettering"><span>Lettering</span></label>
+            </div>
+          </div>
+          <p class="pista">¿No sabes la zona? <a href="#probador">Pruébalo en el maniquí 3D</a> y vuelve: lo llenamos por ti.</p>
+        </fieldset>
+
+        <fieldset class="paso" data-paso="3">
+          <legend>Referencias y tus datos</legend>
+          <label class="soltar" id="soltar">
+            <input type="file" accept="image/*" multiple id="res-archivos">
+            <span class="soltar-ico">＋</span>
+            <span><b>Arrastra tus imágenes</b> o toca para elegir</span>
+            <small>Hasta 5 referencias. En esta demo se quedan en tu navegador.</small>
+          </label>
+          <div class="miniaturas" id="miniaturas"></div>
+          <div class="fila-2">
+            <label class="campo"><span class="campo-et">Nombre</span><input name="nombre" autocomplete="given-name" required placeholder="Cómo te llamamos"></label>
+            <label class="campo"><span class="campo-et">WhatsApp</span><input name="whatsapp" type="tel" inputmode="tel" autocomplete="tel" required placeholder="9XX XXX XXX"></label>
+          </div>
+          <label class="check"><input type="checkbox" name="mayor" required><span>Tengo 18 años o más y llevaré mi DNI a la cita.</span></label>
+        </fieldset>
+
+        <fieldset class="paso" data-paso="4">
+          <legend>Elige artista, día y hora</legend>
+          <label class="campo">
+            <span class="campo-et">Artista</span>
+            <select name="artista" id="res-artista">
+              <option>Quien tenga el primer cupo</option>
+              <option>Vale Quispe</option>
+              <option>Mika Sato</option>
+              <option disabled>Toño Huamán · lista de espera</option>
+            </select>
+          </label>
+          <div class="campo">
+            <span class="campo-et">Día</span>
+            <div class="dias" id="dias" role="radiogroup" aria-label="Día"></div>
+          </div>
+          <div class="campo">
+            <span class="campo-et">Hora</span>
+            <div class="horas" id="horas" role="radiogroup" aria-label="Hora"></div>
+          </div>
+        </fieldset>
+
+        <fieldset class="paso" data-paso="5">
+          <legend>Separa con tu depósito</legend>
+          <div class="ticket" id="ticket"></div>
+          <div class="campo">
+            <span class="campo-et">Método de pago</span>
+            <div class="pagos">
+              <label class="op op-pago"><input type="radio" name="pago" value="Yape / Plin" checked><span><b>Yape / Plin</b><small>QR al confirmar</small></span></label>
+              <label class="op op-pago"><input type="radio" name="pago" value="Tarjeta"><span><b>Tarjeta</b><small>Débito o crédito, pasarela segura</small></span></label>
+            </div>
+          </div>
+          <p class="pista">Demostración: aquí la web real cobra el depósito con Izipay o Yape y bloquea el cupo al instante.</p>
+        </fieldset>
+
+        <div class="res-nav">
+          <button type="button" class="btn btn-linea-oscuro" id="res-atras" hidden>Atrás</button>
+          <p class="res-error" id="res-error" role="alert"></p>
+          <button type="button" class="btn btn-negro btn-xl" id="res-sig">Siguiente</button>
+          <button type="submit" class="btn btn-rojo btn-xl" id="res-enviar" hidden>Confirmar por WhatsApp</button>
+        </div>
+      </form>
+    </section>
+
+    <!-- ── Preguntas ──────────────────────────────────────────── -->
+    <section class="faq" id="faq">
+      <header class="sec-cab sec-cab-claro">
+        <p class="eyebrow">06 · Antes de venir</p>
+        <h2 class="titulo-grande">Preguntas<br>sin rodeos.</h2>
+      </header>
+      <div class="faq-lista">
+        <details><summary>¿Cuánto es el depósito y qué pasa con él?</summary><p>S/ 100 por cita. Separa tu cupo y se descuenta del precio final el día de la sesión.</p></details>
+        <details><summary>¿Puedo reprogramar?</summary><p>Sí, una vez y hasta 48 horas antes, sin perder el depósito. Con menos aviso el depósito cubre el tiempo reservado del artista.</p></details>
+        <details><summary>¿Desde qué edad tatúan?</summary><p>Desde los 18 años, con DNI en mano el día de la cita.</p></details>
+        <details><summary>¿Hacen cover-up?</summary><p>Sí. Mándanos una foto con buena luz del tatuaje actual en el formulario y el artista te dice si se puede y cómo quedaría.</p></details>
+        <details><summary>¿Cómo cuido mi tatuaje?</summary><p>Te damos la guía impresa y por WhatsApp: lavar con jabón neutro, crema fina dos o tres veces al día, nada de sol, piscina ni mar por dos semanas.</p></details>
+        <details><summary>¿Duele?</summary><p>Depende de la zona. Costillas, pies y codos se sienten más; antebrazo y muslo son de las más llevaderas. En el probador puedes ver tu zona antes de decidir.</p></details>
+      </div>
+    </section>
+  </main>
+
+  <!-- ── Pie ──────────────────────────────────────────────────── -->
+  <footer class="pie" id="contacto">
+    <a class="pie-cinta" href="#reserva" data-mini="cinta" aria-label="Reserva tu cita"></a>
+    <div class="pie-grid">
+      <div>
+        <p class="pie-marca">Casa Golondrina</p>
+        <p>Tattoo estudio · Lima, Perú<br>Visitas solo con cita</p>
+      </div>
+      <div>
+        <p class="pie-et">Horario</p>
+        <p>Martes a sábado<br>11:00 – 20:00</p>
+      </div>
+      <div>
+        <p class="pie-et">Contacto</p>
+        <p><a href="#" data-wa>WhatsApp</a><br><a href="#">Instagram</a></p>
+      </div>
+    </div>
+    <p class="pie-legal">Web de demostración. Estudio, artistas y precios son de ejemplo. Diseños de flash originales. · Diseño y desarrollo: Aurora Hub Perú</p>
+  </footer>
+
+  <!-- Barra fija en celular -->
+  <nav class="barra-movil" aria-label="Acciones rápidas">
+    <a href="#probador"><span>◎</span>Probar 3D</a>
+    <a href="#reserva" class="principal">Reservar</a>
+    <a href="#" data-wa><span>✆</span>WhatsApp</a>
+  </nav>
+
+  <script type="module" src="assets/js/app.js"></script>
+<div id="ah-demo" style="position:fixed;left:12px;bottom:12px;z-index:2147483000;display:flex;align-items:center;gap:10px;padding:8px 8px 8px 14px;border-radius:999px;background:rgba(3,9,15,.86);border:1px solid rgba(44,245,200,.45);box-shadow:0 6px 24px -8px rgba(0,0,0,.6);font:500 12px/1.2 system-ui,-apple-system,Segoe UI,sans-serif;color:#eefcf8;max-width:calc(100vw - 24px);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)"><span style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis">Concepto de diseño «Casa Golondrina» · Aurora Hub Perú</span><a href="https://www.aurorahubperu.com/#proyectos" style="flex:none;color:#03140f;background:linear-gradient(90deg,#2cf5c8,#7cf9e0);border-radius:999px;padding:6px 11px;text-decoration:none;font-weight:700">Ver portafolio</a></div><style>@media (max-width:760px){#ah-demo{bottom:calc(76px + env(safe-area-inset-bottom))!important}}</style></body>
+</html>
