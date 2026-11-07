@@ -1,4 +1,51 @@
+# Aurora Hub Perú · robots.txt
+# Los buscadores y los asistentes de IA pueden leer y citar el sitio.
+# /demo/ y /demos/ llevan noindex por meta etiqueta (son demostraciones), no se bloquean aquí.
+
 User-agent: *
+Allow: /
+
+# Buscadores clásicos
+User-agent: Bingbot
+Allow: /
+
+# Asistentes y buscadores de IA: OpenAI (ChatGPT)
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: GPTBot
+Allow: /
+
+# Perplexity
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
+# Anthropic (Claude)
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-SearchBot
+Allow: /
+
+User-agent: Claude-User
+Allow: /
+
+# Google (Gemini y AI Overviews usan Googlebot; Google-Extended controla el uso para entrenar Gemini)
+User-agent: Google-Extended
+Allow: /
+
+# Apple
+User-agent: Applebot-Extended
+Allow: /
+
+# Common Crawl
+User-agent: CCBot
 Allow: /
 
 Sitemap: https://www.aurorahubperu.com/sitemap.xml

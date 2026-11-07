@@ -2,71 +2,73 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://www.aurorahubperu.com/</loc>
-    <lastmod>2026-10-23</lastmod>
+    <lastmod>2026-11-07</lastmod>
     <image:image>
       <image:loc>https://www.aurorahubperu.com/assets/og-image.jpg</image:loc>
     </image:image>
   </url>
   <url>
     <loc>https://www.aurorahubperu.com/proyectos/</loc>
-    <lastmod>2026-10-23</lastmod>
+    <lastmod>2026-11-02</lastmod>
   </url>
   <url>
     <loc>https://www.aurorahubperu.com/paginas-web/</loc>
-    <lastmod>2026-10-17</lastmod>
+    <lastmod>2026-10-23</lastmod>
   </url>
   <url>
     <loc>https://www.aurorahubperu.com/diagnostico/</loc>
-    <lastmod>2026-10-17</lastmod>
+    <lastmod>2026-10-23</lastmod>
   </url>
   <url>
-    <loc>https://www.aurorahubperu.com/guias/</loc>
-    <lastmod>2026-10-18</lastmod>
-  </url>
-  <url>
-    <loc>https://www.aurorahubperu.com/guias/cuanto-cuesta-una-pagina-web-peru/</loc>
-    <lastmod>2026-10-18</lastmod>
-  </url>
-  <url>
-    <loc>https://www.aurorahubperu.com/guias/cuanto-cuesta-chatbot-whatsapp-ia-peru/</loc>
-    <lastmod>2026-10-18</lastmod>
-  </url>
-  <url>
-    <loc>https://www.aurorahubperu.com/guias/cuanto-invertir-meta-ads-peru/</loc>
-    <lastmod>2026-10-18</lastmod>
-  </url>
-  <url>
-    <loc>https://www.aurorahubperu.com/servicios/chatbot-whatsapp-ia/</loc>
-    <lastmod>2026-10-18</lastmod>
-  </url>
-  <url>
-    <loc>https://www.aurorahubperu.com/servicios/diseno-web/</loc>
-    <lastmod>2026-10-21</lastmod>
-  </url>
-  <url>
-    <loc>https://www.aurorahubperu.com/servicios/meta-ads/</loc>
-    <lastmod>2026-10-21</lastmod>
-  </url>
-  <url>
-    <loc>https://www.aurorahubperu.com/servicios/soporte-tecnico-remoto/</loc>
-    <lastmod>2026-10-21</lastmod>
-  </url>
-  <url>
-    <loc>https://www.aurorahubperu.com/servicios/seo-google-maps/</loc>
-    <lastmod>2026-10-21</lastmod>
+    <loc>https://www.aurorahubperu.com/servicios/</loc>
+    <lastmod>2026-11-07</lastmod>
   </url>
   <url>
     <loc>https://www.aurorahubperu.com/servicios/automatizacion-n8n-kommo/</loc>
-    <lastmod>2026-10-21</lastmod>
+    <lastmod>2026-11-07</lastmod>
+  </url>
+  <url>
+    <loc>https://www.aurorahubperu.com/servicios/chatbot-whatsapp-ia/</loc>
+    <lastmod>2026-11-07</lastmod>
+  </url>
+  <url>
+    <loc>https://www.aurorahubperu.com/servicios/diseno-web/</loc>
+    <lastmod>2026-11-07</lastmod>
+  </url>
+  <url>
+    <loc>https://www.aurorahubperu.com/servicios/meta-ads/</loc>
+    <lastmod>2026-11-07</lastmod>
+  </url>
+  <url>
+    <loc>https://www.aurorahubperu.com/servicios/seo-google-maps/</loc>
+    <lastmod>2026-11-07</lastmod>
+  </url>
+  <url>
+    <loc>https://www.aurorahubperu.com/servicios/soporte-tecnico-remoto/</loc>
+    <lastmod>2026-11-07</lastmod>
+  </url>
+  <url>
+    <loc>https://www.aurorahubperu.com/guias/</loc>
+    <lastmod>2026-11-07</lastmod>
+  </url>
+  <url>
+    <loc>https://www.aurorahubperu.com/guias/cuanto-cuesta-chatbot-whatsapp-ia-peru/</loc>
+    <lastmod>2026-11-07</lastmod>
+  </url>
+  <url>
+    <loc>https://www.aurorahubperu.com/guias/cuanto-cuesta-una-pagina-web-peru/</loc>
+    <lastmod>2026-11-07</lastmod>
+  </url>
+  <url>
+    <loc>https://www.aurorahubperu.com/guias/cuanto-invertir-meta-ads-peru/</loc>
+    <lastmod>2026-11-07</lastmod>
   </url>
   <url>
     <loc>https://www.aurorahubperu.com/pulse/</loc>
-    <lastmod>2026-10-19</lastmod>
-    <changefreq>daily</changefreq>
+    <lastmod>2026-11-07</lastmod>
   </url>
   <url>
-    <loc>https://www.aurorahubperu.com/pulse/dolarhoy</loc>
-    <lastmod>2026-10-19</lastmod>
-    <changefreq>daily</changefreq>
+    <loc>https://www.aurorahubperu.com/pulse/dolarhoy/</loc>
+    <lastmod>2026-11-07</lastmod>
   </url>
 </urlset>
