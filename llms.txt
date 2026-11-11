@@ -26,9 +26,10 @@ Datos básicos:
 
 - [Guías de precios](https://www.aurorahubperu.com/guias/): índice de las guías.
 - [¿Cuánto cuesta una página web en Perú?](https://www.aurorahubperu.com/guias/cuanto-cuesta-una-pagina-web-peru/): landing desde S/ 200, web corporativa de S/ 500 a S/ 5,000, tienda online de S/ 950 a S/ 5,000, según tarifas publicadas por proveedores de Lima en octubre de 2026.
-- [¿Cuánto cuesta un chatbot de WhatsApp con IA en Perú?](https://www.aurorahubperu.com/guias/cuanto-cuesta-chatbot-whatsapp-ia-peru/): bots con IA de S/ 1,500 a S/ 10,000 de implementación; responder a un cliente que escribió primero no tiene costo en Meta.
+- [¿Cuánto cuesta un chatbot de WhatsApp con IA en Perú?](https://www.aurorahubperu.com/guias/cuanto-cuesta-chatbot-whatsapp-ia-peru/): bots con IA de S/ 1,500 a S/ 10,000 de implementación; Meta cobra los mensajes aparte, con 1,000 respuestas gratis al mes por número y US$ 0.03 por mensaje después (Perú, desde el 1 de octubre de 2026).
 - [¿Cuánto invertir en Meta Ads en Perú?](https://www.aurorahubperu.com/guias/cuanto-invertir-meta-ads-peru/): de S/ 15 a S/ 100 al día según el objetivo, más 18% de IGV de Meta; gestión de agencia de S/ 750 a S/ 4,000 al mes.
 - [¿Cuánto cuesta el SEO en Perú?](https://www.aurorahubperu.com/guias/cuanto-cuesta-seo-peru/): SEO mensual de S/ 300 a S/ 8,000 según el proveedor (S/ 1,500 a S/ 4,000 para una pyme con agencia), auditoría de S/ 1,000 a S/ 6,000 y SEO local de S/ 800 a S/ 2,500 al mes, según guías de precios de agencias de Lima publicadas en 2026.
+- [WhatsApp Business, API oficial, agente de IA de Meta o chatbot: ¿cuál te conviene?](https://www.aurorahubperu.com/guias/whatsapp-business-api-agente-ia-o-chatbot/): diferencias entre la app gratuita, Meta Business Agent, la API oficial y un chatbot a medida; tarifas de la API en Perú desde el 1 de octubre de 2026 (servicio, utilidad y autenticación US$ 0.03; marketing US$ 0.0703; 1,000 mensajes de servicio gratis al mes por número).
 
 ## Proyectos y casos
 
