@@ -34,7 +34,7 @@ Datos básicos:
 ## Proyectos y casos
 
 - [Proyectos y Laboratorio de diseño](https://www.aurorahubperu.com/proyectos/): portafolio con casos de clientes y proyectos propios.
-- [Caso Abeejita](https://www.aurorahubperu.com/proyectos/#caso-abeejita): miel cruda de Oxapampa vendida por WhatsApp. Web de marca, campañas en Meta Ads y asistente con IA conectado a Kommo y n8n. Cifras publicadas con permiso del cliente: +500 ventas, +2,300 conversaciones de WhatsApp, 263 mil personas alcanzadas y S/ 0.82 por conversación en promedio.
+- [Caso Abeejita](https://www.aurorahubperu.com/proyectos/#caso-abeejita): miel cruda de Oxapampa vendida por WhatsApp. Web de marca, campañas en Meta Ads y asistente con IA conectado a Kommo y n8n. Cifras publicadas con permiso del cliente: +500 ventas, +4,000 leads por WhatsApp desde anuncios, 266 mil personas alcanzadas y S/ 1.03 por lead en promedio; en los primeros 3 meses de campaña, 129 pedidos y S/ 8,013 en ventas con S/ 1,932 de inversión en anuncios.
 - [Caso Canepa & Girbau](https://www.aurorahubperu.com/proyectos/#caso-canepa): web con tienda de café de especialidad y serie de anuncios para Meta.
 - [Caso Aura](https://www.aurorahubperu.com/proyectos/#caso-aura): web de una agencia de branding e influencia.
 - [Caso Cubierto](https://www.aurorahubperu.com/proyectos/#caso-cubierto): estrategia y gestión de campañas en Facebook e Instagram para un servicio de catering.
