@@ -31,6 +31,7 @@ Datos básicos:
 - [¿Cuánto invertir en Meta Ads en Perú?](https://www.aurorahubperu.com/guias/cuanto-invertir-meta-ads-peru/): de S/ 15 a S/ 100 al día según el objetivo, más 18% de IGV de Meta; gestión de agencia de S/ 750 a S/ 4,000 al mes.
 - [¿Cuánto cuesta el SEO en Perú?](https://www.aurorahubperu.com/guias/cuanto-cuesta-seo-peru/): SEO mensual de S/ 300 a S/ 8,000 según el proveedor (S/ 1,500 a S/ 4,000 para una pyme con agencia), auditoría de S/ 1,000 a S/ 6,000 y SEO local de S/ 800 a S/ 2,500 al mes, según guías de precios de agencias de Lima publicadas en 2026.
 - [WhatsApp Business, API oficial, agente de IA de Meta o chatbot: ¿cuál te conviene?](https://www.aurorahubperu.com/guias/whatsapp-business-api-agente-ia-o-chatbot/): diferencias entre la app gratuita, Meta Business Agent, la API oficial y un chatbot a medida; tarifas de la API en Perú desde el 1 de octubre de 2026 (servicio, utilidad y autenticación US$ 0.03; marketing US$ 0.0703; 1,000 mensajes de servicio gratis al mes por número).
+- [¿Cuánto cuesta automatizar tu negocio en Perú?](https://www.aurorahubperu.com/guias/cuanto-cuesta-automatizar-negocio-peru/): un flujo simple de S/ 400 a S/ 1,700; implementar Kommo de S/ 1,300 a S/ 4,000; licencia de Kommo US$ 20, 30 o 45 por usuario al mes con mínimo de 6 meses; n8n desde 20 € al mes en su nube o en servidor propio; costos mensuales y un ejemplo con 3 vendedores.
 
 ## Proyectos y casos
 
