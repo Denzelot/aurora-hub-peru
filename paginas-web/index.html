@@ -107,6 +107,9 @@ if (PIXEL_IDS.length) {
   PIXEL_IDS.forEach(id => fbq('init', id)); fbq('track', 'PageView');
 }
 </script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-5MK8ED3B0G"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-5MK8ED3B0G');</script>
 <script type="application/ld+json">
 {
  "@context":"https://schema.org",
@@ -260,7 +263,7 @@ if (PIXEL_IDS.length) {
 (() => {
   'use strict';
   const WHATSAPP = '51932462537';
-  const track = (name, data) => { try { if (window.fbq) window.fbq('track', name, data || {}); } catch (e) {} try { if (window.va) window.va('event', { name: 'whatsapp_click', data: data || {} }); } catch (e) {} };
+  const track = (name, data) => { try { if (window.fbq) window.fbq('track', name, data || {}); } catch (e) {} try { if (name === 'Lead' && window.gtag) window.gtag('event', 'generate_lead', { method: 'whatsapp', content_name: (data || {}).content_name }); } catch (e) {} try { if (window.va) window.va('event', { name: 'whatsapp_click', data: data || {} }); } catch (e) {} };
   document.querySelectorAll('[data-wa]').forEach(a => {
     a.setAttribute('href', `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(a.dataset.wa)}`);
     a.setAttribute('target', '_blank'); a.setAttribute('rel', 'noopener');

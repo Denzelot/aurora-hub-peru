@@ -26,6 +26,11 @@
 !function(f,b){if(f.fbq)return;var n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];var ok=0,go=function(){if(ok)return;ok=1;var t=b.createElement('script');t.async=!0;t.src='https://connect.facebook.net/en_US/fbevents.js';b.head.appendChild(t)};['pointerdown','keydown','scroll','touchstart'].forEach(function(e){addEventListener(e,go,{once:true,passive:true})});addEventListener('load',function(){setTimeout(go,3500)})}(window,document);
 fbq('init', '1747129786526417'); fbq('init', '962600523591458'); fbq('track', 'PageView');
 </script>
+<!-- Google Analytics 4: diferido igual que el píxel de Meta (primera interacción o 3,5 s después de cargar) -->
+<script>
+window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-5MK8ED3B0G');
+!function(b){var ok=0,go=function(){if(ok)return;ok=1;var t=b.createElement('script');t.async=!0;t.src='https://www.googletagmanager.com/gtag/js?id=G-5MK8ED3B0G';b.head.appendChild(t)};['pointerdown','keydown','scroll','touchstart'].forEach(function(e){addEventListener(e,go,{once:true,passive:true})});addEventListener('load',function(){setTimeout(go,3500)})}(document);
+</script>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -289,7 +294,7 @@ empezar("dental");
 
 (() => { const W = '51932462537';
   document.querySelectorAll('[data-wa]').forEach(a => { a.href = `https://wa.me/${W}?text=${encodeURIComponent(a.dataset.wa)}`; a.target = '_blank'; a.rel = 'noopener';
-    a.addEventListener('click', () => { try { fbq('track', 'Lead', {content_name: a.dataset.where}); } catch (x) {} try { va('event', {name: 'whatsapp_click', data: {donde: a.dataset.where}}); } catch (x) {} }); });
+    a.addEventListener('click', () => { try { fbq('track', 'Lead', {content_name: a.dataset.where}); } catch (x) {} try { gtag('event', 'generate_lead', {method: 'whatsapp', content_name: a.dataset.where}); } catch (x) {} try { va('event', {name: 'whatsapp_click', data: {donde: a.dataset.where}}); } catch (x) {} }); });
 })();
 </script>
 </body>

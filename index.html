@@ -392,6 +392,11 @@ html[data-theme=light] .lab-i{background:rgba(255,255,255,.85);border-color:rgba
 !function(f,b){if(f.fbq)return;var n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];var ok=0,go=function(){if(ok)return;ok=1;var t=b.createElement('script');t.async=!0;t.src='https://connect.facebook.net/en_US/fbevents.js';b.head.appendChild(t)};['pointerdown','keydown','scroll','touchstart'].forEach(function(e){addEventListener(e,go,{once:true,passive:true})});addEventListener('load',function(){setTimeout(go,3500)})}(window,document);
 fbq('init', '1747129786526417'); fbq('init', '962600523591458'); fbq('track', 'PageView');
 </script>
+<!-- Google Analytics 4: diferido igual que el píxel de Meta (primera interacción o 3,5 s después de cargar) -->
+<script>
+window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-5MK8ED3B0G');
+!function(b){var ok=0,go=function(){if(ok)return;ok=1;var t=b.createElement('script');t.async=!0;t.src='https://www.googletagmanager.com/gtag/js?id=G-5MK8ED3B0G';b.head.appendChild(t)};['pointerdown','keydown','scroll','touchstart'].forEach(function(e){addEventListener(e,go,{once:true,passive:true})});addEventListener('load',function(){setTimeout(go,3500)})}(document);
+</script>
 <script type="application/ld+json">
 {
  "@context": "https://schema.org",
@@ -1212,8 +1217,8 @@ fbq('init', '1747129786526417'); fbq('init', '962600523591458'); fbq('track', 'P
 'use strict';
 const WHATSAPP = '51932462537';
 document.documentElement.classList.add('js');
-const lead = w => { try { if (window.fbq) window.fbq('track', 'Lead', { content_name: w }); } catch (e) {} };
-const wa = t => { lead('whatsapp'); return window.open(`https://wa.me/${WHATSAPP}?text=${encodeURIComponent(t)}`, '_blank', 'noopener'); };
+const lead = (w, m) => { try { if (window.fbq) window.fbq('track', 'Lead', { content_name: w }); } catch (e) {} try { if (window.gtag) window.gtag('event', 'generate_lead', { method: m || 'whatsapp', content_name: w }); } catch (e) {} };
+const wa = (t, m) => { lead('whatsapp', m); return window.open(`https://wa.me/${WHATSAPP}?text=${encodeURIComponent(t)}`, '_blank', 'noopener'); };
 /* ---------- catálogo de servicios ---------- */
 const GROUPS = {Crecer: '#2cf5c8', Automatizar: '#7d8bff', Proteger: '#ff4fa3', Soporte: '#ff86c0', Industrias: '#b892ff'};
 const PAGES = {"IA y chatbots": "/servicios/chatbot-whatsapp-ia/", "Publicidad en Meta, TikTok y Google": "/servicios/meta-ads/", "Webs y tiendas online": "/servicios/diseno-web/", "SEO y Google Maps": "/servicios/seo-google-maps/", "n8n y Kommo": "/servicios/automatizacion-n8n-kommo/", "Automatizaciones": "/servicios/automatizacion-n8n-kommo/", "Soporte técnico remoto": "/servicios/soporte-tecnico-remoto/", "Mantenimiento mensual": "/servicios/soporte-tecnico-remoto/"};
@@ -1283,7 +1288,7 @@ function quiz(){ const k = ans.length;
   $quiz.innerHTML = `<div class="qbar"><i style="width:100%"></i></div><div class="qn">Tu ruta recomendada</div><h3>Empieza por aquí</h3><ol class="rec">${rec.map(s => `<li style="--tone:${GROUPS[s[0]]}"><b>${s[1]}</b><span>${s[2]}</span></li>`).join('')}</ol>
     <div class="cta"><button type="button" class="btn primary" id="qWa">Enviar mi diagnóstico por WhatsApp</button><button type="button" class="btn" id="qRe">Volver a empezar</button></div>`;
   document.getElementById('qRe').addEventListener('click', () => { ans = []; quiz(); });
-  document.getElementById('qWa').addEventListener('click', () => wa(`Hola Aurora Hub Perú, hice el diagnóstico en su web. Quiero: ${ans[0][0].toLowerCase()}. Negocio: ${ans[1][0].toLowerCase()}. Hoy: ${ans[2][0].toLowerCase()}. Plazo: ${ans[3][0].toLowerCase()}. Me recomendaron: ${rec.map(s => s[1]).join(', ')}.`));
+  document.getElementById('qWa').addEventListener('click', () => wa(`Hola Aurora Hub Perú, hice el diagnóstico en su web. Quiero: ${ans[0][0].toLowerCase()}. Negocio: ${ans[1][0].toLowerCase()}. Hoy: ${ans[2][0].toLowerCase()}. Plazo: ${ans[3][0].toLowerCase()}. Me recomendaron: ${rec.map(s => s[1]).join(', ')}.`, 'diagnostico'));
 }
 quiz();
 /* ---------- títulos que se revelan con un barrido de luz ---------- */
@@ -1391,7 +1396,8 @@ function answer(raw){ const q = norm(raw);
 document.getElementById('chF').addEventListener('submit', e => { e.preventDefault(); const i = document.getElementById('chI'), v = i.value.trim(); if (!v) return; i.value = ''; add(esc(v), 'me'); reply(() => answer(v)); });
 $log.addEventListener('click', e => { if (e.target.closest('a.go') && matchMedia('(max-width: 760px)').matches) toggleChat(false); });
 let greeted = false;
-function toggleChat(v){ SHIP.open = v; $chat.classList.toggle('open', v); $chat.setAttribute('aria-hidden', !v); $shipBtn.setAttribute('aria-expanded', v); $bub.classList.remove('show');
+let gaChat = false;
+function toggleChat(v){ SHIP.open = v; if (v && !gaChat) { gaChat = true; try { if (window.gtag) window.gtag('event', 'chat_open'); } catch (e) {} } $chat.classList.toggle('open', v); $chat.setAttribute('aria-hidden', !v); $shipBtn.setAttribute('aria-expanded', v); $bub.classList.remove('show');
   if (v) { SND.power(); if (!greeted) { greeted = true; reply(welcome); } setTimeout(() => document.getElementById('chI').focus({preventScroll: true}), 350); } }
 $shipBtn.addEventListener('click', () => toggleChat(!SHIP.open));
 document.getElementById('chX').addEventListener('click', () => { toggleChat(false); $shipBtn.focus(); });
